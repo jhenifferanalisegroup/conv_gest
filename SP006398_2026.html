@@ -1,0 +1,689 @@
+
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+    <title>
+        Mediador - Extrato Conven&#231;&#227;o Coletiva
+    </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G"></script>
+
+    <script src='/sistemas/mediador/WebResource.axd?d=cuQcyhunthaKbkS1HRDdYz6PN4zLUht6oCI9W5Qe4lHx-6WAKxelJ3CNRaaYGmIIXUPG_02Oz_3xp1nWR4wRmrhzD889Xme-W80PINl5Opm3a6Vk9xOcKAdRAP0WaAY0QwRFkKa8ygci1cWChKIM3xi_y4E-QkbPdUjFbuj7xrCEQ-EVAHEd2SiDsURiQrGz0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=oCiGPyL516rw_w4O_26ZIUgEDxNTixko29P8hNqgYYE9jihnBUsGIp-kukrf82JW7eobyj8s0ooJ5rI1tfuIzt5-6_pMzumq7dLHWrlQZ-QMRUlCHBKuRssX4JwWJPbRaacnUMI4LY59GnxsKL82GjLr-MAsXYWqz_mUgN6cUz51NH30xgq7ZmHyBhUjhPw8-L_0eLuQdQHcRf08dF_HrA2&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=wI0LQo9-Y3uVg4JvYlrDeAmD0eDROLwrykxGZZm7FeHJNOkuLJd-tB3W2xasfEpUFS-WtoMR44VJNgE_0uIW4OIXYKjcDuXF0IcPvjMyLwlPk2AOsHRO3raei2aKk_DpNcvHrgXcEazozbzFbx3MyYROztNnngy4LZm8CigaBFeRwbfjiCBOJaSo3LCaUDVQ0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=KaDqL3Gcxy5_cHNfLKsWFNdcKxNiiUh3HtPda6q62Tk6jObaqvBGjIGv4N3KHnol1jsYfqnEDPvu8bqDw9664g8gNXTu-bup9GNgychn1MlTxA9V_0gUapXZl6zq0NwvemVy1w_Yym-4g5yIIiPndY1yb7UY2Z3ZO1ZTaDrRNyAjWzC-rNL3CXeYpaiIWTH40&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=qtzkb4aKrNku25SKlKs4jZr_bdveUVnUZ5tZc2pTT2sauL0_dRzCNMZhGSFASotxmo04giDQ-E0d0UeLqCdzABP8l2gJR6XwVRdetE7e7Eck3ObZ-LknGwsZoVcBz7BNY1TRN4J-vljXQrR5MmbFoTkwox8Q8ec5f9wsCVK67AZSRApQIAoKK7FEwOCFjWlx0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=3iAOwoL9JnA5TZ6rygyAAR_lXBxjSq4488DJsEscLKSXKUh-cfJ9O5bC-FxRzAqJtsQJFs2IhSJQ3HR3WKiVMzlo3WgEBcHU3QAeRw7LGJeOXAbL5CGBB2zel0X2_oWfsINwuZcDfexI5FD89VA4NlfrRQ7K4czFkowNfSNtL_dKVZ5vnkZUyK_vnlVhpVzb0&t=639193666532168144' type='text/javascript'></script>
+
+
+<script type="text/javascript">
+        var recaptchaSiteKey = '6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G';
+        var pageLoadToken = '';
+        var isPageValidated = false;
+
+        function onRecaptchaLoad() {
+            console.log('reCAPTCHA carregado, validando página...');
+            executePageLoadRecaptcha();
+        }
+
+        function executePageLoadRecaptcha() {
+            if (typeof grecaptcha === 'undefined') {
+                console.error('reCAPTCHA não carregado');
+                return;
+            }
+
+            grecaptcha.ready(function() {
+                grecaptcha.execute(recaptchaSiteKey, {
+                    action: 'page_load_resumo'
+                }).then(function(token) {
+                    console.log('Token de página gerado');
+                    pageLoadToken = token;
+
+                    // Enviar o token para o servidor
+                    validatePageLoadToken(token);
+                }).catch(function(error) {
+                    console.error('Erro no reCAPTCHA de página:', error);
+                    // Em desenvolvimento, permitir continuar
+                });
+            });
+        }
+
+        function validatePageLoadToken(token) {
+            var currentUrl = window.location.href;
+            var queryString = window.location.search;
+            var nrSolicitacao = 'MR030718/2026';
+
+            $.ajax({
+                url: '/sistemas/mediador/Resumo/ValidateResumoPageLoad',
+                type: 'POST',
+                data: {
+                    recaptchaToken: token,
+                    currentUrl: currentUrl,
+                    queryString: queryString,
+                    nrSolicitacao: nrSolicitacao
+                },
+                success: function(response) {
+                    if (response.success) {
+                        console.log('Página validada com sucesso');
+                        isPageValidated = true;
+                        showPageContent();
+                    } else {
+                        console.warn('Validação de página falhou:', response.message);
+                        handleValidationFailed(response);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Erro ao validar página:', error);
+                    handleValidationFailed({ message: 'Erro de comunicação com o servidor' });
+                }
+            });
+        }
+
+        function showPageContent() {
+            // Remover overlay de loading se existir
+            $('#recaptcha-loading').remove();
+            console.log('Conteúdo da página liberado');
+        }
+
+        function handleValidationFailed(response) {
+            // Mostrar mensagem de erro
+            var errorHtml = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                    <div style="text-align: center; padding: 20px;">
+                        <h2 style="color: #d32f2f;">Validação de Segurança</h2>
+                        <p style="font-size: 16px; margin: 20px 0;">${response.message || 'Falha na validação de segurança.'}</p>
+                        <button onclick="window.location.reload()" style="padding: 10px 20px; background: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Tentar Novamente
+                        </button>
+                        <br><br>
+                        <button onclick="window.location.href='/sistemas/mediador/'" style="padding: 8px 16px; background: #757575; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Voltar para Página Inicial
+                        </button>
+                    </div>
+                </div>
+            `;
+            $('body').prepend(errorHtml);
+        }
+
+        $(document).ready(function() {
+            console.log('Página carregada - ambiente de produção');
+
+            // Pular validação reCAPTCHA em produção
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.log('Produção - validando sem reCAPTCHA');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 1000);
+
+            // Timeout de segurança reduzido
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.warn('Timeout na validação - liberando conteúdo');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 5000); // Reduzido para 5 segundos
+        });
+
+        function Imprimir() {
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "none";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "none";
+            window.print();
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "";
+            return true;
+        }
+        $(function () {
+            var marcaDaguaHtml = $('.MarcaDagua').html();
+            var width = $('body').width();
+            var marcaW = $('.MarcaDagua').width();
+
+            var qtdNescessarios = Math.round((width / marcaW) + 0.4);
+            if (qtdNescessarios > 0)
+                for (var incrementador = 0; incrementador < qtdNescessarios; incrementador++) {
+                    $('.MarcaDagua').append("<br />");
+                    $('.MarcaDagua').append(marcaDaguaHtml);
+                }
+        });
+
+
+</script>
+    <style type="text/css">
+        .titulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .Subtitulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 13px;
+        }
+        .texto
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .tituloClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .descricaoClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .textogrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        .textosubgrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        .textonome
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .textofuncao
+        {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .pagebreak
+        {
+            page-break-after: always;
+        }
+        table.titulo
+        {
+            text-align: left;
+        }
+        @page Section2 {size:21cm 29.7cm ;mso-page-orientation:portrait;margin-top:2cm; margin-rigth:2cm; mso-paper-source:0;}
+        div.Section2 {page:Section2;}
+        pre
+        {
+            white-space: pre-wrap; /* css-3 */
+            white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+            white-space: -pre-wrap; /* Opera 4-6 */
+            white-space: -o-pre-wrap; /* Opera 7 */
+            word-wrap: break-word; /* Internet Explorer 5.5+ */
+            white-space: normal;
+        }
+    </style>
+    <!--[if gte mso 9]>
+    <xml>
+    <w:WordDocument>
+    <w:View>Print</w:View>
+    <w:Zoom>100</w:Zoom>
+    <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+    </xml>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="Section2">
+                <form method="post" action="/sistemas/mediador/Resumo/ResumoVisualizarSalvarMsWordDoc?NrSolicitacao=MR030718/2026">
+                    <input type="button" id="btnResumoVisualizarImprimir" value="Imprimir" onclick="Imprimir();" />
+                    <input type="submit" id="btnResumoVisualizarSalvar" value="Salvar" />
+                </form>
+
+            <div style="text-align: center; z-index: -1000; position: absolute; width: 100%;"
+                 class="MarcaDagua">
+                <img src="/sistemas/mediador/Content/images/carimbo.gif" alt="marcaDAgua" />
+            </div>
+        <center>
+            <table border="0" style="width: 18cm;" id="tblConteudo">
+                <tr>
+                    <td>
+                        <table style="width: 100%;" cellpadding="0" cellspacing="0">
+
+                                                            <tr>
+                                    <td align="center" class="titulo" style="text-transform: uppercase;">
+                                        <b>
+                                            Conven&#231;&#227;o Coletiva De Trabalho 2026/2027
+                                        </b>
+                                        <br />
+                                        <br />
+                                    </td>
+                                </tr>
+                            <tr>
+                                <td>
+                                    <div style="text-align: left;">
+                                        <table border="0" class="titulo" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td>
+                                                        <b>NÚMERO DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        SP006398/2026
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        16/07/2026
+                                                    </td>
+                                                </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>NÚMERO DA SOLICITAÇÃO:</b>
+                                                </td>
+                                                <td style="width: 10px">
+                                                </td>
+                                                <td>
+                                                    MR030718/2026
+                                                </td>
+                                            </tr>
+                                                                                            <tr>
+                                                    <td>
+                                                        <b>NÚMERO DO PROCESSO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        47979.278026/2026-15
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DO PROTOCOLO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+02/06/2026                                                    </td>
+                                                </tr>
+                                        </table>
+                                        <br />
+
+                                                        <p>
+                                                            <label class="texto">
+                                                                <b>
+                                                                    Confira a autenticidade no endereço http://mediador.trabalho.gov.br/sistemas/mediador/.
+                                                                </b>
+                                                            </label>
+                                                        </p>
+                                                    <br />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="texto">
+                                    <p align="justify">
+FEDERACAO DOS EMPREGADOS NO COMERCIO DO ESTAD SAO PAULO, CNPJ n. 61.669.313/0001-21, neste ato representado(a) por seu 
+
+Diretor, Sr(a). JOSE CARLOS APARECIDO PELEGRINI;
+    <br />
+&nbsp;
+    <br />
+                                        <label>
+                                            E
+                                        </label>
+                                        <br />
+                                        <br />
+SINDICATO DO COMERCIO VAREJISTA DE RIBEIRAO PRETO, CNPJ n. 56.014.640/0001-05, neste ato representado(a) por seu 
+
+Presidente, Sr(a). PAULO CESAR GARCIA LOPES;
+    <br />
+&nbsp;
+    <br />
+                                                                                    celebram
+                                                                                    a
+                                         presente CONVEN&#199;&#195;O COLETIVA DE TRABALHO,
+ estipulando as condi&#231;&#245;es de trabalho previstas nas cl&#225;usulas seguintes:                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA PRIMEIRA - VIG&#202;NCIA E DATA-BASE
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    As partes fixam a vigência da presente Convenção Coletiva de Trabalho no período de 01º de fevereiro de 2026 a 31 de janeiro de 2027 e a data-base da categoria em 01º de setembro.
+                                                </label>
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA SEGUNDA - ABRANG&#202;NCIA
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    A presente Convenção Coletiva de Trabalho abrangerá a(s) categoria(s) <b>CATEGORIA PROFISSIONAL DOS EMPREGADOS NO COMÉRCIO VAREJISTA, COM EXCLUSÃO DA CATEGORIA ECONOMICA DO "COMÉRCIO VAREJISTA DE PEÇAS E ACESSÓRIOS PARA VEICULOS". A FEDERAÇÃO CONVENENTE REPRESENTA A CATEGORIA E OS MUNICÍPIOS INORGANIZADOS EM SINDICATOS DESCRITOS NESTA CCT</b>, com abrangência territorial em <b>Taquaritinga/SP</b>.
+                                                </label>
+                                                <br />
+                                    </p>
+
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Jornada de Trabalho – Duração, Distribuição, Controle, Faltas
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Duração e Horário
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TERCEIRA - HOR&#193;RIO DE FUNCIONAMENTO E JORNADA DE TRABALHO DOS SUPERMERCADOS, VAREJ&#213;ES,
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;">Resolvem as partes de comum acordo que nos <strong>SUPERMERCADOS, VAREJ&Otilde;ES, MERCADOS, MERCEARIAS E A&Ccedil;OUGUES </strong>da cidade de Taquaritinga &ndash; SP, ser&aacute; permitido o funcionamento e jornada de trabalho mediante as seguintes condi&ccedil;&otilde;es estabelecidas pelas categorias econ&ocirc;mica e profissional, neste ato representadas pelas respectivas Entidades Sindicais signat&aacute;rias:</p>
+<p>&nbsp;</p>
+<p><strong>Aos domingos: das 6h00 &aacute;s 13h00</strong></p>
+<p><strong>Nos dias normais da semana (segunda-feira &aacute; s&aacute;bado) das 6h00 &aacute;s 22h00</strong></p>
+<p>&nbsp;</p>
+<p>Nos feriados conforme a seguir estabelecido entre as partes:</p>
+<p>&nbsp;</p>
+<p>&nbsp;<strong><span style="text-decoration: underline;">M&Ecirc;S DE FEVEREIRO /2026</span></strong></p>
+<p>Dia 16 - segunda feira &ndash; CARNAVAL &ndash; hor&aacute;rio normal.</p>
+<p>Dia 17 - ter&ccedil;a feira - CARNAVAL: das 6h00&nbsp; as 13h00.</p>
+<p>&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">M&Ecirc;S DE ABRIL/2026</span></strong></p>
+<p>Dia 03 &ndash; sexta-feira SANTA &ndash; FERIADO: das 6h00&nbsp; as 13h00.</p>
+<p>Dia 21 &ndash; Ter&ccedil;a feira &ndash; Tiradentes:&nbsp; das 6h00&nbsp; as 13h00.</p>
+<p>&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">M&Ecirc;S DE MAIO/2025</span></strong></p>
+<p><strong>Dia 01 &ndash; Sexta</strong><strong> feira </strong><strong>&ndash; FERIADO - Dia do trabalhador &ndash; FECHADO.</strong></p>
+<p><strong><span style="text-decoration: underline;">&nbsp;</span></strong></p>
+<p><strong><span style="text-decoration: underline;">M&Ecirc;S DE JUNHO/2026</span></strong></p>
+<p>Dia 04 &ndash; Quinta feira &ndash; FERIADO - Dia de Corpus Christi: das 6h00&nbsp; as 13h00.</p>
+<p><strong><span style="text-decoration: underline;">&nbsp;</span></strong></p>
+<p><strong><span style="text-decoration: underline;">M&Ecirc;S DE JULHO/2026</span></strong></p>
+<p>Dia 09 &ndash; Quinta feira &ndash; FERIADO ESTADUAL: das 6h00 as 13h00.</p>
+<p><strong><span style="text-decoration: underline;">&nbsp;</span></strong></p>
+<p><strong><span style="text-decoration: underline;">M&Ecirc;S DE AGOSTO/2026</span></strong></p>
+<p>Dia 16 &ndash; Domingo &ndash; FERIADO - Aniversario de Taquaritinga &ndash; FERIADO: das 6h00&nbsp; as 13h00.</p>
+<p><strong><span style="text-decoration: underline;">&nbsp;</span></strong></p>
+<p><strong><span style="text-decoration: underline;">M&Ecirc;S DE SETEMBRO/2026&nbsp; </span></strong></p>
+<p>Dia 07 &ndash; Segunda feira &ndash; FERIADO - Independ&ecirc;ncia do Brasil: das 6h00&nbsp; as 13h00.</p>
+<p><strong><span style="text-decoration: underline;">&nbsp;</span></strong></p>
+<p><strong><span style="text-decoration: underline;">M&Ecirc;S DE OUTUBRO/2026</span></strong></p>
+<p>Dia 12 &ndash; Segunda feira&nbsp; &ndash; FERIADO -&nbsp; Nossa Senhora Aparecida: das 6h00&nbsp; as 13h00.</p>
+<p><strong>&nbsp;</strong></p>
+<p><strong><span style="text-decoration: underline;">M&Ecirc;S DE NOVEMBRO/2026 </span></strong></p>
+<p>Dia 02 &ndash; Segunda feira &ndash; FERIADO - Finados: das 6h00 as 13h00.</p>
+<p>Dia 15 - Domingo - FERIADO - Proclama&ccedil;&atilde;o da Rep&uacute;blica das 6h00 as 13h00.</p>
+<p>Dia 20 &ndash; Sexta feira &ndash; FERIADO &ndash; Consci&ecirc;ncia Negra: das 6h00 as 13h00.</p>
+<p>&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">M&Ecirc;S DE DEZEMBRO/2026</span></strong></p>
+<p>Dia 24 &ndash; Quinta feira &ndash; v&eacute;spera de Natal: das 6h00 as 18h00.</p>
+<p><strong>Dia 25 &ndash; Sexta feira &ndash; FERIADO - Natal &ndash; FECHADO.</strong></p>
+<p>Dia 31 &ndash; Quinta feira &ndash; VESPERA DE ANO NOVO: das 6h00&nbsp; as 18h00.</p>
+<p>&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">M&Ecirc;S DE JANEIRO/2027</span></strong></p>
+<p>&nbsp;<strong>Dia 01 &ndash; S</strong><strong>exta feira</strong><strong> &ndash; FERIADO - Confraterniza&ccedil;&atilde;o universal &ndash; FECHADO.</strong></p>
+<p>&nbsp;Dia 20 &ndash; Quarta feira FERIADO - Dia do Padroeiro de Taquaritinga: das 6h00&nbsp; as 13h00.</p>
+<p>&nbsp;</p>
+<p><strong>Em rela&ccedil;&atilde;o aos feriados n&atilde;o especificados nesta Conven&ccedil;&atilde;o, n&atilde;o haver&aacute; jornada de trabalho, sendo assim, os Supermercados, mercados, mercearias, a&ccedil;ougues e varej&otilde;es permanecer&atilde;o fechados.</strong></p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Prorrogação/Redução de Jornada
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUARTA - JOGOS DO BRASIL NA COPA DO MUNDO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;">Fica estabelecido que em caso de classifica&ccedil;&atilde;o do Brasil para as pr&oacute;ximas fases, e havendo jogos em hor&aacute;rios que coincidam com a abertura do com&eacute;rcio, fica definido que o Comercio fechara 30 minutos antes do inicio dos jogos e reabrira 30 minutos ap&oacute;s o termino dos jogos.</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Jornadas Especiais (mulheres, menores, estudantes)
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUINTA - TRABALHO DAS GESTANTES E MENORES NOS FERIADOS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p><span style="font-size: small;">Fica proibido o trabalho dos menores de 18 anos de idade e gestantes nos feriados, exceto se os pr&oacute;prios se manifestarem por escrito em sentido contr&aacute;rio.</span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras disposições sobre jornada
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA SEXTA - PAGAMENTOS PELOS FERIADOS TRABALHADOS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Todas &aacute;s horas trabalhadas nos feriados acima especificados ser&atilde;o pagas com adicional de acr&eacute;scimo de 100% (cem por cento).</p>
+<p><strong>&nbsp;</strong></p>
+<p>Os pagamentos das referidas horas dever&atilde;o ser efetuados na compet&ecirc;ncia do m&ecirc;s que ocorrer o citado labor extraordin&aacute;rio devendo obrigatoriamente constar no recibo de pagamento do sal&aacute;rio mensal e n&atilde;o em recibo &agrave; parte, sob pena de n&atilde;o serem consideradas quitadas.</p>
+<p>&nbsp;</p>
+<p>As horas trabalhadas nos feriados n&atilde;o poder&atilde;o em hip&oacute;tese alguma ser compensadas.</p>
+<p>&nbsp;</p>
+<p>Tamb&eacute;m ficam as empresas obrigadas a pagarem para cada funcion&aacute;rio que trabalhar no feriado, os valores especificados abaixo:</p>
+<p>&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">Empresa com mais de 10 empregados</span></strong></p>
+<p>&nbsp;</p>
+<p style="text-align: justify;">Pagamento m&iacute;nimo de R$ 64,00 ao final do expediente e devendo obrigatoriamente constar em recibo de pagamento do sal&aacute;rio mensal e n&atilde;o em recibo a parte, quando integral e cumprida efetivamente a jornada de 8 (oito) horas.</p>
+<p style="text-align: justify;">Pagamento m&iacute;nimo de R$ 49,00, ao final do expediente e devendo obrigatoriamente constar em recibo de pagamento do sal&aacute;rio mensal e n&atilde;o em recibo a parte, quando integral e cumprida efetivamente a jornada de 4 (quatro) horas.</p>
+<p>&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">Empresa com at&eacute; 10 empregados</span></strong></p>
+<p style="text-align: justify;">&nbsp;Pagamento m&iacute;nimo de R$ 49,00, ao final do expediente e devendo obrigatoriamente constar em recibo de pagamento do sal&aacute;rio mensal e n&atilde;o em recibo a parte, quando integral e cumprida efetivamente a jornada de 8 (oito) horas.</p>
+<p>&nbsp;</p>
+<p style="text-align: justify;">Pagamento m&iacute;nimo de R$ 36,00 ao final do expediente e devendo obrigatoriamente constar em recibo de pagamento do sal&aacute;rio mensal e n&atilde;o em recibo a parte, quando integral e cumprida efetivamente a jornada de 4 (quatro) horas.</p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Disposições Gerais
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Regras para a Negociação
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA S&#201;TIMA - REGRAS PARA A NEGOCIA&#199;&#195;O
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Fica pactuado entre as entidades convenientes que &eacute; vedado todo e qualquer acordo <strong>FIRMADO DIRETAMENTE COM A EMPRESA</strong>&nbsp;que vise alterar o hor&aacute;rio de funcionamento pactuado na presente Conven&ccedil;&atilde;o Coletiva de Trabalho, sem a media&ccedil;&atilde;o e participa&ccedil;&atilde;o da entidades signat&aacute;rias da presente Conven&ccedil;&atilde;o.</p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Descumprimento do Instrumento Coletivo
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA OITAVA - MULTA
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;">Em caso de descumprimento das condi&ccedil;&otilde;es estabelecidas na presente conven&ccedil;&atilde;o a empresa ter&aacute; de suportar uma multa equivalente ao valor de R$ 690,00 para cada empregado e por infra&ccedil;&atilde;o, revertida em favor do trabalhador.</p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                    }
+                                    <br />
+                                    <table border="0" cellpadding="0" cellspacing="0" align="center">
+                                        <tr>
+                                            <td align="center">
+                                                    <br />
+    <br />
+    <label class="textonome">
+        JOSE CARLOS APARECIDO PELEGRINI
+        <br style="height: 5px" />
+        Diretor
+        <br style="height: 5px" />
+        FEDERACAO DOS EMPREGADOS NO COMERCIO DO ESTAD SAO PAULO
+        <br />
+        <br />
+    </label>
+
+    <br />
+    <br />
+    <label class="textonome">
+        PAULO CESAR GARCIA LOPES
+        <br style="height: 5px" />
+        Presidente
+        <br style="height: 5px" />
+        SINDICATO DO COMERCIO VAREJISTA DE RIBEIRAO PRETO
+        <br />
+        <br />
+    </label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                        <br />
+                                        <center>
+                                            <label class="textogrupo">
+                                                <b>ANEXOS </b>
+                                            </label>
+                                        </center>
+                                                        <label>
+                                                            <b>
+                                                                <center>
+                                                                    <label class="textogrupo">
+                                                                        ANEXO I - ATA ASSEMBLEIA TRABALHADORES
+                                                                    </label>
+                                                                </center>
+                                                                <label class="tituloClausula">
+                                                                                                                                    </label>
+                                                            </b>
+                                                        </label>
+                                                        <b>
+                                                            <label>
+
+                                                            </label>
+                                                        </b>
+                                                        <br />
+                                                        <label class="descricaoClausula" >
+                                                            <p><a href="https://www3.mte.gov.br/sistemas/mediador/imagemAnexo/MR004828_20262026_01_28T10_21_58.pdf" target="_blank">Anexo (PDF)</a></p>
+                                                        </label>
+                                                        <br />
+                                                        <label>
+                                                            <b>
+                                                                <center>
+                                                                    <label class="textogrupo">
+                                                                        ANEXO II - ATA ASSEMBLEIA PATRONAL
+                                                                    </label>
+                                                                </center>
+                                                                <label class="tituloClausula">
+                                                                                                                                    </label>
+                                                            </b>
+                                                        </label>
+                                                        <b>
+                                                            <label>
+
+                                                            </label>
+                                                        </b>
+                                                        <br />
+                                                        <label class="descricaoClausula" >
+                                                            <p><a href="https://www3.mte.gov.br/sistemas/mediador/imagemAnexo/MR004828_20262026_02_03T09_32_05.pdf" target="_blank">Anexo (PDF)</a></p>
+                                                        </label>
+                                                        <br />
+                                        <!--****************************************** FIM - Anexos ******************************************-->
+                                            <label class="texto">
+                                                &#160;&#160;&#160;&#160;A autenticidade deste documento poderá ser confirmada na
+                                                página do Ministerio do Trabalho e Emprego na Internet, no endereço http://www.mte.gov.br.
+                                            </label>
+                                            <br />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </div>
+</body>
+<script>
+    setTimeout(function () {
+        window.history.replaceState({}, '', window.location.pathname);
+    }, 0);
+</script>
+</html>
