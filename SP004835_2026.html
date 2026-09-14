@@ -1,0 +1,886 @@
+
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+    <title>
+        Mediador - Extrato Conven&#231;&#227;o Coletiva
+    </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G"></script>
+
+    <script src='/sistemas/mediador/WebResource.axd?d=cuQcyhunthaKbkS1HRDdYz6PN4zLUht6oCI9W5Qe4lHx-6WAKxelJ3CNRaaYGmIIXUPG_02Oz_3xp1nWR4wRmrhzD889Xme-W80PINl5Opm3a6Vk9xOcKAdRAP0WaAY0QwRFkKa8ygci1cWChKIM3xi_y4E-QkbPdUjFbuj7xrCEQ-EVAHEd2SiDsURiQrGz0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=oCiGPyL516rw_w4O_26ZIUgEDxNTixko29P8hNqgYYE9jihnBUsGIp-kukrf82JW7eobyj8s0ooJ5rI1tfuIzt5-6_pMzumq7dLHWrlQZ-QMRUlCHBKuRssX4JwWJPbRaacnUMI4LY59GnxsKL82GjLr-MAsXYWqz_mUgN6cUz51NH30xgq7ZmHyBhUjhPw8-L_0eLuQdQHcRf08dF_HrA2&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=wI0LQo9-Y3uVg4JvYlrDeAmD0eDROLwrykxGZZm7FeHJNOkuLJd-tB3W2xasfEpUFS-WtoMR44VJNgE_0uIW4OIXYKjcDuXF0IcPvjMyLwlPk2AOsHRO3raei2aKk_DpNcvHrgXcEazozbzFbx3MyYROztNnngy4LZm8CigaBFeRwbfjiCBOJaSo3LCaUDVQ0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=KaDqL3Gcxy5_cHNfLKsWFNdcKxNiiUh3HtPda6q62Tk6jObaqvBGjIGv4N3KHnol1jsYfqnEDPvu8bqDw9664g8gNXTu-bup9GNgychn1MlTxA9V_0gUapXZl6zq0NwvemVy1w_Yym-4g5yIIiPndY1yb7UY2Z3ZO1ZTaDrRNyAjWzC-rNL3CXeYpaiIWTH40&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=qtzkb4aKrNku25SKlKs4jZr_bdveUVnUZ5tZc2pTT2sauL0_dRzCNMZhGSFASotxmo04giDQ-E0d0UeLqCdzABP8l2gJR6XwVRdetE7e7Eck3ObZ-LknGwsZoVcBz7BNY1TRN4J-vljXQrR5MmbFoTkwox8Q8ec5f9wsCVK67AZSRApQIAoKK7FEwOCFjWlx0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=3iAOwoL9JnA5TZ6rygyAAR_lXBxjSq4488DJsEscLKSXKUh-cfJ9O5bC-FxRzAqJtsQJFs2IhSJQ3HR3WKiVMzlo3WgEBcHU3QAeRw7LGJeOXAbL5CGBB2zel0X2_oWfsINwuZcDfexI5FD89VA4NlfrRQ7K4czFkowNfSNtL_dKVZ5vnkZUyK_vnlVhpVzb0&t=639193666532168144' type='text/javascript'></script>
+
+
+<script type="text/javascript">
+        var recaptchaSiteKey = '6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G';
+        var pageLoadToken = '';
+        var isPageValidated = false;
+
+        function onRecaptchaLoad() {
+            console.log('reCAPTCHA carregado, validando página...');
+            executePageLoadRecaptcha();
+        }
+
+        function executePageLoadRecaptcha() {
+            if (typeof grecaptcha === 'undefined') {
+                console.error('reCAPTCHA não carregado');
+                return;
+            }
+
+            grecaptcha.ready(function() {
+                grecaptcha.execute(recaptchaSiteKey, {
+                    action: 'page_load_resumo'
+                }).then(function(token) {
+                    console.log('Token de página gerado');
+                    pageLoadToken = token;
+
+                    // Enviar o token para o servidor
+                    validatePageLoadToken(token);
+                }).catch(function(error) {
+                    console.error('Erro no reCAPTCHA de página:', error);
+                    // Em desenvolvimento, permitir continuar
+                });
+            });
+        }
+
+        function validatePageLoadToken(token) {
+            var currentUrl = window.location.href;
+            var queryString = window.location.search;
+            var nrSolicitacao = 'MR011168/2026';
+
+            $.ajax({
+                url: '/sistemas/mediador/Resumo/ValidateResumoPageLoad',
+                type: 'POST',
+                data: {
+                    recaptchaToken: token,
+                    currentUrl: currentUrl,
+                    queryString: queryString,
+                    nrSolicitacao: nrSolicitacao
+                },
+                success: function(response) {
+                    if (response.success) {
+                        console.log('Página validada com sucesso');
+                        isPageValidated = true;
+                        showPageContent();
+                    } else {
+                        console.warn('Validação de página falhou:', response.message);
+                        handleValidationFailed(response);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Erro ao validar página:', error);
+                    handleValidationFailed({ message: 'Erro de comunicação com o servidor' });
+                }
+            });
+        }
+
+        function showPageContent() {
+            // Remover overlay de loading se existir
+            $('#recaptcha-loading').remove();
+            console.log('Conteúdo da página liberado');
+        }
+
+        function handleValidationFailed(response) {
+            // Mostrar mensagem de erro
+            var errorHtml = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                    <div style="text-align: center; padding: 20px;">
+                        <h2 style="color: #d32f2f;">Validação de Segurança</h2>
+                        <p style="font-size: 16px; margin: 20px 0;">${response.message || 'Falha na validação de segurança.'}</p>
+                        <button onclick="window.location.reload()" style="padding: 10px 20px; background: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Tentar Novamente
+                        </button>
+                        <br><br>
+                        <button onclick="window.location.href='/sistemas/mediador/'" style="padding: 8px 16px; background: #757575; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Voltar para Página Inicial
+                        </button>
+                    </div>
+                </div>
+            `;
+            $('body').prepend(errorHtml);
+        }
+
+        $(document).ready(function() {
+            console.log('Página carregada - ambiente de produção');
+
+            // Pular validação reCAPTCHA em produção
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.log('Produção - validando sem reCAPTCHA');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 1000);
+
+            // Timeout de segurança reduzido
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.warn('Timeout na validação - liberando conteúdo');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 5000); // Reduzido para 5 segundos
+        });
+
+        function Imprimir() {
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "none";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "none";
+            window.print();
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "";
+            return true;
+        }
+        $(function () {
+            var marcaDaguaHtml = $('.MarcaDagua').html();
+            var width = $('body').width();
+            var marcaW = $('.MarcaDagua').width();
+
+            var qtdNescessarios = Math.round((width / marcaW) + 0.4);
+            if (qtdNescessarios > 0)
+                for (var incrementador = 0; incrementador < qtdNescessarios; incrementador++) {
+                    $('.MarcaDagua').append("<br />");
+                    $('.MarcaDagua').append(marcaDaguaHtml);
+                }
+        });
+
+
+</script>
+    <style type="text/css">
+        .titulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .Subtitulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 13px;
+        }
+        .texto
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .tituloClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .descricaoClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .textogrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        .textosubgrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        .textonome
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .textofuncao
+        {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .pagebreak
+        {
+            page-break-after: always;
+        }
+        table.titulo
+        {
+            text-align: left;
+        }
+        @page Section2 {size:21cm 29.7cm ;mso-page-orientation:portrait;margin-top:2cm; margin-rigth:2cm; mso-paper-source:0;}
+        div.Section2 {page:Section2;}
+        pre
+        {
+            white-space: pre-wrap; /* css-3 */
+            white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+            white-space: -pre-wrap; /* Opera 4-6 */
+            white-space: -o-pre-wrap; /* Opera 7 */
+            word-wrap: break-word; /* Internet Explorer 5.5+ */
+            white-space: normal;
+        }
+    </style>
+    <!--[if gte mso 9]>
+    <xml>
+    <w:WordDocument>
+    <w:View>Print</w:View>
+    <w:Zoom>100</w:Zoom>
+    <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+    </xml>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="Section2">
+                <form method="post" action="/sistemas/mediador/Resumo/ResumoVisualizarSalvarMsWordDoc?NrSolicitacao=MR011168/2026">
+                    <input type="button" id="btnResumoVisualizarImprimir" value="Imprimir" onclick="Imprimir();" />
+                    <input type="submit" id="btnResumoVisualizarSalvar" value="Salvar" />
+                </form>
+
+            <div style="text-align: center; z-index: -1000; position: absolute; width: 100%;"
+                 class="MarcaDagua">
+                <img src="/sistemas/mediador/Content/images/carimbo.gif" alt="marcaDAgua" />
+            </div>
+        <center>
+            <table border="0" style="width: 18cm;" id="tblConteudo">
+                <tr>
+                    <td>
+                        <table style="width: 100%;" cellpadding="0" cellspacing="0">
+
+                                                            <tr>
+                                    <td align="center" class="titulo" style="text-transform: uppercase;">
+                                        <b>
+                                            Conven&#231;&#227;o Coletiva De Trabalho 2025/2027
+                                        </b>
+                                        <br />
+                                        <br />
+                                    </td>
+                                </tr>
+                            <tr>
+                                <td>
+                                    <div style="text-align: left;">
+                                        <table border="0" class="titulo" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td>
+                                                        <b>NÚMERO DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        SP004835/2026
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        25/05/2026
+                                                    </td>
+                                                </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>NÚMERO DA SOLICITAÇÃO:</b>
+                                                </td>
+                                                <td style="width: 10px">
+                                                </td>
+                                                <td>
+                                                    MR011168/2026
+                                                </td>
+                                            </tr>
+                                                                                            <tr>
+                                                    <td>
+                                                        <b>NÚMERO DO PROCESSO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        47979.231339/2026-18
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DO PROTOCOLO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+18/03/2026                                                    </td>
+                                                </tr>
+                                        </table>
+                                        <br />
+
+                                                        <p>
+                                                            <label class="texto">
+                                                                <b>
+                                                                    Confira a autenticidade no endereço http://mediador.trabalho.gov.br/sistemas/mediador/.
+                                                                </b>
+                                                            </label>
+                                                        </p>
+                                                    <br />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="texto">
+                                    <p align="justify">
+SINDICATO DOS OPERADORES PORTUARIOS DO EST DE SAO PAULO, CNPJ n. 71.546.386/0001-80, neste ato representado(a) por seu 
+
+Procurador, Sr(a). APARECIDA GISLAINE DA SILVA HEREDIA;
+    <br />
+&nbsp;
+    <br />
+                                        <label>
+                                            E
+                                        </label>
+                                        <br />
+                                        <br />
+SINDICATO DOS VIGIAS PORTUARIOS DO ESTADO DE SAO PAULO, CNPJ n. 51.680.379/0001-69, neste ato representado(a) por seu 
+
+Tesoureiro, Sr(a). CLEONE BEZERRA OMENA;
+    <br />
+&nbsp;
+    <br />
+                                                                                    celebram
+                                                                                    a
+                                         presente CONVEN&#199;&#195;O COLETIVA DE TRABALHO,
+ estipulando as condi&#231;&#245;es de trabalho previstas nas cl&#225;usulas seguintes:                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA PRIMEIRA - VIG&#202;NCIA E DATA-BASE
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    As partes fixam a vigência da presente Convenção Coletiva de Trabalho no período de 01º de março de 2025 a 28 de fevereiro de 2027 e a data-base da categoria em 01º de março.
+                                                </label>
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA SEGUNDA - ABRANG&#202;NCIA
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    A presente Convenção Coletiva de Trabalho abrangerá a(s) categoria(s) <b>CATEGORIA DOS TRABALHADORES PORTUÁRIOS AVULSOS, COM VÍNCULO EMPREGATÍCIO, OU SOB QUALQUER OUTRA FORMA, QUE EXECEM A ATIVIDADE DE VIGILÁNCIA EM EMBARCAÇÕES MARÍTIMAS, FLUIVIAIS OU LACUSTRES NA EMPRESA DE OPERADORES PORTUÁRIOS                            </b>, com abrangência territorial em <b>SP</b>.
+                                                </label>
+                                                <br />
+                                    </p>
+
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Relações de Trabalho – Condições de Trabalho, Normas de Pessoal e Estabilidades
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Normas Disciplinares
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TERCEIRA - NORMAS DISCIPLINARES
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Caber&aacute; ao OGMO, na forma dos artigos 33 e 37 da Lei 12.815/13 aplicar, quando couver, normas disciplinares previstas em lei, contrato, conve&ccedil;&atilde;o ou acordo coletivo de trabalho no caso de trangress&atilde;o disciplinar.</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras normas referentes a condições para o exercício do trabalho
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUARTA - DO EXERC&#205;CIO DA ATIVIDADE
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Os trabalhadoras portu&aacute;rios avulsos devidamente habilitados pelo OGMO/Santos exercer&atilde;o as atividades de Vigilancia em Embarca&ccedil;&otilde;es, coforme, definidas em lei, nas embarca&ccedil;&otilde;es atracadas nas instala&ccedil;&otilde;es portu&aacute;rias operadas pelas EMPRESAS representadas pelo SOPESP.</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Relações Sindicais
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras disposições sobre relação entre sindicato e empresa
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUINTA - OBJETIVO E FINALIDADE
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>O presente instrumentO de efic&aacute;cia normativA tem por objetivo e finalidade o estabelecimento de normas para disciplinar a rela&ccedil;&atilde;o entre&nbsp; oparador portu&aacute;rio e trabalhor portu&aacute;rio avulso nas atividades de Vigilancia em Embarca&ccedil;&otilde;es. Trata-se de mat&eacute;ria legal pertinente a essas rela&ccedil;&otilde;es, com car&aacute;ter unit&aacute;rio, uniforme, obrigacional, sinalagm&aacute;tico e comutativo entre as partes, no que diz respeito as cl&aacute;usulas. Assim posto, a analu&ccedil;&atilde;o, exclus&atilde;o ou multila&ccedil;&atilde;o de qualquer de suas cl&aacute;usulas implicar&aacute; no cancelamento deste Conven&ccedil;&atilde;o Coletiva de Trabalho.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA SEXTA - DURA&#199;&#195;O
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As partes fixam a vigencia da presente Conven&ccedil;&atilde;o Coletiva de Trabalho pelo period compreendido entre 01 de mar&ccedil;o de 2025 a 28 de fevereiro de 2027, sendo que as partes expressamente ratificam neste ato que a negocia&ccedil;&atilde;o se pautou na concordancia m&uacute;tua da proje&ccedil;&atilde;o de todas as cl&aacute;usulas normativas, exclusivamente para o per&iacute;odo, raz&atilde;o pela qual fica expressamente afastada a prorroga&ccedil;&atilde;o autom&aacute;tica do presente instrument Normativo.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA S&#201;TIMA - CONDI&#199;&#213;ES ECONOMICAS E DE TRABALHO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As condi&ccedil;&otilde;es economicas do trabalho da atividade de vigilancia, ser&atilde;o objeto Acordos Coletivos de Trabalho entre o SINDICATO&nbsp; e as EMPRESAS, individualmenre ou conjutamente nas Camaras Setoriais do SOPESP, prevalencendo tais instrumentos sobre conve&ccedil;&atilde;o coletiva ou sente&ccedil;a normative prolatada entre o SOPESP E O SINDICATO.</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Disposições Gerais
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Aplicação do Instrumento Coletivo
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA OITAVA - DATA BASE
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Fica mantida a data-base da categoria para 1&deg; de mar&ccedil;o.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA NONA - FORO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As partes elegem a Justi&ccedil;a do Trabalho do Foro Competente para qualquer demanda sobre esta Conven&ccedil;&atilde;o Coletiva de Trabalho, a saber o Tibunal Regional do Trabalho da 2&deg; Regi&atilde;o &ndash; S&atilde;o Paulo, por mais privilegiado que outro seja.</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras Disposições
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA - REQUISI&#199;&#195;O E ESCALA&#199;&#195;O
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>A requisi&ccedil;&atilde;o espec&iacute;fica da m&atilde;o de obra dos trabalhadores portu&aacute;rios avulsos nas atividades de VIGILANCIA DE Embarca&ccedil;&otilde;es, ser&aacute; exclusivamente feita junto ao OGMO/Santos, que far&aacute; a escala&ccedil;&atilde;o em sistena rodizi&aacute;rio, sequential e num&eacute;rico, observadas as determina&ccedil;&otilde;es &ccedil;egais vigentes, de acordo com a habilita&ccedil;&atilde;o de cada trabalhador. A requisi&ccedil;&atilde;o ser&aacute; feita Segundo crit&eacute;rios definidos pelo OGMO/Santos, de modo cumprir os hor&aacute;rios previstos na Cl&aacute;usula Per&iacute;odos de Trabalho.</p>
+<p><strong>Par&aacute;grafo &Uacute;nico</strong></p>
+<p>O OGMO/Santos realizar&aacute; a escala&ccedil;&atilde;o exclusivamente de forma electronica, via web ou por outras tecnologias que possibilitem a escala&ccedil;&atilde;o dos trabalhadores portuarios avulsos &aacute; distancia e permitida qye os mesmos posssam se habilitar para o trabalho e serm escalados &aacute; distancia por meio da internet.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA PRIMEIRA - VALE TRANPORTE
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Todo trabalhador Portu&aacute;rio Avulso ter&aacute; direito ao vale-transporte por engajamento efetivo para deslocamento de sua residencia para o local de engajamento e vice-versa, por meio de transporte p&uacute;blico urbano.</p>
+<p><strong>Par&aacute;grafo Primeiro</strong></p>
+<p>O trabalhador que tiver interesse em obter vale transporte dever&aacute; solicitor ao OGMO/Santos preenchendo cadastro espec&iacute;fico em que dever&aacute; informar, dentre outros, a linha de transportes p&uacute;blico utilizada, al&eacute;m de unuir com o desconto de 6% (seis por cento) sobre a remunera&ccedil;&atilde;o equivalente &aacute; sua participa&ccedil;&atilde;o no custeio do vale transporte, conforme previs&atilde;o legal.</p>
+<p><strong>Par&aacute;grafo Segundo</strong></p>
+<p>Para todos os fins, o vale-transporte n&atilde;o tem natureza salarial, nem se incorpora &aacute; remunera&ccedil;&atilde;o.</p>
+<p><strong>P&aacute;ragrafo Terceiro</strong></p>
+<p>O trabalhador portu&aacute;rio avulso que solicitar o benef&iacute;cio obrigatoriamente participar&aacute; dos custos do vale-transporte no valor equivalente a 6% (seis por cento) da sua remunera&ccedil;&atilde;o mensal.</p>
+<p><strong><strong>P&aacute;ragrafo Quarto</strong></strong></p>
+<p>O vale transporte &eacute; um beneficio legal que visa contribuir com o transporte do trabalhador no deslocamento de sua residencia para o local de trabalho, e vice-versa, contudo, o desvio de sua finalidade ou a presta&ccedil;&atilde;o de informa&ccedil;&otilde;es n&atilde;o veridicas pelo trabalhador ensejar&aacute; instaura&ccedil;&atilde;o de processo administrative disciplinar.</p>
+<p><strong>Par&aacute;grafo Quinto</strong></p>
+<p>Para todos os fins, o beneficio do vale-transporte est&aacute; limitado aos trabalhadores portu&aacute;rios avulsos que residirem nos municipios que compreendem a Regi&atilde;o Metropolitana da Baixada Santista, ou seja, Santos, S&atilde;o Vicente, Cubat&atilde;o, Guaruj&aacute;, Praia Grande, Bertioga, Mongagu&aacute;, Itanha&eacute;m e Peruibe.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA SEGUNDA - PERIODOS DE TRABALHO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As atividades dos trabalhadores portuarios avulsos na atividade de Vigilancia em Embarca&ccedil;&otilde;es ser&atilde;o desenvolvidas em periodos de 06 (seis) horas, nos seguintes hor&aacute;rios:</p>
+<p>I&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Per&iacute;odo 1 &ndash; Das 06:00 &aacute;s 12:00 horas;</p>
+<p>II&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Per&iacute;odo&nbsp; 2 &ndash; Das 12:00 &aacute;s 18:00 horas;</p>
+<p>III&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Per&iacute;odo&nbsp; 3 &ndash; Das 18:00 &aacute;s 00:00 hora do dia &iacute;mediato;</p>
+<p>IV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Per&iacute;odo&nbsp; 4 &ndash; De 00:00 &aacute;s 06:00 horas;</p>
+<p><strong>Par&aacute;grafo Primeiro</strong></p>
+<p>Os trabalhadores avulsos dever&atilde;o comparecer no local de trabalho para o qual foram escalados, devidamente uniformizados, identificados e utilizando os respectivos Equipamentos de Prote&ccedil;&atilde;o Individual (EPI&acute;s), no hor&aacute;rio previsto para o inicio do period o de trabalho, sendo que a rendi&ccedil;&atilde;o dos trabalhadores ser&aacute; feita sempre no local de trabalho.</p>
+<p><strong>Par&aacute;grafo Segundo</strong></p>
+<p>Ser&aacute; considerado como tempo de servi&ccedil;o efetivo, somente o per&iacute;odo em que o trabalhador permanecer comprovadamente &agrave; disposi&ccedil;&atilde;o das EMPRESAS, executando o trabalho para o qual foi requisitado, sendo que em nenhuma hipotese, o tempo necess&aacute;rio para se proceder &agrave;s requisi&ccedil;&otilde;es e ao engajamento no trabalho previsto no "caput" da Cl&aacute;usula Requisi&ccedil;&atilde;o e Escala&ccedil;&atilde;o, indispens&aacute;vel para que haja efetivo engajamento do trabalhador, ser&aacute; remunerado como horas trabalhadas.</p>
+<p><strong>Par&aacute;grafo Terceiro</strong></p>
+<p>As EMPRESAS fornecer&atilde;o o E.P.I (equipamento de prote&ccedil;&atilde;o individual) b&aacute;sico ao trabalhador por interm&eacute;dio do OGMO/Santos, na periodicidade estabalecida pela vida &uacute;til do equipemento. Para as opera&ccedil;&otilde;es que necessitem de E.P.I especifico, estes poder&atilde;o ser disponibilizados diretamento pelas EMPRESAS aos trabalhadores portu&aacute;rios avulsos ou no inicio de cada period de trabalho.</p>
+<p><strong>Par&aacute;grafo Quarto</strong></p>
+<p>Em caso de extravio de EPI ou desgaste pelo mau uso do equipamento, a reposi&ccedil;&atilde;o do mesmo ser&aacute; feita mediante o ressarcimento pelo trabalhador portu&aacute;rio avulsom via desconto, do valor de custo correspondente.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA TERCEIRA - IMPLEMENTA&#199;&#195;O DO SISTEMA DE GEST&#195;O DE CADASTRO E REGISTRO DE TRABALHADOR PO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p><strong>IMPLEMENTA&Ccedil;&Atilde;O DO SISTEMA DE GEST&Atilde;O DE CADASTRO E REGISTRO DE TRABALHADOR PORTU&Aacute;RIO (TP)</strong></p>
+<p>&nbsp;</p>
+<ol>
+<li>As partes acordam o reconhecimento legal do Sistema de gest&atilde;o de cadastro e registro do trabalhador portu&aacute;rio (TP) pelo OGMO/Santos de forma segregada e independente ao Sistema de cadastro e registro do trabalhador portu&aacute;rio avulso (TPA).</li>
+<li>As Partes reconhecem que o OGMO/Santos tem competencia legal para gerir o sistema de CADASTRO E REGISTRO&nbsp; de trabalhador portuario (TP) Criado, permanecendo inalterado o modelo existente para trabalhador portuario avulso (TPA).</li>
+<li>O sistema de dados do trabalhador portuario (TP) dever&aacute; ser totalmente segregado do Sistema de dados do TPA e ficara restrito &aacute;s atividades de /opera&ccedil;&atilde;o portuaria previstas no artigo da Lei&nbsp; 12.815/13.</li>
+<li>O CADASTRO e REGISTRO do trabalhador portuario (TP) gerido pelo OGMO/Santos dever&aacute; conter informa&ccedil;&otilde;es relativas aos dados pessoais, experiencia profissonal e certifica&ccedil;&otilde;es de treinamentos relacionados ao pr&oacute;prio trabalhador.</li>
+<li>Em caso de necessidade de contrata&ccedil;&atilde;o a v&iacute;nculo permanente pelos operadores portuarios deve-se obrigatoriamente observer a prioridade aos trabalhadores portuarios avulsos para fins de preenchimento das vagas ofertadas pelos Operadores Portuarios.</li>
+<li>Somente para fins de contrata&ccedil;&atilde;o a vinculo permanente, as partes reconhecem e conferem paridade entre o REGISTRO de trabalhadores portu&aacute;rios (TP) e o REGISTRO de trabalhadores portu&aacute;rios avulsos (TPA) nor termos do art. 40 &sect; 2&deg;, e art. 35 da Lei 12.815/13.</li>
+<li>As condi&ccedil;&otilde;es adicionais especificas de cada operador portuario para contrata&ccedil;&atilde;o a vinculo dever&atilde;o ser definidas em sede de Acordo Coletivo de Trabalho</li>
+<li>A presente clausula somente se aplicar&aacute; ao operador portu&aacute;rio que aderir &aacute;s suas condi&ccedil;&otilde;es por meio de Acordo Coletivo de Trabalho.</li>
+<li>&Eacute; Vedado aos trabalhadores portuarios (TPs), tanto do registro quanto do CADASTRO, concorrer &aacute;s vagas e ofertas de trabalhadores avulsos, sendo que na hip&oacute;tese de de desligamente do operador portu&aacute;rio a que estiver vinculado seus dados ser&atilde;o retirados da base de dados do Sistema de gest&atilde;o de cadastro e registro de trabalhador portuario (TP) do OGMO em at&eacute; (novente) dias da data do seu efetivo desligamento, caso n&atilde;o comprove a recoloca&ccedil;&atilde;o professional como trabalhador portuario.</li>
+<li>Como condi&ccedil;&atilde;o para inclus&atilde;o dos trabalhadores portu&aacute;rios (TP) no CADASTRO e REGISTRO de trabalhadores portu&aacute;rios, estes dever&atilde;o obrigatoriamente assinar o termo individual anuindo com a sua n&atilde;o inclus&atilde;o no cadastro e registro de trabalhadores portu&aacute;rios avulsos (TPAs)e demais regras previstas no pr&oacute;prio termo de ades&atilde;o individual, sendo esta condi&ccedil;&atilde;o de incri&ccedil;&atilde;o como TP.</li>
+<li>As vagas ofertadas pelos operadores portu&aacute;rios para contrata&ccedil;&atilde;o a vinculo empregati&iacute;cio, por prazo inderteminado aos trabalhadores portuarios avulsos (TPAs), em seguida, aos trabalhadores portu&aacute;rios (TPs).</li>
+<li>As vagas para contrata&ccedil;&atilde;o a v&iacute;nculo dever&atilde;o obrigatoriamente ser primeiro ofertadas aos trabalhadores portu&aacute;rios (TPs), por interm&eacute;dio de publica&ccedil;&atilde;o de novo edital de contrata&ccedil;&atilde;o &aacute; vinculo empregati&iacute;cio por prazo indeterminado.</li>
+<li>Novas entradas no CADASTRO e REGISTRO de trabalhadores portuarios (TP) somente ser&atilde;o permitidas mediante autoriza&ccedil;&atilde;o do Conselho de Supervis&atilde;o, que analisar&aacute; a necessidade contigencial de Trabalhadores Portuarios (TPs) de acordo com a necessidade de oferta de trabalho dos operadores portuarios representada pelos editais formalmente publicados.</li>
+<li>Para inclus&atilde;o de trabalhador no CADASTRO de trabalhador portuario (TP) &eacute; imprescind&iacute;vel, no minimo, que o mesmo seja treinado na fun&ccedil;&atilde;o correspondente &aacute; oferta de v&iacute;nculo empregat&iacute;cio de Vigilancia em Embarca&ccedil;&otilde;es (atividade do artigo 40 da lei 12.815/13)</li>
+<li>Caso o trabalhador portuario&nbsp; (TP) a ser incluido no cadastro n&atilde;o seja treinado para a fun&ccedil;&atilde;o ofertada, o operador portuario solicitante se obrigar&aacute; a custear o devido treinamento &aacute;s suas expensas antes da inclus&atilde;o no cadastro de Trabalhador Portuario.</li>
+<li>As partes reconhecem que cabe ao OGMO a defini&ccedil;&atilde;o de regras para inclus&atilde;o de novos (trabalhadores portuarios) TPs no cadastro e/ou registro.</li>
+<li>De acordo com os criterios do Conselho de Supervis&atilde;o do OGMO/Santos, os trabalhadores vinculados que tiverem, na data de assinatura da presente Conven&ccedil;&atilde;o, contrato de trabalho por tempo indeterminado para as atividades previstas no artigo 40 da lei 12.815/13 em operador portuario, e n&atilde;o tenham incri&ccedil;&atilde;o no cadastro ou registro como TPA no OGMO/Santos, ser&atilde;o incritos no REGISTRO do trabalhador portuario, abrangendo XVII. As partes reconhecem que cabe ao OGMO Santos estabelecer os regramentos internos existente acerca do Sistema de cadastro e regustro do trabalhador portuario.</li>
+</ol>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA QUARTA - DEVERES DOS TRABALHADORES
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <ol>
+<li>Comparecer no exato horario inicial dos servi&ccedil;os, permanecendo at&eacute; o fim das opera&ccedil;&otilde;es, exceto nos casos em que o Operador Portuario authorize sua saida antecipada;</li>
+<li>N&atilde;o abandoner o local de trabalho ou ausentar-se dele, sem motive justificado e seme star devidamente autorizado pelo Operador Portuario.</li>
+<li>Zelar pelo bom uso do equipamentos individuais e coletivos, bem como da carga a ser manipulado;</li>
+<li>Cumprir e fazer cumprir as ordens dadas pelo Operador Portuario, pelos prepostos do OGMO/Santos ou pelo seu superior hieraquico e/ou funciona;</li>
+<li>Apresentar-se ao trabalho devidamento uniformizado e equipado dos competentes EPIs, munido de identidade functional do OGMO/Santos e da credencial emitida pela Autoridade Portuario de Santos (Cart&atilde;o MIFARE);</li>
+<li>Comporta-se nos locais de trabalho com &eacute;tica, disciplina e respeito;</li>
+<li>Cooperar com as autoridades, com o commando do navio, com o representantes do Operador Portuario, com presentantes da OGMO/Santos e com os dirigentes de seu sindicato, semore que necessario ou que for solicitado.</li>
+<li>Comparecer ao seu local de trabalho correspondente ao seu engajamento, para realiza&ccedil;&atilde;o de suas atividades laboriais;</li>
+<li>Tratar com respeito e lealdade os representantes do Operador Portuario, os representantes do Ogmo/Santos, os superiores hier&aacute;rquicos, os companheiros de trabalho, os subordinados e demais pessoas com que se relaciona no ambito de trabalho;</li>
+<li>Realizar o trabalho com zelo e eficiencia, observando as normas de saude, higiene e seguran&ccedil;a do trabalho;</li>
+<li>Manipular ou movimentar cargas e utilizer os instrumentos de trabalho, com os cuidados necessaries, para n&atilde;o ocasionar danos e acidentes, devendo dirimir suas duvidas pertinentes &aacute; seguran&ccedil;a com o reponsavel pelo terminal do Operador ou setor especializado do OGMO/Santos;</li>
+<li>Evitar todo e qualuqer ato que posso resultar em prejuizo ou em desaparecimento de cargas movimentadas, ou quaisquer bens situados nos locais de trabalho;</li>
+<li>Respeitar e fazer respeitar os regulamentos de higiene e seguran&ccedil;a do trabalho, as normas disciplinares do OGMO/Santos e dos Operadores Portuarios e Terminais em que estiver de servi&ccedil;o, bem como utilizer adequadamente os EPIs que lhe oforem distribuidos e exigidos;</li>
+<li>Empenhar-se para a melhoria da produtividade de acordo com suas atribui&ccedil;&otilde;es e responsabilidade profissonal;</li>
+<li>N&atilde;o fumar em locais proibidos, n&atilde;o fazer uso de Bebidas alcoolicas ou quaisquer outras substancias entorpecentes no local de trabalho;</li>
+<li>Dar conhecimento ao Operador Portuario e/ou ao OGMO/Santos de qualquer irregularidade constatada durante a execu&ccedil;&atilde;o de seu trabalho;</li>
+<li>Manter seus dados cadastrais atualizados junto ao OGMO/Santos;</li>
+<li>Acessar os locais de trabalho, unica e exclusivamente, pelos locais permitidos pelos Operadores Portuarios ou pela SPA, registrando sempre, quando disponivel, sua entrada e saida aos locais de trabalho;</li>
+<li>Acatar as decis&otilde;es do OGMO/Santos, da Comiss&atilde;o Paritaria e/ou do arbitro, na forma da lei;</li>
+<li>Cumpriro disposto em conven&ccedil;&otilde;es e acordos coletivos de trabalho firmados pelo sindicato laboral;</li>
+<li>Realizar os treinamentos obrigatorios e devidos para realiza&ccedil;&atilde;o das fun&ccedil;&otilde;es, sendo que o trabalhador n&atilde;o poder&aacute; se engajar para o trabalho enquanto n&atilde;o for aprovado;</li>
+<li>Submeter-se as regras internas das EMPRESAS operadoras portuarias e as suas normas disciplinares, inclusive no que se refere as relativas as regras sobre aplica&ccedil;&atilde;o do bafometro e exames toxicologicos;</li>
+<li>N&atilde;o portar armas no local em que for realizar o trabalho, sendo que na hipotese de o TPA ter comprovada a autoriza&ccedil;&atilde;o functional/legal para portar armas dever&aacute; mante-la for a do local em que realizar o trabalho, em local Seguro &ndash; arm&aacute;rio &ndash; disponibilizado pelas EMPRESAS;</li>
+</ol>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA QUINTA - DEVERES DOS OPERADORES PORTU&#193;RIOS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <ol>
+<li>Prestar ao Sindicato, na forma prevista neste Instrumento, quando formalmente solicitado, todas as informa&ccedil;&otilde;es necessaria sou convenientes ao desenvolvimento das rela&ccedil;&otilde;es de trabalho;</li>
+<li>Orientar todos os trbalhadores sobre normas e procedimentos de produ&ccedil;&atilde;o e segura&ccedil;a da Empresa;</li>
+<li>Observar as regras normasRegulamentadoras do Ministerio Publico do Trabalho (NRs);</li>
+<li>Tratar e fazer tartar todos os trabalhadores portuarios, com justi&ccedil;a e respeito.</li>
+</ol>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA SEXTA - DIREITOS DOS TRABALHADORES
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>S&atilde;o direitos dos trabalhadores portuarios avulsos nas atividades de vigia, alem dos previstos em Lei e nesta Conven&ccedil;&atilde;o Coletiva de Trabalho:</p>
+<ol>
+<li>Direito a condi&ccedil;&otilde;es dignas e humans de trablho;</li>
+<li>Quando em plena normalidade operacional, o direito de acesso ao local de trabalho por seu Sindicato, em todos os periodos, quando acionados pelos trabalhadores, desde que previamente autorizado pelo operador portuario responsavel pelo local;</li>
+<li>Direito a se habilitar a distancia ao trabalho &acute;pelas tecnologias disponiveis inviolaveis e seguras, como como exercicio da escolha do posto de trabalgo, previsto em normas de escala&ccedil;&atilde;o.</li>
+</ol>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA S&#201;TIMA - PENALIDADES
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Fica estabelecida a penalidade de 5% (cinco por cento) do menor salario pago, se for por parte do trabalhador portuario avulso e de 10% (dez por cento) do menor salario pago, se for por parte do Operador Portuario, para caso de sescumprimento pelar partes acordantes de qualquer dispositivos desta Conven&ccedil;&atilde;o de Trabalho, devida pela parte infratora em favor da parte prejudicada, sendo esta a unica competente para sua cobran&ccedil;a e recolhimento.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA OITAVA - REVIS&#195;O
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As partes negociar&atilde;o, a partir de 60 (sessenta) dias antes do termino da vigencia desta Conven&ccedil;&atilde;o Coletiva de Trabalho, os termos da renova&ccedil;&atilde;o da mesma.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA NONA - CONDI&#199;&#195;O ESPECIAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Esta conven&ccedil;&atilde;p Coletiva de Trabalho &eacute; resultado da negocia&ccedil;&atilde;o das condi&ccedil;&otilde;es de trabalho como um todo. N&atilde;o &eacute; possivel anular apenas parte deste instrumento, e caso isto venha acontecer, por qualquer meio, entendem as partes que o mesmo ser&aacute; automatica e inteiramente anulado a partir de ent&atilde;o.</p>
+                                                </label>
+                                                <br />
+                                    }
+                                    <br />
+                                    <table border="0" cellpadding="0" cellspacing="0" align="center">
+                                        <tr>
+                                            <td align="center">
+                                                    <br />
+    <br />
+    <label class="textonome">
+        APARECIDA GISLAINE DA SILVA HEREDIA
+        <br style="height: 5px" />
+        Procurador
+        <br style="height: 5px" />
+        SINDICATO DOS OPERADORES PORTUARIOS DO EST DE SAO PAULO
+        <br />
+        <br />
+    </label>
+
+    <br />
+    <br />
+    <label class="textonome">
+        CLEONE BEZERRA OMENA
+        <br style="height: 5px" />
+        Tesoureiro
+        <br style="height: 5px" />
+        SINDICATO DOS VIGIAS PORTUARIOS DO ESTADO DE SAO PAULO
+        <br />
+        <br />
+    </label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                        <br />
+                                        <center>
+                                            <label class="textogrupo">
+                                                <b>ANEXOS </b>
+                                            </label>
+                                        </center>
+                                                        <label>
+                                                            <b>
+                                                                <center>
+                                                                    <label class="textogrupo">
+                                                                        ANEXO I - CONVEN&#199;&#195;O COLETIVA
+                                                                    </label>
+                                                                </center>
+                                                                <label class="tituloClausula">
+                                                                                                                                    </label>
+                                                            </b>
+                                                        </label>
+                                                        <b>
+                                                            <label>
+
+                                                            </label>
+                                                        </b>
+                                                        <br />
+                                                        <label class="descricaoClausula" >
+                                                            <p><a href="https://www3.mte.gov.br/sistemas/mediador/imagemAnexo/MR011168_20262026_02_28T13_02_38.pdf" target="_blank">Anexo (PDF)</a></p>
+                                                        </label>
+                                                        <br />
+                                                        <label>
+                                                            <b>
+                                                                <center>
+                                                                    <label class="textogrupo">
+                                                                        ANEXO II - ATA ASSEMBLEIA SOPESP
+                                                                    </label>
+                                                                </center>
+                                                                <label class="tituloClausula">
+                                                                                                                                    </label>
+                                                            </b>
+                                                        </label>
+                                                        <b>
+                                                            <label>
+
+                                                            </label>
+                                                        </b>
+                                                        <br />
+                                                        <label class="descricaoClausula" >
+                                                            <p><a href="https://www3.mte.gov.br/sistemas/mediador/imagemAnexo/MR011168_20262026_02_28T13_06_02.pdf" target="_blank">Anexo (PDF)</a></p>
+                                                        </label>
+                                                        <br />
+                                                        <label>
+                                                            <b>
+                                                                <center>
+                                                                    <label class="textogrupo">
+                                                                        ANEXO III - ESTATUTO VIGIAS
+                                                                    </label>
+                                                                </center>
+                                                                <label class="tituloClausula">
+                                                                                                                                    </label>
+                                                            </b>
+                                                        </label>
+                                                        <b>
+                                                            <label>
+
+                                                            </label>
+                                                        </b>
+                                                        <br />
+                                                        <label class="descricaoClausula" >
+                                                            <p><a href="https://www3.mte.gov.br/sistemas/mediador/imagemAnexo/MR011168_20262026_02_28T13_09_26.pdf" target="_blank">Anexo (PDF)</a><a href="https://www3.mte.gov.br/sistemas/mediador/imagemAnexo/MR011168_20262026_02_28T13_09_52.pdf" target="_blank">Anexo (PDF)</a></p>
+                                                        </label>
+                                                        <br />
+                                                        <label>
+                                                            <b>
+                                                                <center>
+                                                                    <label class="textogrupo">
+                                                                        ANEXO IV - ATA ASSEMBLEIA VIGIAS
+                                                                    </label>
+                                                                </center>
+                                                                <label class="tituloClausula">
+                                                                                                                                    </label>
+                                                            </b>
+                                                        </label>
+                                                        <b>
+                                                            <label>
+
+                                                            </label>
+                                                        </b>
+                                                        <br />
+                                                        <label class="descricaoClausula" >
+                                                            <p><a href="https://www3.mte.gov.br/sistemas/mediador/imagemAnexo/MR011168_20262026_02_28T13_11_26.pdf" target="_blank">Anexo (PDF)</a></p>
+                                                        </label>
+                                                        <br />
+                                        <!--****************************************** FIM - Anexos ******************************************-->
+                                            <label class="texto">
+                                                &#160;&#160;&#160;&#160;A autenticidade deste documento poderá ser confirmada na
+                                                página do Ministerio do Trabalho e Emprego na Internet, no endereço http://www.mte.gov.br.
+                                            </label>
+                                            <br />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </div>
+</body>
+<script>
+    setTimeout(function () {
+        window.history.replaceState({}, '', window.location.pathname);
+    }, 0);
+</script>
+</html>
