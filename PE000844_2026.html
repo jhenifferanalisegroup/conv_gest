@@ -1,0 +1,802 @@
+
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+    <title>
+        Mediador - Extrato Conven&#231;&#227;o Coletiva
+    </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G"></script>
+
+    <script src='/sistemas/mediador/WebResource.axd?d=9Z1IvOkMCxhKFkMIymY_OfSA8WYDszGvtYssVE5o4xIAXK7pPQIZtS0GdUj3f6Ld9xetEBabCGbYr1wOM5inAy61Ws46Ky2JYZkxt5LLLytLlVqxrhBF55w2-FGdOPKJ_oQ2dIyWkCTCqw1EoXIIuSGHVhtIVQC2N0YuFHcsb4dKY2Yf0YqKgLvvc6WqHXF40&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=ndYmAWUgjWAJEGuoaWiipSSgvyeNjb7XePDlmAy-LjlmPlZpbQ1MOH1GXEVhKHhynhSF2hvdeEQFIAC9MIR6WusgLkmMT1nctUvqhyuAMy9HGeLFkwE7bo8_eNBg_smj5QOTom0lktan5HhgDNUzymgw0O9CXT16TlMERM6yqJpeTAcTmfjvZxJThwot0b9z5rZn4Ykov-_LkSPNru2SZA2&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=aixw89k4fS3Kqv7ffLn66daCtUIGZ2Uq3PsGLlDg3_RlmLVnPMjKKwtuvCJfTR2voPEiQrsCsXTgwmqR7c7OOFjXHzbnh0HeN_d42D61J4CHBqPMLOlxz2XGcUxouxZ-NO10QYKNEC8wdy5GVMuHDuP4RW4KUPqesIWGem95GlginjBxfqJ8DwJGVFaSPua_0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=bLGkiINGD90bM6Huu3VzFsfvhQIMiwSrMpQM8CnyXTcrkTy7CTapo7w-Qvh_A-NQstLQgb8NxtHbCKBiYtJrPg0Hpp6G1guvFOJeKUcqQaYVooGwOa9iuEZCZJt0OfJij7zqhK7qXdGURn-azKoCba95RO3fzmRBeiCaMCJTD8QrCPE3_WImiRZ2wU-Fuz3I0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=xY6NjGXRL-nbUJw3h0onHkl165_9z8nfOsgw5VhYojSoLXqSdo0Vx_XATn8CRRfqWTHOd1R9qVpJTj2sHJIiL677HhxrHpeq4e68zkZyLgZg0_jFtW0IUWIH0Uroa34Oi4gjYPPeyGLVRG6LG50SYJlN1vlkj_lqC4_5f_rnImU9Z0fJeQyQ2Bva6cSZj5q80&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=-Hh9bEMo2OztNfYt5gM_DHuL3r4o88Ji-d4yOkPdVJ72CZAG66pU2aC5u9fvEh0oFsNjoeN8yzFg9vT4A_aboASTY78KbmW9r3DAdjeJtTZIr5k_7fL1jFBwdmW_fRNOpyiTTSIFm3Tw8eDajyafaVQ52zsdIlPWE0gB1vdnDfmJ4szXeKi-Qlyg-cXrCJ040&t=639193666532168144' type='text/javascript'></script>
+
+
+<script type="text/javascript">
+        var recaptchaSiteKey = '6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G';
+        var pageLoadToken = '';
+        var isPageValidated = false;
+
+        function onRecaptchaLoad() {
+            console.log('reCAPTCHA carregado, validando página...');
+            executePageLoadRecaptcha();
+        }
+
+        function executePageLoadRecaptcha() {
+            if (typeof grecaptcha === 'undefined') {
+                console.error('reCAPTCHA não carregado');
+                return;
+            }
+
+            grecaptcha.ready(function() {
+                grecaptcha.execute(recaptchaSiteKey, {
+                    action: 'page_load_resumo'
+                }).then(function(token) {
+                    console.log('Token de página gerado');
+                    pageLoadToken = token;
+
+                    // Enviar o token para o servidor
+                    validatePageLoadToken(token);
+                }).catch(function(error) {
+                    console.error('Erro no reCAPTCHA de página:', error);
+                    // Em desenvolvimento, permitir continuar
+                });
+            });
+        }
+
+        function validatePageLoadToken(token) {
+            var currentUrl = window.location.href;
+            var queryString = window.location.search;
+            var nrSolicitacao = 'MR046563/2026';
+
+            $.ajax({
+                url: '/sistemas/mediador/Resumo/ValidateResumoPageLoad',
+                type: 'POST',
+                data: {
+                    recaptchaToken: token,
+                    currentUrl: currentUrl,
+                    queryString: queryString,
+                    nrSolicitacao: nrSolicitacao
+                },
+                success: function(response) {
+                    if (response.success) {
+                        console.log('Página validada com sucesso');
+                        isPageValidated = true;
+                        showPageContent();
+                    } else {
+                        console.warn('Validação de página falhou:', response.message);
+                        handleValidationFailed(response);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Erro ao validar página:', error);
+                    handleValidationFailed({ message: 'Erro de comunicação com o servidor' });
+                }
+            });
+        }
+
+        function showPageContent() {
+            // Remover overlay de loading se existir
+            $('#recaptcha-loading').remove();
+            console.log('Conteúdo da página liberado');
+        }
+
+        function handleValidationFailed(response) {
+            // Mostrar mensagem de erro
+            var errorHtml = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                    <div style="text-align: center; padding: 20px;">
+                        <h2 style="color: #d32f2f;">Validação de Segurança</h2>
+                        <p style="font-size: 16px; margin: 20px 0;">${response.message || 'Falha na validação de segurança.'}</p>
+                        <button onclick="window.location.reload()" style="padding: 10px 20px; background: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Tentar Novamente
+                        </button>
+                        <br><br>
+                        <button onclick="window.location.href='/sistemas/mediador/'" style="padding: 8px 16px; background: #757575; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Voltar para Página Inicial
+                        </button>
+                    </div>
+                </div>
+            `;
+            $('body').prepend(errorHtml);
+        }
+
+        $(document).ready(function() {
+            console.log('Página carregada - ambiente de produção');
+
+            // Pular validação reCAPTCHA em produção
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.log('Produção - validando sem reCAPTCHA');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 1000);
+
+            // Timeout de segurança reduzido
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.warn('Timeout na validação - liberando conteúdo');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 5000); // Reduzido para 5 segundos
+        });
+
+        function Imprimir() {
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "none";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "none";
+            window.print();
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "";
+            return true;
+        }
+        $(function () {
+            var marcaDaguaHtml = $('.MarcaDagua').html();
+            var width = $('body').width();
+            var marcaW = $('.MarcaDagua').width();
+
+            var qtdNescessarios = Math.round((width / marcaW) + 0.4);
+            if (qtdNescessarios > 0)
+                for (var incrementador = 0; incrementador < qtdNescessarios; incrementador++) {
+                    $('.MarcaDagua').append("<br />");
+                    $('.MarcaDagua').append(marcaDaguaHtml);
+                }
+        });
+
+
+</script>
+    <style type="text/css">
+        .titulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .Subtitulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 13px;
+        }
+        .texto
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .tituloClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .descricaoClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .textogrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        .textosubgrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        .textonome
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .textofuncao
+        {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .pagebreak
+        {
+            page-break-after: always;
+        }
+        table.titulo
+        {
+            text-align: left;
+        }
+        @page Section2 {size:21cm 29.7cm ;mso-page-orientation:portrait;margin-top:2cm; margin-rigth:2cm; mso-paper-source:0;}
+        div.Section2 {page:Section2;}
+        pre
+        {
+            white-space: pre-wrap; /* css-3 */
+            white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+            white-space: -pre-wrap; /* Opera 4-6 */
+            white-space: -o-pre-wrap; /* Opera 7 */
+            word-wrap: break-word; /* Internet Explorer 5.5+ */
+            white-space: normal;
+        }
+    </style>
+    <!--[if gte mso 9]>
+    <xml>
+    <w:WordDocument>
+    <w:View>Print</w:View>
+    <w:Zoom>100</w:Zoom>
+    <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+    </xml>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="Section2">
+                <form method="post" action="/sistemas/mediador/Resumo/ResumoVisualizarSalvarMsWordDoc?NrSolicitacao=MR046563/2026">
+                    <input type="button" id="btnResumoVisualizarImprimir" value="Imprimir" onclick="Imprimir();" />
+                    <input type="submit" id="btnResumoVisualizarSalvar" value="Salvar" />
+                </form>
+
+            <div style="text-align: center; z-index: -1000; position: absolute; width: 100%;"
+                 class="MarcaDagua">
+                <img src="/sistemas/mediador/Content/images/carimbo.gif" alt="marcaDAgua" />
+            </div>
+        <center>
+            <table border="0" style="width: 18cm;" id="tblConteudo">
+                <tr>
+                    <td>
+                        <table style="width: 100%;" cellpadding="0" cellspacing="0">
+
+                                                            <tr>
+                                    <td align="center" class="titulo" style="text-transform: uppercase;">
+                                        <b>
+                                            Conven&#231;&#227;o Coletiva De Trabalho 2026/2028
+                                        </b>
+                                        <br />
+                                        <br />
+                                    </td>
+                                </tr>
+                            <tr>
+                                <td>
+                                    <div style="text-align: left;">
+                                        <table border="0" class="titulo" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td>
+                                                        <b>NÚMERO DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        PE000844/2026
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        24/08/2026
+                                                    </td>
+                                                </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>NÚMERO DA SOLICITAÇÃO:</b>
+                                                </td>
+                                                <td style="width: 10px">
+                                                </td>
+                                                <td>
+                                                    MR046563/2026
+                                                </td>
+                                            </tr>
+                                                                                            <tr>
+                                                    <td>
+                                                        <b>NÚMERO DO PROCESSO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        13623.203946/2026-98
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DO PROTOCOLO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+23/08/2026                                                    </td>
+                                                </tr>
+                                        </table>
+                                        <br />
+
+                                                        <p>
+                                                            <label class="texto">
+                                                                <b>
+                                                                    Confira a autenticidade no endereço http://mediador.trabalho.gov.br/sistemas/mediador/.
+                                                                </b>
+                                                            </label>
+                                                        </p>
+                                                    <br />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="texto">
+                                    <p align="justify">
+SINDICOM/JABOATAO-SINDICATO DO COMERCIO DO JABOATAO DOS GUAR, CNPJ n. 08.143.331/0001-92, neste ato representado(a) por seu 
+
+Presidente, Sr(a). FELIPE FREIRE DE OLIVEIRA e por seu Procurador, Sr(a). JULLYANE VASCONCELOS DAS CHAGAS e por seu Procurador, Sr(a). THOMAS JEFFERSON GOMES DE ALBUQUERQUE;
+    <br />
+&nbsp;
+    <br />
+                                        <label>
+                                            E
+                                        </label>
+                                        <br />
+                                        <br />
+SINDICATO EMPREGADOS COMERCIO JABOATAO DOS GUARARAPES, CNPJ n. 40.813.628/0001-20, neste ato representado(a) por seu 
+
+Procurador, Sr(a). GIANCARLO DE MELO LIMA e por seu Presidente, Sr(a). JOAO LUIZ FERREIRA;
+    <br />
+&nbsp;
+    <br />
+                                                                                    celebram
+                                                                                    a
+                                         presente CONVEN&#199;&#195;O COLETIVA DE TRABALHO,
+ estipulando as condi&#231;&#245;es de trabalho previstas nas cl&#225;usulas seguintes:                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA PRIMEIRA - VIG&#202;NCIA E DATA-BASE
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    As partes fixam a vigência da presente Convenção Coletiva de Trabalho no período de 01º de junho de 2026 a 31 de maio de 2028 e a data-base da categoria em 01º de junho.
+                                                </label>
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA SEGUNDA - ABRANG&#202;NCIA
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    A presente Convenção Coletiva de Trabalho abrangerá a(s) categoria(s) <b> DOS EMPREGADOS NO COMÉRCIO                                      </b>, com abrangência territorial em <b>Jaboatão dos Guararapes/PE</b>.
+                                                </label>
+                                                <br />
+                                    </p>
+
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Jornada de Trabalho – Duração, Distribuição, Controle, Faltas
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras disposições sobre jornada
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TERCEIRA - FUNCIONAMENTO NOS DOMINGOS E FERIADOS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="MsoNormal" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 10pt;"><span style="margin-left: 0px; line-height: 115%; font-family: Arial, 'sans-serif'; font-size: small;">As&nbsp;<strong style="margin-left: 0px; mso-bidi-font-weight: normal;">EMPRESAS</strong> do <strong style="margin-left: 0px; mso-bidi-font-weight: normal;">COM&Eacute;RCIO</strong>&nbsp;estabelecidas no<strong style="margin-left: 0px; mso-bidi-font-weight: normal;"> SHOPPING CENTER GUARARAPES</strong> localizado na Av. Barreto de Menezes, 800, Piedade,&nbsp;no munic&iacute;pio do Jaboat&atilde;o dos Guararapes&nbsp; est&atilde;o autorizadas a funcionar&nbsp;</span><span style="font-family: Arial, 'sans-serif'; font-size: small;">mediante cumprimento das condi&ccedil;&otilde;es estipuladas neste instrumento coletivo,&nbsp;</span><span style="font-family: Arial, 'sans-serif'; font-size: small;">nos&nbsp;</span><strong style="font-family: Arial, 'sans-serif'; font-size: small;">DOMINGOS</strong><span style="font-family: Arial, 'sans-serif'; font-size: small;">, nos termos da Lei 10.101, de 19.12.2000, nos&nbsp;</span><span style="font-family: Arial, 'sans-serif'; font-size: small;"><strong>FERIADOS</strong>&nbsp;<strong>NACIONAIS&nbsp;</strong>(Civis e Religiosos) dos dias 07 DE SETEMBRO, 12 DE OUTUBRO, 02 e 15 DE NOVEMBRO DE 2026 e 2027, 21 DE ABRIL&nbsp; e 1&ordm; DE MAIO DE 2027 e 2028,&nbsp;&nbsp;institu&iacute;dos pelas Lei n&ordm; 662, de 06.04.1949 e n&ordm;10.607, de 19.12.2002 e do dia 20 DE NOVEMBRO DE 2026 e 2027, institu&iacute;do pela Lei n&ordm; 14.759/2023, no&nbsp;<strong>FERIADO ESTADUAL </strong>DATA MAGNA DE PERNAMBUCO&nbsp;- 06 DE MAR&Ccedil;O DE 2027 e 2028<strong>,&nbsp;</strong>institu&iacute;do pela Lei Estadual 13.386, de 24.12.2007 e&nbsp;alterado pela&nbsp;Lei&nbsp;&nbsp;Estadual n&deg;16.059&nbsp;&nbsp;de 08.06.2017&nbsp;&nbsp;e nos&nbsp;<strong>FERIADOS MUNICIPAIS</strong>&nbsp; dos dias&nbsp;<span>&nbsp;e 24&nbsp; DE JUNHO&nbsp; de 2026 e 2027,&nbsp;</span>&nbsp;15 &nbsp;DE JANEIRO (Santo Amaro), 04 DE MAIO(Funda&ccedil;&atilde;o do Munic&iacute;pio), dia de NOSSA SENHORA DOS PRAZERES(Data M&oacute;vel), Sexta-Feira da Paix&atilde;o todos de 2027 e 2028, institu&iacute;dos pela LEI MUNICIPAL N&ordm; 1247 de 17.12.2015, que modificou as Leis n&ordm; 140/95 e 203/03,&nbsp;</span><span style="font-family: Arial, 'sans-serif'; font-size: small;">tudo nos termos da CCT do segmento do COM&Eacute;RCIO devidamente registrada e arquivada na SRT/PE, que regulamenta as Rela&ccedil;&otilde;es de Trabalho no &acirc;mbito do munic&iacute;pio do Jaboat&atilde;o dos Guararapes, per&iacute;odo 2026/2028.</span></p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Disposições Gerais
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras Disposições
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUARTA - JORNADA DE TRABALHO NOS DOMINGOS E FERIADOS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="MsoBodyText2" style="margin-left: 0px; margin: 0cm 0cm 0pt;" align="justify"><span style="margin-left: 0px; font-size: 10pt; font-family: Arial;"><span style="font-size: small;">A jornada de trabalho dos empregados das <strong>EMPRESAS</strong>&nbsp;do&nbsp;<strong>COM&Eacute;RCIO</strong>&nbsp;estabelecidas no SHOPPING CENTER GUARARAPES nos&nbsp;<strong style="margin-left: 0px; mso-bidi-font-weight: normal;">DOMINGOS </strong>e<strong style="margin-left: 0px; mso-bidi-font-weight: normal;"> FERIADOS</strong> acima citados, ser&aacute; de at&eacute; 08 (oito) horas di&aacute;rias, garantindo um intervalo de at&eacute; 02 (duas) horas para repouso e alimenta&ccedil;&atilde;o e/ou de 06 (seis) horas ininterruptas, di&aacute;rias, garantindo os 15 (quinze) minutos de repouso previstos em lei, entre a quarta e a quinta hora, observadas as disposi&ccedil;&otilde;es do art. 70, XIII e XIV, da Constitui&ccedil;&atilde;o Federal, n&atilde;o podendo ultrapassar 44 (quarenta e quatro) horas semanais.</span><!--?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" ?--></span></p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUINTA - FOLGA REMUNERADA SEMANAL NOS DOMINGOS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: small;">Ser&aacute; <strong><span style="text-decoration: underline;">OBRIGAT&Oacute;RIO</span></strong> o repouso semanal remunerado, na forma prevista nas disposi&ccedil;&otilde;es legais, devendo o(a) empregado(a) que trabalhar no DOMINGO,&nbsp;obter o respectivo descanso na mesma semana do trabalho no DOMINGO, no M&Aacute;XIMO 06(seis) dias ap&oacute;s, conforme Orienta&ccedil;&atilde;o Jurisprudencial n. 410, da SDI-1/T.S.T, devendo ainda o repouso semanal remunerado coincidir, pelo menos 01 (uma) vez no per&iacute;odo m&aacute;ximo de 03 (tr&ecirc;s) semanas com o DOMINGO.</span></p>
+<p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: small;"><strong>PAR&Aacute;GRAFO &Uacute;NICO:</strong>&nbsp;</span></p>
+<p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: small;">Na hip&oacute;tese da folga d<span>o(a) empregado(a)</span> recair em dia feriado, a mesma ser&aacute; transferida para o dia &uacute;til imediatamente posterior ou outro dia dentro da mesma semana desde que por op&ccedil;&atilde;o expressa e formal do(a)&nbsp;<span>empregado(a)</span>, respeitado o prazo M&Aacute;XIMO de 06(seis) dias entre o trabalho no DOMINGO e a concess&atilde;o da folga, conforme Orienta&ccedil;&atilde;o Jurisprudencial n. 410, da SDI-1/T.S.T.</span></p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA SEXTA - FOLGA COMPENSAT&#211;RIA DOS FERIADOS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="MsoNormal" style="margin-left: 0px; text-align: justify; line-height: normal; margin: 0cm 0cm 0pt; mso-layout-grid-align: none;"><span style="margin-left: 0px; font-family: Arial, 'sans-serif'; font-size: small;">As <strong>EMPRESAS</strong> do <strong>COM&Eacute;RCIO&nbsp;</strong>estabelecidas no SHOPPING CENTER GUARARAPES conceder&atilde;o aos seus(as) empregados(as)&nbsp;<strong style="margin-left: 0px; mso-bidi-font-weight: normal;"><span style="text-decoration: underline;">01 (uma) FOLGA COMPENSAT&Oacute;RIA</span></strong> por cada <strong>FERIADO&nbsp;</strong> trabalhado, GARANTIDA A FOLGA SEMANAL REMUNERADA prevista na legisla&ccedil;&atilde;o pertinente, folga compensat&oacute;ria esta a ser concedida no <strong style="margin-left: 0px; mso-bidi-font-weight: normal;"><span style="text-decoration: underline;">prazo m&aacute;ximo de 60 (sessenta) dias</span></strong>, a contar do dia seguinte ao feriado efetivamente trabalhado.<!--?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" ?--></span></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: justify; line-height: normal; margin: 0cm 0cm 0pt;"><span style="margin-left: 0px; font-family: Arial, 'sans-serif'; font-size: small;">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: justify; line-height: normal; margin: 0cm 0cm 0pt;"><span style="font-size: small;"><strong style="margin-left: 0px; mso-bidi-font-weight: normal;"><span style="margin-left: 0px; font-family: Arial, 'sans-serif';">PARAGR&Aacute;FO &Uacute;NICO:</span></strong></span></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: justify; line-height: normal; margin: 0cm 0cm 0pt;"><span style="margin-left: 0px; font-family: Arial, 'sans-serif'; font-size: small;"><span style="margin-left: 0px; mso-spacerun: yes;">&nbsp;</span>A folga compensat&oacute;ria estipulada nesta cl&aacute;usula dever&aacute; ser de 01 (um) dia integral.</span></p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA S&#201;TIMA - AJUDA DE CUSTO DOMINGOS/FERIADOS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: small;">Fica assegurado aos(as) empregados(as) que prestarem servi&ccedil;os nos <strong>DOMINGOS/FERIADOS</strong> a percep&ccedil;&atilde;o da ajuda de custo de no VALOR M&Iacute;NIMO <strong>R$41,00 (quarenta e um reais) para jornada de 8 horas e R$35,00 (Trinta e cinco reais) para jornada de 04 horas</strong>, por cada domingo/feriado trabalhado&nbsp;&nbsp;para o ressarcimento das despesas, n&atilde;o integrando o sal&aacute;rio contratual para quaisquer fins de direito, GARANTIDO O VALE TRANSPORTE.</span></p>
+<p style="text-align: justify;">&nbsp;</p>
+<p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: small;"><strong>PAR&Aacute;GRAFO PRIMEIRO:</strong></span><br /><span style="font-family: arial, helvetica, sans-serif; font-size: small;">Fica assegurado, apenas para os(as) empregados(as) COMISSIONISTAS que prestarem servi&ccedil;os nos&nbsp;<strong>DOMINGOS/FERIADOS</strong> o acr&eacute;scimo de <strong>25% (vinte e cinco por cento)</strong> sobre o valor &iacute;ndice percentual da comiss&atilde;o normal, acr&eacute;scimo este incidente apenas sobre as vendas faturadas nos domingos/feriados efetivamente trabalhados.</span></p>
+<p style="text-align: justify;"><br /><span style="font-family: arial, helvetica, sans-serif; font-size: small;"><strong>PAR&Aacute;GRAFO SEGUNDO:</strong></span></p>
+<p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: small;">Fica assegurado tamb&eacute;m, que na hip&oacute;tese dos(as) empregados(as)&nbsp;<strong>COMISSIONISTAS</strong> quando da apura&ccedil;&atilde;o do valor referente a comiss&atilde;o das vendas realizadas em cada&nbsp;<strong>DOMINGO/FERIADO</strong>&nbsp;trabalhado n&atilde;o atingir o valor m&iacute;nimo de&nbsp;<strong>R$41,00 (quarenta e um reais)</strong><strong>&nbsp;para jornada de 8 horas e&nbsp;R$35,00 (Trinta e cinco reais) para jornada de 04 horas</strong><span>,</span><span>&nbsp;</span>dever&aacute; ser complementado at&eacute; <strong>R$41,00 (quarenta e um reais)</strong><strong>&nbsp;para jornada de 8 horas e&nbsp;R$35,00 (Trinta e cinco reais)&nbsp;&nbsp;para jornada de 04 horas</strong><span>&nbsp;</span>a t&iacute;tulo AJUDA DE CUSTO, n&atilde;o constituindo sal&aacute;rio para nenhum fim de direito, visando apenas ressarcir as despesas dos(as) empregados(as) que prestarem servi&ccedil;os nestes dias, ressalvando por&eacute;m, que deve ser considerado quando da apura&ccedil;&atilde;o o total de&nbsp;<strong>DOMINGOS/FERIADOS</strong> trabalhados em cada m&ecirc;s, sendo devido o complemento na hip&oacute;tese e de na soma dos valores apurados a titulo de comiss&atilde;o dividido pelo n&uacute;mero de domingos/feriados trabalhados n&atilde;o atingir o valor m&iacute;nimo unit&aacute;rio de&nbsp;<strong>R$41,00 (quarenta e um reais)</strong><strong>&nbsp;para jornada de 8 horas e&nbsp; R$35,00 (Trinta e cinco reais)&nbsp;para jornada de 04 horas.</strong><br /></span></p>
+<p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: small;"><strong>PAR&Aacute;GRAFO TERCEIRO:</strong></span><br /><span style="font-family: arial, helvetica, sans-serif; font-size: small;">As condi&ccedil;&otilde;es e vantagens asseguradas neste instrumento s&atilde;o as condi&ccedil;&otilde;es m&iacute;nimas que garantir&atilde;o funcionamento regular das empresas nos&nbsp;<strong>DOMINGOS/FERIADOS</strong> devendo ser respeitado pelas mesmas, melhores condi&ccedil;&otilde;es j&aacute; existentes, espontaneamente asseguradas.</span></p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA OITAVA - AJUDA DE CUSTO FERIADO ESPECIAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: small;">Fica assegurado aos(as) empregados(as) que prestarem servi&ccedil;os no&nbsp;<strong>FERIADO NACIONAL DO DIA 1&ordm; DE MAIO de 2027</strong>, a percep&ccedil;&atilde;o da ajuda de custo de no VALOR M&Iacute;NIMO&nbsp;<strong>R$66,00 (sessenta&nbsp; e seis reais) para jornada de 8 horas e R$44,00 (quarenta e quatro reais) para jornada de 04 horas</strong>, pelo feriado trabalhado para o ressarcimento das despesas, n&atilde;o integrando o sal&aacute;rio contratual para quaisquer fins de direito, GARANTIDO O VALE TRANSPORTE</span></p>
+<p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: small;">&nbsp;</span></p>
+<p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: small;"><strong>PAR&Aacute;GRAFO PRIMEIRO:</strong></span><br /><span style="font-family: arial, helvetica, sans-serif; font-size: small;">Fica assegurado, apenas para os(as) empregados(as) COMISSIONISTAS que prestarem servi&ccedil;os no feriado o acr&eacute;scimo de&nbsp;<strong>25% (vinte e cinco por cento)</strong>&nbsp;sobre o valor &iacute;ndice percentual da comiss&atilde;o normal, acr&eacute;scimo este incidente apenas sobre as vendas faturadas no feriado efetivamente trabalhado.</span></p>
+<p style="text-align: justify;"><br /><span style="font-family: arial, helvetica, sans-serif; font-size: small;"><strong>PAR&Aacute;GRAFO SEGUNDO:</strong></span></p>
+<p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: small;">Fica assegurado tamb&eacute;m, que na hip&oacute;tese dos(as) empregados(as)&nbsp;<strong>COMISSIONISTAS</strong>&nbsp;quando da apura&ccedil;&atilde;o do valor referente a comiss&atilde;o das vendas realizada no&nbsp;<strong>FERIADO NACIONAL DO DIA 1&ordm; DE MAIO DE 2026 e 2027,</strong>&nbsp;n&atilde;o atingir o valor m&iacute;nimo de&nbsp;<strong>R$66,00 (sessenta&nbsp; e seis reais)</strong><strong>&nbsp;para jornada de 8 horas e&nbsp;R$44,00 (quarenta e quatro reais)&nbsp;</strong><strong>para jornada de 04 horas, este valor&nbsp;</strong>dever&aacute; ser complementado at&eacute;&nbsp;<strong>R$66,00 (sessenta&nbsp; e seis reais)</strong><strong>&nbsp;para jornada de 8 horas e&nbsp;R$44,00 (quarenta e quatro reais)&nbsp;</strong><strong>para jornada de 04 horas</strong><strong>s</strong>,&nbsp;a t&iacute;tulo AJUDA DE CUSTO, n&atilde;o constituindo sal&aacute;rio para nenhum fim de direito, visando apenas ressarcir as despesas dos(as) empregados(as) que prestarem servi&ccedil;os neste dia, ressalvando por&eacute;m, que deve ser considerado quando da apura&ccedil;&atilde;o o total de domingos/feriados trabalhados em cada m&ecirc;s, sendo devido o complemento na hip&oacute;tese e de na soma dos valores apurados a titulo de comiss&atilde;o dividido pelo n&uacute;mero de domingos/feriados trabalhados n&atilde;o atingir o valor m&iacute;nimo unit&aacute;rio.</span></p>
+<p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: small;"><strong>PAR&Aacute;GRAFO TERCEIRO:</strong></span><br /><span style="font-family: arial, helvetica, sans-serif; font-size: small;">As condi&ccedil;&otilde;es e vantagens asseguradas neste instrumento s&atilde;o as condi&ccedil;&otilde;es m&iacute;nimas que garantir&atilde;o funcionamento regular das empresas nos feriados, devendo ser respeitado pelas mesmas, melhores condi&ccedil;&otilde;es j&aacute; existentes, espontaneamente asseguradas.</span></p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA NONA - ESCALAS DE TRABALHO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="MsoNormal" style="margin-left: 0px; margin: 0cm 0cm 0pt; text-align: justify;" align="justify"><span style="margin-left: 0px; font-family: Arial;"><span style="font-size: x-small;"><!--?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" ?--><span style="margin-left: 0px; font-size: small; line-height: 115%; font-family: Arial, 'sans-serif';">As <strong>EMPRESAS</strong> do <strong>COM&Eacute;RCIO&nbsp;</strong>estabelecidas no SHOPPING CENTER GUARARAPES dever&atilde;o manter em suas sedes as respectivas escalas de trabalho de seus empregados dispon&iacute;veis a fiscaliza&ccedil;&atilde;o do Sindicato Profissional e da SRT/PE.</span></span></span></p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA - MULTA POR DESCUMPRIMENTO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: small;">As&nbsp;<strong>EMPRESAS</strong>&nbsp;do&nbsp;<strong>COM&Eacute;RCIO&nbsp;</strong>&nbsp;estabelecidas no Shopping Center Guararapes que funcionarem nos DOMINGOS e FERIADOS acima relacionados sem cumprimento dos requisitos previstos neste instrumento firmado entre as entidades Profissional e Econ&ocirc;mica no segmento do Com&eacute;rcio, ser&atilde;o penalizadas com o pagamento da multa&nbsp;equivalente a&nbsp;<strong>R$ 400,00 (quatrocentos reais), por dia que funcionar irregularmente e por cada empregado que laborar neste dia</strong>, sendo a mesma revertida em favor do empregado prejudicado, do Sindicato Profissional &nbsp;e do Sindicato Patronal em percentuais iguais para cada parte.</span></p>
+<p style="text-align: justify;">&nbsp;</p>
+<p align="justify"><span style="font-family: arial, helvetica, sans-serif; font-size: small;"><strong>PAR&Aacute;GRAFO PRIMEIRO:</strong></span></p>
+<p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: small;">A(s) multa(s) por funcionamento irregular N&Atilde;O CUMULAR&Atilde;O, por&eacute;m com a mesma penalidade prevista na&nbsp;</span><strong style="font-family: arial, helvetica, sans-serif; font-size: small;">Cl&aacute;usula 76&ordf;, respeitado o &sect;2&ordm;, da CCT do segmento do COM&Eacute;RCIO devidamente registrada e arquivada na SRT/PE</strong><span style="font-family: arial, helvetica, sans-serif; font-size: small;">, que regulamenta as Rela&ccedil;&otilde;es de Trabalho no &acirc;mbito do munic&iacute;pio do Jaboat&atilde;o dos Guararapes per&iacute;odo 2026/2028.</span></p>
+<p style="text-align: justify;">&nbsp;</p>
+<p align="justify"><span style="font-family: arial, helvetica, sans-serif; font-size: small;"><strong>PAR&Aacute;GRAFO SEGUNDO:</strong></span></p>
+<p style="text-align: justify;">&nbsp;<span style="font-family: arial, helvetica, sans-serif; font-size: small;">Ser&aacute; devida a multa, prevista no caput desta cl&aacute;usula, ap&oacute;s AUDI&Ecirc;NCIA DE TENTATIVA DE CONCILIA&Ccedil;&Atilde;O na Comiss&atilde;o de Concilia&ccedil;&atilde;o Pr&eacute;via, quando as empresas ter&atilde;o a oportunidade de buscar cumprimento/ enquadramento nas condi&ccedil;&otilde;es previstas neste instrumento coletivo. O que dever&atilde;o faz&ecirc;-lo no prazo ajustado quando da realiza&ccedil;&atilde;o da AUDI&Ecirc;NCIA DE TENTATIVA DE CONCILIA&Ccedil;&Atilde;O, incidindo a multa na hip&oacute;tese de aus&ecirc;ncia na dita audi&ecirc;ncia ou n&atilde;o cumprimento do enquadramento das condi&ccedil;&otilde;es neste instrumento ajustadas. Ressalvando-se, por&eacute;m que quando da NOTIFICA&Ccedil;&Atilde;O/CONVITE para a EMPRESA comparecer &agrave; dita&nbsp;AUDI&Ecirc;NCIA DE TENTATIVA DE CONCILIA&Ccedil;&Atilde;O,&nbsp;OBRIGATORIAMENTE a Representa&ccedil;&atilde;o Patronal (SINDCOM JABOAT&Atilde;O) dever&aacute; ser comunicada no endere&ccedil;o: Av. Santo Elias, n&ordm; 36-A, Prazeres - Jaboat&atilde;o dos Guararapes/PE, fone/fax: 3481-0631, bem como alternativamente atrav&eacute;s de sua assessoria jur&iacute;dica no endere&ccedil;o Pra&ccedil;a Miguel de Cervantes, 60, sala 1002, Ilha do Leite &ndash; Recife/PE,&nbsp; e-mail:&nbsp;<a href="/cdn-cgi/l/email-protection#b2d1dddcc1c7dec6f2c1dfd3c0c69cdcd7c69cd0c0"><span class="__cf_email__" data-cfemail="88ebe7e6fbfde4fca6e9fbfbe7ebe1e9ece7fbb9c8efe5e9e1e4a6ebe7e5">[email&#160;protected]</span></a>, comprovadamente, das raz&otilde;es da NOTIFICA&Ccedil;&Atilde;O/CONVITE de sua representada e da data de realiza&ccedil;&atilde;o da mesma perante a&nbsp;Comiss&atilde;o de Concilia&ccedil;&atilde;o Pr&eacute;via. ou na&nbsp;SRT/PE quando for o caso.</span></p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA PRIMEIRA - DOS GERENTES
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="MsoNormal" style="margin: 0cm 0cm 0pt; line-height: normal; text-align: justify;"><span style="margin-left: 0px; font-size: small; font-family: Arial, 'sans-serif';">Aos gerentes sem procura&ccedil;&atilde;o sem fun&ccedil;&atilde;o anotada na sua CTPS ou sem gratifica&ccedil;&atilde;o referente &agrave; fun&ccedil;&atilde;o&nbsp;&nbsp;ser&aacute; garantida a mesma jornada de trabalho dos demais empregados nos&nbsp;<strong>DOMINGOS</strong>&nbsp;e&nbsp;<strong>FERIADOS&nbsp;</strong>previstos neste instrumento coletivo, ou seja 44( quarenta e quatro) horas semanais com a mesma escala de revezamento e respeitado os feriados trabalhados que n&atilde;o poder&atilde;o ser mais de 02 (dois) consecutivos durante a vig&ecirc;ncia deste instrumento coletivo, sendo ainda a jornada de at&eacute; 08 (oito) horas di&aacute;rias, devendo ser as horas excedentes consideradas como extraordin&aacute;rias e pagas, quando n&atilde;o compensadas, com os acr&eacute;scimos previstos na CCT do segmento do COM&Eacute;RCIO devidamente registrada e arquivada na SRT/PE.<!--?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" ?--></span></p>
+<p class="MsoNormal" style="margin: 0cm 0cm 0pt; line-height: normal; text-align: justify;"><span style="margin-left: 0px; font-size: small; font-family: Arial, 'sans-serif';">&nbsp;</span></p>
+<p style="text-align: justify;"><span style="font-size: small;"><strong style="margin-left: 0px; mso-bidi-font-weight: normal;"><span style="margin-left: 0px; line-height: 115%; font-family: Arial, 'sans-serif';">PAR&Aacute;GRAFO &Uacute;NICO: </span></strong><span style="margin-left: 0px; line-height: 115%; font-family: Arial, 'sans-serif';"><span style="margin-left: 0px; mso-spacerun: yes;">&nbsp;</span></span></span></p>
+<p style="text-align: justify;"><span style="margin-left: 0px; font-size: small; line-height: 115%; font-family: Arial, 'sans-serif';">Ao gerente com procura&ccedil;&atilde;o, ou fun&ccedil;&atilde;o anotada em sua CTPS ou gratifica&ccedil;&atilde;o referente &agrave; fun&ccedil;&atilde;o, ser&aacute; garantida a jornada de trabalho prevista na legisla&ccedil;&atilde;o pertinente. Aos demais casos, ser&aacute; aplicado o disposto no caput desta cl&aacute;usula.</span></p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA SEGUNDA - TURNOS NOS FERIADOS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="MsoNormal" style="margin-left: 0px; margin: 0cm 0cm 0pt; line-height: normal; text-align: justify;"><span style="margin-left: 0px; font-size: 10pt; font-family: 'Arial','sans-serif'; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: PT-BR;"><span style="font-size: small;">O trabalho nos feriados no primeiro hor&aacute;rio ser&aacute; sempre alternado de modo que o mesmo empregado n&atilde;o trabalhe em mais de dois feriados consecutivos neste hor&aacute;rio, na eventualidade do empregado optar por hip&oacute;tese diversa, o mesmo deve solicitar por escrito ao empregador e a este encaminhar correspond&ecirc;ncia dirigida ao Sindicato Profissional.</span><!--?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" ?--></span></p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA TERCEIRA - AUTORIZA&#199;&#195;O PARA FUNCIONAMENTO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: small;">Para receberem a AUTORIZA&Ccedil;&Atilde;O DE FUNCIONAMENTO nos DOMINGOS/FERIADOS, as <strong>EMPRESAS </strong>do<strong> COM&Eacute;RCIO</strong> &nbsp;estabelecidas no SHOPPING CENTER GUARARAPES&nbsp; nos termos da legisla&ccedil;&atilde;o trabalhista vigente e da CCT da categoria per&iacute;odo&nbsp;2025/2027 dever&atilde;o se manifestar por escrito em correspond&ecirc;ncia dirigida ao Sindicato Profissional&nbsp; ou Sindicato Patronal e preencher os seguintes pr&eacute;-requisitos:</span></p>
+<p style="text-align: justify;"><strong style="font-family: arial, helvetica, sans-serif; font-size: small;">1.</strong><span style="font-family: arial, helvetica, sans-serif; font-size: small;"> Comprova&ccedil;&atilde;o de pagamento da </span><strong style="font-family: arial, helvetica, sans-serif; font-size: small;">CONTRIBUI&Ccedil;&Atilde;O NEGOCIAL PATRONAL e CONTRIBUI&Ccedil;&Atilde;O NEGOCIAL PROFISSIONAL,</strong><span style="font-family: arial, helvetica, sans-serif; font-size: small;">&nbsp;das entidades representantes das categorias Econ&ocirc;mica e Profissional, conforme estipulada na CCT e na legisla&ccedil;&atilde;o vigente.</span></p>
+<p style="text-align: justify;"><strong style="font-family: arial, helvetica, sans-serif; font-size: small;">2. </strong><span style="font-family: arial, helvetica, sans-serif; font-size: small;">Comprova&ccedil;&atilde;o do cumprimento das cl&aacute;usulas 2&ordf; &agrave; 6&ordf; da Conven&ccedil;&atilde;o Coletiva de Trabalho referente ao per&iacute;odo 2024/2026, devidamente registrada na SRT/PE, que regulamentou o funcionamento das <strong>EMPRESAS&nbsp;</strong><span>do</span><strong>&nbsp;COM&Eacute;RCIO</strong>&nbsp;</span><span style="font-family: arial, helvetica, sans-serif; font-size: small;">estabelecidas no Shopping Center Guararapes nos DOMINGOS e FERIADOS.</span></p>
+<p style="text-align: justify;"><strong style="font-family: arial, helvetica, sans-serif; font-size: small;">3.</strong><span style="font-family: arial, helvetica, sans-serif; font-size: small;"> Comprova&ccedil;&atilde;o dos recolhimentos referentes ao </span><strong style="font-family: arial, helvetica, sans-serif; font-size: small;">ENCARGO OPERACIONAL SINDICAL</strong><span style="font-family: arial, helvetica, sans-serif; font-size: small;">, per&iacute;odos 2026/2027, conforme valores convencionados na Cl&aacute;usula 69&ordf; e 71&ordf; das Conven&ccedil;&otilde;es Coletivas.</span></p>
+<p style="text-align: justify;"><strong style="font-family: arial, helvetica, sans-serif; font-size: small;">4. </strong><span style="font-family: arial, helvetica, sans-serif; font-size: small;">Cumpridas as etapas acima relacionadas nos itens anteriores, o Sindicato que receber a solicita&ccedil;&atilde;o OBRIGATORIAMENTE enviar&aacute; ao outro Sindicato rela&ccedil;&atilde;o das empresas que funcionar&atilde;o nos DOMINGOS/FERIADOS&nbsp; neste instrumento relacionados bem como respectivos comprovantes de recolhimento da Contribui&ccedil;&atilde;o Negocial, em seguida ser&aacute; expedida a AUTORIZA&Ccedil;&Atilde;O DE FUNCIONAMENTO, que ficar&aacute; em poder da empresa beneficiada para hip&oacute;tese de fiscaliza&ccedil;&atilde;o.</span></p>
+<p style="text-align: justify;"><strong style="font-family: arial, helvetica, sans-serif; font-size: small;">5. </strong><span style="font-family: arial, helvetica, sans-serif; font-size: small;">A AUTORIZA&Ccedil;&Atilde;O DE FUNCIONAMENTO ser&aacute; assinada pel</span><span style="font-family: arial, helvetica, sans-serif; font-size: small;">as respectivas entidades Profissional/Patronal.</span></p>
+<p style="text-align: justify;"><strong style="font-family: arial, helvetica, sans-serif; font-size: small;">6. </strong><span style="font-family: arial, helvetica, sans-serif; font-size: small;">A AUTORIZA&Ccedil;&Atilde;O DE FUNCIONAMENTO &eacute; exig&iacute;vel nos termos deste Instrumento Coletivo apenas para as EMPRESAS do com&eacute;rcio estabelecidas no SHOPPING CENTER GUARARAPES, documento INDISPENS&Aacute;VEL no funcionamento nos DOMINGOS e FERIADOS aqui estipulados conforme previsto no subitem anterior devendo a mesma ficar exposta em local vis&iacute;vel e dispon&iacute;vel para exibi&ccedil;&atilde;o se necess&aacute;rio no estabelecimento comercial a FISCALIZA&Ccedil;&Atilde;O do Sindicato dos Empregados no Com&eacute;rcio do Jaboat&atilde;o dos Guararapes e Superintend&ecirc;ncia Regional do Trabalho/PE.</span></p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA QUARTA - ENCARGO OPERACIONAL PATRONAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="MsoNormal" style="margin-left: 0px; text-align: justify; margin: 0cm 0.3pt 0pt 0cm;"><span style="margin-left: 0px; font-family: Arial; font-size: small;"><span style="font-family: Arial;">Pelo funcionamento nos DOMINGOS/FERIADOS, a&nbsp; EMPRESA</span><span style="font-family: Arial;">&nbsp;obriga-se a recolher, nos valores indicados na tabela abaixo, a t&iacute;tulo de ENCARGO OPERACIONAL PATRONAL, em favor do </span><strong><span style="margin-left: 0px; font-family: Arial;">SINDICATO DO COM&Eacute;RCIO DO JABOAT&Atilde;O DOS GUARARAPES, </span></strong><span style="margin-left: 0px; font-family: Arial;">quando por este for representada</span><span style="font-family: Arial;">. Ressaltando que a taxa operacional aqui estipulada &eacute; devida MENSALMENTE. Devendo ser recolhido em favor do </span><strong style="font-family: Arial;"><span style="margin-left: 0px; font-family: Arial;">SINDICATO DO COM&Eacute;RCIO DO JABOAT&Atilde;O DOS GUARARAPES</span></strong><span style="font-family: Arial;">, at&eacute; o dia 10 de cada m&ecirc;s. Sob pena de multa de 100% (cem por cento), para pagamento posterior.</span><!--?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" ?--></span></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: justify; margin: 0cm 0.3pt 0pt 0cm;"><span style="margin-left: 0px; font-family: Arial; font-size: small;">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: justify; margin: 0cm 0.3pt 0pt 0cm;"><span style="font-size: small;">&nbsp;</span></p>
+<table style="width: 490px; height: 119px;" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="170">
+<p align="center"><span style="font-size: small;"><strong>VALOR</strong></span></p>
+</td>
+<td valign="top" width="170">
+<p align="center"><span style="font-size: small;"><strong>N&ordm; EMPREGADOS P/EMPRESA</strong></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="170">
+<p align="center"><span style="font-size: small;">R$50,00 <br /></span></p>
+</td>
+<td valign="top" width="170">
+<p align="center"><span style="font-size: small;">At&eacute; 10</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="170">
+<p align="center"><span style="font-size: small;">R$65,00 <br /></span></p>
+</td>
+<td valign="top" width="170">
+<p align="center"><span style="font-size: small;">De 11 a 40</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="170">
+<p align="center"><span style="font-size: small;">R$130,00<br /></span></p>
+</td>
+<td valign="top" width="170">
+<p align="center"><span style="font-size: small;">De 41 a 60</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="170">
+<p align="center"><span style="font-size: small;">R$210,00<br /></span></p>
+</td>
+<td valign="top" width="170">
+<p align="center"><span style="font-size: small;">A partir de 61</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal" style="margin-left: 0px; text-align: justify; margin: 0cm 0.3pt 0pt 0cm;"><span style="font-size: small;">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: justify; margin: 0cm 0.3pt 0pt 0cm;"><span style="margin-left: 0px; font-family: Arial; font-size: small;">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: justify; margin: 0cm 0.3pt 0pt 0cm;"><span style="font-size: small;"><strong><span style="margin-left: 0px; font-family: Arial;">PAR&Aacute;GRAFO &Uacute;NICO: </span></strong></span></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="margin-left: 0px; font-family: Arial; font-size: small;">O Encargo Operacional a que se refere o <em><span style="margin-left: 0px; font-family: Arial;">caput</span></em> desta cl&aacute;usula, dever&aacute; ser recolhido em benef&iacute;cio do Sindicato Patronal, em <span style="text-decoration: underline;"><strong>BOLETO</strong> </span>fornecida pela entidade ou atrav&eacute;s de <span style="text-decoration: underline;"><strong>DEP&Oacute;SITO</strong></span> identificado na conta indicada abaixo.</span></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="font-family: 'Times New Roman'; font-size: small;">&nbsp;</span></p>
+<div style="margin-left: 0px; padding-bottom: 1pt; padding-left: 4pt; padding-right: 4pt; background: #f3f3f3; padding-top: 1pt; mso-border-alt: solid windowtext .5pt; mso-element: para-border-div; border: windowtext 1pt solid;">
+<p class="MsoNormal" style="margin-left: 0px; text-align: center; margin: 0cm 0cm 0pt; background: #f3f3f3; mso-border-alt: solid windowtext .5pt; mso-outline-level: 7; mso-padding-alt: 1.0pt 4.0pt 1.0pt 4.0pt; padding: 0cm;" align="center"><span style="font-size: small;"><strong style="margin-left: 0px; mso-bidi-font-weight: normal;"><span style="margin-left: 0px; font-family: Arial;">SINDICATO DO COM&Eacute;RCIO DO JABOAT&Atilde;O DOS GUARARAPES</span></strong></span></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: center; margin: 0cm 0cm 0pt; background: #f3f3f3; mso-border-alt: solid windowtext .5pt; mso-outline-level: 7; mso-padding-alt: 1.0pt 4.0pt 1.0pt 4.0pt; padding: 0cm;" align="center"><span style="font-size: small;"><strong style="margin-left: 0px; mso-bidi-font-weight: normal;"><span style="margin-left: 0px; font-family: Arial;">BANCO SICRED</span></strong></span></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: center; margin: 0cm 0cm 0pt; background: #f3f3f3; mso-border-alt: solid windowtext .5pt; mso-outline-level: 7; mso-padding-alt: 1.0pt 4.0pt 1.0pt 4.0pt; padding: 0cm;" align="center"><span style="font-size: small;"><strong style="margin-left: 0px; mso-bidi-font-weight: normal;"><span style="margin-left: 0px; font-family: Arial;">AG&Ecirc;NCIA N&ordm; 2203</span></strong></span></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: center; margin: 0cm 0cm 0pt; background: #f3f3f3; mso-border-alt: solid windowtext .5pt; mso-outline-level: 7; mso-padding-alt: 1.0pt 4.0pt 1.0pt 4.0pt; padding: 0cm;" align="center"><span style="font-size: small;"><strong style="margin-left: 0px; mso-bidi-font-weight: normal;"><span style="margin-left: 0px; font-family: Arial;">CONTA CORRENTE N&ordm; 27264-7</span></strong></span></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: center; margin: 0cm 0cm 0pt; background: #f3f3f3; mso-border-alt: solid windowtext .5pt; mso-outline-level: 7; mso-padding-alt: 1.0pt 4.0pt 1.0pt 4.0pt; padding: 0cm;" align="center"><span style="font-size: small;"><strong style="margin-left: 0px; mso-bidi-font-weight: normal;"><span style="margin-left: 0px; font-family: Arial;">CNPJ/MF: 08.143.331/0001-92</span></strong></span></p>
+</div>
+<p class="MsoNormal" style="margin-left: 0px; text-align: justify; margin: 0cm 0.3pt 0pt 0cm;"><span style="font-size: small;"><strong style="margin-left: 0px; mso-bidi-font-weight: normal;"><span style="margin-left: 0px; font-family: Arial;">&nbsp;</span></strong></span></p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA QUINTA - COMPROVA&#199;&#195;O DO ENCARGO OPERACIONAL SINDICAL (PROFISSIONAL)
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: small;">&nbsp;Para receber a autoriza&ccedil;&atilde;o de funcionamento&nbsp; (Cl&aacute;usula 12&ordf;),&nbsp;<strong>&nbsp;as EMPRESAS&nbsp; tamb&eacute;m&nbsp;</strong>dever&atilde;o comprovar os recolhimentos referentes ao&nbsp;<strong>ENCARGO OPERACIONAL SINDICAL</strong>, conforme valor convencionado na cl&aacute;usula 71&ordf; da&nbsp; Conven&ccedil;&atilde;o Coletiva 2026/2028 vigente, transcrita abaixo:.</span></p>
+<p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: small;">&nbsp;</span></p>
+<p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: small;"><em><strong>"CL&Aacute;USULA 71&ordf; - DO ENCARGO OPERACIONAL SINDICAL"</strong></em></span></p>
+<p style="text-align: justify;" align="justify"><span style="font-family: arial, helvetica, sans-serif; font-size: small;"><em><strong>&nbsp;"</strong></em><em><strong>As empresas do Com&eacute;rcio estabelecidas no Munic&iacute;pio do Jaboat&atilde;o dos Guararapes devem recolher mensalmente, sem &ocirc;nus para os empregados, o ENCARGO OPERACIONAL SINDICAL, deste Instrumento Coletivo em favor do SINDICATO DOS EMPREGADOS NO COM&Eacute;RCIO DO JABOAT&Atilde;O DOS GUARARAPES na propor&ccedil;&atilde;o de&nbsp;R$ 14,00(catorze reais) per capita.&nbsp;Os valores ser&atilde;o recolhidos no quantitativo equivalente ao n&uacute;mero de empregados existente no quadro de empregados na empresa, no m&ecirc;s a que se refere o recolhimento, devendo o dito Encargo Operacional ser aplicado para manuten&ccedil;&atilde;o e custeio das atividades sindicais na representa&ccedil;&atilde;o dos comerci&aacute;rios do Jaboat&atilde;o dos Guararapes,&nbsp;bem como na implementa&ccedil;&atilde;o e manuten&ccedil;&atilde;o das outras atividades sociais do sindicato. Poder&aacute; a EMPRESA negociar com o SINDICATO OBREIRO (com rela&ccedil;&atilde;o &agrave; forma de pagamento) outra alternativa que melhor atenda as partes.</strong></em></span></p>
+<p style="text-align: justify;" align="justify"><span style="font-family: arial, helvetica, sans-serif; font-size: small;"><em><strong>PAR&Aacute;GRAFO PRIMEIRO:</strong></em></span></p>
+<p style="text-align: justify;" align="justify"><span style="font-family: arial, helvetica, sans-serif; font-size: small;"><em><strong>As empresas dever&atilde;o recolher o referido encargo operacional&nbsp; atrav&eacute;s de boleto enviado pelo Sindicato Profissional ou mediante dep&oacute;sito&nbsp; na Caixa Economica Federal, Agencia 1580,&nbsp;Opera&ccedil;&atilde;o 003, Conta 270-6,&nbsp;SINDICATO EMPREGADOS COMERCIO JABOATAO DOS GUARARAPES, CNPJ n. 40.813.628/0001-20.</strong></em></span></p>
+<p style="text-align: justify;" align="justify"><span style="font-family: arial, helvetica, sans-serif; font-size: small;"><em><strong>PAR&Aacute;GRAFO SEGUNDO:</strong></em></span></p>
+<p style="text-align: justify;" align="justify"><em><strong><span><span style="font-family: arial, helvetica, sans-serif; font-size: small;">As empresas dever&atilde;o comprovar ao&nbsp; Sindicato obreiro,&nbsp; o quantitativo de</span> seus empregados mensalmente, para comprova&ccedil;&atilde;o do valor efetivamente pago."</span></strong></em></p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA SEXTA - CONSIDERA&#199;&#213;ES FINAIS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: small;">Os Sindicatos Convenentes ajustam entre si que no per&iacute;odo de 01 a 31 de maio de 2027, iniciar&atilde;o nova negocia&ccedil;&atilde;o coletiva objetivando a atualiza&ccedil;&atilde;o e reajuste dos valores das Cl&aacute;usulas Econ&ocirc;micas.&nbsp;</span></p>
+                                                </label>
+                                                <br />
+                                    }
+                                    <br />
+                                    <table border="0" cellpadding="0" cellspacing="0" align="center">
+                                        <tr>
+                                            <td align="center">
+                                                    <br />
+    <br />
+    <label class="textonome">
+        FELIPE FREIRE DE OLIVEIRA
+        <br style="height: 5px" />
+        Presidente
+        <br style="height: 5px" />
+        SINDICOM/JABOATAO-SINDICATO DO COMERCIO DO JABOATAO DOS GUAR
+        <br />
+        <br />
+    </label>
+    <br />
+    <br />
+    <label class="textonome">
+        JULLYANE VASCONCELOS DAS CHAGAS
+        <br style="height: 5px" />
+        Procurador
+        <br style="height: 5px" />
+        SINDICOM/JABOATAO-SINDICATO DO COMERCIO DO JABOATAO DOS GUAR
+        <br />
+        <br />
+    </label>
+    <br />
+    <br />
+    <label class="textonome">
+        THOMAS JEFFERSON GOMES DE ALBUQUERQUE
+        <br style="height: 5px" />
+        Procurador
+        <br style="height: 5px" />
+        SINDICOM/JABOATAO-SINDICATO DO COMERCIO DO JABOATAO DOS GUAR
+        <br />
+        <br />
+    </label>
+
+    <br />
+    <br />
+    <label class="textonome">
+        GIANCARLO DE MELO LIMA
+        <br style="height: 5px" />
+        Procurador
+        <br style="height: 5px" />
+        SINDICATO EMPREGADOS COMERCIO JABOATAO DOS GUARARAPES
+        <br />
+        <br />
+    </label>
+    <br />
+    <br />
+    <label class="textonome">
+        JOAO LUIZ FERREIRA
+        <br style="height: 5px" />
+        Presidente
+        <br style="height: 5px" />
+        SINDICATO EMPREGADOS COMERCIO JABOATAO DOS GUARARAPES
+        <br />
+        <br />
+    </label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                        <br />
+                                        <center>
+                                            <label class="textogrupo">
+                                                <b>ANEXOS </b>
+                                            </label>
+                                        </center>
+                                                        <label>
+                                                            <b>
+                                                                <center>
+                                                                    <label class="textogrupo">
+                                                                        ANEXO I - ATA AGE PROFISSIONAL
+                                                                    </label>
+                                                                </center>
+                                                                <label class="tituloClausula">
+                                                                                                                                    </label>
+                                                            </b>
+                                                        </label>
+                                                        <b>
+                                                            <label>
+
+                                                            </label>
+                                                        </b>
+                                                        <br />
+                                                        <label class="descricaoClausula" >
+                                                            <p><a href="https://mediador.trabalho.gov.br/sistemas/mediador/imagemAnexo/MR046563_20262026_08_20T16_28_55.pdf" target="_blank">Anexo (PDF)</a></p>
+                                                        </label>
+                                                        <br />
+                                        <!--****************************************** FIM - Anexos ******************************************-->
+                                            <label class="texto">
+                                                &#160;&#160;&#160;&#160;A autenticidade deste documento poderá ser confirmada na
+                                                página do Ministerio do Trabalho e Emprego na Internet, no endereço http://www.mte.gov.br.
+                                            </label>
+                                            <br />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+<script>
+    setTimeout(function () {
+        window.history.replaceState({}, '', window.location.pathname);
+    }, 0);
+</script>
+</html>
