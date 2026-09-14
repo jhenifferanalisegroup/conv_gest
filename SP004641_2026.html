@@ -1,0 +1,791 @@
+
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+    <title>
+        Mediador - Extrato Conven&#231;&#227;o Coletiva
+    </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G"></script>
+
+    <script src='/sistemas/mediador/WebResource.axd?d=cuQcyhunthaKbkS1HRDdYz6PN4zLUht6oCI9W5Qe4lHx-6WAKxelJ3CNRaaYGmIIXUPG_02Oz_3xp1nWR4wRmrhzD889Xme-W80PINl5Opm3a6Vk9xOcKAdRAP0WaAY0QwRFkKa8ygci1cWChKIM3xi_y4E-QkbPdUjFbuj7xrCEQ-EVAHEd2SiDsURiQrGz0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=oCiGPyL516rw_w4O_26ZIUgEDxNTixko29P8hNqgYYE9jihnBUsGIp-kukrf82JW7eobyj8s0ooJ5rI1tfuIzt5-6_pMzumq7dLHWrlQZ-QMRUlCHBKuRssX4JwWJPbRaacnUMI4LY59GnxsKL82GjLr-MAsXYWqz_mUgN6cUz51NH30xgq7ZmHyBhUjhPw8-L_0eLuQdQHcRf08dF_HrA2&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=wI0LQo9-Y3uVg4JvYlrDeAmD0eDROLwrykxGZZm7FeHJNOkuLJd-tB3W2xasfEpUFS-WtoMR44VJNgE_0uIW4OIXYKjcDuXF0IcPvjMyLwlPk2AOsHRO3raei2aKk_DpNcvHrgXcEazozbzFbx3MyYROztNnngy4LZm8CigaBFeRwbfjiCBOJaSo3LCaUDVQ0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=KaDqL3Gcxy5_cHNfLKsWFNdcKxNiiUh3HtPda6q62Tk6jObaqvBGjIGv4N3KHnol1jsYfqnEDPvu8bqDw9664g8gNXTu-bup9GNgychn1MlTxA9V_0gUapXZl6zq0NwvemVy1w_Yym-4g5yIIiPndY1yb7UY2Z3ZO1ZTaDrRNyAjWzC-rNL3CXeYpaiIWTH40&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=qtzkb4aKrNku25SKlKs4jZr_bdveUVnUZ5tZc2pTT2sauL0_dRzCNMZhGSFASotxmo04giDQ-E0d0UeLqCdzABP8l2gJR6XwVRdetE7e7Eck3ObZ-LknGwsZoVcBz7BNY1TRN4J-vljXQrR5MmbFoTkwox8Q8ec5f9wsCVK67AZSRApQIAoKK7FEwOCFjWlx0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=3iAOwoL9JnA5TZ6rygyAAR_lXBxjSq4488DJsEscLKSXKUh-cfJ9O5bC-FxRzAqJtsQJFs2IhSJQ3HR3WKiVMzlo3WgEBcHU3QAeRw7LGJeOXAbL5CGBB2zel0X2_oWfsINwuZcDfexI5FD89VA4NlfrRQ7K4czFkowNfSNtL_dKVZ5vnkZUyK_vnlVhpVzb0&t=639193666532168144' type='text/javascript'></script>
+
+
+<script type="text/javascript">
+        var recaptchaSiteKey = '6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G';
+        var pageLoadToken = '';
+        var isPageValidated = false;
+
+        function onRecaptchaLoad() {
+            console.log('reCAPTCHA carregado, validando página...');
+            executePageLoadRecaptcha();
+        }
+
+        function executePageLoadRecaptcha() {
+            if (typeof grecaptcha === 'undefined') {
+                console.error('reCAPTCHA não carregado');
+                return;
+            }
+
+            grecaptcha.ready(function() {
+                grecaptcha.execute(recaptchaSiteKey, {
+                    action: 'page_load_resumo'
+                }).then(function(token) {
+                    console.log('Token de página gerado');
+                    pageLoadToken = token;
+
+                    // Enviar o token para o servidor
+                    validatePageLoadToken(token);
+                }).catch(function(error) {
+                    console.error('Erro no reCAPTCHA de página:', error);
+                    // Em desenvolvimento, permitir continuar
+                });
+            });
+        }
+
+        function validatePageLoadToken(token) {
+            var currentUrl = window.location.href;
+            var queryString = window.location.search;
+            var nrSolicitacao = 'MR018797/2026';
+
+            $.ajax({
+                url: '/sistemas/mediador/Resumo/ValidateResumoPageLoad',
+                type: 'POST',
+                data: {
+                    recaptchaToken: token,
+                    currentUrl: currentUrl,
+                    queryString: queryString,
+                    nrSolicitacao: nrSolicitacao
+                },
+                success: function(response) {
+                    if (response.success) {
+                        console.log('Página validada com sucesso');
+                        isPageValidated = true;
+                        showPageContent();
+                    } else {
+                        console.warn('Validação de página falhou:', response.message);
+                        handleValidationFailed(response);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Erro ao validar página:', error);
+                    handleValidationFailed({ message: 'Erro de comunicação com o servidor' });
+                }
+            });
+        }
+
+        function showPageContent() {
+            // Remover overlay de loading se existir
+            $('#recaptcha-loading').remove();
+            console.log('Conteúdo da página liberado');
+        }
+
+        function handleValidationFailed(response) {
+            // Mostrar mensagem de erro
+            var errorHtml = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                    <div style="text-align: center; padding: 20px;">
+                        <h2 style="color: #d32f2f;">Validação de Segurança</h2>
+                        <p style="font-size: 16px; margin: 20px 0;">${response.message || 'Falha na validação de segurança.'}</p>
+                        <button onclick="window.location.reload()" style="padding: 10px 20px; background: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Tentar Novamente
+                        </button>
+                        <br><br>
+                        <button onclick="window.location.href='/sistemas/mediador/'" style="padding: 8px 16px; background: #757575; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Voltar para Página Inicial
+                        </button>
+                    </div>
+                </div>
+            `;
+            $('body').prepend(errorHtml);
+        }
+
+        $(document).ready(function() {
+            console.log('Página carregada - ambiente de produção');
+
+            // Pular validação reCAPTCHA em produção
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.log('Produção - validando sem reCAPTCHA');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 1000);
+
+            // Timeout de segurança reduzido
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.warn('Timeout na validação - liberando conteúdo');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 5000); // Reduzido para 5 segundos
+        });
+
+        function Imprimir() {
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "none";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "none";
+            window.print();
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "";
+            return true;
+        }
+        $(function () {
+            var marcaDaguaHtml = $('.MarcaDagua').html();
+            var width = $('body').width();
+            var marcaW = $('.MarcaDagua').width();
+
+            var qtdNescessarios = Math.round((width / marcaW) + 0.4);
+            if (qtdNescessarios > 0)
+                for (var incrementador = 0; incrementador < qtdNescessarios; incrementador++) {
+                    $('.MarcaDagua').append("<br />");
+                    $('.MarcaDagua').append(marcaDaguaHtml);
+                }
+        });
+
+
+</script>
+    <style type="text/css">
+        .titulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .Subtitulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 13px;
+        }
+        .texto
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .tituloClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .descricaoClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .textogrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        .textosubgrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        .textonome
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .textofuncao
+        {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .pagebreak
+        {
+            page-break-after: always;
+        }
+        table.titulo
+        {
+            text-align: left;
+        }
+        @page Section2 {size:21cm 29.7cm ;mso-page-orientation:portrait;margin-top:2cm; margin-rigth:2cm; mso-paper-source:0;}
+        div.Section2 {page:Section2;}
+        pre
+        {
+            white-space: pre-wrap; /* css-3 */
+            white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+            white-space: -pre-wrap; /* Opera 4-6 */
+            white-space: -o-pre-wrap; /* Opera 7 */
+            word-wrap: break-word; /* Internet Explorer 5.5+ */
+            white-space: normal;
+        }
+    </style>
+    <!--[if gte mso 9]>
+    <xml>
+    <w:WordDocument>
+    <w:View>Print</w:View>
+    <w:Zoom>100</w:Zoom>
+    <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+    </xml>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="Section2">
+                <form method="post" action="/sistemas/mediador/Resumo/ResumoVisualizarSalvarMsWordDoc?NrSolicitacao=MR018797/2026">
+                    <input type="button" id="btnResumoVisualizarImprimir" value="Imprimir" onclick="Imprimir();" />
+                    <input type="submit" id="btnResumoVisualizarSalvar" value="Salvar" />
+                </form>
+
+            <div style="text-align: center; z-index: -1000; position: absolute; width: 100%;"
+                 class="MarcaDagua">
+                <img src="/sistemas/mediador/Content/images/carimbo.gif" alt="marcaDAgua" />
+            </div>
+        <center>
+            <table border="0" style="width: 18cm;" id="tblConteudo">
+                <tr>
+                    <td>
+                        <table style="width: 100%;" cellpadding="0" cellspacing="0">
+
+                                                            <tr>
+                                    <td align="center" class="titulo" style="text-transform: uppercase;">
+                                        <b>
+                                            Conven&#231;&#227;o Coletiva De Trabalho 2026/2027
+                                        </b>
+                                        <br />
+                                        <br />
+                                    </td>
+                                </tr>
+                            <tr>
+                                <td>
+                                    <div style="text-align: left;">
+                                        <table border="0" class="titulo" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td>
+                                                        <b>NÚMERO DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        SP004641/2026
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        19/05/2026
+                                                    </td>
+                                                </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>NÚMERO DA SOLICITAÇÃO:</b>
+                                                </td>
+                                                <td style="width: 10px">
+                                                </td>
+                                                <td>
+                                                    MR018797/2026
+                                                </td>
+                                            </tr>
+                                                                                            <tr>
+                                                    <td>
+                                                        <b>NÚMERO DO PROCESSO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        47979.251889/2026-45
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DO PROTOCOLO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+07/04/2026                                                    </td>
+                                                </tr>
+                                        </table>
+                                        <br />
+
+                                                        <p>
+                                                            <label class="texto">
+                                                                <b>
+                                                                    Confira a autenticidade no endereço http://mediador.trabalho.gov.br/sistemas/mediador/.
+                                                                </b>
+                                                            </label>
+                                                        </p>
+                                                    <br />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="texto">
+                                    <p align="justify">
+SINDICATO DOS EMPREGADOS NO COMERCIO DE CATANDUVA, CNPJ n. 47.080.429/0001-08, neste ato representado(a) por seu 
+
+Presidente, Sr(a). JOSE CARLOS DA SILVA LONGO;
+    <br />
+&nbsp;
+    <br />
+                                        <label>
+                                            E
+                                        </label>
+                                        <br />
+                                        <br />
+SINDICATO DO COMERCIO VAREJISTA DE CATANDUVA, CNPJ n. 47.081.625/0001-99, neste ato representado(a) por seu 
+
+Presidente, Sr(a). IVO PINFILDI JUNIOR;
+    <br />
+&nbsp;
+    <br />
+                                                                                    celebram
+                                                                                    a
+                                         presente CONVEN&#199;&#195;O COLETIVA DE TRABALHO,
+ estipulando as condi&#231;&#245;es de trabalho previstas nas cl&#225;usulas seguintes:                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA PRIMEIRA - VIG&#202;NCIA E DATA-BASE
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    As partes fixam a vigência da presente Convenção Coletiva de Trabalho no período de 01º de abril de 2026 a 31 de março de 2027 e a data-base da categoria em 01º de setembro.
+                                                </label>
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA SEGUNDA - ABRANG&#202;NCIA
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    A presente Convenção Coletiva de Trabalho abrangerá a(s) categoria(s) <b>  Dos Empregados no Comércio Varejista                                    </b>, com abrangência territorial em <b>Catanduva/SP</b>.
+                                                </label>
+                                                <br />
+                                    </p>
+
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Jornada de Trabalho – Duração, Distribuição, Controle, Faltas
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Duração e Horário
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TERCEIRA - DOMINGOS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Resolvem as partes, de comum acordo, que fica autorizado o trabalho dos funcion&aacute;rios(as) e o funcionamento das empresas aos <strong>domingos</strong>, no hor&aacute;rio das <strong>07:30 horas &agrave;s 13:00 horas, impreterivelmente, </strong>durante a vig&ecirc;ncia da presente CCT. As Empresas poder&atilde;o optar pelas seguintes regras para o trabalho aos domingos:</p>
+<p><strong>A) </strong>Ado&ccedil;&atilde;o do sistema 1X1, ou seja, a cada domingo trabalhado segue-se outro domingo, necessariamente, de descanso, a t&iacute;tulo de DSR, conforme determina a legisla&ccedil;&atilde;o vigente;</p>
+<p><strong>B) </strong>Ado&ccedil;&atilde;o do sistema 2X1, ou seja, a cada dois domingos trabalhados segue-se outro, necessariamente, de descanso, sem preju&iacute;zo dos DSRs, conforme determina a legisla&ccedil;&atilde;o vigente;</p>
+<p><strong>C) </strong>Ado&ccedil;&atilde;o do sistema 2X2, ou seja, a cada dois domingos trabalhados corresponder&aacute; o mesmo n&uacute;mero de domingos de descanso, sem preju&iacute;zo dos DSRs, conforme determina a legisla&ccedil;&atilde;o vigente;</p>
+<p><strong>D) </strong>Para as COMERCI&Aacute;RIAS, as Empresas dever&atilde;o seguir, na &iacute;ntegra, o disposto no artigo 386 da CLT.</p>
+<p><strong>E)</strong>&nbsp; O hor&aacute;rio/ jornada de trabalho dos funcion&aacute;rios(as) comerci&aacute;rios(as) e o hor&aacute;rio de funcionamento das empresas, poder&aacute; ser prorrogado at&eacute; as 18:00 horas, devendo seguir, na &iacute;ntegra, o que disp&otilde;e a Cl&aacute;usula 03 da presente CCT.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUARTA - FERIADOS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Resolvem as partes, de comum acordo, que fica autorizado o trabalho dos funcion&aacute;rios(as) e o funcionamento das empresas nos <strong>feriados</strong> abaixo especificados no hor&aacute;rio <strong>das 07:30 horas &agrave;s 13:00 horas, impreterivelmente, </strong>durante a vig&ecirc;ncia da presente CCT, somente atrav&eacute;s de Acordo Coletivo de Trabalho - ACT, conforme estabelecido na letra B da presente cl&aacute;usula, onde dever&atilde;o manifestar seu interesse.</p>
+<p><strong>A) </strong>Fica autorizado o trabalho dos comerci&aacute;rios(as) e o funcionamento das empresas, desde que cumpram rigorosamente as letras B, C, D e E, da presente cl&aacute;usula, excepcionalmente, nos feriados aqui relacionados: <strong>&ndash; Paix&atilde;o de Cristo &ndash; Anivers&aacute;rio de Catanduva &ndash; Dia de Tiradentes - Corpus Christi &ndash; Revolu&ccedil;&atilde;o Constitucionalista de 32 &ndash; Dia de S&atilde;o Domingos (Padroeiro de Catanduva) &ndash; Independ&ecirc;ncia do Brasil &ndash; Nossa Senhora Aparecida &ndash; Dia de Finados &ndash; Proclama&ccedil;&atilde;o da Rep&uacute;blica &ndash; Consci&ecirc;ncia Negra.</strong></p>
+<p><strong>B) </strong>Para a ades&atilde;o dos feriados, as empresas dever&atilde;o solicitar o <strong>ACT,</strong> com anteced&ecirc;ncia, no m&iacute;nimo, de 03 (tr&ecirc;s) dias, atrav&eacute;s de requerimento a ser protocolado no Sincom&eacute;rcio e no Sincomerci&aacute;rios, podendo ser, tamb&eacute;m, atrav&eacute;s dos e-mails:</p>
+<p><a href="/cdn-cgi/l/email-protection#81f2e8efe2eeece4f3e2e8eec1f2e8e2eeece4f3e2e8eee2e0f5e0efe5f4f7e0afeef3e6afe3f3a4b3b1ac"><strong><span class="__cf_email__" data-cfemail="f3809a9d909c9e9681909a9cb3809a909c9e9681909a9c909287929d97868592dd9c8194dd9181">[email&#160;protected]</span> -</strong></a>Sincom&eacute;rcio. <a href="/cdn-cgi/l/email-protection#dba8beb8a9beafbaa9b2ba9ba8b2b5b8b4b6bea9b8b2baa9b2b4a8b8baaff5b8b4b6f5b9a9"><strong><span class="__cf_email__" data-cfemail="0e7d6b6d7c6b7a6f7c676f4e7d67606d61636b7c6d676f7c67617d6d6f7a206d6163206c7c">[email&#160;protected]</span></strong></a>&ndash; Sincomerci&aacute;rios.</p>
+<p><strong>C) &nbsp;&nbsp;</strong>As empresas que n&atilde;o estiverem cumprindo na &iacute;ntegra as cl&aacute;usulas desta CCT, e da CCT de Cl&aacute;usulas Econ&ocirc;micas/Sociais/Cl&aacute;usulas Adesivas da categoria em vig&ecirc;ncia, assinada entre as partes em 08/10/2025 e protocolada no Sistema Mediador sob o n&ordm; MR062982/2025, ficar&atilde;o impedidas de obter o ACT para o trabalho dos funcion&aacute;rios e o funcionamento das empresas aos feriados.</p>
+<p><strong>D)</strong>&nbsp;&nbsp; <strong><span style="text-decoration: underline;">HORAS EXTRAS: </span></strong>Fica garantido aos funcion&aacute;rios(as) que prestarem servi&ccedil;o em dias de feriados autorizados na presente CCT, o pagamento das horas trabalhadas no dia, com um adicional de 100% (cem por cento) sobre o valor da hora normal, que ser&aacute; creditado na folha de pagamento do respectivo m&ecirc;s do feriado trabalhado.</p>
+<p><strong>E)&nbsp;&nbsp; </strong>Fica proibido o trabalho dos menores e das mulheres gestantes em dias de feriados, exceto se os pr&oacute;prios se manifestarem por escrito no sentido contr&aacute;rio.</p>
+<p><strong>F)</strong>&nbsp; As empresas dever&atilde;o apresentar ao Sincomerci&aacute;rios Catanduva, c&oacute;pia da folha de pagamento dos referidos feriados trabalhados, quando a mesma for solicitada pelo Sincomerci&aacute;rios, com a inclus&atilde;o das horas extras pagas, conforme letra D da presente cl&aacute;usula.</p>
+<p><strong>G) </strong>&nbsp;Quando o feriado a ser trabalhado recair em dias de Domingos, ser&atilde;o aplicadas as normas previstas para o trabalho em feriados, conforme letras A, B, C e D, E da presente cl&aacute;usula, bem como, a folga dever&aacute; ser gozada conforme determina a Legisla&ccedil;&atilde;o vigente.</p>
+<p><strong>H)</strong> &nbsp;O trabalho dos funcion&aacute;rios(as) e o funcionamento das empresas, poder&aacute; ser prorrogado at&eacute; as 18:00 horas, devendo seguir na &iacute;ntegra o que disp&otilde;e a Cl&aacute;usula 03 da presente CCT.</p>
+<p>&nbsp;</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUINTA - FERIADO 01 DE MAIO – DIA DO TRABALHO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Para esse feriado especificamente, as empresas dever&atilde;o seguir na &iacute;ntegra o que segue abaixo:</p>
+<p><strong>A)&nbsp; </strong>Solicitar ACT<strong>,</strong> com anteced&ecirc;ncia, no m&iacute;nimo, de 03 (tr&ecirc;s) dias, atrav&eacute;s de requerimento a ser protocolado no Sincom&eacute;rcio e no Sincomerci&aacute;rios, podendo ser, tamb&eacute;m, atrav&eacute;s dos e-mails:</p>
+<p><a href="/cdn-cgi/l/email-protection#c0b3a9aea3afada5b2a3a9af80b3a9a3afada5b2a3a9afa3a1b4a1aea4b5b6a1eeafb2a7eea2b2e5f2f0ed"><strong><span class="__cf_email__" data-cfemail="81f2e8efe2eeece4f3e2e8eec1f2e8e2eeece4f3e2e8eee2e0f5e0efe5f4f7e0afeef3e6afe3f3">[email&#160;protected]</span> -</strong></a>Sincom&eacute;rcio. <a href="/cdn-cgi/l/email-protection#10637573627564716279715063797e737f7d756273797162797f637371643e737f7d3e7262"><strong><span class="__cf_email__" data-cfemail="a9dacccadbccddc8dbc0c8e9dac0c7cac6c4ccdbcac0c8dbc0c6dacac8dd87cac6c487cbdb">[email&#160;protected]</span></strong></a>&ndash; Sincomerci&aacute;rios.</p>
+<p><strong>B) </strong>O hor&aacute;rio/ jornada de trabalho dos funcion&aacute;rios(as) comerci&aacute;rios(as) e o hor&aacute;rio de funcionamento das empresas ser&aacute;, impreterivelmente, das 07:30 hs. &agrave;s 13:00 horas.</p>
+<p><strong>C) &nbsp;</strong>As empresas pagar&atilde;o um <strong>BENEF&Iacute;CIO SINDICAL </strong>no valor de R$168,00 (cento e sessenta e oito reais) aos funcion&aacute;rios(as) que forem ASSOCIADOS(AS) ou CONTRIBUINTES do Sindicato dos Empregados no Com&eacute;rcio de Catanduva e que trabalharem no referido feriado, independentemente de fun&ccedil;&otilde;es que exercem. O pagamento poder&aacute; ser mediante recibo ou na folha de pagamento do respectivo m&ecirc;s, podendo, a crit&eacute;rio do empregador, ser paga a t&iacute;tulo de abono indenizat&oacute;rio. Fica garantido aos mesmos os demais direitos e benef&iacute;cios previstos nesta CCT, e nas CCT&rsquo;s e ACT&rsquo;s da categoria em vig&ecirc;ncia, bem como, na legisla&ccedil;&atilde;o vigente.</p>
+<p><strong>D) &nbsp;</strong>Fica garantido aos funcion&aacute;rios(as) que prestarem servi&ccedil;o no dia, opagamento das horas trabalhadas com um adicional de 120% (cento e vinte por cento) sobre o valor da hora normal, que ser&aacute; creditado na folha de pagamento de Maio de 2026.</p>
+<p><strong>E)&nbsp; </strong>&nbsp;As empresas dever&atilde;o apresentar ao Sindicato dos Empregados no Com&eacute;rcio de Catanduva, c&oacute;pia da folha de pagamento do referido feriado, quando a mesma for solicitada pelo Sincomerci&aacute;rios, com a inclus&atilde;o das horas extras e do <strong>BENEF&Iacute;CIO SINDICAL </strong>pagos, conforme consta nas letras C e D da presente cl&aacute;usula.</p>
+<p>&nbsp;</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA SEXTA - HOR&#193;RIO/JORNADA DE TRABALHO DE SEGUNDA-FEIRA A S&#193;BADO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Fica acordado entre as partes que o hor&aacute;rio/ jornada de trabalho dos funcion&aacute;rios(as) comerci&aacute;rios(as) e o hor&aacute;rio de funcionamento das empresas em dias normais da semana (exceto feriados), ser&atilde;o os seguintes:</p>
+<p><strong>-De</strong> <strong>segunda-feira a s&aacute;bado:</strong></p>
+<p><strong>A)&nbsp; &nbsp;</strong>Minimercados, Supermercados, Hipermercados e Atacarejos<strong>:</strong></p>
+<p>-Das 07:30 horas &agrave;s 20:00 horas, podendo ser prorrogado, automaticamente, a crit&eacute;rio da empresa, no m&aacute;ximo at&eacute; &agrave;s 22:00 horas.</p>
+<p><strong>B)&nbsp;&nbsp; </strong>Outras denomina&ccedil;&otilde;es como: Hortifrutigranjeiros, Mercearias e Emp&oacute;rios:</p>
+<p>-Das 07:30 horas &agrave;s 18:00 horas, podendo ser prorrogado, automaticamente, a crit&eacute;rio da empresa, no m&aacute;ximo at&eacute; &agrave;s 20:00 horas.</p>
+<p><strong>C)&nbsp; </strong>Os funcion&aacute;rios(as) dever&atilde;o cumprir a jornada de trabalho m&aacute;xima de 8 horas nos termos da Lei do Comerci&aacute;rio n&ordm; 12.790 de 14/03/2013 &ndash; Artigo 3&ordm;.</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Prorrogação/Redução de Jornada
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA S&#201;TIMA - PRORROGA&#199;&#195;O DO HOR&#193;RIO/ JORNADA DE TRABALHO AOS DOMINGOS E FERIADOS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As empresas que obtiverem o ACT para o trabalho dos funcion&aacute;rios(as) e o funcionamento das empresas aos domingos e feriados, conforme Cl&aacute;usulas 1 e 2, poder&atilde;o prorrogar a jornada de trabalho e o hor&aacute;rio de funcionamento da empresa <strong>das 13:00 horas</strong> at&eacute; &agrave;s <strong>18:00 horas,</strong> impreterivelmente,com jornada de trabalho m&aacute;xima de 06 (seis) horas<strong>, </strong>desde que respeitem as seguintes regras, conforme letras abaixo:</p>
+<p><strong>A) </strong>Solicitar ACT<strong>,</strong> com anteced&ecirc;ncia, no m&iacute;nimo, de 3 (tr&ecirc;s) dias, atrav&eacute;s de requerimento a ser protocolado no Sincom&eacute;rcio e no Sincomerci&aacute;rios, podendo ser, tamb&eacute;m, atrav&eacute;s dos e-mails:</p>
+<p><a href="/cdn-cgi/l/email-protection#81f2e8efe2eeece4f3e2e8eec1f2e8e2eeece4f3e2e8eee2e0f5e0efe5f4f7e0afeef3e6afe3f3a4b3b1ac"><strong><span class="__cf_email__" data-cfemail="1162787f727e7c746372787e516278727e7c746372787e727065707f756467703f7e63763f7363">[email&#160;protected]</span> -</strong></a>Sincom&eacute;rcio. <a href="/cdn-cgi/l/email-protection#bccfd9dfced9c8ddced5ddfccfd5d2dfd3d1d9cedfd5ddced5d3cfdfddc892dfd3d192dece"><strong><span class="__cf_email__" data-cfemail="4231272130273623302b2302312b2c212d2f2730212b23302b2d312123366c212d2f6c2030">[email&#160;protected]</span></strong></a>&ndash; Sincomerci&aacute;rios.</p>
+<p>Podendo ainda, solicitar todos os feriados e domingos autorizados durante a vig&ecirc;ncia da presente CCT.</p>
+<p><strong>B) &nbsp;&nbsp;</strong>As empresas pagar&atilde;o um <strong>BENEF&Iacute;CIO SINDICAL </strong>no valor de R$ 123,00 (cento e vinte e tr&ecirc;s reais) aos funcion&aacute;rios(as) que forem ASSOCIADOS(AS) ou CONTRIBUINTES do Sincomerci&aacute;rios Catanduva e que trabalharem nos feriados ou domingos prorrogados ap&oacute;s &agrave;s 13:00 horas, independentemente de fun&ccedil;&otilde;es que exercem. O pagamento poder&aacute; ser mediante recibo ou na folha de pagamento do respectivo m&ecirc;s, podendo, a crit&eacute;rio do empregador, ser paga a t&iacute;tulo de abono indenizat&oacute;rio. Fica garantido aos mesmos os demais direitos e benef&iacute;cios previstos nesta CCT, e nas CCT&rsquo;s e ACT&rsquo;s da categoria em vig&ecirc;ncia, bem como, na legisla&ccedil;&atilde;o vigente.</p>
+<p><strong>C) &nbsp;</strong>Fica garantido aos funcion&aacute;rios(as) que prestarem servi&ccedil;o no dia, o pagamento das horas trabalhadas com um adicional de 100% (cem por cento), sobre o valor da hora normal, que ser&aacute; creditado na folha de pagamento do respectivo m&ecirc;s do domingo ou feriado trabalhado.</p>
+<p><strong>D)&nbsp; </strong>&nbsp;As empresas dever&atilde;o apresentar ao Sindicato dos Empregados no Com&eacute;rcio de Catanduva, c&oacute;pia da folha de pagamento dos referidos feriados e domingos prorrogados, quando a mesma for solicitada pelo Sincomerci&aacute;rios, com a inclus&atilde;o das horas extras e do <strong>BENEF&Iacute;CIO SINDICAL </strong>pagos conforme letras B e C da presente cl&aacute;usula.</p>
+<p><strong>E) &nbsp;&nbsp;</strong>Quando o feriado prorrogado a ser trabalhado recair em dias de Domingos, ser&atilde;o aplicadas as normas previstas para o trabalho em feriados, conforme cl&aacute;usula 2, letras A, C e D E, bem como a folga dever&aacute; ser gozada conforme determina a Legisla&ccedil;&atilde;o vigente.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA OITAVA - PRORROGA&#199;&#195;O DE HOR&#193;RIOS NOS DIAS 13 E 20 (DOMINGOS) DE DEZEMBRO / 2026
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Fica acordado entre as partes que as empresas poder&atilde;o prorrogar o hor&aacute;rio/ jornada de trabalho dos funcion&aacute;rios(as) comerci&aacute;rios(as) e o hor&aacute;rio de funcionamento das empresas, excepcionalmente, nos DOMINGOS, dias 13 e 20 de dezembro de 2026 at&eacute; as 20:00 horas. As empresas dever&atilde;o seguir na &iacute;ntegra as letras A e D da cl&aacute;usula 3 desta CCT e o que segue abaixo:</p>
+<p><strong>A)&nbsp;&nbsp; </strong>O hor&aacute;rio/ jornada de trabalho dos funcion&aacute;rios(as) comerci&aacute;rios(as) e o hor&aacute;rio de funcionamento das empresas ser&aacute; das 07:30 hs. &agrave;s 20:00 horas.</p>
+<p><strong>B)&nbsp; &nbsp;</strong>A jornada de trabalho dos funcion&aacute;rios(as) ser&aacute; no m&aacute;ximo de 08 horas, ficando garantido intervalo m&iacute;nimo de 01 hora para descanso/refei&ccedil;&atilde;o.</p>
+<p><strong>C)&nbsp;&nbsp; </strong>Horas extras &ndash; Fica garantido aos funcion&aacute;rios(as) que prestarem servi&ccedil;o no(s) dia(s) 13 e(ou) 20 de dezembro/2026, o pagamento das horas trabalhadas com um adicional de 100% sobre o valor da hora normal, ou, excepcionalmente, 1 (um) dia de folga a ser compensada at&eacute; 30 dias ap&oacute;s o domingo trabalhado.</p>
+<p><strong>D)&nbsp;&nbsp; </strong>A folga (semanal), conforme determina a legisla&ccedil;&atilde;o vigente.</p>
+<p><strong>E) </strong>As empresas pagar&atilde;o um <strong>BENEF&Iacute;CIO SINDICAL </strong>no valor de R$ 164,00 (cento e sessenta e quatro reais) aos funcion&aacute;rios(as) que forem ASSOCIADOS(AS) ou CONTRIBUINTES do Sindicato dos Empregados no Com&eacute;rcio de Catanduva e que trabalharem no(s) domingos dia(s) 13 e(ou) 20 de dezembro/2026 prorrogados, independentemente de fun&ccedil;&otilde;es que exercem. O pagamento poder&aacute; ser mediante recibo ou na folha de pagamento do respectivo m&ecirc;s, podendo, a crit&eacute;rio do empregador, ser paga a t&iacute;tulo de abono indenizat&oacute;rio.&nbsp; Fica garantido aos mesmos os demais direitos e benef&iacute;cios previstos nesta CCT, e nas CCT&rsquo;s e ACT&rsquo;s da categoria em vig&ecirc;ncia, bem como, na legisla&ccedil;&atilde;o vigente.</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras disposições sobre jornada
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA NONA - FERIADOS N&#195;O AUTORIZADOS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Resolvem as partes, de comum acordo, que fica proibido o trabalho dos funcion&aacute;rios(as) e o funcionamento das empresasnos dias de feriados abaixo especificados:</p>
+<p><strong>-25 de Dezembro &ndash; Natal &ndash; FECHADO.</strong></p>
+<p><strong>-01 de Janeiro &ndash; Ano Novo &ndash; FECHADO.</strong></p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA - V&#201;SPERA DE NATAL, V&#201;SPERA DE ANO NOVO E CARNAVAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Os dias 24/12&ndash;v&eacute;spera do Natal, 31/12&ndash;v&eacute;spera do Ano Novo e Ter&ccedil;a-Feira de Carnaval/2027, o hor&aacute;rio/ jornada de trabalho dos funcion&aacute;rios(as) comerci&aacute;rios(as) e o hor&aacute;rio de funcionamento das empresas, ser&atilde;o no m&aacute;ximo at&eacute; as 18:00 horas.</p>
+<p>A) As horas trabalhadas a menos (jornada de trabalho di&aacute;ria de 8 horas) pelos funcion&aacute;rios(as) nesses dias (se houver), poder&atilde;o ser descontadas em banco de horas ou em horas extras quando houver.</p>
+<p><strong>&nbsp;</strong></p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Relações Sindicais
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Contribuições Sindicais
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA PRIMEIRA - COTA ASSIST&#202;NCIAL DOS EMPREGADOS(AS) COMERCI&#193;RIOS(AS)
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As empresas descontar&atilde;o em folha de pagamento de seus empregados(as) comerci&aacute;rios(as), integrantes da categoria profissional, a t&iacute;tulo de contribui&ccedil;&atilde;o, denominada cota assistencial, o percentual de 1,25% (um v&iacute;rgula vinte e cinco por cento) de sua remunera&ccedil;&atilde;o mensal, limitada ao teto de R$ 38,00 (trinta e oito reais) por empregado(a), na forma da legisla&ccedil;&atilde;o vigente, conforme decidido na assembleia do Sindicato dos Empregados no Com&eacute;rcio de Catanduva, realizada nos dias 04, 05 e 06 de agosto de 2025, que aprovou a pauta de reivindica&ccedil;&otilde;es, em conformidade com a cl&aacute;usula 14 da CCT - Cl&aacute;usulas Econ&ocirc;micas/Sociais-Cl&aacute;usulas Adesivas, firmada e assinada no dia 08/10/2025 entre o Sincom&eacute;rcio e o Sincomerci&aacute;rios, em vig&ecirc;ncia e registrada no sistema mediador do Minist&eacute;rio do Trabalho.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA SEGUNDA - SINCOMERCI&#193;RIOS CATANDUVA - COTA ASSISTENCIAL – PARA OBTER ACT
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As empresas que requererem e/ou solicitarem o ACT<strong>, </strong>conforme previsto nas Cl&aacute;usulas 2, 3, 4 e 5 da presente CCT, e n&atilde;o forem cadastradas no Sincomerci&aacute;rios Catanduva e seus funcion&aacute;rios(as) n&atilde;o contribuem com a Cota Assistencial, dever&atilde;o recolher um valor ao Sincomerci&aacute;rios Catanduva para obter o <strong>ACT</strong>, a t&iacute;tulo de Cota Assistencial, atrav&eacute;s de guia espec&iacute;fica expedida pelo Sincomerci&aacute;rios, com pagamento &uacute;nico, durante a vig&ecirc;ncia da presente CCT, os seguintes valores:</p>
+<p>- EGP &ndash; Empresa de Grande Porte &ndash; Lojas de rede, matriz ou filial, independente de ser EPP ou ME &ndash; R$ 1.000,00 (mil reais).</p>
+<p>- EPP &ndash; Empresa de Pequeno Porte &ndash; R$ 750,00 (setecentos e cinquenta reais).</p>
+<p>- ME &ndash; Micro Empresa &ndash; MEI &ndash;Microempreendedor Individual &ndash; R$ 500,00 (quinhentos reais).</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA TERCEIRA - SINCOM&#201;RCIO CATANDUVA - COTA ASSISTENCIAL EMPRESARIAL – PARA OBTER O ACT
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As empresas que requererem e/ou solicitarem o ACT<strong>,</strong> conforme previsto na Cl&aacute;usula 2, 3, 4 e 5 da presente CCT, associadas ou n&atilde;o do Sincom&eacute;rcio Catanduva, dever&atilde;o pagar ao Sincom&eacute;rcio Catanduva para obter o ACT, a t&iacute;tulo de cota assistencial empresarial, atrav&eacute;s de guia espec&iacute;fica expedida pelo Sincom&eacute;rcio, conforme os seguintes valores:</p>
+<p>- MEI &ndash; Microempreendedor Individual &ndash; R$ 105,00 (cento e cinco reais).</p>
+<p>- ME &ndash; Micro Empresa &ndash; R$ 415,00 (quatrocentos e quinze reais).</p>
+<p>- EPP &ndash; Empresa de Pequeno Porte &ndash; R$ 780,00 (setecentos e oitenta reais).</p>
+<p>- Demais Empresas &ndash; R$ 2.500,00 (dois mil e quinhentos reais).</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Disposições Gerais
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Descumprimento do Instrumento Coletivo
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA QUARTA - MULTA
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Fica convencionado uma multa no valor equivalente a 01 (um) Sal&aacute;rio M&iacute;nimo Nacional vigente, devido a cada funcion&aacute;rio(a), caso haja o descumprimento por parte das empresas, de quaisquer cl&aacute;usulas constantes na presente CCT, multa essa, que ser&aacute; revertida em favor do funcion&aacute;rio(a) prejudicado, bem como as san&ccedil;&otilde;es previstas na legisla&ccedil;&atilde;o trabalhista, como tamb&eacute;m &agrave;s penalidades aplicadas pela fiscaliza&ccedil;&atilde;o da Superintend&ecirc;ncia do Trabalho e Emprego, Minist&eacute;rio P&uacute;blico do Trabalho &ndash; MPT, ou qualquer outro &oacute;rg&atilde;o competente.</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras Disposições
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA QUINTA - ACORDO INDIVIDUAL COM AS EMPRESAS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Fica pactuado entre as entidades convenientes, que todo e qualquer acordo FIRMADO ENTRE O EMPREGADOR E O FUNCION&Aacute;RIO, que visem alterar o hor&aacute;rio de funcionamento da empresa e o trabalho dos funcion&aacute;rios(as), diferente daquele firmado na presente CCT, necessariamente ter&aacute; que haver a participa&ccedil;&atilde;o e concord&acirc;ncia dos 2 (dois) sindicatos representados nesta conven&ccedil;&atilde;o coletiva de trabalho, ficando sem efeito aqueles que forem firmados sem a observ&acirc;ncia dessa cl&aacute;usula.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA SEXTA - ACORDO COLETIVO DE TRABALHO ESPEC&#205;FICO / INDIVIDUAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>N&atilde;o far&atilde;o parte da presente Conven&ccedil;&atilde;o Coletiva de Trabalho as empresas do ramo de atividades econ&ocirc;micas do Com&eacute;rcio Varejista de G&ecirc;neros Aliment&iacute;cios que possuem Acordo Coletivo de Trabalho ou Conven&ccedil;&atilde;o Coletiva de Trabalho, espec&iacute;ficas e individuais celebradas entre a Empresa e os Sindicatos signat&aacute;rios da presente CCT.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA S&#201;TIMA - INTEGRA&#199;&#195;O DA CCT DE CL&#193;USULAS ECON&#212;MIAS E SOCIAIS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Para todos os efeitos legais, far&aacute; parte da presente CCT, a CCT de Cl&aacute;usulas Econ&ocirc;micas/Sociais/Cl&aacute;usulas Adesivas da categoria em vig&ecirc;ncia, assinada entre as partes em 08/10/2025 e protocolada no Sistema Mediador sob o n&ordm; MR062982/2025 em sua &iacute;ntegra, ficando garantido ainda, todos os demais benef&iacute;cios que as empresas oferecem a seus funcion&aacute;rios(as).</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA OITAVA - GARANTIAS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Fica convencionado que, durante a vig&ecirc;ncia da presente Conven&ccedil;&atilde;o, poder&atilde;o ser negociados e fixadas outras condi&ccedil;&otilde;es de natureza econ&ocirc;mica e/ou sociais nela n&atilde;o previstas, sendo indispens&aacute;vel, para tanto, a assist&ecirc;ncia das representa&ccedil;&otilde;es sindicais de ambas as categorias.<strong>&nbsp; </strong></p>
+                                                </label>
+                                                <br />
+                                    }
+                                    <br />
+                                    <table border="0" cellpadding="0" cellspacing="0" align="center">
+                                        <tr>
+                                            <td align="center">
+                                                    <br />
+    <br />
+    <label class="textonome">
+        JOSE CARLOS DA SILVA LONGO
+        <br style="height: 5px" />
+        Presidente
+        <br style="height: 5px" />
+        SINDICATO DOS EMPREGADOS NO COMERCIO DE CATANDUVA
+        <br />
+        <br />
+    </label>
+
+    <br />
+    <br />
+    <label class="textonome">
+        IVO PINFILDI JUNIOR
+        <br style="height: 5px" />
+        Presidente
+        <br style="height: 5px" />
+        SINDICATO DO COMERCIO VAREJISTA DE CATANDUVA
+        <br />
+        <br />
+    </label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                        <br />
+                                        <center>
+                                            <label class="textogrupo">
+                                                <b>ANEXOS </b>
+                                            </label>
+                                        </center>
+                                                        <label>
+                                                            <b>
+                                                                <center>
+                                                                    <label class="textogrupo">
+                                                                        ANEXO I - ATA ASSEMBLEIA GERAL EXTRAORDIN&#193;RIA
+                                                                    </label>
+                                                                </center>
+                                                                <label class="tituloClausula">
+                                                                                                                                    </label>
+                                                            </b>
+                                                        </label>
+                                                        <b>
+                                                            <label>
+
+                                                            </label>
+                                                        </b>
+                                                        <br />
+                                                        <label class="descricaoClausula" >
+                                                            <p><a href="https://www3.mte.gov.br/sistemas/mediador/imagemAnexo/MR018797_20262026_04_06T10_27_10.pdf" target="_blank">Anexo (PDF)</a></p>
+                                                        </label>
+                                                        <br />
+                                        <!--****************************************** FIM - Anexos ******************************************-->
+                                            <label class="texto">
+                                                &#160;&#160;&#160;&#160;A autenticidade deste documento poderá ser confirmada na
+                                                página do Ministerio do Trabalho e Emprego na Internet, no endereço http://www.mte.gov.br.
+                                            </label>
+                                            <br />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+<script>
+    setTimeout(function () {
+        window.history.replaceState({}, '', window.location.pathname);
+    }, 0);
+</script>
+</html>
