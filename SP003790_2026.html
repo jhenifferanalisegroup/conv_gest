@@ -1,0 +1,732 @@
+
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+    <title>
+        Mediador - Extrato Conven&#231;&#227;o Coletiva
+    </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G"></script>
+
+    <script src='/sistemas/mediador/WebResource.axd?d=cuQcyhunthaKbkS1HRDdYz6PN4zLUht6oCI9W5Qe4lHx-6WAKxelJ3CNRaaYGmIIXUPG_02Oz_3xp1nWR4wRmrhzD889Xme-W80PINl5Opm3a6Vk9xOcKAdRAP0WaAY0QwRFkKa8ygci1cWChKIM3xi_y4E-QkbPdUjFbuj7xrCEQ-EVAHEd2SiDsURiQrGz0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=oCiGPyL516rw_w4O_26ZIUgEDxNTixko29P8hNqgYYE9jihnBUsGIp-kukrf82JW7eobyj8s0ooJ5rI1tfuIzt5-6_pMzumq7dLHWrlQZ-QMRUlCHBKuRssX4JwWJPbRaacnUMI4LY59GnxsKL82GjLr-MAsXYWqz_mUgN6cUz51NH30xgq7ZmHyBhUjhPw8-L_0eLuQdQHcRf08dF_HrA2&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=wI0LQo9-Y3uVg4JvYlrDeAmD0eDROLwrykxGZZm7FeHJNOkuLJd-tB3W2xasfEpUFS-WtoMR44VJNgE_0uIW4OIXYKjcDuXF0IcPvjMyLwlPk2AOsHRO3raei2aKk_DpNcvHrgXcEazozbzFbx3MyYROztNnngy4LZm8CigaBFeRwbfjiCBOJaSo3LCaUDVQ0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=KaDqL3Gcxy5_cHNfLKsWFNdcKxNiiUh3HtPda6q62Tk6jObaqvBGjIGv4N3KHnol1jsYfqnEDPvu8bqDw9664g8gNXTu-bup9GNgychn1MlTxA9V_0gUapXZl6zq0NwvemVy1w_Yym-4g5yIIiPndY1yb7UY2Z3ZO1ZTaDrRNyAjWzC-rNL3CXeYpaiIWTH40&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=qtzkb4aKrNku25SKlKs4jZr_bdveUVnUZ5tZc2pTT2sauL0_dRzCNMZhGSFASotxmo04giDQ-E0d0UeLqCdzABP8l2gJR6XwVRdetE7e7Eck3ObZ-LknGwsZoVcBz7BNY1TRN4J-vljXQrR5MmbFoTkwox8Q8ec5f9wsCVK67AZSRApQIAoKK7FEwOCFjWlx0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=3iAOwoL9JnA5TZ6rygyAAR_lXBxjSq4488DJsEscLKSXKUh-cfJ9O5bC-FxRzAqJtsQJFs2IhSJQ3HR3WKiVMzlo3WgEBcHU3QAeRw7LGJeOXAbL5CGBB2zel0X2_oWfsINwuZcDfexI5FD89VA4NlfrRQ7K4czFkowNfSNtL_dKVZ5vnkZUyK_vnlVhpVzb0&t=639193666532168144' type='text/javascript'></script>
+
+
+<script type="text/javascript">
+        var recaptchaSiteKey = '6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G';
+        var pageLoadToken = '';
+        var isPageValidated = false;
+
+        function onRecaptchaLoad() {
+            console.log('reCAPTCHA carregado, validando página...');
+            executePageLoadRecaptcha();
+        }
+
+        function executePageLoadRecaptcha() {
+            if (typeof grecaptcha === 'undefined') {
+                console.error('reCAPTCHA não carregado');
+                return;
+            }
+
+            grecaptcha.ready(function() {
+                grecaptcha.execute(recaptchaSiteKey, {
+                    action: 'page_load_resumo'
+                }).then(function(token) {
+                    console.log('Token de página gerado');
+                    pageLoadToken = token;
+
+                    // Enviar o token para o servidor
+                    validatePageLoadToken(token);
+                }).catch(function(error) {
+                    console.error('Erro no reCAPTCHA de página:', error);
+                    // Em desenvolvimento, permitir continuar
+                });
+            });
+        }
+
+        function validatePageLoadToken(token) {
+            var currentUrl = window.location.href;
+            var queryString = window.location.search;
+            var nrSolicitacao = 'MR076082/2025';
+
+            $.ajax({
+                url: '/sistemas/mediador/Resumo/ValidateResumoPageLoad',
+                type: 'POST',
+                data: {
+                    recaptchaToken: token,
+                    currentUrl: currentUrl,
+                    queryString: queryString,
+                    nrSolicitacao: nrSolicitacao
+                },
+                success: function(response) {
+                    if (response.success) {
+                        console.log('Página validada com sucesso');
+                        isPageValidated = true;
+                        showPageContent();
+                    } else {
+                        console.warn('Validação de página falhou:', response.message);
+                        handleValidationFailed(response);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Erro ao validar página:', error);
+                    handleValidationFailed({ message: 'Erro de comunicação com o servidor' });
+                }
+            });
+        }
+
+        function showPageContent() {
+            // Remover overlay de loading se existir
+            $('#recaptcha-loading').remove();
+            console.log('Conteúdo da página liberado');
+        }
+
+        function handleValidationFailed(response) {
+            // Mostrar mensagem de erro
+            var errorHtml = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                    <div style="text-align: center; padding: 20px;">
+                        <h2 style="color: #d32f2f;">Validação de Segurança</h2>
+                        <p style="font-size: 16px; margin: 20px 0;">${response.message || 'Falha na validação de segurança.'}</p>
+                        <button onclick="window.location.reload()" style="padding: 10px 20px; background: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Tentar Novamente
+                        </button>
+                        <br><br>
+                        <button onclick="window.location.href='/sistemas/mediador/'" style="padding: 8px 16px; background: #757575; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Voltar para Página Inicial
+                        </button>
+                    </div>
+                </div>
+            `;
+            $('body').prepend(errorHtml);
+        }
+
+        $(document).ready(function() {
+            console.log('Página carregada - ambiente de produção');
+
+            // Pular validação reCAPTCHA em produção
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.log('Produção - validando sem reCAPTCHA');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 1000);
+
+            // Timeout de segurança reduzido
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.warn('Timeout na validação - liberando conteúdo');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 5000); // Reduzido para 5 segundos
+        });
+
+        function Imprimir() {
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "none";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "none";
+            window.print();
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "";
+            return true;
+        }
+        $(function () {
+            var marcaDaguaHtml = $('.MarcaDagua').html();
+            var width = $('body').width();
+            var marcaW = $('.MarcaDagua').width();
+
+            var qtdNescessarios = Math.round((width / marcaW) + 0.4);
+            if (qtdNescessarios > 0)
+                for (var incrementador = 0; incrementador < qtdNescessarios; incrementador++) {
+                    $('.MarcaDagua').append("<br />");
+                    $('.MarcaDagua').append(marcaDaguaHtml);
+                }
+        });
+
+
+</script>
+    <style type="text/css">
+        .titulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .Subtitulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 13px;
+        }
+        .texto
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .tituloClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .descricaoClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .textogrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        .textosubgrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        .textonome
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .textofuncao
+        {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .pagebreak
+        {
+            page-break-after: always;
+        }
+        table.titulo
+        {
+            text-align: left;
+        }
+        @page Section2 {size:21cm 29.7cm ;mso-page-orientation:portrait;margin-top:2cm; margin-rigth:2cm; mso-paper-source:0;}
+        div.Section2 {page:Section2;}
+        pre
+        {
+            white-space: pre-wrap; /* css-3 */
+            white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+            white-space: -pre-wrap; /* Opera 4-6 */
+            white-space: -o-pre-wrap; /* Opera 7 */
+            word-wrap: break-word; /* Internet Explorer 5.5+ */
+            white-space: normal;
+        }
+    </style>
+    <!--[if gte mso 9]>
+    <xml>
+    <w:WordDocument>
+    <w:View>Print</w:View>
+    <w:Zoom>100</w:Zoom>
+    <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+    </xml>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="Section2">
+                <form method="post" action="/sistemas/mediador/Resumo/ResumoVisualizarSalvarMsWordDoc?NrSolicitacao=MR076082/2025">
+                    <input type="button" id="btnResumoVisualizarImprimir" value="Imprimir" onclick="Imprimir();" />
+                    <input type="submit" id="btnResumoVisualizarSalvar" value="Salvar" />
+                </form>
+
+            <div style="text-align: center; z-index: -1000; position: absolute; width: 100%;"
+                 class="MarcaDagua">
+                <img src="/sistemas/mediador/Content/images/carimbo.gif" alt="marcaDAgua" />
+            </div>
+        <center>
+            <table border="0" style="width: 18cm;" id="tblConteudo">
+                <tr>
+                    <td>
+                        <table style="width: 100%;" cellpadding="0" cellspacing="0">
+
+                                                            <tr>
+                                    <td align="center" class="titulo" style="text-transform: uppercase;">
+                                        <b>
+                                            Conven&#231;&#227;o Coletiva De Trabalho 2025/2026
+                                        </b>
+                                        <br />
+                                        <br />
+                                    </td>
+                                </tr>
+                            <tr>
+                                <td>
+                                    <div style="text-align: left;">
+                                        <table border="0" class="titulo" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td>
+                                                        <b>NÚMERO DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        SP003790/2026
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        22/04/2026
+                                                    </td>
+                                                </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>NÚMERO DA SOLICITAÇÃO:</b>
+                                                </td>
+                                                <td style="width: 10px">
+                                                </td>
+                                                <td>
+                                                    MR076082/2025
+                                                </td>
+                                            </tr>
+                                                                                            <tr>
+                                                    <td>
+                                                        <b>NÚMERO DO PROCESSO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        10260.227267/2025-00
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DO PROTOCOLO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+05/12/2025                                                    </td>
+                                                </tr>
+                                        </table>
+                                        <br />
+
+                                                        <p>
+                                                            <label class="texto">
+                                                                <b>
+                                                                    Confira a autenticidade no endereço http://mediador.trabalho.gov.br/sistemas/mediador/.
+                                                                </b>
+                                                            </label>
+                                                        </p>
+                                                    <br />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="texto">
+                                    <p align="justify">
+SIND DAS INDS DE TECEL, FIACAO, LINHAS, TINTUR, ESTAMP. E BE, CNPJ n. 56.983.737/0001-26, neste ato representado(a) por seu 
+
+Presidente, Sr(a). LEONARDO JOSE DE SANT ANA;
+    <br />
+&nbsp;
+    <br />
+                                        <label>
+                                            E
+                                        </label>
+                                        <br />
+                                        <br />
+SINDICATO DOS TRABALHADORES NAS INDUSTRIAS DE FIACAO E TECEL, CNPJ n. 46.050.993/0001-07, neste ato representado(a) por seu 
+
+Presidente, Sr(a). JOSUE FUSSI VELOSO;
+    <br />
+&nbsp;
+    <br />
+                                                                                    celebram
+                                                                                    a
+                                         presente CONVEN&#199;&#195;O COLETIVA DE TRABALHO,
+ estipulando as condi&#231;&#245;es de trabalho previstas nas cl&#225;usulas seguintes:                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA PRIMEIRA - VIG&#202;NCIA E DATA-BASE
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    As partes fixam a vigência da presente Convenção Coletiva de Trabalho no período de 01º de novembro de 2025 a 31 de outubro de 2026 e a data-base da categoria em 01º de novembro.
+                                                </label>
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA SEGUNDA - ABRANG&#202;NCIA
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    A presente Convenção Coletiva de Trabalho abrangerá a(s) categoria(s) <b>profissional dos empregados nas indústrias de tecelagens, fiação, linhas, tinturaria, estamparia e beneficiamento de fios e tecidos</b>, com abrangência territorial em <b>Sumaré/SP</b>.
+                                                </label>
+                                                <br />
+                                    </p>
+
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Salários, Reajustes e Pagamento
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Piso Salarial
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TERCEIRA - PISOS SALARIAIS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Fica fixado, aos empregados abrangidos pela presente Conven&ccedil;&atilde;o Coletiva de Trabalho, desde que cumprida integralmente a jornada legal de trabalho, o piso salarial de <strong>R$ </strong><strong>1.900,00</strong><strong>&nbsp; (</strong><strong>um mil e novecentos reais</strong>), a partir de <strong>01 de novembro de 2025</strong>, para todas as empresas.</p>
+<p>Par&aacute;grafo &uacute;nico. Se na vig&ecirc;ncia da presente conven&ccedil;&atilde;o, houver aumento no sal&aacute;rio m&iacute;nimo paulista que ultrapasse o valor de R$ <strong>1.900,00</strong> (<strong>um mil e novecentos reais</strong>), o piso salarial da categoria ser&aacute; automaticamente equiparado.</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Reajustes/Correções Salariais
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUARTA - RECOMPOSI&#199;&#195;O SALARIAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As empresas pagar&atilde;o um reajuste salarial de <strong>4,75</strong>% (<strong>quatro v&iacute;rgula setenta e cinco porcento</strong>), a partir de <strong>01 de novembro de 2025</strong>, <strong>tendo como base os sal&aacute;rios nominais vigentes em 31 de outubro de </strong><strong>2025</strong>, para os trabalhadores que ganham acima do piso salarial da categoria.</p>
+<p>&sect;1&ordm; O aumento salarial acima especificado observar&aacute; um teto salarial de <strong>R$ </strong><strong>15.049,95</strong><strong> (</strong><strong>quinze mil, quarenta e nove reais e noventa e cinco centavos</strong>). Para os trabalhadores com sal&aacute;rios acima deste valor, ser&aacute; garantido um aumento fixo de <strong>R$ </strong><strong>714,87</strong><strong> (</strong><strong>setecentos e quatorze reais e oitenta e sete centavos</strong><strong>) a partir de 1&ordm; de novembro de </strong><strong>2025</strong>.</p>
+<ul>
+<li>&sect;2&ordm;. Fica mantido o sistema fixado pelos acordos intersindicais e senten&ccedil;as normativas, vigentes a partir de 11/11/1964, pelo qual a remunera&ccedil;&atilde;o dos que exercem as fun&ccedil;&otilde;es de mestres e contra mestres ser&aacute; superior em 30% (trinta por cento) e em 25% (vinte e cinco por cento), respectivamente, &agrave; m&eacute;dia da remunera&ccedil;&atilde;o de 1/3 de seus subordinados mais bem remunerados. Na hip&oacute;tese dos reajustes ora concedidos proporcionarem remunera&ccedil;&atilde;o inferior &agrave; que se obteria pelo sistema mantido nesta cl&aacute;usula, os que exercem as fun&ccedil;&otilde;es de mestres e contra mestres receber&atilde;o pelo sistema fixado na presente cl&aacute;usula.</li>
+</ul>
+<p>&sect;3&ordm;. As empresas poder&atilde;o firmar acordo coletivo diretamente com os respectivos Sindicatos Profissionais, estabelecendo &iacute;ndice de aumento salarial diverso do estipulado nesta cl&aacute;usula, ficando acordado, desde j&aacute;, que prevalecer&aacute; o &iacute;ndice do aumento salarial que for mais ben&eacute;fico do que estipulado nesta conven&ccedil;&atilde;o coletiva.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUINTA - COMPENSA&#199;&#213;ES
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Da recomposi&ccedil;&atilde;o salarial estabelecida na cl&aacute;usula quarta, poder&atilde;o ser compensados com todos os reajustes, antecipa&ccedil;&otilde;es salariais, reposi&ccedil;&otilde;es e aumentos concedidos a qualquer t&iacute;tulo, e decorrentes de aditamentos &agrave; conven&ccedil;&atilde;o coletiva, legisla&ccedil;&atilde;o vigente ou superveniente e/ou, senten&ccedil;a normativa, concedidos desde <strong>01 de novembro de 2024</strong>, com exce&ccedil;&atilde;o dos aumentos reais decorrentes de promo&ccedil;&atilde;o, transfer&ecirc;ncia, equipara&ccedil;&atilde;o salarial, implemento de idade e t&eacute;rmino de aprendizagem.</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras normas referentes a salários, reajustes, pagamentos e critérios para cálculo
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA SEXTA - ADMISS&#213;ES AP&#211;S A DATA-BASE
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Aos empregados admitidos a partir de <strong>01 de novembro de 2024</strong> e at&eacute; <strong>30 de outubro de 2025</strong> dever&atilde;o ser observados os seguintes crit&eacute;rios:</p>
+<p>a)&nbsp;&nbsp;&nbsp;&nbsp; Sobre o sal&aacute;rio de admiss&atilde;o de empregados admitidos em fun&ccedil;&otilde;es com paradigma, ser&aacute; aplicado o mesmo percentual de reajustamento e aumentos salariais concedidos ao paradigma.</p>
+<p>b)&nbsp;&nbsp;&nbsp; Sobre o sal&aacute;rio de admiss&atilde;o de empregados admitidos em fun&ccedil;&otilde;es sem paradigmas e de empresas constitu&iacute;das ap&oacute;s 01/11/<strong>2024</strong>, ser&atilde;o aplicados percentuais &uacute;nicos e proporcionais ao tempo de servi&ccedil;o prestado ap&oacute;s esta data, por m&ecirc;s trabalhado, considerando-se, tamb&eacute;m, como m&ecirc;s de servi&ccedil;o, as fra&ccedil;&otilde;es superiores a 15 (quinze) dias.</p>
+<p>&nbsp;Par&aacute;grafo &Uacute;nico: Do aumento salarial estabelecido nesta cl&aacute;usula, ser&atilde;o compensados todas as antecipa&ccedil;&otilde;es, reajustes e/ou aumentos espont&acirc;neos, compuls&oacute;rios ou convencionais, concedidos no per&iacute;odo de 01/11/<strong>2024</strong> a 31/10/<strong>2025</strong>, exceto os decorrentes de promo&ccedil;&atilde;o, transfer&ecirc;ncia, equipara&ccedil;&atilde;o salarial, implemento de idade, t&eacute;rmino de aprendizagem e m&eacute;rito.</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Gratificações, Adicionais, Auxílios e Outros
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Participação nos Lucros e/ou Resultados
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA S&#201;TIMA - PROGRAMA DE PARTICIPA&#199;&#195;O NOS RESULTADOS (PPR)
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Considerando o previsto na Lei 10.101, de 19.12.2000, que disp&otilde;e sobre o PPR, as empresas que ainda n&atilde;o o possuem, se comprometem a implantar o referido programa, com a participa&ccedil;&atilde;o da Entidade Sindical, sendo estipulado que as tratativas necess&aacute;rias para a elabora&ccedil;&atilde;o do Programa dever&atilde;o estar conclu&iacute;das at&eacute; o final do m&ecirc;s de mar&ccedil;o de <strong>2026</strong>.</p>
+<p>&sect;1&ordm; As empresas que deixarem de implementar o programa previsto no caput da presente cl&aacute;usula at&eacute; o m&ecirc;s de mar&ccedil;o/2026, pagar&atilde;o a cada empregado a t&iacute;tulo de PPR, o valor de <strong>R$ </strong><strong>994,00 (novecentos e noventa e quatro reais) </strong>divididos em duas parcelas, conforme abaixo:</p>
+<p>a)&nbsp;&nbsp;&nbsp; <strong>25/04/26 - R$ </strong><strong>497,00</strong>, e</p>
+<p>b)&nbsp;&nbsp;&nbsp; <strong>25/10/26 - R$ </strong><strong>497,00.</strong></p>
+<p>&nbsp;</p>
+<p>&sect;2&ordm; Os pagamentos dos valores acima especificados ser&atilde;o feitos proporcionalmente, considerando-se o per&iacute;odo efetivamente trabalhado pelo empregado na mesma empresa, na raz&atilde;o de 1/12 (um doze avos) por m&ecirc;s completo ou fra&ccedil;&atilde;o de 15 dias ou mais.</p>
+<p>&nbsp;&sect;3&ordm; Para pagamento do valor acima ser&aacute; considerada a assiduidade, conforme abaixo especificado no per&iacute;odo efetivamente trabalhado pelo empregado na mesma empresa a partir de <strong>01/11/</strong><strong>2025</strong><strong> at&eacute; 25/10/</strong><strong>2026</strong></p>
+<p>a) 0(zero) faltas injustificadas = 100%;</p>
+<p>b) de 01 a 03 faltas injustificadas = 80%;</p>
+<p>c) de 04 a 06 faltas injustificadas = 40%; e</p>
+<p>d) acima de 06 faltas injustificadas = perde o direito.</p>
+<p>&sect;4&ordm; Os empregados afastados por acidente de trabalho e em decorr&ecirc;ncia de gesta&ccedil;&atilde;o far&atilde;o jus ao PPR de que trata esta cl&aacute;usula.</p>
+<p>&sect;5&ordm; A t&iacute;tulo de taxa negocial as empresas pagar&atilde;o em guias pr&oacute;prias fornecidas pela entidade sindical respectiva signat&aacute;ria da presente conven&ccedil;&atilde;o, <strong>o valor de R$ </strong><strong>230,00</strong> (<strong>duzentos e trinta reais</strong>) por funcion&aacute;rio, da forma seguinte:&nbsp;</p>
+<p>&bull; <strong>R$ </strong><strong>115,00</strong> (<strong>cento e quinze reais</strong>), no dia <strong>25/04/</strong><strong>2026</strong>; e</p>
+<p>&bull; <strong>R$ </strong><strong>115,00</strong> (<strong>cento e quinze reais</strong>), no dia <strong>25/10/</strong><strong>2026</strong><strong>.</strong></p>
+<p>&sect;6&ordm; A taxa negocial obedecer&aacute; &agrave; mesma propor&ccedil;&atilde;o paga aos empregados tanto na hip&oacute;tese de admiss&atilde;o no decorrer do per&iacute;odo de abrang&ecirc;ncia desta Conven&ccedil;&atilde;o, quanto na hip&oacute;tese do valor ter sido reduzido por faltas injustificadas.</p>
+<p>&sect;7&ordm; Na hip&oacute;tese da empresa contratar PPR diferenciado com seus empregados, o sindicato assistente far&aacute; jus ao mesmo valor da taxa negocial institu&iacute;da nesta cl&aacute;usula, ou seja, R$ <strong>230,00</strong> e ser&aacute; recolhida ao sindicato assistente nas mesmas datas acima estabelecidas.</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Relações Sindicais
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Contribuições Sindicais
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA OITAVA - CONTRIBUI&#199;&#195;O ASSISTENCIAL PROFISSIONAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As empresas descontar&atilde;o dos seus empregados beneficiados por esta Conven&ccedil;&atilde;o Coletiva de Trabalho, integrantes da categoria profissional, associados e n&atilde;o associados, a t&iacute;tulo de Contribui&ccedil;&atilde;o Assistencial em folha de pagamento, a import&acirc;ncia correspondente a 1,5% (um virgula cinco por cento) sobre a remunera&ccedil;&atilde;o mensal, com teto de R$ 25,00 (vinte e cinco reais) por empregado..</p>
+<p>&sect;1&ordm;: As import&acirc;ncias descontadas na remunera&ccedil;&atilde;o dos empregados ser&atilde;o recolhidas pelos empregadores junto &agrave; Caixa Econ&ocirc;mica Federal/Banco do Brasil, ou institui&ccedil;&atilde;o financeira com que operem, recebendo tais import&acirc;ncias, at&eacute; o 5&ordm; dia &uacute;til do m&ecirc;s seguinte ao do desconto, mediante guias a serem fornecidas pela entidade sindical.</p>
+<p>&sect;2&ordm; Se as empresas, ap&oacute;s descontarem dos empregados a contribui&ccedil;&atilde;o assistencial mensal, n&atilde;o a recolher &agrave; entidade sindical benefici&aacute;ria at&eacute; o dia 10 (dez) do m&ecirc;s subsequente ao do desconto, incorrer&atilde;o em multa correspondente a 2% (dois por cento) do montante devido mais juros de mora de 1% ao m&ecirc;s.</p>
+<p>&sect;3&ordm; A rela&ccedil;&atilde;o dos empregados que contribu&iacute;ram na forma desta cl&aacute;usula, dever&aacute; ser entregue pelas empresas no prazo de 10 (dez) dias &uacute;teis posteriores ao do recolhimento.</p>
+<p>&sect;4&ordm; Fica assegurado aos empregados n&atilde;o associados o efetivo direito de manifesta&ccedil;&atilde;o individual de oposi&ccedil;&atilde;o ao desconto da presente contribui&ccedil;&atilde;o, pessoalmente na Entidade Sindical Profissional representante da categoria, por escrito, devendo conter necessariamente o nome, RG e CPF do empregado, bem como, nome da empresa na qual trabalha, n&uacute;mero do CNPJ e fun&ccedil;&atilde;o exercida.</p>
+<p>&nbsp;</p>
+<p>&sect;5&ordm; O Sindicato Profissional providenciar&aacute; notifica&ccedil;&atilde;o escrita a todas as empresas abrangidas por essa Conven&ccedil;&atilde;o Coletiva de Trabalho, quanto aos termos pactuados, e as empresas se obrigam a dar ci&ecirc;ncia do seu teor a todos os trabalhadores, tendo estes o prazo de 05 (cinco) dias corridos, para exercer o direito de oposi&ccedil;&atilde;o, dando in&iacute;cio em 15/12/2025, encerrando-se em 19/12/2025.</p>
+<p>&sect;6&ordm; O Sindicato Profissional que firmar acordos coletivos diretos com as empresas de sua base territorial poder&aacute; estabelecer condi&ccedil;&otilde;es diversas do estipulado nesta cl&aacute;usula, ficando acordado, desde j&aacute;, que prevalecer&aacute; o acordo coletivo em rela&ccedil;&atilde;o &agrave; presente Conven&ccedil;&atilde;o Coletiva de Trabalho.</p>
+<p>&sect;7&ordm; A responsabilidade pela institui&ccedil;&atilde;o, percentuais de cobran&ccedil;a e abrang&ecirc;ncia do desconto &eacute; inteiramente do Sindicato da categoria profissional, ficando isentos o Sindicato Patronal e/ou as empresas de quaisquer &ocirc;nus ou consequ&ecirc;ncias perante seus empregados, sendo que tal desconto constitui mera reprodu&ccedil;&atilde;o da delibera&ccedil;&atilde;o da Assembleia realizada pela entidade profissional.</p>
+<p>&sect;8&ordm; A presente cl&aacute;usula tem sua legalidade prevista no artigo 462 da CLT e seu fundamento constitucional embasado em decis&atilde;o do Supremo Tribunal Federal, que decidiu no TEMA 935 que &eacute; constitucional a institui&ccedil;&atilde;o das contribui&ccedil;&otilde;es assistenciais por acordo ou conven&ccedil;&atilde;o coletiva a todos os integrantes da categoria n&atilde;o associados, desde que garantido o amplo direito &agrave; oposi&ccedil;&atilde;o em Assembleia.</p>
+<p>&sect;9&ordm; Fica pactuado entre as partes que &eacute; proibido a pratica de atos ou condutas antissindicais do empregador ou terceiros.</p>
+<p>&sect;10&ordm; Ficam exclu&iacute;das da contribui&ccedil;&atilde;o prevista nesta cl&aacute;usula os empregados que recolherem a contribui&ccedil;&atilde;o associativa prevista na cl&aacute;usula CONTRIBUI&Ccedil;&Atilde;O ASSOCIATIVA PROFISSIONAL desta conven&ccedil;&atilde;o coletiva.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA NONA - CONTRIBUI&#199;&#195;O ASSOCIATIVA PROFISSIONAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As empresas descontar&atilde;o dos empregados beneficiados por este Acordo Coletivo, integrantes da categoria profissional, sindicalizados, em folha de pagamento, a t&iacute;tulo de Contribui&ccedil;&atilde;o Associativa, a import&acirc;ncia correspondente a 1,5% (um e meio por cento) sobre a remunera&ccedil;&atilde;o mensal com teto de R$ 25,00 (vinte e cinco reais), por empregado;</p>
+<p><strong>Par&aacute;grafo primeiro: </strong>Tendo em vista a data da assinatura do presente termo, o desconto da contribui&ccedil;&atilde;o de novembro de 2025 ser&aacute; efetuado junto com o pagamento de dezembro de 2025 ou janeiro de 2026, neste caso, somente para as empresas que j&aacute; fecharam a folha de pagamento de dezembro de 2025, em raz&atilde;o da concess&atilde;o de f&eacute;rias coletivas, e assim por diante, evitando apenas acumular mais de 2 (duas) contribui&ccedil;&otilde;es no mesmo m&ecirc;s.</p>
+<p><strong>Par&aacute;grafo segundo: </strong>Se as empresas, ap&oacute;s descontarem dos empregados a contribui&ccedil;&atilde;o associativa mensal, n&atilde;o a recolher &agrave; entidade sindical benefici&aacute;ria at&eacute; o dia 05 (cinco) do m&ecirc;s subsequente ao do desconto, incorrer&atilde;o em multa correspondente a 2% (dois por cento) do montante devido mais juros de mora de 1% ao m&ecirc;s.</p>
+<p><strong>Par&aacute;grafo terceiro: </strong>A rela&ccedil;&atilde;o dos empregados que contribu&iacute;ram na forma desta cl&aacute;usula dever&aacute; ser entregue pela empresa ao sindicato, no prazo de 10 (dez) dias &uacute;teis posteriores ao do recolhimento.</p>
+<p><strong>Par&aacute;grafo quarto</strong>: A presente cl&aacute;usula constitui mera reprodu&ccedil;&atilde;o da delibera&ccedil;&atilde;o das assembleias realizadas pela entidade profissional, ficando pelas partes convencionadas que toda e qualquer diverg&ecirc;ncia, esclarecimentos, d&uacute;vidas ou a&ccedil;&otilde;es de ordem econ&ocirc;mica, administrativa ou judicial dever&atilde;o ser tratadas direta e exclusivamente com o sindicato profissional elencado, bem como qualquer &ocirc;nus financeiro e/ou impostos incidentes sobre as referidas contribui&ccedil;&otilde;es, ser&atilde;o integralmente assumidos pelo sindicato representativo dos trabalhadores, &uacute;nico benefici&aacute;rio da contribui&ccedil;&atilde;o prevista nesta cl&aacute;usula, o qual assume toda e qualquer responsabilidade pela sua fixa&ccedil;&atilde;o.</p>
+<p><strong>Par&aacute;grafo quinto: </strong>Ficam exclu&iacute;dos da contribui&ccedil;&atilde;o prevista nesta cl&aacute;usula os empregados que recolherem a contribui&ccedil;&atilde;o assistencial prevista na cl&aacute;usula <strong>OITAVA- </strong><strong>CONTRIBUI&Ccedil;&Atilde;O ASSISTENCIAL PROFISSIONAL </strong>deste acordo coletivo.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA - CONTRIBUI&#199;&#195;O ASSISTENCIAL PATRONAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Em conformidade com o Tema 935 do Supremo Tribunal Federal e os posicionamentos das Turmas do Tribunal Superior do Trabalho, que estenderam o alcance do Tema 935 do STF para os empregadores conforme decis&otilde;es proferidas nos RR-10685-40.2014.5.15.0129, RRAg-20233-69.2018.5.04.0351 e Ag-AIRR-1000038-28.2019.5.02.0008.</p>
+<p>Para manuten&ccedil;&atilde;o e amplia&ccedil;&atilde;o dos servi&ccedil;os prestados pelo sindicato patronal, as empresas por ele aqui representadas, filiadas ou n&atilde;o filiadas, ficam obrigadas a lhe pagar, atrav&eacute;s de recolhimento que dever&aacute; ser feito por meio de guias apropriadas por ele fornecidas, at&eacute; o dia 25 de novembro de 2025 os valores constantes da tabela abaixo:</p>
+<p>&sect;1&ordm; O valor da contribui&ccedil;&atilde;o &eacute; definido levando em considera&ccedil;&atilde;o o quadro de empregados da empresa, em valor decrescente, sendo:</p>
+<p>a)&nbsp;&nbsp;&nbsp; R$ 925,00 (novecentos e vinte e cinco reais) para as empresas que possuam at&eacute; 20 empregados;</p>
+<p>b)&nbsp;&nbsp;&nbsp; R$ 925,00 (novecentos e vinte e cinco reais) para as empresas que possuam de 21 a 300 empregados, mais R$ 46,25 (quarenta e seis reais e vinte e cinco centavos) por empregado excedente a 20 empregados;</p>
+<p>c)&nbsp;&nbsp;&nbsp; R$ 13.875,00 (treze mil oitocentos e setenta e cinco reais ), para as empresas que possuem de 301 a 500 empregados, mais R$ 23,12 (vinte e tr&ecirc;s reais e doze centaos) por empregado excedente a 300 empregados;</p>
+<p>d)&nbsp;&nbsp;&nbsp; R$ 18.499,00 (dezoito mil quatrocentos e noventa e nove reais) para as empresas que possuem de 501 a 1000, mais R$ 11,56 (onze reais e cinquenta e seis centavos) por empregado excedente a 500 empregados;</p>
+<p>e)&nbsp;&nbsp;&nbsp;&nbsp; R$ 30.067,00 (trinta mil e sessenta e sete reais), em valor fixo para as empresas que possuem mais de 1000 (um mil) funcion&aacute;rios.</p>
+<p>&sect;2&ordm; Devido a data de assinatura da presente conven&ccedil;&atilde;o coletiva, ficam as empresas, que ainda n&atilde;o recolheram a contribui&ccedil;&atilde;o assistencial, autorizadas ao pagamento da mesma at&eacute; o dia <strong>30 de dezembro de 2025</strong>, sem encargos morat&oacute;rios.</p>
+<p>&sect;3&ordm; As empresas que deixarem de recolher a contribui&ccedil;&atilde;o em tempo h&aacute;bil e nas condi&ccedil;&otilde;es estabelecidas, ficar&atilde;o sujeitas ao pagamento da corre&ccedil;&atilde;o monet&aacute;ria e juros de 1% (um por cento) ao m&ecirc;s.</p>
+<p>&nbsp; &sect;4&ordm; Considerando, que ao realizar a fixa&ccedil;&atilde;o da contribui&ccedil;&atilde;o assistencial em Assembleia Geral Extraordin&aacute;ria ocorrida em <strong>23 de setembro de 2025</strong> para todos os seus representados, independentemente de estarem filiados ou n&atilde;o, o SINDITEC garante o direito de oposi&ccedil;&atilde;o para todos os representados, que ainda n&atilde;o fizeram o recolhimento, da seguinte forma:</p>
+<p>a)&nbsp;&nbsp;&nbsp; O representante legal dever&aacute; comparecer na sede do SINDITEC, em hor&aacute;rio comercial, munido do contrato social da empresa e documentos pessoais para comprovar a sua condi&ccedil;&atilde;o de s&oacute;cio administrador, no per&iacute;odo do dia <strong>08/12/2025</strong> at&eacute; o dia <strong>12/12/2025 no hor&aacute;rio das 09h00 &agrave;s 12h00 e das 13h30 &agrave;s 17h00</strong>, e preencher o requerimento de oposi&ccedil;&atilde;o, contendo o nome da empresa, CNPJ, endere&ccedil;o, ramo de atividade e quantidade de funcion&aacute;rios.</p>
+<p>&sect;4&ordm; Os sindicatos signat&aacute;rios desse acordo se comprometem a trocar informa&ccedil;&otilde;es a respeito do recolhimento da Contribui&ccedil;&atilde;o Assistencial, no que se refere &agrave; quantidade de empregados constantes em suas respectivas guias.</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Disposições Gerais
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Renovação/Rescisão do Instrumento Coletivo
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA PRIMEIRA - CLAUSULAS SOCIAIS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As cl&aacute;usulas sociais previstas na CCT 2024/2026, que porventura n&atilde;o foram alteradas nesta, permanecem em vigor.</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras Disposições
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA SEGUNDA - EVENTUAIS DIFEREN&#199;AS SALARIAIS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As eventuais diferen&ccedil;as salariais e de benef&iacute;cios em favor do empregado, dever&atilde;o ser quitadas, at&eacute; o dia do pagamento dos sal&aacute;rios referentes ao <strong>m&ecirc;s de dezembro/2025</strong>, ou seja, at&eacute; o quinto dia &uacute;til do m&ecirc;s de <strong>janeiro/2025</strong>.</p>
+                                                </label>
+                                                <br />
+                                    }
+                                    <br />
+                                    <table border="0" cellpadding="0" cellspacing="0" align="center">
+                                        <tr>
+                                            <td align="center">
+                                                    <br />
+    <br />
+    <label class="textonome">
+        LEONARDO JOSE DE SANT ANA
+        <br style="height: 5px" />
+        Presidente
+        <br style="height: 5px" />
+        SIND DAS INDS DE TECEL, FIACAO, LINHAS, TINTUR, ESTAMP. E BE
+        <br />
+        <br />
+    </label>
+
+    <br />
+    <br />
+    <label class="textonome">
+        JOSUE FUSSI VELOSO
+        <br style="height: 5px" />
+        Presidente
+        <br style="height: 5px" />
+        SINDICATO DOS TRABALHADORES NAS INDUSTRIAS DE FIACAO E TECEL
+        <br />
+        <br />
+    </label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                        <br />
+                                        <center>
+                                            <label class="textogrupo">
+                                                <b>ANEXOS </b>
+                                            </label>
+                                        </center>
+                                                        <label>
+                                                            <b>
+                                                                <center>
+                                                                    <label class="textogrupo">
+                                                                        ANEXO I - ATA ASSEMBLEIA GERAL
+                                                                    </label>
+                                                                </center>
+                                                                <label class="tituloClausula">
+                                                                                                                                    </label>
+                                                            </b>
+                                                        </label>
+                                                        <b>
+                                                            <label>
+
+                                                            </label>
+                                                        </b>
+                                                        <br />
+                                                        <label class="descricaoClausula" >
+                                                            <p><a href="https://www3.mte.gov.br/sistemas/mediador/imagemAnexo/MR076082_20252026_04_17T14_29_52.pdf" target="_blank">Anexo (PDF)</a></p>
+                                                        </label>
+                                                        <br />
+                                        <!--****************************************** FIM - Anexos ******************************************-->
+                                            <label class="texto">
+                                                &#160;&#160;&#160;&#160;A autenticidade deste documento poderá ser confirmada na
+                                                página do Ministerio do Trabalho e Emprego na Internet, no endereço http://www.mte.gov.br.
+                                            </label>
+                                            <br />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </div>
+</body>
+<script>
+    setTimeout(function () {
+        window.history.replaceState({}, '', window.location.pathname);
+    }, 0);
+</script>
+</html>
