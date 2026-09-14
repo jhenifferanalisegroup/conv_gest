@@ -1,0 +1,1231 @@
+
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+    <title>
+        Mediador - Extrato Conven&#231;&#227;o Coletiva
+    </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G"></script>
+
+    <script src='/sistemas/mediador/WebResource.axd?d=9Z1IvOkMCxhKFkMIymY_OfSA8WYDszGvtYssVE5o4xIAXK7pPQIZtS0GdUj3f6Ld9xetEBabCGbYr1wOM5inAy61Ws46Ky2JYZkxt5LLLytLlVqxrhBF55w2-FGdOPKJ_oQ2dIyWkCTCqw1EoXIIuSGHVhtIVQC2N0YuFHcsb4dKY2Yf0YqKgLvvc6WqHXF40&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=ndYmAWUgjWAJEGuoaWiipSSgvyeNjb7XePDlmAy-LjlmPlZpbQ1MOH1GXEVhKHhynhSF2hvdeEQFIAC9MIR6WusgLkmMT1nctUvqhyuAMy9HGeLFkwE7bo8_eNBg_smj5QOTom0lktan5HhgDNUzymgw0O9CXT16TlMERM6yqJpeTAcTmfjvZxJThwot0b9z5rZn4Ykov-_LkSPNru2SZA2&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=aixw89k4fS3Kqv7ffLn66daCtUIGZ2Uq3PsGLlDg3_RlmLVnPMjKKwtuvCJfTR2voPEiQrsCsXTgwmqR7c7OOFjXHzbnh0HeN_d42D61J4CHBqPMLOlxz2XGcUxouxZ-NO10QYKNEC8wdy5GVMuHDuP4RW4KUPqesIWGem95GlginjBxfqJ8DwJGVFaSPua_0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=bLGkiINGD90bM6Huu3VzFsfvhQIMiwSrMpQM8CnyXTcrkTy7CTapo7w-Qvh_A-NQstLQgb8NxtHbCKBiYtJrPg0Hpp6G1guvFOJeKUcqQaYVooGwOa9iuEZCZJt0OfJij7zqhK7qXdGURn-azKoCba95RO3fzmRBeiCaMCJTD8QrCPE3_WImiRZ2wU-Fuz3I0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=xY6NjGXRL-nbUJw3h0onHkl165_9z8nfOsgw5VhYojSoLXqSdo0Vx_XATn8CRRfqWTHOd1R9qVpJTj2sHJIiL677HhxrHpeq4e68zkZyLgZg0_jFtW0IUWIH0Uroa34Oi4gjYPPeyGLVRG6LG50SYJlN1vlkj_lqC4_5f_rnImU9Z0fJeQyQ2Bva6cSZj5q80&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=-Hh9bEMo2OztNfYt5gM_DHuL3r4o88Ji-d4yOkPdVJ72CZAG66pU2aC5u9fvEh0oFsNjoeN8yzFg9vT4A_aboASTY78KbmW9r3DAdjeJtTZIr5k_7fL1jFBwdmW_fRNOpyiTTSIFm3Tw8eDajyafaVQ52zsdIlPWE0gB1vdnDfmJ4szXeKi-Qlyg-cXrCJ040&t=639193666532168144' type='text/javascript'></script>
+
+
+<script type="text/javascript">
+        var recaptchaSiteKey = '6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G';
+        var pageLoadToken = '';
+        var isPageValidated = false;
+
+        function onRecaptchaLoad() {
+            console.log('reCAPTCHA carregado, validando página...');
+            executePageLoadRecaptcha();
+        }
+
+        function executePageLoadRecaptcha() {
+            if (typeof grecaptcha === 'undefined') {
+                console.error('reCAPTCHA não carregado');
+                return;
+            }
+
+            grecaptcha.ready(function() {
+                grecaptcha.execute(recaptchaSiteKey, {
+                    action: 'page_load_resumo'
+                }).then(function(token) {
+                    console.log('Token de página gerado');
+                    pageLoadToken = token;
+
+                    // Enviar o token para o servidor
+                    validatePageLoadToken(token);
+                }).catch(function(error) {
+                    console.error('Erro no reCAPTCHA de página:', error);
+                    // Em desenvolvimento, permitir continuar
+                });
+            });
+        }
+
+        function validatePageLoadToken(token) {
+            var currentUrl = window.location.href;
+            var queryString = window.location.search;
+            var nrSolicitacao = 'MR041691/2025';
+
+            $.ajax({
+                url: '/sistemas/mediador/Resumo/ValidateResumoPageLoad',
+                type: 'POST',
+                data: {
+                    recaptchaToken: token,
+                    currentUrl: currentUrl,
+                    queryString: queryString,
+                    nrSolicitacao: nrSolicitacao
+                },
+                success: function(response) {
+                    if (response.success) {
+                        console.log('Página validada com sucesso');
+                        isPageValidated = true;
+                        showPageContent();
+                    } else {
+                        console.warn('Validação de página falhou:', response.message);
+                        handleValidationFailed(response);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Erro ao validar página:', error);
+                    handleValidationFailed({ message: 'Erro de comunicação com o servidor' });
+                }
+            });
+        }
+
+        function showPageContent() {
+            // Remover overlay de loading se existir
+            $('#recaptcha-loading').remove();
+            console.log('Conteúdo da página liberado');
+        }
+
+        function handleValidationFailed(response) {
+            // Mostrar mensagem de erro
+            var errorHtml = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                    <div style="text-align: center; padding: 20px;">
+                        <h2 style="color: #d32f2f;">Validação de Segurança</h2>
+                        <p style="font-size: 16px; margin: 20px 0;">${response.message || 'Falha na validação de segurança.'}</p>
+                        <button onclick="window.location.reload()" style="padding: 10px 20px; background: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Tentar Novamente
+                        </button>
+                        <br><br>
+                        <button onclick="window.location.href='/sistemas/mediador/'" style="padding: 8px 16px; background: #757575; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Voltar para Página Inicial
+                        </button>
+                    </div>
+                </div>
+            `;
+            $('body').prepend(errorHtml);
+        }
+
+        $(document).ready(function() {
+            console.log('Página carregada - ambiente de produção');
+
+            // Pular validação reCAPTCHA em produção
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.log('Produção - validando sem reCAPTCHA');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 1000);
+
+            // Timeout de segurança reduzido
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.warn('Timeout na validação - liberando conteúdo');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 5000); // Reduzido para 5 segundos
+        });
+
+        function Imprimir() {
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "none";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "none";
+            window.print();
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "";
+            return true;
+        }
+        $(function () {
+            var marcaDaguaHtml = $('.MarcaDagua').html();
+            var width = $('body').width();
+            var marcaW = $('.MarcaDagua').width();
+
+            var qtdNescessarios = Math.round((width / marcaW) + 0.4);
+            if (qtdNescessarios > 0)
+                for (var incrementador = 0; incrementador < qtdNescessarios; incrementador++) {
+                    $('.MarcaDagua').append("<br />");
+                    $('.MarcaDagua').append(marcaDaguaHtml);
+                }
+        });
+
+
+</script>
+    <style type="text/css">
+        .titulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .Subtitulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 13px;
+        }
+        .texto
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .tituloClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .descricaoClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .textogrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        .textosubgrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        .textonome
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .textofuncao
+        {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .pagebreak
+        {
+            page-break-after: always;
+        }
+        table.titulo
+        {
+            text-align: left;
+        }
+        @page Section2 {size:21cm 29.7cm ;mso-page-orientation:portrait;margin-top:2cm; margin-rigth:2cm; mso-paper-source:0;}
+        div.Section2 {page:Section2;}
+        pre
+        {
+            white-space: pre-wrap; /* css-3 */
+            white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+            white-space: -pre-wrap; /* Opera 4-6 */
+            white-space: -o-pre-wrap; /* Opera 7 */
+            word-wrap: break-word; /* Internet Explorer 5.5+ */
+            white-space: normal;
+        }
+    </style>
+    <!--[if gte mso 9]>
+    <xml>
+    <w:WordDocument>
+    <w:View>Print</w:View>
+    <w:Zoom>100</w:Zoom>
+    <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+    </xml>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="Section2">
+                <form method="post" action="/sistemas/mediador/Resumo/ResumoVisualizarSalvarMsWordDoc?NrSolicitacao=MR041691/2025">
+                    <input type="button" id="btnResumoVisualizarImprimir" value="Imprimir" onclick="Imprimir();" />
+                    <input type="submit" id="btnResumoVisualizarSalvar" value="Salvar" />
+                </form>
+
+            <div style="text-align: center; z-index: -1000; position: absolute; width: 100%;"
+                 class="MarcaDagua">
+                <img src="/sistemas/mediador/Content/images/carimbo.gif" alt="marcaDAgua" />
+            </div>
+        <center>
+            <table border="0" style="width: 18cm;" id="tblConteudo">
+                <tr>
+                    <td>
+                        <table style="width: 100%;" cellpadding="0" cellspacing="0">
+
+                                                            <tr>
+                                    <td align="center" class="titulo" style="text-transform: uppercase;">
+                                        <b>
+                                            Conven&#231;&#227;o Coletiva De Trabalho 2025/2027
+                                        </b>
+                                        <br />
+                                        <br />
+                                    </td>
+                                </tr>
+                            <tr>
+                                <td>
+                                    <div style="text-align: left;">
+                                        <table border="0" class="titulo" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td>
+                                                        <b>NÚMERO DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        SE000132/2025
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        23/07/2025
+                                                    </td>
+                                                </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>NÚMERO DA SOLICITAÇÃO:</b>
+                                                </td>
+                                                <td style="width: 10px">
+                                                </td>
+                                                <td>
+                                                    MR041691/2025
+                                                </td>
+                                            </tr>
+                                                                                            <tr>
+                                                    <td>
+                                                        <b>NÚMERO DO PROCESSO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        47979.202931/2025-13
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DO PROTOCOLO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+22/07/2025                                                    </td>
+                                                </tr>
+                                        </table>
+                                        <br />
+
+                                                        <p>
+                                                            <label class="texto">
+                                                                <b>
+                                                                    Confira a autenticidade no endereço http://mediador.trabalho.gov.br/sistemas/mediador/.
+                                                                </b>
+                                                            </label>
+                                                        </p>
+                                                    <br />
+                                                        <table border="0" class="titulo" cellpadding="0" cellspacing="0">
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <table border="0" class="titulo" width="100%" cellpadding="0" cellspacing="0">
+                                                                        <tr class="titulo">
+                                                                            <td>
+                                                                                <b>TERMOS ADITIVO(S) VINCULADO(S) </b>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="titulo">
+                                                                            <td>
+<b>Processo n°: </b><b>e Registro n°: </b><br /><b>Processo n°: </b><b>e Registro n°: </b><br /><b>Processo n°: </b><b>e Registro n°: </b><br /><b>Processo n°: </b><b>e Registro n°: </b><br /><b>Processo n°: </b><b>e Registro n°: </b><br />                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <br />
+                                                        <br />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="texto">
+                                    <p align="justify">
+FEDERACAO DOS TRABALHADORES EM TURISMO E HOSPITALIDADE DOS ESTADOS DA BAHIA, SERGIPE E ALAGOAS, CNPJ n. 13.466.693/0001-54, neste ato representado(a) por seu 
+
+Presidente, Sr(a). ADILSON EVANGELISTA DE JESUS;
+    <br />
+&nbsp;
+    <br />
+                                        <label>
+                                            E
+                                        </label>
+                                        <br />
+                                        <br />
+SINDICATO DAS EMPRESAS DE TURISMO DO ESTADO DE SERGIPE, CNPJ n. 32.845.307/0001-80, neste ato representado(a) por seu 
+
+Presidente, Sr(a). JOAO DE SOUZA AVILA;
+    <br />
+&nbsp;
+    <br />
+                                                                                    celebram
+                                                                                    a
+                                         presente CONVEN&#199;&#195;O COLETIVA DE TRABALHO,
+ estipulando as condi&#231;&#245;es de trabalho previstas nas cl&#225;usulas seguintes:                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA PRIMEIRA - VIG&#202;NCIA E DATA-BASE
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    As partes fixam a vigência da presente Convenção Coletiva de Trabalho no período de 01º de maio de 2025 a 30 de abril de 2027 e a data-base da categoria em 01º de maio.
+                                                </label>
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA SEGUNDA - ABRANG&#202;NCIA
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    A presente Convenção Coletiva de Trabalho abrangerá a(s) categoria(s) <b>A presente Convenção Coletiva de Trabalho representa a categoria dos trabalhadores em
+empresas de turismo em todo o Estado de Sergipe</b>, com abrangência territorial em <b>Amparo de São Francisco/SE, Aquidabã/SE, Aracaju/SE, Arauá/SE, Areia Branca/SE, Barra dos Coqueiros/SE, Boquim/SE, Brejo Grande/SE, Campo do Brito/SE, Canhoba/SE, Canindé de São Francisco/SE, Capela/SE, Carira/SE, Carmópolis/SE, Cedro de São João/SE, Cristinápolis/SE, Cumbe/SE, Divina Pastora/SE, Estância/SE, Feira Nova/SE, Frei Paulo/SE, Gararu/SE, General Maynard/SE, Gracho Cardoso/SE, Ilha das Flores/SE, Indiaroba/SE, Itabaiana/SE, Itabaianinha/SE, Itabi/SE, Itaporanga d'Ajuda/SE, Japaratuba/SE, Japoatã/SE, Lagarto/SE, Laranjeiras/SE, Macambira/SE, Malhada dos Bois/SE, Malhador/SE, Maruim/SE, Moita Bonita/SE, Monte Alegre de Sergipe/SE, Muribeca/SE, Neópolis/SE, Nossa Senhora Aparecida/SE, Nossa Senhora da Glória/SE, Nossa Senhora das Dores/SE, Nossa Senhora de Lourdes/SE, Nossa Senhora do Socorro/SE, Pacatuba/SE, Pedra Mole/SE, Pedrinhas/SE, Pinhão/SE, Pirambu/SE, Poço Redondo/SE, Poço Verde/SE, Porto da Folha/SE, Propriá/SE, Riachão do Dantas/SE, Riachuelo/SE, Ribeirópolis/SE, Rosário do Catete/SE, Salgado/SE, Santa Luzia do Itanhy/SE, Santa Rosa de Lima/SE, Santana do São Francisco/SE, Santo Amaro das Brotas/SE, São Cristóvão/SE, São Domingos/SE, São Francisco/SE, São Miguel do Aleixo/SE, Simão Dias/SE, Siriri/SE, Telha/SE, Tobias Barreto/SE, Tomar do Geru/SE e Umbaúba/SE</b>.
+                                                </label>
+                                                <br />
+                                    </p>
+
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Salários, Reajustes e Pagamento
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Piso Salarial
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TERCEIRA - PISO SALARIAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>A partir de <strong>1&ordm; de maio de 2025</strong>, o piso salarial da categoria ser&aacute; de <strong>R$ 1.560,00</strong> (hum mil quinhentos e sessenta reais), assegurado um reajuste de <strong>5%</strong> (cinco por cento) aos que recebiam acima desse valor com base no m&ecirc;s refer&ecirc;ncia de <strong>dezembro de 2024</strong>.</p>
+<p>&nbsp;</p>
+<p><strong>PAR&Aacute;GRAFO PRIMEIRO</strong><strong> -</strong> O empregado que at&eacute; <strong>31.12.2024</strong>&nbsp;recebia sal&aacute;rio base (piso) em valor <strong>acima do piso</strong> ter&aacute; o seu sal&aacute;rio base (piso) reajustado, a partir de <strong>01.05.2025,</strong> em 5% (cinco por cento), sendo compensadas todas as antecipa&ccedil;&otilde;es percentuais legais e/ou espont&acirc;neas, em valores fixos e/ou em percentuais, legais e/ou espont&acirc;neas, inclusive j&aacute; incorporados no curso da vig&ecirc;ncia da presente conven&ccedil;&atilde;o, concedidos pelas empresas a partir de <strong>01.01.2025</strong> inclusive.</p>
+<p>&nbsp;</p>
+<p><strong>PAR&Aacute;GRAFO </strong><strong>SEGUNDO</strong><strong> &ndash;</strong> Para efeito do reajuste, ser&atilde;o compensadas todas as antecipa&ccedil;&otilde;es percentuais legais e/ou espont&acirc;neas, inclusive as que j&aacute; tenham sido incorporadas, concedidas pelas empresas a partir de <strong>01.01.2025</strong>.</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Gratificações, Adicionais, Auxílios e Outros
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras Gratificações
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUARTA - PAGAMENTO DE FERIADO E DIA SANTIFICADO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>O pagamento do feriado e do dia santificado ser&aacute; feito em dobro, entendendo-se por dobro o pagamento de mais de um dia de trabalho, acordando-se que o <strong>dia 8 de maio</strong> de cada ano, data comemorativa da categoria, ser&aacute; considerado <strong>feriado</strong>, devendo, portanto, ser pago o dia com adicional de <strong>100%</strong> (cem por cento).</p>
+<p>&nbsp;</p>
+<p><strong>PAR&Aacute;GRAFO &Uacute;NICO: </strong>O feriado trabalhado poder&aacute; ser compensado por folga equivalente, a ser concedida dentro do prazo de <strong>at&eacute; 60 dias</strong>, antes ou depois da data comemorativa</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Adicional de Hora-Extra
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUINTA - PAGAMENTO DE HORAS EXTRAS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Quando da ocorr&ecirc;ncia de horas extraordin&aacute;rias &agrave; jornada normal de trabalho, a remunera&ccedil;&atilde;o dessas horas ser&aacute; feita com um adicional de <strong>50%</strong> (cinquenta por cento) para todas as horas extras prestadas, &agrave; exce&ccedil;&atilde;o daquelas prestadas nos feriados e em dias santificados, que ser&atilde;o pagas com um adicional de <strong>100%</strong> (cem por cento).</p>
+<p>&nbsp;</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Auxílio Transporte
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA SEXTA - AUX&#205;LIO TRANSPORTE
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Na forma da lei.</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Auxílio Saúde
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA S&#201;TIMA - PLANO ODONTOL&#211;GICO E DE TELEMEDICINA
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Caber&aacute; &agrave;s empresas empregadoras o pagamento mensal de um aux&iacute;lio<strong>, </strong>por trabalhador com contrato de trabalho ativo, revertido em completo benef&iacute;cio para custeio de <strong>PLANO ODONTOL&Oacute;GICO E DE TELEMEDICINA</strong>, n&atilde;o compreendidos os servi&ccedil;os de ortodontia, sendo que:</p>
+<p>&nbsp;</p>
+<p>I - Os trabalhadores que optarem pela inclus&atilde;o de dependentes arcar&atilde;o com o custo efetivo dessa ades&atilde;o, autorizado o <strong>desconto em folha</strong> pela empresa para posterior repasse &agrave; empresa indicada;</p>
+<p>&nbsp;</p>
+<p>II &ndash; Por <strong>n&atilde;o se encontrarem cobertos os servi&ccedil;os de ortodontia</strong>, os trabalhadores podem optar pela sua inclus&atilde;o, sendo o pagamento do valor da diferen&ccedil;a arcado integralmente pelo pr&oacute;prio trabalhador, autorizado o <strong>desconto em folha</strong> pela empresa para posterior repasse &agrave; empresa indicada.</p>
+<p>&nbsp;</p>
+<p><strong>PAR&Aacute;GRAFO &Uacute;NICO</strong><strong>: </strong>O valor mensal do <strong>AUX&Iacute;LIO PLANO ODONTOL&Oacute;GICO E DE TELEMEDICINA</strong> previsto nesta cl&aacute;usula, tendo em vista o car&aacute;ter assistencial e indenizat&oacute;rio, n&atilde;o t&ecirc;m natureza salarial e n&atilde;o se incorpora ao sal&aacute;rio para qualquer fim, e ser&aacute; agregado ao custeio do <strong>AUX&Iacute;LIO PLANO DE ASSIST&Ecirc;NCIA E CUIDADO PESSOAL.</strong></p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Seguro de Vida
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA OITAVA - AUX&#205;LIO PLANO DE ASSIST&#202;NCIA E CUIDADO PESSOAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As entidades sindicais convenentes instituem, o Aux&iacute;lio Plano de Assist&ecirc;ncia e Cuidado Pessoal, doravante denominado simplesmente &ldquo;PLANO DE ASSIST&Ecirc;NCIA E CUIDADO PESSOAL&rdquo;, com intuito de proporcionar a todos os trabalhadores subordinados a esta Conven&ccedil;&atilde;o Coletiva de Trabalho o usufruto das benesses viabilizada pelo referido AUX&Iacute;LIO.</p>
+<p>A partir da vig&ecirc;ncia desta CCT, fica acordado que para viabilidade de manuten&ccedil;&atilde;o dos benef&iacute;cios contemplados no PLANO DE ASSIST&Ecirc;NCIA E CUIDADO PESSOAL, caber&aacute; as empresas empregadoras o pagamento mensal do AUX&Iacute;LIO no valor de R$ 30,90 (trinta reais e noventa centavos) por trabalhador com contrato de trabalho ativo, valor este, revertido em completo benef&iacute;cio para a classe trabalhadora representada pelo Sindicato Laboral.&nbsp;</p>
+<p>O PLANO ser&aacute; implementado e gerido pelo Sindicato Laboral atrav&eacute;s de uma empresa especializada denominada &ldquo;Gestora&rdquo;, que conjuntamente com os demais fornecedores por ele contratados, garantir&atilde;o o fiel cumprimento dos benef&iacute;cios abaixo durante toda a vig&ecirc;ncia desta CCT.</p>
+<table style="width: 661px;" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td width="208">
+<p align="center">BENEF&Iacute;CIO</p>
+</td>
+<td width="454">
+<p align="center">DESCRI&Ccedil;&Atilde;O, COBERTURAS e CARACTER&Iacute;STICAS</p>
+</td>
+</tr>
+<tr>
+<td width="208">
+<p>Plano Odontol&oacute;gico*</p>
+</td>
+<td width="454">
+<p>Cobertura conforme Rol m&iacute;nimo de procedimentos previstos pela ANS (Ag&ecirc;ncia Nacional de Sa&uacute;de):</p>
+<ul>
+<li>Urg&ecirc;ncia</li>
+<li>Diagn&oacute;stico</li>
+<li>Preven&ccedil;&atilde;o</li>
+<li>Restaura&ccedil;&atilde;o</li>
+<li>Tratamento de canal</li>
+<li>Odontopediatria</li>
+<li>Radiologia</li>
+<li>Cirurgias</li>
+<li>Tratamento de gengiva</li>
+<li>Pr&oacute;tese (bloco, coroa e pino)</li>
+</ul>
+<p>Caracter&iacute;sticas:</p>
+<ul>
+<li>Cobertura Nacional</li>
+<li>Sem Per&iacute;cia</li>
+<li>Isen&ccedil;&atilde;o Total de Car&ecirc;ncias</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td width="208">
+<p>Indeniza&ccedil;&atilde;o por Morte Qualquer Causa**</p>
+</td>
+<td width="454">
+<p>Coberturas:</p>
+<p>- Morte Natural ou Acidental &ndash; Limite M&aacute;ximo de Indeniza&ccedil;&atilde;o de R$ 15.000,00 (Quinze mil reais)</p>
+<p>&nbsp;</p>
+<p>- Invalidez Permanente Total ou Parcial* por Acidente** &ndash; Limite M&aacute;ximo de Indeniza&ccedil;&atilde;o de R$ 15.000,00 (Quinze mil reais)</p>
+<p>&nbsp;</p>
+<p>- Invalidez Funcional Permanente Total por Doen&ccedil;a</p>
+<p>Limite M&aacute;ximo de Indeniza&ccedil;&atilde;o de R$ 15.000,00 (Quinze mil reais)</p>
+<p>&nbsp;</p>
+<p>*Em caso de invalidez parcial, a Seguradora pagar&aacute; uma indeniza&ccedil;&atilde;o de acordo com a tabela estabelecida nas condi&ccedil;&otilde;es gerais do seguro</p>
+<p>&nbsp;</p>
+<p>**Acidentes decorrentes de trabalho ou acidentes pessoais.</p>
+</td>
+</tr>
+<tr>
+<td width="208">
+<p>Aux&iacute;lio Funeral**</p>
+</td>
+<td width="454">
+<ul>
+<li>Funeral Individual (morte natural ou acidental) &ndash; Limite M&aacute;ximo de Indeniza&ccedil;&atilde;o de R$ 3.300,00</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>Cesta B&aacute;sica pelo per&iacute;odo de 06 (seis) meses (em caso de morte por qualquer causa) no valor mensal de R$ 150,00 (cento e cinquenta reais) em favor dos benefici&aacute;rios do seguro de vida.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td width="208">
+<p>Assist&ecirc;ncia Natalidade**</p>
+</td>
+<td width="454">
+<ul>
+<li>Entrega de cart&atilde;o magn&eacute;tico no valor de R$ 600,00</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>Quando do nascimento do filho do titular, o mesmo dever&aacute; entrar em contato com a central de atendimento em at&eacute; 60 (sessenta) dias e dever&aacute; enviar a certid&atilde;o de nascimento.</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>A assist&ecirc;ncia natalidade &eacute; prestada pela seguradora quando o nascimento do filho ocorre a partir ou posterior a data de ativa&ccedil;&atilde;o do titular no plano de benef&iacute;cios.&nbsp;</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>Limite de acionamento de 01 vez ao ano, por titular. Em caso de nascimento de G&ecirc;meos, ser&aacute; acrescido o valor de R$ 300,00 (trezentos reais) a partir do segundo g&ecirc;meo.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td width="208">
+<p>Assist&ecirc;ncia Pessoal**</p>
+</td>
+<td width="454">
+<ul>
+<li>Servi&ccedil;o de Chaveiro para Acesso ao domic&iacute;lio por Eventos Emergenciais</li>
+</ul>
+<p>M&atilde;o de obra do Prestador at&eacute; R$ 100,00 (cem reais) por Evento nos casos de quebra, perda ou roubo das chaves</p>
+<p>At&eacute;, no m&aacute;ximo, 02 (dois) acionamentos por ano.</p>
+<p>&nbsp;</p>
+<p>N&atilde;o est&aacute; prevista para o servi&ccedil;o de Chaveiro a troca de segredos de portas, fechaduras tetra ou eletr&ocirc;nica.</p>
+<p>&nbsp;</p>
+<ul>
+<li>Encanador por Eventos Emergenciais</li>
+</ul>
+<p>M&atilde;o de obra do Prestador at&eacute; R$ 100,00 (cem reais) por Evento</p>
+<p>At&eacute;, no m&aacute;ximo, 02 (dois) acionamentos por ano.</p>
+<p>&nbsp;</p>
+<p>O servi&ccedil;o ser&aacute; prestado exclusivamente em tubula&ccedil;&atilde;o aparente, bem como n&atilde;o ser&aacute; coberto a execu&ccedil;&atilde;o de m&atilde;o de obra em canos de ferro e/ou cobre.</p>
+<p>&nbsp;</p>
+<ul>
+<li>Eletricista por Evento Emergencial</li>
+</ul>
+<p>M&atilde;o de obra do Prestador at&eacute; R$ 100,00 (cem reais) por Evento.</p>
+<p>At&eacute;, no m&aacute;ximo, 02 (dois acionamentos por ano.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<ul>
+<li>Faxineira em caso de Interna&ccedil;&atilde;o M&eacute;dica</li>
+</ul>
+<p>Se, em caso de sinistro ou determina&ccedil;&atilde;o m&eacute;dica for necess&aacute;ria a hospitaliza&ccedil;&atilde;o do Segurado por um per&iacute;odo superior a 2 (dois) dias, a prestadora de servi&ccedil;os assumir&aacute; os gastos de uma faxineira, indicada pelo Segurado, at&eacute; o limite de R$ 80,00 (oitenta reais) por dia, limitado a um per&iacute;odo m&aacute;ximo de 3 (tr&ecirc;s) dias.</p>
+<p>At&eacute;, no m&aacute;ximo, 01 (um) acionamento por ano.</p>
+<p>&nbsp;</p>
+<p>A solicita&ccedil;&atilde;o de reembolso s&oacute; poder&aacute; ser realizada em at&eacute; 30 dias ap&oacute;s o in&iacute;cio da Interna&ccedil;&atilde;o, mediante apresenta&ccedil;&atilde;o de laudo m&eacute;dico.</p>
+<p>&nbsp;</p>
+<p>Para todos os servi&ccedil;os, o hor&aacute;rio de funcionamento estabelecido &eacute;:</p>
+<p>&uuml;&nbsp; Hor&aacute;rio de Atendimento: 24 (vinte e quatro) horas;</p>
+<p>&uuml;&nbsp; Hor&aacute;rio de Presta&ccedil;&atilde;o de Servi&ccedil;o: 24 (vinte e quatro) horas.</p>
+</td>
+</tr>
+<tr>
+<td width="208">
+<p>Assist&ecirc;ncia Autom&oacute;vel**</p>
+</td>
+<td width="454">
+<ul>
+<li>Chaveiro (servi&ccedil;o prestado para chaves convencionais)</li>
+</ul>
+<p>Envio do prestador para abertura de ve&iacute;culo em casos de:</p>
+<p>- Chave trancada no interior do ve&iacute;culo,</p>
+<p>- Perda ou roubo da chave</p>
+<p>- Quebra da chave na porta do ve&iacute;culo.</p>
+<p>&nbsp;</p>
+<p>At&eacute;, no m&aacute;ximo, 01 (um) acionamento por ano.&nbsp;&nbsp;&nbsp;</p>
+<p>Para acionamento deste Servi&ccedil;o, o Cliente dever&aacute; apresentar: (i) documentos que comprovem a propriedade do Ve&iacute;culo; e (ii) documento pessoal do Cliente, com foto, para a devida identifica&ccedil;&atilde;o deste.</p>
+<p>&nbsp;</p>
+<ul>
+<li>Aux&iacute;lio Pane Seca</li>
+</ul>
+<p>Reabastecimento no local, ou em caso de inviabilidade, reboque do Ve&iacute;culo do Local do Evento at&eacute; o Posto de Abastecimento mais pr&oacute;ximo.</p>
+<p>At&eacute;, no m&aacute;ximo, 01 (um) acionamento por ano.</p>
+<p>&nbsp;</p>
+<ul>
+<li>Troca De Pneus</li>
+</ul>
+<p>Envio de prestador para troca de pneu, e em caso de inviabilidade, a remo&ccedil;&atilde;o do ve&iacute;culo at&eacute; 100 km (cem quil&ocirc;metros) contados do Local do Evento at&eacute; seu Destino.</p>
+<p>At&eacute;, no m&aacute;ximo, 1 (um) acionamento por ano.</p>
+<p>&nbsp;</p>
+<p>Para todos os servi&ccedil;os, o hor&aacute;rio de funcionamento estabelecido &eacute;:</p>
+<p>&nbsp;</p>
+<p>&uuml;&nbsp; Hor&aacute;rio de Atendimento: 24 (vinte e quatro) horas;</p>
+<p>Hor&aacute;rio de Presta&ccedil;&atilde;o de Servi&ccedil;o: segunda &agrave; sexta-feira das 8h &agrave;s 18h (exceto feriados).</p>
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="208">
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Telemedicina Individual***</p>
+</td>
+<td valign="top" width="454">
+<p>Servi&ccedil;o de Teleconsulta &ndash; Online</p>
+<p>&nbsp;</p>
+<p>Atendimento de consulta, na especialidade de Cl&iacute;nico Geral, por meio de plataforma online, sem custo para o usu&aacute;rio e sem limite de utiliza&ccedil;&atilde;o.</p>
+<p>&nbsp;</p>
+<p>As consultas eletivas com Cl&iacute;nico Geral podem ocorrer na hora (pronto atendimento em at&eacute; 15 minutos) ou agendado para o hor&aacute;rio mais apropriado.</p>
+<p>&nbsp;</p>
+<p>O m&eacute;dico Cl&iacute;nico Geral poder&aacute; encaminhar para outras especialidades conforme abaixo, sempre que o Cl&iacute;nico julgar necess&aacute;rio:</p>
+<p>&nbsp;</p>
+<p>Cl&iacute;nico Geral / Ortopedia / Cardiologia / Oftalmologia / Otorrinolaringologia / Endocrinologia / Pneumologia / Mastologia / Nefrologia / Endocrinologia / Dermatologia / Urologia / Geriatria / Neurologia / Ginecologia e Obstetr&iacute;cia / Gastroenterologia.</p>
+<ul>
+<li>O usu&aacute;rio Titular poder&aacute; realizar ou agendar consultas atrav&eacute;s do Aplicativo da Gestora, ou por meio dos canais de atendimento deste servi&ccedil;o.</li>
+<li>O link de acesso ao atendimento de consulta, seja na modalidade pronto atendimento ou agendado, ser&aacute; enviado via WhatsApp, e-mail ou SMS.</li>
+<li>Em caso de agendamento, o link de acesso ao atendimento de consulta, ser&aacute; enviado via WhatsApp, e-mail ou SMS 10 minutos antes do hor&aacute;rio agendado.</li>
+<li>&Eacute; de responsabilidade do USU&Aacute;RIO acessar a plataforma na data e hor&aacute;rio agendados previamente (com limite m&aacute;ximo de 5 minutos de toler&acirc;ncia de atraso), com uma conex&atilde;o est&aacute;vel de internet.</li>
+<li>Caso o USU&Aacute;RIO fa&ccedil;a o agendamento e n&atilde;o compare&ccedil;a no hor&aacute;rio marcado, ser&aacute; considerado como falta, sendo suspenso este servi&ccedil;o por 30 dias corridos, para agendamento de uma nova Teleconsulta.</li>
+</ul>
+<p>ESTE PROGRAMA DE SA&Uacute;DE N&Atilde;O &Eacute; UM SEGURO, NEM UM SEGURO SA&Uacute;DE OU PLANO DE SA&Uacute;DE, E N&Atilde;O OFERECE COBERTURA PARA INTERNA&Ccedil;&Atilde;O, URG&Ecirc;NCIA E EMERG&Ecirc;NCIAS OU CIRURGIAS.</p>
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="208">
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Desconto Farm&aacute;cia****</p>
+<p>&nbsp;</p>
+</td>
+<td width="454">
+<p>Descontos na Rede de Farm&aacute;cias Conveniadas</p>
+<p>O benefici&aacute;rio ter&aacute; acesso a descontos em Medicamentos Gen&eacute;ricos / Medicamentos de Marca / Medicamentos Manipulados / OTC (produtos sem a necessidade de uma prescri&ccedil;&atilde;o m&eacute;dica), na rede de farm&aacute;cias conveniadas com a Gestora.</p>
+<p>Como utilizar:</p>
+<p>O benefici&aacute;rio informa o CPF no balc&atilde;o para obter os descontos.</p>
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="208">
+<p>Clube Bem Mais Vantagens*****</p>
+</td>
+<td width="454">
+<p>Descontos em mais de 200 parceiros.</p>
+<ul>
+<li>V&aacute;rios segmentos como lazer (cinema), cultura, e-commerces, delivery, alimenta&ccedil;&atilde;o e muito mais.</li>
+<li>Sorteios, Jogos Premiados, Cupons Ativa&ccedil;&atilde;o com promo&ccedil;&otilde;es, sorteios exclusivos com pr&ecirc;mios, jogos e cupons gratuitos.</li>
+<li>Cursos e Revistas</li>
+<li>Conte&uacute;do de qualidade e gratuito</li>
+</ul>
+<p>Como utilizar:</p>
+<p>O benefici&aacute;rio ter&aacute; acesso aos descontos e promo&ccedil;&otilde;es atrav&eacute;s do aplicativo da Gestora Bem Mais Benef&iacute;cios. Dispon&iacute;veis na Play Store e App Store</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>*Plano Odontol&oacute;gico registrado e regulamentado pela ANS &ndash; Ag&ecirc;ncia Nacional de Sa&uacute;de Suplementar. As condi&ccedil;&otilde;es de atendimento, abrang&ecirc;ncia, coberturas, car&ecirc;ncias, etc. do produto est&atilde;o em conformidade com a ANS e estabelecidas no contrato firmado entre a Operadora de Planos Odontol&oacute;gico e o Sindicato Laboral.</p>
+<p>**Conforme o regulamento e as condi&ccedil;&otilde;es gerais estabelecidas na Ap&oacute;lice estipulada/sub-estipulada pelo Sindicato Laboral com a Seguradora devidamente registrada na Susep.</p>
+<p>***Conforme o regulamento e as condi&ccedil;&otilde;es gerais estabelecidas em contrato com empresa de Telemedicina.</p>
+<p>****Conforme regulamento e as condi&ccedil;&otilde;es gerais estabelecidas com as farm&aacute;cias conveniadas.</p>
+<p>*****Clube de vantagens voltado aos benefici&aacute;rios do Aux&iacute;lio Plano de Assist&ecirc;ncia e Cuidado Pessoal.</p>
+<p>&nbsp;</p>
+<p>Par&aacute;grafo Primeiro: A Gestora disponibilizar&aacute; um sistema online atrav&eacute;s do site: <a href="http://www.bemmaisbeneficios.com.br/">www.bemmaisbeneficios.com.br/</a><span style="text-decoration: underline;">turismo-sergipe</span> para que os empregadores realizem a inclus&atilde;o de todos seus trabalhadores ativos e novos contratados no PLANO DE ASSIST&Ecirc;NCIA E CUIDADO PESSOAL, bem como, a exclus&atilde;o dos que tiverem o seu contrato de trabalho rescindido.</p>
+<p>Par&aacute;grafo Segundo: O pagamento mensal do AUX&Iacute;LIO PLANO DE ASSIST&Ecirc;NCIA E CUIDADO PESSOAL dever&aacute; ser realizado pelas empresas Empregadoras, por cada trabalhador ativo, independente dos benef&iacute;cios j&aacute; ofertados por ela, garantindo na &iacute;ntegra o acesso aos benef&iacute;cios previstos nesta cl&aacute;usula.</p>
+<p>Par&aacute;grafo Terceiro: O empregado poder&aacute; incluir seus dependentes no PLANO DE ASSIST&Ecirc;NCIA E CUIDADO PESSOAL de acordo com os benef&iacute;cios estabelecidos no aplicativo ou site da Gestora, arcando integralmente com os valores correspondentes atrav&eacute;s de desconto em folha de pagamento. A inclus&atilde;o e exclus&atilde;o dos dependentes poder&aacute; ser realizada pelo pr&oacute;prio empregado atrav&eacute;s de seu acesso individualizado no aplicativo da Gestora, na sua conta de benef&iacute;cio no site: <a href="http://www.bemmaisbeneficios.com.br/">www.bemmaisbeneficios.com.br/</a><span style="text-decoration: underline;">turismo-sergipe</span> ou atrav&eacute;s da central de relacionamento da Gestora, ou ainda atrav&eacute;s do departamento pessoal que poder&aacute; incluir e excluir no sistema de movimenta&ccedil;&atilde;o online da Gestora.</p>
+<p>Par&aacute;grafo Quarto: Fica estabelecido que o valor a ser pago mensalmente por cada trabalhador e/ou dependente(s) referente ao Aux&iacute;lio PLANO DE ASSIST&Ecirc;NCIA E CUIDADO PESSOAL ser&aacute; realizado pelas empresas empregadoras atrav&eacute;s de boleto banc&aacute;rio, disponibilizado no sistema online pela empresa Gestora, com o vencimento todo dia do dia 5 (Cinco) de cada m&ecirc;s. A cobran&ccedil;a do referido Aux&iacute;lio ser&aacute; realizada pela empresa Gestora por conta e ordem do Sindicato Laboral.</p>
+<p>Par&aacute;grafo Quinto: As movimenta&ccedil;&otilde;es de inclus&otilde;es e exclus&otilde;es de trabalhadores e/ ou dependentes dever&atilde;o ser realizadas at&eacute; o dia 15 (Quinze) de cada m&ecirc;s atrav&eacute;s do sistema online e ter&atilde;o processamento efetivado com vig&ecirc;ncia no dia 01&ordm; (primeiro) do m&ecirc;s subsequente.</p>
+<p>Par&aacute;grafo Sexto:&nbsp; Em caso de afastamento de empregado, por motivo de doen&ccedil;a ou acidente, o empregador manter&aacute; o recolhimento, ficando garantidos ao empregado todos os benef&iacute;cios previstos nesta cl&aacute;usula.</p>
+<p>Par&aacute;grafo S&eacute;timo: A Gestora mant&eacute;m a disposi&ccedil;&atilde;o dos Empregadores e Empregados, a Central de Relacionamento, com funcionamento em dias uteis, de segunda &agrave; quinta-feira, das 8h &agrave;s 18h e &agrave;s sextas-feiras das 8h &agrave;s 17h, com n&uacute;meros de contatos dispon&iacute;veis pelo site: <a href="http://www.bemmaisbeneficios.com.br/">www.bemmaisbeneficios.com.br/</a><span style="text-decoration: underline;">turismo-sergipe</span><span style="text-decoration: underline;">.</span></p>
+<p>Par&aacute;grafo Oitavo: A Gestora disponibilizar&aacute; aos trabalhadores atrav&eacute;s do aplicativo, regulamentos, condi&ccedil;&otilde;es gerais e todas as informa&ccedil;&otilde;es pertinentes ao funcionamento dos benef&iacute;cios contemplados no PLANO DE ASSIST&Ecirc;NCIA E CUIDADO PESSOAL.</p>
+<p>Par&aacute;grafo Nono: A Gestora disponibilizar&aacute; material informativo com as orienta&ccedil;&otilde;es necess&aacute;rias para que o trabalhador acesse as informa&ccedil;&otilde;es do seu PLANO DE ASSIST&Ecirc;NCIA E CUIDADO PESSOAL atrav&eacute;s do aplicativo ou site, cabendo &agrave;s empresas empregadoras empreenderem seus melhores esfor&ccedil;os para divulgar o referido material afim de dar conhecimento a todos os seus colaboradores.</p>
+<p>Par&aacute;grafo D&eacute;cimo: O n&atilde;o pagamento do boleto at&eacute; o vencimento estabelecido nesta Conven&ccedil;&atilde;o Coletiva implicar&aacute; na incid&ecirc;ncia de juros de mora de 1% ao m&ecirc;s, calculados pro rata die, corre&ccedil;&atilde;o monet&aacute;ria pela varia&ccedil;&atilde;o positiva do IGP-M e multa de 2% (dois por cento) sobre os valores n&atilde;o pagos.</p>
+<p>Par&aacute;grafo D&eacute;cimo Primeiro: O inadimplemento superior h&aacute; 10 (dez) dias, ocasionar&aacute; a suspens&atilde;o dos benef&iacute;cios, estando a empresa empregadora sujeita a penalidades previstas nesta conven&ccedil;&atilde;o, al&eacute;m da indeniza&ccedil;&atilde;o e reembolso de servi&ccedil;os n&atilde;o cobertos ao trabalhador em detrimento da suspens&atilde;o das coberturas.</p>
+<p>Par&aacute;grafo D&eacute;cimo Segundo: As empresas empregadoras dever&atilde;o fornecer no ato da homologa&ccedil;&atilde;o da rescis&atilde;o do contrato de trabalho com o empregado, a comprova&ccedil;&atilde;o de vincula&ccedil;&atilde;o do empregado atrav&eacute;s de demonstrativo de fatura e quita&ccedil;&atilde;o do boleto do AUX&Iacute;LIO PLANO DE ASSIST&Ecirc;NCIA E CUIDADO PESSOAL do m&ecirc;s vigente.</p>
+<p>Par&aacute;grafo D&eacute;cimo Terceiro: O valor mensal do AUX&Iacute;LIO PLANO DE ASSIST&Ecirc;NCIA E CUIDADO PESSOAL previsto nesta clausula, tendo em vista o car&aacute;ter assistencial e indenizat&oacute;rio, n&atilde;o t&ecirc;m natureza salarial e n&atilde;o se incorporam ao sal&aacute;rio para qualquer fim.</p>
+<p>Par&aacute;grafo D&eacute;cimo Quarto: As empresas empregadoras ter&atilde;o at&eacute; 30 (trinta) dias a partir da assinatura desta conven&ccedil;&atilde;o coletiva de trabalho para realizar a inclus&atilde;o de todos seus trabalhadores atrav&eacute;s do Sistema Online disponibilizado pela Gestora, conforme par&aacute;grafo primeiro.</p>
+<p>Par&aacute;grafo D&eacute;cimo Quinto: O reajuste do valor do AUX&Iacute;LIO PLANO DE ASSIST&Ecirc;NCIA E CUIDADO PESSOAL previsto nesta clausula ser&aacute; realizado anualmente pelo INPC &ndash; &Iacute;ndice Nacional de Pre&ccedil;os ao Consumidor.</p>
+<p>Par&aacute;grafo D&eacute;cimo Sexto: Visando a seguran&ccedil;a e manuten&ccedil;&atilde;o dos benef&iacute;cios aos trabalhadores, fica pactuado que a validade, aplicabilidade e vig&ecirc;ncia desta cl&aacute;usula perdurar&aacute; durante toda a vig&ecirc;ncia desta conven&ccedil;&atilde;o, bem como no per&iacute;odo de negocia&ccedil;&atilde;o da Conven&ccedil;&atilde;o Coletiva de Trabalho do ano seguinte, mesmo que sua assinatura e homologa&ccedil;&atilde;o ocorra em data posterior a sua data base. A suspens&atilde;o e inaplicabilidade desta cl&aacute;usula somente ocorrer&aacute; caso fique pactuado a sua exclus&atilde;o na pr&oacute;xima Conven&ccedil;&atilde;o vigente.</p>
+<p>Par&aacute;grafo D&eacute;cimo S&eacute;timo: Em caso de descumprimento desta cl&aacute;usula, ser&aacute; aplicada uma multa mensal equivalente ao valor do Aux&iacute;lio estabelecido no caput desta clausula, acrescido de 30%, por cada empregado n&atilde;o coberto pelo AUX&Iacute;LIO PLANO DE ASSIST&Ecirc;NCIA E CUIDADO PESSOAL, al&eacute;m das indeniza&ccedil;&otilde;es e reembolsos de servi&ccedil;os realizados e desembolsados pelo trabalhador, que possam ocorrer no per&iacute;odo. Fica ainda estabelecido que 50% (cinquenta por cento) do valor total da multa ser&aacute; destinado ao trabalhador.</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Contrato de Trabalho – Admissão, Demissão, Modalidades
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Desligamento/Demissão
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA NONA - CARTA REFER&#202;NCIA
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Os empregadores poder&atilde;o fornecer, no ato do pagamento das verbas rescis&oacute;rias, carta de refer&ecirc;ncia ao empregado demitido, salvo nos casos de dispensa por justa causa.</p>
+<p>&nbsp;</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Relações de Trabalho – Condições de Trabalho, Normas de Pessoal e Estabilidades
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Estabilidade Aposentadoria
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA - APOSENTADORIA/ESTABILIDADE PROVIS&#211;RIA
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Fica assegurada estabilidade no emprego durante o per&iacute;odo que faltar para se aposentar, ao empregado que, comprovadamente, estiver a um prazo m&aacute;ximo de 12 (doze) meses da aquisi&ccedil;&atilde;o do direito &agrave; aposentadoria, considerada em seus prazos m&aacute;ximos, tanto por tempo de servi&ccedil;o, como por idade, e que conte, no m&iacute;nimo, com 05 (cinco) anos de trabalho ininterrupto na mesma empresa.</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Jornada de Trabalho – Duração, Distribuição, Controle, Faltas
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras disposições sobre jornada
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA PRIMEIRA - JORNADA DE TRABALHO E BANCO DE HORAS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Acordam as partes, nos termos do que estabelece o par&aacute;grafo 2&ordm; do art. 59 da CLT, a implanta&ccedil;&atilde;o do &ldquo;<strong>BANCO DE HORAS</strong>&rdquo;, sendo que, para a escala de 44 (quarenta e quatro) horas semanais, as jornadas di&aacute;rias n&atilde;o podem ser superiores a 10 (dez) horas, com exce&ccedil;&atilde;o feita quando os estabelecimentos praticarem a escala 12x36 horas, devendo-se as horas extras n&atilde;o compensadas no per&iacute;odo de 06 (seis) meses ser&atilde;o pagas com o adicional de 50% (cinquenta por cento).</p>
+<p>&nbsp;</p>
+<p><strong>PAR&Aacute;GRAFO PRIMEIRO</strong> &ndash; A empresa, ao efetuar a compensa&ccedil;&atilde;o de horas de trabalho com a utiliza&ccedil;&atilde;o do Banco de Horas, far&aacute; diretamente com seus empregados, sendo vedada &agrave; fixa&ccedil;&atilde;o de jornada di&aacute;ria superior a 10 (dez) horas.</p>
+<p>&nbsp;</p>
+<p><strong>PAR&Aacute;GRAFO SEGUNDO</strong> &ndash; No caso das horas trabalhadas al&eacute;m da 8&ordf; (oitava) di&aacute;ria ou da 44&ordm; semanal, ser&atilde;o depositadas no &ldquo;Banco de Horas&rdquo; e consideradas extraordin&aacute;rias, dever&atilde;o ser compensadas dentro do per&iacute;odo de 06 (seis) meses, a contar de quando foram realizadas, sob pena de pagamento.</p>
+<p>&nbsp;</p>
+<p><strong>PAR&Aacute;GRAFO TERCEIRO</strong> &ndash; As empresas informar&atilde;o mensalmente aos seus empregados de forma expressa, o volume de horas acumuladas.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA SEGUNDA - INTERVALO INTRAJORNADA
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Em raz&atilde;o das peculiaridades dos servi&ccedil;os prestados, fica acordado que os empregados assinar&atilde;o o Ponto Di&aacute;rio na Entrada e Sa&iacute;da das suas jornadas, sendo assinalado na Folha de Frequ&ecirc;ncia o intervalo intrajornada, nos termos da Portaria MTPS/GM n&ordm;3. 626 de 13/11/91 e Portaria MT/GM 1.120, de 08/11/95.</p>
+<p>&nbsp;</p>
+<p><strong>PAR&Aacute;GRAFO PRIMEIRO</strong> - &Eacute; obrigat&oacute;ria a utiliza&ccedil;&atilde;o do livro ou cart&atilde;o de ponto, mecanizado ou n&atilde;o, independentemente do n&uacute;mero de funcion&aacute;rios, para garantir o efetivo controle de hor&aacute;rio de trabalho, permitindo-se o real pagamento das horas trabalhadas al&eacute;m da jornada normal e, nos casos em que as empresas utilizem rel&oacute;gios eletr&ocirc;nicos (cart&otilde;es magn&eacute;ticos), dever&atilde;o disponibilizar mensalmente a seus empregados c&oacute;pia (espelho) das anota&ccedil;&otilde;es.</p>
+<p>&nbsp;</p>
+<p><strong>PAR&Aacute;GRAFO SEGUNDO</strong><strong> &ndash; </strong>O empregado que trabalha na empresa em dois per&iacute;odos gozar&aacute; de intervalo para descanso de at&eacute;, no m&aacute;ximo, 02 (duas) horas.</p>
+<p>&nbsp;</p>
+<p><strong>PAR&Aacute;GRAFO TERCEIRO</strong><strong> - </strong>Para as empresas que fornecem alimenta&ccedil;&atilde;o a seus funcion&aacute;rios, poder&atilde;o reduzir em 30 (trinta) minutos o intervalo intrajornada destinado.</p>
+<p>&nbsp;</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Férias e Licenças
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras disposições sobre férias e licenças
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA TERCEIRA - DOS REFLEXOS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As empresas efetuar&atilde;o a repercuss&atilde;o da m&eacute;dia dos &uacute;ltimos 12 (doze) meses, das horas extras habituais e do adicional noturno para efeito da remunera&ccedil;&atilde;o de f&eacute;rias, 13&ordm; (d&eacute;cimo terceiro) sal&aacute;rio, descanso semanal remunerado, FGTS e aviso pr&eacute;vio.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA QUARTA - LICEN&#199;A-NOJO | LICEN&#199;A-&#211;BITO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Nos termos da CLT, em caso de falecimento de c&ocirc;njuge, ascendente, descendente, irm&atilde;os ou pessoa que, declarada em sua carteira de trabalho e previd&ecirc;ncia social, viva sob sua depend&ecirc;ncia econ&ocirc;mica, o empregado estar&aacute; dispensado do trabalho de at&eacute; dois dias consecutivos, desde que sejam dias de falecimento e sepultamento, sem preju&iacute;zo do sal&aacute;rio, DSR e seus reflexos.</p>
+<p>&nbsp;</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Saúde e Segurança do Trabalhador
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Aceitação de Atestados Médicos
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA QUINTA - ATESTADO M&#201;DICO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>O atestado m&eacute;dico ou odontol&oacute;gico tem o objetivo de justificar e/ou abonar as faltas do empregado ao servi&ccedil;o em decorr&ecirc;ncia de incapacidade para o trabalho, motivada por doen&ccedil;a ou acidente do trabalho, devendo o empregado apresenta-lo num prazo m&aacute;ximo de <strong>at&eacute; 48h</strong> (quarenta e oito) horas da sua falta, aus&ecirc;ncia ou afastamento.</p>
+<p>&nbsp;</p>
+<p><strong>PAR&Aacute;GRAFO PRIMEIRO</strong> <strong>-</strong> Caso n&atilde;o apresente o atestado v&aacute;lido e no prazo fixado neste artigo, a falta poder&aacute; n&atilde;o ser abonada, podendo o empregado entregar o atestado m&eacute;dico ou odontol&oacute;gico com uma c&oacute;pia, pessoalmente ou atrav&eacute;s de um representante nomeado pelo mesmo, bem como poder&aacute; enviar por qualquer meio eletr&ocirc;nico (e-mail, whatsapp, etc.), sendo permitido ao empregador solicitar que lhe seja entregue o atestado m&eacute;dico ou odontol&oacute;gico original, especialmente quando o afastamento se der em decorr&ecirc;ncia de acidente de trabalho.</p>
+<p>&nbsp;</p>
+<p><strong>PAR&Aacute;GRAFO SEGUNDO</strong><strong> &ndash; </strong>A empresa poder&aacute; encaminhar o empregado, com o seu respectivo atestado m&eacute;dico, para valida&ccedil;&atilde;o, podendo-se emitir relat&oacute;rio de discord&acirc;ncia.</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Relações Sindicais
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Acesso do Sindicato ao Local de Trabalho
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA SEXTA - ATUA&#199;&#195;O SINDICAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Assegura-se o acesso do dirigente sindical &agrave;s empresas, nos intervalos destinados a alimenta&ccedil;&atilde;o e descanso, para desempenho das suas fun&ccedil;&otilde;es, vedada a divulga&ccedil;&atilde;o de mat&eacute;ria pol&iacute;tica partid&aacute;ria e/ou ofensiva, desde que previamente comunicado, por escrito, atrav&eacute;s de of&iacute;cio e em local determinado pela empresa.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA S&#201;TIMA - QUADRO DE AVISOS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As empresas colocar&atilde;o &agrave; disposi&ccedil;&atilde;o da entidade sindical profissional local para avisos e comunica&ccedil;&otilde;es de interesse da categoria, desde que assinados por um de seus diretores, vedada qualquer publica&ccedil;&atilde;o suscet&iacute;vel de prejudicar a normalidade das rela&ccedil;&otilde;es entre o empregado e o empregador e nem veicular mat&eacute;rias pol&iacute;tico-partid&aacute;rias.</p>
+<p>&nbsp;</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Contribuições Sindicais
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA OITAVA - CONTRIBUI&#199;&#195;O ASSISTENCIAL NEGOCIAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>A taxa assistencial, conforme resolu&ccedil;&otilde;es aprovadas em Assembleias Gerais Extraordin&aacute;rias dos empregados, correspondente a 1<strong>%</strong> (hum por cento) sobre o sal&aacute;rio base mensal dos empregados abrangidos e/ou beneficiados por esta Conven&ccedil;&atilde;o Coletiva de Trabalho, devendo os recolhimentos das contribui&ccedil;&otilde;es serem efetuados at&eacute; o dia 10 (dez) de cada m&ecirc;s em nome da <strong>FETTHEBASA</strong>, na conta da <strong>Caixa Econ&ocirc;mica Federal, Agencia n&ordm;. 0061, Opera&ccedil;&atilde;o 003, Conta Corrente n&ordm;. 503-4.</strong></p>
+<p>&nbsp;</p>
+<p><strong>PAR&Aacute;GRAFO PRIMEIRO</strong> <strong>(DO DIREITO DE OPOSI&Ccedil;&Atilde;O) - </strong>Em caso de decis&atilde;o do TST ou do STF que altere a forma de financiamento sindical, a presente cl&aacute;usula se adequa imediatamente &agrave; referida decis&atilde;o e, desde j&aacute;, est&aacute; autorizada pela assembleia.</p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>PAR&Aacute;GRAFO SEGUNDO</strong><strong> &ndash; </strong>Aqueles que n&atilde;o s&atilde;o filiados e/ou n&atilde;o querem pagar a taxa assistencial podem, a qualquer tempo, dirigirem-se ao sindicato e entregar, do pr&oacute;prio punho, sua <strong>CARTA DE OPOSI&Ccedil;&Atilde;O</strong>, encontrando-se a Fetthebasa com seu escrit&oacute;rio de representa&ccedil;&atilde;o, no Estado de Sergipe, na Rua Gumercindo Bessa n&ordm; 190, Bairro Industrial, CEP 49.063-130, Aracaju/SE, na sede do SINDHOTRE.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA NONA - CONTRIBUI&#199;&#195;O NEGOCIAL ASSITENCIAL PATRONAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As empresas alcan&ccedil;adas por essa conven&ccedil;&atilde;o se obrigam a recolher, em favor do <strong>SINDETUR-SE &ndash; SINDICATO DAS EMPRESAS DE TURISMO NO ESTADO DE SERGIPE</strong>, a t&iacute;tulo de Contribui&ccedil;&atilde;o Negocial Patronal e por cada um de seus empregados com contrato de trabalho ativo, mensalmente, o valor correspondente a 1% (hum por cento) sobre o piso salarial de cada trabalhador, em nome do<strong> SINDICATO DAS EMPRESAS DE TURISMO NO ESTADO DE SERGIPE, </strong>na conta da<strong> Caixa Econ&ocirc;mica Federal, Agencia n&ordm;. 2186, Opera&ccedil;&atilde;o 1388, Conta Corrente n&ordm;. 739137675-3, ou pelo PIX 32845307000180 (CNPJ).</strong></p>
+<p>&nbsp;</p>
+<p><strong>PAR&Aacute;GRAFO PRIMEIRO</strong> <strong>- </strong>O Recolhimento da Contribui&ccedil;&atilde;o Negocial Assistencial Patronal &eacute; obrigat&oacute;rio a todas as empresas da categoria econ&ocirc;mica, conforme determina&ccedil;&atilde;o legal, decis&atilde;o soberana da Assembleia Geral Patronal, entendimento do Supremo Tribunal Federal, decreto legislativo n&ordm;. 1.125/2004 do Senado Nacional e Circular n&ordm;. 04/2006 do Minist&eacute;rio do Trabalho e Emprego.</p>
+<p>&nbsp;</p>
+<p><strong>PAR&Aacute;GRAFO SEGUNDO</strong><strong> &ndash; </strong>O recolhimento da Contribui&ccedil;&atilde;o Negocial Assistencial Patronal fora do prazo implicar&aacute; na aplica&ccedil;&atilde;o de multa de <strong>2%</strong> (dois por cento) sobre o valor devido, acrescido de juros de mora de <strong>1%</strong> (hum por cento) ao m&ecirc;s, e ainda, nas despesas com honor&aacute;rios advocat&iacute;cios e custas processuais, na hip&oacute;tese de cobran&ccedil;a judicial, conforme a lei.</p>
+<p>&nbsp;</p>
+<p><strong>PAR&Aacute;GRAFO TERCEIRO</strong><strong> &ndash; </strong>Em caso de decis&atilde;o do TST ou do STF que altere a forma de financiamento sindical, a presente cl&aacute;usula se adequa imediatamente &agrave; referida decis&atilde;o e, desde j&aacute;, est&aacute; autorizada pela assembleia.</p>
+<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; </strong></p>
+<p><strong>PAR&Aacute;GRAFO QUARTO (DO DIREITO DE OPOSI&Ccedil;&Atilde;O)</strong><strong> &ndash; </strong>Aqueles que n&atilde;o s&atilde;o filiados e/ou n&atilde;o querem pagar a taxa assistencial podem, a qualquer tempo, dirigirem-se ao sindicato e entregar, do pr&oacute;prio punho, sua <strong>CARTA DE OPOSI&Ccedil;&Atilde;O</strong>, no endere&ccedil;o provis&oacute;rio na Rua Riachuelo, 1001 S&atilde;o Jos&eacute; CEP 49015-160 &ndash; Aracaju/SE.</p>
+<p>&nbsp;</p>
+<p><strong>PAR&Aacute;GRAFO QUINTO</strong><strong> &ndash; </strong>Independentemente do regime jur&iacute;dico da empresa, para efeito de contribui&ccedil;&atilde;o, considera-se ao menos a exist&ecirc;ncia de, no m&iacute;nimo, 01 (hum) funcion&aacute;rio.</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Disposições Gerais
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Mecanismos de Solução de Conflitos
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA VIG&#201;SIMA - ELEI&#199;&#195;O DE FORO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As diverg&ecirc;ncias entre as partes convenientes, na aplica&ccedil;&atilde;o dos dispositivos da presente conven&ccedil;&atilde;o, ser&atilde;o apreciadas e julgadas pelas Varas da Justi&ccedil;a do Trabalho de Aracaju<strong>.</strong></p>
+<p>&nbsp;</p>
+<p>E, por estarem justos e acordados, e para que se produzam os efeitos jur&iacute;dicos assinam as partes a presente <strong>CONVEN&Ccedil;&Atilde;O COLETIVA DE TRABALHO</strong> que ser&aacute; registrada e arquivada na Superintend&ecirc;ncia Regional do Trabalho em Aracaju, Estado de Sergipe, na forma da CLT.</p>
+<p>&nbsp;</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Descumprimento do Instrumento Coletivo
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA VIG&#201;SIMA PRIMEIRA - DESCUMPRIMENTO DA OBRIGA&#199;&#195;O DE FAZER
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Pelo descumprimento desta Conven&ccedil;&atilde;o Coletiva, o sindicato cobrar&aacute;, em ju&iacute;zo, mediante substitui&ccedil;&atilde;o processual do empregado, o valor &uacute;nico correspondente a 5<strong>%</strong> (cinco por cento) a t&iacute;tulo de multa, que ser&aacute; destinada &agrave; referida entidade sindical, sendo auferido este valor por meio de incid&ecirc;ncia do referido percentual &uacute;nico de 5% (cinco por cento), mensalmente por empregado em desacordo com as normas regentes, tendo por base de c&aacute;lculo exclusivamente o valor do &uacute;ltimo piso (sal&aacute;rio base) que este receba.</p>
+<p>&nbsp;</p>
+<p><strong>PAR&Aacute;GRAFO &Uacute;NICO</strong> <strong>-</strong> A presente multa n&atilde;o se aplica em rela&ccedil;&atilde;o &agrave;s cl&aacute;usulas para as quais a legisla&ccedil;&atilde;o estabele&ccedil;a penalidade ou aquelas que, nesta conven&ccedil;&atilde;o, j&aacute; tragam no seu pr&oacute;prio bojo puni&ccedil;&atilde;o pecuni&aacute;ria.</p>
+                                                </label>
+                                                <br />
+                                    }
+                                    <br />
+                                    <table border="0" cellpadding="0" cellspacing="0" align="center">
+                                        <tr>
+                                            <td align="center">
+                                                    <br />
+    <br />
+    <label class="textonome">
+        ADILSON EVANGELISTA DE JESUS
+        <br style="height: 5px" />
+        Presidente
+        <br style="height: 5px" />
+        FEDERACAO DOS TRABALHADORES EM TURISMO E HOSPITALIDADE DOS ESTADOS DA BAHIA, SERGIPE E ALAGOAS
+        <br />
+        <br />
+    </label>
+
+    <br />
+    <br />
+    <label class="textonome">
+        JOAO DE SOUZA AVILA
+        <br style="height: 5px" />
+        Presidente
+        <br style="height: 5px" />
+        SINDICATO DAS EMPRESAS DE TURISMO DO ESTADO DE SERGIPE
+        <br />
+        <br />
+    </label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                        <br />
+                                        <center>
+                                            <label class="textogrupo">
+                                                <b>ANEXOS </b>
+                                            </label>
+                                        </center>
+                                                        <label>
+                                                            <b>
+                                                                <center>
+                                                                    <label class="textogrupo">
+                                                                        ANEXO I - ATA
+                                                                    </label>
+                                                                </center>
+                                                                <label class="tituloClausula">
+                                                                                                                                    </label>
+                                                            </b>
+                                                        </label>
+                                                        <b>
+                                                            <label>
+
+                                                            </label>
+                                                        </b>
+                                                        <br />
+                                                        <label class="descricaoClausula" >
+                                                            <p><a href="https://www3.mte.gov.br/sistemas/mediador/imagemAnexo/MR041691_20252025_07_16T10_06_05.pdf" target="_blank">Anexo (PDF)</a></p>
+                                                        </label>
+                                                        <br />
+                                        <!--****************************************** FIM - Anexos ******************************************-->
+                                            <label class="texto">
+                                                &#160;&#160;&#160;&#160;A autenticidade deste documento poderá ser confirmada na
+                                                página do Ministerio do Trabalho e Emprego na Internet, no endereço http://www.mte.gov.br.
+                                            </label>
+                                            <br />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </div>
+</body>
+<script>
+    setTimeout(function () {
+        window.history.replaceState({}, '', window.location.pathname);
+    }, 0);
+</script>
+</html>
