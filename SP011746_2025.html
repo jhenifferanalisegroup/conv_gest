@@ -1,0 +1,854 @@
+
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+    <title>
+        Mediador - Extrato Conven&#231;&#227;o Coletiva
+    </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G"></script>
+
+    <script src='/sistemas/mediador/WebResource.axd?d=cuQcyhunthaKbkS1HRDdYz6PN4zLUht6oCI9W5Qe4lHx-6WAKxelJ3CNRaaYGmIIXUPG_02Oz_3xp1nWR4wRmrhzD889Xme-W80PINl5Opm3a6Vk9xOcKAdRAP0WaAY0QwRFkKa8ygci1cWChKIM3xi_y4E-QkbPdUjFbuj7xrCEQ-EVAHEd2SiDsURiQrGz0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=oCiGPyL516rw_w4O_26ZIUgEDxNTixko29P8hNqgYYE9jihnBUsGIp-kukrf82JW7eobyj8s0ooJ5rI1tfuIzt5-6_pMzumq7dLHWrlQZ-QMRUlCHBKuRssX4JwWJPbRaacnUMI4LY59GnxsKL82GjLr-MAsXYWqz_mUgN6cUz51NH30xgq7ZmHyBhUjhPw8-L_0eLuQdQHcRf08dF_HrA2&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=wI0LQo9-Y3uVg4JvYlrDeAmD0eDROLwrykxGZZm7FeHJNOkuLJd-tB3W2xasfEpUFS-WtoMR44VJNgE_0uIW4OIXYKjcDuXF0IcPvjMyLwlPk2AOsHRO3raei2aKk_DpNcvHrgXcEazozbzFbx3MyYROztNnngy4LZm8CigaBFeRwbfjiCBOJaSo3LCaUDVQ0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=KaDqL3Gcxy5_cHNfLKsWFNdcKxNiiUh3HtPda6q62Tk6jObaqvBGjIGv4N3KHnol1jsYfqnEDPvu8bqDw9664g8gNXTu-bup9GNgychn1MlTxA9V_0gUapXZl6zq0NwvemVy1w_Yym-4g5yIIiPndY1yb7UY2Z3ZO1ZTaDrRNyAjWzC-rNL3CXeYpaiIWTH40&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=qtzkb4aKrNku25SKlKs4jZr_bdveUVnUZ5tZc2pTT2sauL0_dRzCNMZhGSFASotxmo04giDQ-E0d0UeLqCdzABP8l2gJR6XwVRdetE7e7Eck3ObZ-LknGwsZoVcBz7BNY1TRN4J-vljXQrR5MmbFoTkwox8Q8ec5f9wsCVK67AZSRApQIAoKK7FEwOCFjWlx0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=3iAOwoL9JnA5TZ6rygyAAR_lXBxjSq4488DJsEscLKSXKUh-cfJ9O5bC-FxRzAqJtsQJFs2IhSJQ3HR3WKiVMzlo3WgEBcHU3QAeRw7LGJeOXAbL5CGBB2zel0X2_oWfsINwuZcDfexI5FD89VA4NlfrRQ7K4czFkowNfSNtL_dKVZ5vnkZUyK_vnlVhpVzb0&t=639193666532168144' type='text/javascript'></script>
+
+
+<script type="text/javascript">
+        var recaptchaSiteKey = '6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G';
+        var pageLoadToken = '';
+        var isPageValidated = false;
+
+        function onRecaptchaLoad() {
+            console.log('reCAPTCHA carregado, validando página...');
+            executePageLoadRecaptcha();
+        }
+
+        function executePageLoadRecaptcha() {
+            if (typeof grecaptcha === 'undefined') {
+                console.error('reCAPTCHA não carregado');
+                return;
+            }
+
+            grecaptcha.ready(function() {
+                grecaptcha.execute(recaptchaSiteKey, {
+                    action: 'page_load_resumo'
+                }).then(function(token) {
+                    console.log('Token de página gerado');
+                    pageLoadToken = token;
+
+                    // Enviar o token para o servidor
+                    validatePageLoadToken(token);
+                }).catch(function(error) {
+                    console.error('Erro no reCAPTCHA de página:', error);
+                    // Em desenvolvimento, permitir continuar
+                });
+            });
+        }
+
+        function validatePageLoadToken(token) {
+            var currentUrl = window.location.href;
+            var queryString = window.location.search;
+            var nrSolicitacao = 'MR063331/2025';
+
+            $.ajax({
+                url: '/sistemas/mediador/Resumo/ValidateResumoPageLoad',
+                type: 'POST',
+                data: {
+                    recaptchaToken: token,
+                    currentUrl: currentUrl,
+                    queryString: queryString,
+                    nrSolicitacao: nrSolicitacao
+                },
+                success: function(response) {
+                    if (response.success) {
+                        console.log('Página validada com sucesso');
+                        isPageValidated = true;
+                        showPageContent();
+                    } else {
+                        console.warn('Validação de página falhou:', response.message);
+                        handleValidationFailed(response);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Erro ao validar página:', error);
+                    handleValidationFailed({ message: 'Erro de comunicação com o servidor' });
+                }
+            });
+        }
+
+        function showPageContent() {
+            // Remover overlay de loading se existir
+            $('#recaptcha-loading').remove();
+            console.log('Conteúdo da página liberado');
+        }
+
+        function handleValidationFailed(response) {
+            // Mostrar mensagem de erro
+            var errorHtml = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                    <div style="text-align: center; padding: 20px;">
+                        <h2 style="color: #d32f2f;">Validação de Segurança</h2>
+                        <p style="font-size: 16px; margin: 20px 0;">${response.message || 'Falha na validação de segurança.'}</p>
+                        <button onclick="window.location.reload()" style="padding: 10px 20px; background: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Tentar Novamente
+                        </button>
+                        <br><br>
+                        <button onclick="window.location.href='/sistemas/mediador/'" style="padding: 8px 16px; background: #757575; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Voltar para Página Inicial
+                        </button>
+                    </div>
+                </div>
+            `;
+            $('body').prepend(errorHtml);
+        }
+
+        $(document).ready(function() {
+            console.log('Página carregada - ambiente de produção');
+
+            // Pular validação reCAPTCHA em produção
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.log('Produção - validando sem reCAPTCHA');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 1000);
+
+            // Timeout de segurança reduzido
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.warn('Timeout na validação - liberando conteúdo');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 5000); // Reduzido para 5 segundos
+        });
+
+        function Imprimir() {
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "none";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "none";
+            window.print();
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "";
+            return true;
+        }
+        $(function () {
+            var marcaDaguaHtml = $('.MarcaDagua').html();
+            var width = $('body').width();
+            var marcaW = $('.MarcaDagua').width();
+
+            var qtdNescessarios = Math.round((width / marcaW) + 0.4);
+            if (qtdNescessarios > 0)
+                for (var incrementador = 0; incrementador < qtdNescessarios; incrementador++) {
+                    $('.MarcaDagua').append("<br />");
+                    $('.MarcaDagua').append(marcaDaguaHtml);
+                }
+        });
+
+
+</script>
+    <style type="text/css">
+        .titulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .Subtitulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 13px;
+        }
+        .texto
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .tituloClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .descricaoClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .textogrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        .textosubgrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        .textonome
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .textofuncao
+        {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .pagebreak
+        {
+            page-break-after: always;
+        }
+        table.titulo
+        {
+            text-align: left;
+        }
+        @page Section2 {size:21cm 29.7cm ;mso-page-orientation:portrait;margin-top:2cm; margin-rigth:2cm; mso-paper-source:0;}
+        div.Section2 {page:Section2;}
+        pre
+        {
+            white-space: pre-wrap; /* css-3 */
+            white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+            white-space: -pre-wrap; /* Opera 4-6 */
+            white-space: -o-pre-wrap; /* Opera 7 */
+            word-wrap: break-word; /* Internet Explorer 5.5+ */
+            white-space: normal;
+        }
+    </style>
+    <!--[if gte mso 9]>
+    <xml>
+    <w:WordDocument>
+    <w:View>Print</w:View>
+    <w:Zoom>100</w:Zoom>
+    <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+    </xml>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="Section2">
+                <form method="post" action="/sistemas/mediador/Resumo/ResumoVisualizarSalvarMsWordDoc?NrSolicitacao=MR063331/2025">
+                    <input type="button" id="btnResumoVisualizarImprimir" value="Imprimir" onclick="Imprimir();" />
+                    <input type="submit" id="btnResumoVisualizarSalvar" value="Salvar" />
+                </form>
+
+            <div style="text-align: center; z-index: -1000; position: absolute; width: 100%;"
+                 class="MarcaDagua">
+                <img src="/sistemas/mediador/Content/images/carimbo.gif" alt="marcaDAgua" />
+            </div>
+        <center>
+            <table border="0" style="width: 18cm;" id="tblConteudo">
+                <tr>
+                    <td>
+                        <table style="width: 100%;" cellpadding="0" cellspacing="0">
+
+                                                            <tr>
+                                    <td align="center" class="titulo" style="text-transform: uppercase;">
+                                        <b>
+                                            Conven&#231;&#227;o Coletiva De Trabalho 2025/2026
+                                        </b>
+                                        <br />
+                                        <br />
+                                    </td>
+                                </tr>
+                            <tr>
+                                <td>
+                                    <div style="text-align: left;">
+                                        <table border="0" class="titulo" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td>
+                                                        <b>NÚMERO DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        SP011746/2025
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        14/11/2025
+                                                    </td>
+                                                </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>NÚMERO DA SOLICITAÇÃO:</b>
+                                                </td>
+                                                <td style="width: 10px">
+                                                </td>
+                                                <td>
+                                                    MR063331/2025
+                                                </td>
+                                            </tr>
+                                                                                            <tr>
+                                                    <td>
+                                                        <b>NÚMERO DO PROCESSO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        47979.257979/2025-69
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DO PROTOCOLO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+21/10/2025                                                    </td>
+                                                </tr>
+                                        </table>
+                                        <br />
+
+                                                        <p>
+                                                            <label class="texto">
+                                                                <b>
+                                                                    Confira a autenticidade no endereço http://mediador.trabalho.gov.br/sistemas/mediador/.
+                                                                </b>
+                                                            </label>
+                                                        </p>
+                                                    <br />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="texto">
+                                    <p align="justify">
+SINDICATO DOS EMPREGADOS NO COMERCIO DE TUPA, CNPJ n. 72.557.473/0001-03, neste ato representado(a) por seu 
+
+Presidente, Sr(a). AMAURI SERGIO MORTAGUA;
+    <br />
+&nbsp;
+    <br />
+                                        <label>
+                                            E
+                                        </label>
+                                        <br />
+                                        <br />
+SINDICATO DO COMERCIO VAREJISTA DE ADAMANTINA E REGIAO - SINCOMERCIO NOVA ALTA PAULISTA, CNPJ n. 57.320.277/0001-19, neste ato representado(a) por seu 
+
+Presidente, Sr(a). SERGIO VANDERLEI DA SILVA;
+    <br />
+&nbsp;
+    <br />
+                                                                                    celebram
+                                                                                    a
+                                         presente CONVEN&#199;&#195;O COLETIVA DE TRABALHO,
+ estipulando as condi&#231;&#245;es de trabalho previstas nas cl&#225;usulas seguintes:                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA PRIMEIRA - VIG&#202;NCIA E DATA-BASE
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    As partes fixam a vigência da presente Convenção Coletiva de Trabalho no período de 01º de novembro de 2025 a 31 de outubro de 2026 e a data-base da categoria em 01º de setembro.
+                                                </label>
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA SEGUNDA - ABRANG&#202;NCIA
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    A presente Convenção Coletiva de Trabalho abrangerá a(s) categoria(s) <b>Profissional no Comércio Atacadista e Varejista (micro, mini, pequenas, médias ou grandes empresas) e Empregados no Comércio Atacadista e Varejista de: Algodão e Outras Fibras Vegetais; Carnes Frescas, Congeladas e Derivados; Aves, Carnes de Aves e Derivados; Carvão Vegetal e Lenha; Gêneros Alimentícios; Álcool e Bebidas em Geral; Frutas Legumes, Verduras, Flores e Plantas; Couros e Peles; Tecidos e Confecções; Bolsas e Calçados; Vestuário, Adornos e Acessórios; Armarinhos; Produtos de Mini-Mercados, Mercados, Supermercados e Hipermercados; Louças, Louças Finas e Objetos de Arte; Bijuterias; Móveis; Aparelhos Eletrodomésticos e Congêneres; Produtos de Limpeza em Geral; Artigos Sanitários; Vidro Plano, Cristais e Espelhos; Maquinismos em Geral; Materiais de Construção em Geral; Tintas e Ferragens (Utensílios e Ferramentas); Material Elétrico; Produtos Eletro-Mecânicos e Eletro-Eletrônicos; Produtos Químicos para Indústria e Lavoura; Sacaria; Pedras Preciosas; Jóias e Relógios; Papel e Papelão; Plásticos e Derivados; Materiais, Livros, Material de Escritório e Papelaria; Aparelhos e Equipamentos para Computação, Informática e Internet; Aparelhos e Materiais Ópticos, Fotográficos e Cinematográficos; Produtos de Áudio e Vídeo, Filmes, Discos, CDs Players, DVDs e Congêneres; Sucata de Ferro e Metais; Instrumentos e Materiais para Cirurgia, Médico Hospitalar, Odontológico e Científico; Veículos Novos e Usados, Inclusive Concessionárias de Automóveis, Caminhões, Ônibus, Motocicletas, Tratores, Máquinas Agrícolas e Demais Veículos Automotores e Respectivas Oficinas; Peças e Acessórios para Veículos; Serviços Funerários; Drogas, Medicamentos, Produtos Farmacêuticos e Distribuidores de Medicamentos; Cosméticos e Perfumarias; Lojas de Conveniência Autônomas</b>, com abrangência territorial em <b>Adamantina/SP, Flórida Paulista/SP e Mariápolis/SP</b>.
+                                                </label>
+                                                <br />
+                                    </p>
+
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Jornada de Trabalho – Duração, Distribuição, Controle, Faltas
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Prorrogação/Redução de Jornada
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TERCEIRA - HOR&#193;RIO ESPECIAL NATALINO 2025 E DATAS ESPECIAIS 2025/2026
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p><strong><span style="text-decoration: underline;">PRORROGA&Ccedil;&Atilde;O DE HOR&Aacute;RIO DE TRABALHO</span></strong><strong>. REQUISITOS. NORMAS. </strong>Os estabelecimentos comerciais (matriz ou filial) da &aacute;rea de representa&ccedil;&atilde;o das Entidades Signat&aacute;rias de aplica&ccedil;&atilde;o das normas deste instrumento que possuam, em vigor, o &ldquo;<strong>CERTIFICADO REPIS&rdquo;</strong> ou o &ldquo;<strong>CERTIFICADO SEJT&rdquo;,</strong> no tocante &agrave; jornada de trabalho dos comerci&aacute;rios que prestam servi&ccedil;os nestes estabelecimentos comerciais e estejam inseridos na rela&ccedil;&atilde;o desses certificados; e, desde que tamb&eacute;m tenham cumprido todos os procedimentos e obriga&ccedil;&otilde;es de fazer exigidos pelas Conven&ccedil;&otilde;es Coletivas de Trabalho em vigor; poder&atilde;o praticar as normas deste Cap&iacute;tulo e ajustar a jornada dos comerci&aacute;rios aos hor&aacute;rios especiais e alternativos de trabalho previstos nesta Conven&ccedil;&atilde;o, nas &eacute;pocas <strong>consideradas de funcionamento do com&eacute;rcio em datas especiais</strong>, <strong><span style="text-decoration: underline;">NO PER&Iacute;ODO DE VIG&Ecirc;NCIA DESTA CONVEN&Ccedil;&Atilde;O</span>,</strong> sendo que a dura&ccedil;&atilde;o da jornada de trabalho, a prorroga&ccedil;&atilde;o e suas compensa&ccedil;&otilde;es, na forma do disposto no Artigo 59, da CLT<em>, </em>no &sect; 1&ordm;, do artigo 3&ordm;, da Lei 12.790, de 14 de mar&ccedil;o de 2013, pelo disposto no Art. 611-A da CLT, bem como nas demais disposi&ccedil;&otilde;es aplic&aacute;veis da CLT e da legisla&ccedil;&atilde;o trabalhista, obedecidos os limites legais e constitucionais, ter&atilde;o os seguintes hor&aacute;rios e normas:-</p>
+<p><strong>P.1 &ndash; DIA 08 DE DEZEMBRO DE 2025 (2&ordf; FEIRA &ndash; FERIADO MUNICIPAL COMPENSA&Ccedil;&Atilde;O NO DIA 02 DE JANEIRO DE 2026 &ndash; 6&ordf; FEIRA)</strong>:-</p>
+<p>In&iacute;cio da jornada: &agrave;s 09 (nove) horas;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Intervalo intrajornada para descanso e alimenta&ccedil;&atilde;o:- de 0:15 (quinze) minutos;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Encerramento da jornada:- &agrave;s 15:00 (quinze) horas.</p>
+<p><strong>P.2 &ndash; DIAS 10, 11, 12, 15, 16, 17, 18, 19, 22 E 23 DE DEZEMBRO DE 2025 (de 2&ordf;s &agrave;s 6&ordf;s feiras); 08/MAIO/2026; 07/AGOSTO/2026; 09/OUTUBRO/2026 (6&ordf;s feiras)</strong>:-</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In&iacute;cio da jornada:- &agrave;s 09:00 (nove) horas;</p>
+<p>Dois intervalos intrajornada para descanso/refei&ccedil;&atilde;o (almo&ccedil;o e jantar): de 2:00 (duas) horas cada um, atrav&eacute;s de escala organizada pela empresa;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p>Encerramento da jornada:- &agrave;s 22:00 (vinte e duas) horas.</p>
+<p><strong>P.3 &ndash; DIAS 13 E 20 DE DEZEMBRO DE 2025; 09/MAIO/2026; 08/AGOSTO/2026; 10/OUTUBRO/2026 (S&Aacute;BADOS):-</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In&iacute;cio da jornada:- &agrave;s 9:00 (nove) horas;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Intervalo intrajornada para descanso e alimenta&ccedil;&atilde;o:- de 0:15 (quinze) minutos;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Encerramento da jornada:- &agrave;s 15:00 (quinze) horas.</p>
+<p><strong>P.4 &ndash; DIA 28/NOVEMBRO/2025 (BLACK-FRIDAY - 6&ordf; FEIRA); 11/JUNHO/2026 (DIA DOS NAMORADOS &ndash; 5&ordf; FEIRA):-</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In&iacute;cio da jornada:- &agrave;s 9:00 (nove) horas;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Intervalo intrajornada para descanso e refei&ccedil;&atilde;o:- de 2:00 (duas) horas;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Encerramento da jornada:- &agrave;s 20:00 (vinte) horas.</p>
+<p><strong>P.5 &ndash; DIA 29/NOVEMBRO/2025 (S&Aacute;BADO)</strong>:-</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In&iacute;cio da jornada:- &agrave;s 9:00 (nove) horas;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Intervalo intrajornada para descanso e alimenta&ccedil;&atilde;o:- de 0:15 (quinze) minutos;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Encerramento da jornada:- &agrave;s 14:00 (quatorze) horas.</p>
+<p><strong>P.6 &ndash; DIA 09 DE JULHO DE 2026 (5&ordf; FEIRA &ndash; FERIADO - COMPENSA&Ccedil;&Atilde;O NO DIA 16 DE FEVEREIRO DE 2026 - 2&ordf; FEIRA DE CARNAVAL):-</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In&iacute;cio da jornada:- &agrave;s 9:00 (nove) horas;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;Intervalo intrajornada para descanso e alimenta&ccedil;&atilde;o:- de 0:15 (quinze) minutos;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Encerramento da jornada:- &agrave;s 15:00 (quinze) horas.</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Compensação de Jornada
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUARTA - NORMAS DE COMPENSA&#199;&#195;O DAS HORAS EXTRAORDIN&#193;RIAS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p><strong>HOR&Aacute;RIO ESPECIAL NATALINO 2025 E HOR&Aacute;RIOS ESPECIAIS DE TRABALHO PARA 2026: </strong>As horas extras trabalhadas, em regime especial de prorroga&ccedil;&atilde;o e compensa&ccedil;&atilde;o, durante os per&iacute;odos contemplados na Cl&aacute;usula anterior desta Conven&ccedil;&atilde;o, nos moldes do que determinam a Constitui&ccedil;&atilde;o Federal, as leis trabalhistas (<em>artigo 59/CLT e par&aacute;grafos)</em>, o &sect; 1&ordm; do artigo 3&ordm;, da Lei 12.790, de 14 de mar&ccedil;o de 2013, pelo disposto no Art. 611-A da CLT, bem como nas demais disposi&ccedil;&otilde;es aplic&aacute;veis da CLT e da legisla&ccedil;&atilde;o trabalhista, e o instrumento normativo coletivo em vigor, ser&atilde;o compensadas na jornada de trabalho, da seguinte forma:-</p>
+<p><strong>C.1 - DIAS 01, 02, 03, 04, 05, 09, 29 e 30/DEZEMBRO/2025; E 05, 06, 07, 08, 09, 12, 13, 14 e 15/JANEIRO/2026 (2&ordf;s. &agrave;s 6&ordf;s. feiras):-</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In&iacute;cio da jornada di&aacute;ria:- &agrave;s 9:00 (nove) horas;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Intervalo intrajornada para descanso e refei&ccedil;&atilde;o:- de 2:00 (duas) horas;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Encerramento da jornada di&aacute;ria:- &agrave;s 18:00 (dezoito) horas.</p>
+<p><strong>C.2 &ndash; DIA 24/DEZEMBRO/2025 (4&ordf; FEIRA)</strong>:-</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In&iacute;cio da jornada:- &agrave;s 9:00 (nove) horas;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Intervalo intrajornada para descanso e refei&ccedil;&atilde;o:- de 2:00 (duas) horas;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Encerramento da jornada:- &agrave;s 16:00 (dezesseis) horas.</p>
+<p><strong>C.3 - DIA 26/DEZEMBRO/2025 (6&ordf; FEIRA)</strong>:-</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In&iacute;cio da jornada:- &agrave;s 12:00 (doze) horas;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Encerramento da jornada:- &agrave;s 18:00 (dezoito) horas.</p>
+<p><strong>C.4 - DIA 31/DEZEMBRO/2025 (4&ordf; FEIRA)</strong>:-</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In&iacute;cio da jornada:- &agrave;s 9:00 (nove) horas;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Encerramento da jornada:- &agrave;s 13:00 (treze) horas.</p>
+<p><strong>C.5- DIA 02 DE JANEIRO DE 2026 (SEXTA-FEIRA) &ndash; SEM JORNADA. FOLGA COMPENSAT&Oacute;RIA DO TRABALHO NO FERIADO DO DIA 08 DE DEZEMBRO DE 2025.</strong> Dia destinado ao descanso, sem jornada de trabalho, obrigando-se as empresas a permanecer, como obriga&ccedil;&atilde;o de fazer, com suas portas fechadas e sem expediente e trabalho interno ou externo.</p>
+<p><strong>C.6&ndash; DIA 16/FEVEREIRO/2026 (SEGUNDA-FEIRA - CARNAVAL) &ndash; SEM JORNADA - FOLGA COMPENSAT&Oacute;RIA DO TRABALHO NO FERIADO DO DIA 09 DE JULHO DE 2026</strong>.&nbsp; Dia destinado ao descanso, sem jornada de trabalho, obrigando-se as empresas a permanecer com suas portas fechadas e sem expediente e trabalho interno ou externo.</p>
+<p><strong>C.7 &ndash; DIA 17/FEVEREIRO/2026 (TER&Ccedil;A-FEIRA - CARNAVAL) &ndash; SEM JORNADA &ndash; FOLGA</strong>. Dia destinado ao descanso, sem jornada de trabalho, obrigando-se as empresas a permanecer, como obriga&ccedil;&atilde;o de fazer, com suas portas fechadas e sem expediente e trabalho interno ou externo.</p>
+<p><strong>C.8 &ndash;</strong> Os domingos e feriados do per&iacute;odo s&atilde;o destinados &agrave; folga laboral, sem jornada de trabalho, e as empresas, como obriga&ccedil;&atilde;o de fazer, permanecer&atilde;o, nesses dias, com suas portas fechadas, sem expediente e trabalho interno ou externo dos comerci&aacute;rios.</p>
+<p>&nbsp;</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUINTA - CONCESS&#195;O DE FOLGA COMPENSAT&#211;RIA
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>A concess&atilde;o de folga compensat&oacute;ria ou semanal e a redu&ccedil;&atilde;o em jornada di&aacute;ria previstas neste instrumento n&atilde;o poder&atilde;o ser substitu&iacute;das por acr&eacute;scimo ou decr&eacute;scimo em eventual banco de horas dos comerci&aacute;rios e nem integr&aacute;-lo.</p>
+<p><strong>Par&aacute;grafo &uacute;nico. </strong>Nas datas de jornada especial contempladas neste instrumento, para as quais a empresa n&atilde;o possua o certificado previsto nas conven&ccedil;&otilde;es coletivas, a prorroga&ccedil;&atilde;o da jornada de trabalho, nesses dias, n&atilde;o poder&aacute; ser compensada com acr&eacute;scimo ou decr&eacute;scimo em eventual banco de horas dos comerci&aacute;rios e nem integr&aacute;-lo, devendo o excesso de jornada ser remunerado como horas extraordin&aacute;rias na forma da legisla&ccedil;&atilde;o, aplicando-se adicionais, acr&eacute;scimos e normas previstas em Conven&ccedil;&otilde;es Coletivas de Trabalho em vigor.</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras disposições sobre jornada
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA SEXTA - DO HOR&#193;RIO DA JORNADA DE TRABALHO NA REGI&#195;O.
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Durante a vig&ecirc;ncia da presente Conven&ccedil;&atilde;o, o hor&aacute;rio da jornada de trabalho dos comerci&aacute;rios que prestam servi&ccedil;os aos estabelecimentos comerciais localizados nos munic&iacute;pios da &aacute;rea de abrang&ecirc;ncia deste instrumento normativo, com base no disposto no &sect; 1&ordm;, do artigo 3&ordm;, da Lei 12.790, de 14 de mar&ccedil;o de 2013, dever&aacute; obedecer &agrave;s seguintes jornadas di&aacute;rias de trabalho:</p>
+<p><strong>I &ndash; DE SEGUNDAS &Agrave;S SEXTAS-FEIRAS</strong>:-</p>
+<p>In&iacute;cio da jornada: &agrave;s 8:00 (oito) horas;</p>
+<p>Intervalo para descanso e refei&ccedil;&atilde;o de 2:00 (duas) horas;</p>
+<p>Encerramento da jornada:- &agrave;s 18:00 (dezoito) horas.</p>
+<p><strong>II &ndash; AOS S&Aacute;BADOS:-</strong></p>
+<p>In&iacute;cio da jornada:- &agrave;s 9:00 (nove) horas;</p>
+<p>Encerramento da jornada:- &agrave;s 13:00 (treze) horas.</p>
+<p><strong>III &ndash; AOS DOMINGOS E FERIADOS</strong></p>
+<p><strong>FOLGA</strong>. Destinados ao descanso, sem jornada de trabalho, permanecendo as empresas, como obriga&ccedil;&atilde;o de fazer, com suas portas fechadas e sem expediente e trabalho interno ou externo.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA S&#201;TIMA - JORNADAS ESPECIAIS E ALTERNATIVAS  &#192; LEI 12.790/2013
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As jornadas de trabalho dos comerci&aacute;rios, especiais e alternativas ao determinado na Lei 12.790/2013, bem assim nas normas da Consolida&ccedil;&atilde;o das Leis do Trabalho &ndash; CLT e demais legisla&ccedil;&atilde;o sobre o assunto, ser&atilde;o disciplinadas neste T&iacute;tulo II, da presente Conven&ccedil;&atilde;o Coletiva de Trabalho, dentro dos princ&iacute;pios e normas tra&ccedil;adas pela &ldquo;CCT Socioecon&ocirc;mica 2025/2026&rdquo;.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA OITAVA - JORNADAS ESPECIAIS - APLICA&#199;&#195;O
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Todas as normas das Cl&aacute;usulas deste T&iacute;tulo s&oacute; se aplicar&atilde;o:</p>
+<p>A)&nbsp; &Agrave;s empresas que cumprirem todos os requisitos na forma prevista nesta Conven&ccedil;&atilde;o e obtiverem o respectivo Certificado:</p>
+<p>A.1- No caso das micro ou pequenas empresas, &agrave;s que obtiverem o &ldquo;<strong>CERTIFICADO REPIS&rdquo;</strong>;</p>
+<p>A.2- No caso das demais empresas ou estabelecimentos comerciais, &agrave;s que obtiverem o &ldquo;<strong>CERTIFICADO SEJT&rdquo;;</strong> e,</p>
+<p>B)&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;Espec&iacute;fica e exclusivamente, aos comerci&aacute;rios que estiverem relacionados no respectivo Certificado de sua empresa.</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Relações Sindicais
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Acesso do Sindicato ao Local de Trabalho
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA NONA - ACESSO AS EMPRESAS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Aos diretores, funcion&aacute;rios e agentes sindicais do Sindicato dos Comerci&aacute;rios fica assegurado o direito de, pelo menos uma vez por m&ecirc;s, efetuar a distribui&ccedil;&atilde;o de boletins da entidade junto aos comerci&aacute;rios, bem como realizar campanha de sindicaliza&ccedil;&atilde;o e trabalhos atinentes &agrave;s Assembleias Gerais Itinerantes devidamente convocadas na forma estatut&aacute;ria, no recinto do estabelecimento das empresas, durante o hor&aacute;rio de jornada de trabalho, desde que este servi&ccedil;o n&atilde;o atrapalhe o atendimento ao p&uacute;blico.</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Disposições Gerais
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Mecanismos de Solução de Conflitos
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA - CONTROVERSIAS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As controv&eacute;rsias resultantes de interpreta&ccedil;&atilde;o, da aplica&ccedil;&atilde;o ou da n&atilde;o observ&acirc;ncia das normas desta Conven&ccedil;&atilde;o, bem como as diverg&ecirc;ncias surgidas entre os convenentes por motivo de aplica&ccedil;&atilde;o de suas disposi&ccedil;&otilde;es, ser&atilde;o dirimidas pela Justi&ccedil;a do Trabalho, podendo o &ldquo;Sindicato dos Comerci&aacute;rios&rdquo; atuar como substituto processual de seus representados.</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Descumprimento do Instrumento Coletivo
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA PRIMEIRA - FISCALIZA&#199;AO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>A Fiscaliza&ccedil;&atilde;o do cumprimento das normas contidas nesta Conven&ccedil;&atilde;o Coletiva de Trabalho ser&aacute; exercida pelas autoridades competentes em suas respectivas &aacute;reas de atua&ccedil;&atilde;o, bem como fica desde j&aacute; autorizada a presen&ccedil;a, nos estabelecimentos das empresas, de Diretores dos Sindicatos Convenentes, que se identificar&atilde;o com a Carteira de Identidade de Dirigente Sindical, ou funcion&aacute;rio ou agente credenciado das entidades sindicais, a fim de fiscalizar o exato cumprimento dos termos desta Conven&ccedil;&atilde;o.</p>
+<p><strong>&sect; 1&ordm;. </strong>Fica garantido ao &ldquo;Sindicato dos Comerci&aacute;rios&rdquo; e ao &ldquo;Sindicato Empresarial&rdquo;, signat&aacute;rios deste instrumento, o direito de acesso aos documentos originais, para a verifica&ccedil;&atilde;o do cumprimento desta Conven&ccedil;&atilde;o.</p>
+<p><strong>&sect; 2&ordm;. </strong>Constatada qualquer irregularidade pelos diretores, funcion&aacute;rios ou agentes sindicais, ser&aacute; lavrado Termo de Fiscaliza&ccedil;&atilde;o e Notifica&ccedil;&atilde;o com a determina&ccedil;&atilde;o de regulariza&ccedil;&atilde;o no prazo de at&eacute; 7 (sete) dias, a contar da data da entrega do Termo.</p>
+<p><strong>&sect; 3&ordm;.</strong> No mesmo prazo do par&aacute;grafo anterior, dever&aacute; o estabelecimento notificado comprovar a efetiva regulariza&ccedil;&atilde;o perante a Entidade Notificante e o pagamento da multa prevista nesta Conven&ccedil;&atilde;o, independentemente de qualquer outra san&ccedil;&atilde;o ou multa prevista na legisla&ccedil;&atilde;o que vier a ser imposta pelos &oacute;rg&atilde;os competentes.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA SEGUNDA - MULTA
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Fica estipulada multa de 50% (cinquenta por cento) do valor do piso salarial relativo a comerci&aacute;rios em geral, vigente para a empresa, por comerci&aacute;rio e pelo n&uacute;mero de infring&ecirc;ncias cometidas, pelo descumprimento de cada uma das obriga&ccedil;&otilde;es de fazer e dar (entregar e pagar) contidas no presente instrumento, a favor do prejudicado e das entidades convenentes, sendo que o pagamento integral dessa multa dever&aacute; ser efetuado, mediante recibo, diretamente ao Sindicato dos Comerci&aacute;rios (SINCOMERCI&Aacute;RIOS), com endere&ccedil;o &agrave; Rua Guaianazes n&ordm; 596, centro, na cidade de Tup&atilde;, estado de S&atilde;o Paulo, que se encarregar&aacute; de repassar, sob recibo, a cada interessado o valor que lhe &eacute; devido, na seguinte propor&ccedil;&atilde;o em rela&ccedil;&atilde;o ao total da multa recebido: 60% (sessenta por cento) para os comerci&aacute;rios prejudicados e 40% (quarenta por cento) para o SINCOMERCI&Aacute;RIOS.</p>
+<p><strong>Par&aacute;grafo &uacute;nico.</strong> A multa prevista nesta Cl&aacute;usula n&atilde;o ser&aacute; cumulativa com multas espec&iacute;ficas previstas em outras Cl&aacute;usulas.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA TERCEIRA - PRORROGA&#199;&#195;O, REVIS&#195;O, DEN&#218;NCIA, OU REVOGA&#199;&#195;O TOTAL OU PARCIAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Na forma do disposto no art. 613, da CLT, as partes poder&atilde;o promover, de comum acordo, prorroga&ccedil;&atilde;o, revis&atilde;o, aditamentos, den&uacute;ncia, ou revoga&ccedil;&atilde;o total ou parcial deste instrumento coletivo.</p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;">&nbsp;</p>
+<p><strong>&nbsp;</strong></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="margin-left: 0px; font-size: 12pt; mso-bidi-font-weight: bold;"><span style="font-family: 'Times New Roman';"><br /><!--?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" ?--></span></span></p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras Disposições
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA QUARTA - CATEGORIAS REPRESENTADAS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>As Entidades Sindicais convenentes fixam que, no &acirc;mbito de suas representa&ccedil;&otilde;es, esta Conven&ccedil;&atilde;o Coletiva de Trabalho obrigar&aacute;, na categoria econ&ocirc;mica, todas as empresas do com&eacute;rcio em geral e seus estabelecimentos situados na base territorial de representa&ccedil;&atilde;o dos &ldquo;Sindicatos Empresariais&rdquo;; e, na categoria profissional, todos os comerci&aacute;rios abrangidos pela Lei 12.790/2013 que prestam servi&ccedil;os aos estabelecimentos das empresas sediados nos munic&iacute;pios da jurisdi&ccedil;&atilde;o sindical das entidades convenentes, representados pelo &ldquo;Sindicato dos Comerci&aacute;rios&rdquo;; aplicando-se-lhes as condi&ccedil;&otilde;es de trabalho e demais determina&ccedil;&otilde;es constantes das Cl&aacute;usulas que comp&otilde;em o presente instrumento. Conforme consta na Certid&atilde;o de Carta Sindical do Sindicato dos Empregados no Com&eacute;rcio de Tup&atilde;, expedida no processo n&ordm; 46000.008142/2002-96, da Secretaria de Rela&ccedil;&otilde;es do Trabalho, do Minist&eacute;rio do Trabalho, o registro sindical desta Entidade contempla a representa&ccedil;&atilde;o da(s) categoria(s), para as quais se aplica a presente Conven&ccedil;&atilde;o: Profissional no Com&eacute;rcio Varejista (micro, mini, pequenas, m&eacute;dias ou grandes empresas) e Empregados no Com&eacute;rcio Atacadista e Varejista de: algod&atilde;o e outras fibras vegetais; carnes frescas, congeladas e derivados; aves, carnes de aves e derivados; carv&atilde;o vegetal e lenha; g&ecirc;neros aliment&iacute;cios; &aacute;lcool e bebidas em geral; frutas, legumes, verduras, flores e plantas; couros e peles; tecidos e confec&ccedil;&otilde;es; bolsas e cal&ccedil;ados; vestu&aacute;rio, adornos e acess&oacute;rios; armarinhos; produtos de minimercados, mercados, supermercados e hipermercados; lou&ccedil;as, lou&ccedil;as finas e objetos de arte; bijuterias; m&oacute;veis; aparelhos eletrodom&eacute;sticos e cong&ecirc;neres; produtos de limpeza em geral; artigos sanit&aacute;rio; vidro plano, cristais e espelhos; maquinismos em geral; materiais de constru&ccedil;&atilde;o em geral; tintas e ferragens (utens&iacute;lios e ferramentas); material el&eacute;trico; produtos eletromec&acirc;nicos e eletroeletr&ocirc;nicos; produtos qu&iacute;micos para ind&uacute;stria e lavoura; sacaria; pedras preciosas; joias e rel&oacute;gios; papel e papel&atilde;o; pl&aacute;sticos e derivados; materiais, livros, material de escrit&oacute;rio e papelaria; aparelhos e equipamentos para computa&ccedil;&atilde;o, inform&aacute;tica e internet; aparelhos e materiais &oacute;pticos, fotogr&aacute;ficos e cinematogr&aacute;ficos; produtos de &aacute;udio e v&iacute;deo, filmes, discos, CDs players, DVDs e cong&ecirc;neres; sucata de ferro e metais; instrumentos e materiais para cirurgia, m&eacute;dico hospitalar, odontol&oacute;gico e cientifico; ve&iacute;culos novos e usados; pe&ccedil;as e acess&oacute;rios para ve&iacute;culos; servi&ccedil;os funer&aacute;rios; cosm&eacute;ticos e perfumarias; lojas de conveni&ecirc;ncia.</p>
+<p><strong>Par&aacute;grafo &uacute;nico. </strong>Na empresa que mantiver contrato de presta&ccedil;&atilde;o de servi&ccedil;os especializados a terceiros que tratar da execu&ccedil;&atilde;o desses servi&ccedil;os em atividade principal da contratante, os comerci&aacute;rios da contratada ser&atilde;o representados pelo Sindicato dos Comerci&aacute;rios signat&aacute;rio desta Conven&ccedil;&atilde;o e a contratada, neste contrato, pelo Sindicato Empresarial da localidade.</p>
+<p>&nbsp;</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA QUINTA - PRAZO DE VIG&#202;NCIA
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>A presente Conven&ccedil;&atilde;o tem vig&ecirc;ncia de 01 de novembro de 2025 at&eacute; 31 de outubro de 2026.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA SEXTA - V&#205;NCULA&#199;&#195;O
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Esta Conven&ccedil;&atilde;o Coletiva de Trabalho, de natureza jur&iacute;dica regulamentadora de jornada de trabalho, &eacute; derivada e integralmente vinculada &agrave; Conven&ccedil;&atilde;o Coletiva de Trabalho 2025/2026, de natureza econ&ocirc;mica e social, cujas cl&aacute;usulas vigoram na integridade na &aacute;rea de aplica&ccedil;&atilde;o deste instrumento normativo, sendo que aquela mencionada Conven&ccedil;&atilde;o doravante ser&aacute; aqui denominada como &ldquo;CCT Socioecon&ocirc;mica 2025/2026&rdquo;, que foi celebrada pelos Sindicatos Convenentes, depositada/registrada no sistema Mediador junto ao &oacute;rg&atilde;o da Secretaria de Rela&ccedil;&otilde;es de Trabalho do Minist&eacute;rio da Economia, tudo conforme T&iacute;tulo II daquele instrumento.</p>
+<p>&nbsp;<strong>Par&aacute;grafo &uacute;nico</strong>. Esta Conven&ccedil;&atilde;o Coletiva de Trabalho possui natureza jur&iacute;dica que regulamenta as jornadas de trabalho no setor do com&eacute;rcio que especifica, de forma especial e alternativa ao disposto no art. 3&ordm;, da Lei 12.790, de 14 de mar&ccedil;o de 2013, pelo disposto nos artigos 6&ordm;; 6&ordm;-A e 6&ordm;-B, da Lei 10.101, de 19 de dezembro de 2000; pelo disposto na Lei 605/1949; pelo disposto no Art. 611-A da CLT, bem como nas demais disposi&ccedil;&otilde;es aplic&aacute;veis da CLT e da legisla&ccedil;&atilde;o trabalhista.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA S&#201;TIMA - DENOMINA&#199;&#195;O
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>A utiliza&ccedil;&atilde;o, nesta Conven&ccedil;&atilde;o, da express&atilde;o &ldquo;<em>Sindicato dos Comerci&aacute;rios</em>&rdquo; ou <em>&ldquo;SINCOMERCI&Aacute;RIOS&rdquo;</em> refere-se ao <strong>SINDICATO DOS EMPREGADOS NO COM&Eacute;RCIO DE TUP&Atilde;</strong>, nome de fantasia &ldquo;<strong>SINCOMERCI&Aacute;RIOS</strong>&rdquo;; e a express&atilde;o &ldquo;<em>Sindicato Empresarial</em>&rdquo; ou <em>&ldquo;SINCOM&Eacute;RCIO&rdquo;</em> refere-se ao <strong>SINDICATO PATRONAL DO COM&Eacute;RCIO VAREJISTA DE ADAMANTINA E REGI&Atilde;O, </strong>entidade sindical representante da categoria econ&ocirc;mica das empresas e empres&aacute;rios do setor do com&eacute;rcio em geral; com nome de fantasia <strong>&ldquo;SINCOM&Eacute;RCIO</strong>&rdquo;.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>&sect; 1&ordm;.&nbsp; </strong>Os representados pelo &ldquo;Sindicato dos Comerci&aacute;rios&rdquo;, conforme definido na Cl&aacute;usula 2&ordf; desta Conven&ccedil;&atilde;o, doravante ser&atilde;o denominados neste instrumento como &ldquo;comerci&aacute;rio&rdquo; ou &ldquo;comerci&aacute;rios&rdquo;.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>&sect; 2&ordm;</strong>. Os representados pelo &ldquo;Sindicato Empresarial&rdquo;, conforme definido na Cl&aacute;usula 2&ordf; desta Conven&ccedil;&atilde;o, doravante ser&atilde;o denominados neste instrumento como &ldquo;empresa&rdquo;, &ldquo;empresas&rdquo;, &ldquo;estabelecimento&rdquo; ou &ldquo;estabelecimentos&rdquo;.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA OITAVA - PREPONDERANCIA
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Os convenentes definem que o &ldquo;Sindicato dos Comerci&aacute;rios&rdquo; representa a categoria preponderante no ramo de atividade das empresas representadas pelo &ldquo;Sindicato Empresarial&rdquo;.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA NONA - &#193;REA DE ABRANG&#202;NCIA
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>A presente Conven&ccedil;&atilde;o abrange os estabelecimentos comerciais e os comerci&aacute;rios da representa&ccedil;&atilde;o das entidades convenentes nos seguintes munic&iacute;pios da base territorial comum, todos localizados no estado de S&atilde;o Paulo: <strong>ADAMANTINA, FL&Oacute;RIDA PAULISTA e MARI&Aacute;POLIS.</strong></p>
+<p><strong>&sect; 1&ordm;.</strong> Pelo car&aacute;ter gen&eacute;rico e ecl&eacute;tico de representa&ccedil;&atilde;o residual das entidades convenentes, esta Conven&ccedil;&atilde;o se aplica a todos os ramos do com&eacute;rcio que n&atilde;o possuam instrumento normativo pr&oacute;prio em vigor na regi&atilde;o, incluindo categorias eventualmente n&atilde;o relacionadas na cl&aacute;usula 3&ordf;.</p>
+<p><strong>&sect; 2&ordm;. </strong>As normas tratadas nesta Conven&ccedil;&atilde;o n&atilde;o se aplicam aos estabelecimentos do ramo:-</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a) de mercados, minimercados, emp&oacute;rios, mercearias, supermercados, hipermercados, autosservi&ccedil;os e cong&ecirc;neres; lojas de conveni&ecirc;ncias; com&eacute;rcio varejista de carnes frescas, a&ccedil;ougues; com&eacute;rcio de frutas e verduras (em quitandas), flores e plantas e assemelhados;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b) de revendedoras e concession&aacute;rias de ve&iacute;culos e acess&oacute;rios; garagens, estacionamentos e de limpezas e conserva&ccedil;&atilde;o de ve&iacute;culos e afins;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c) de dep&oacute;sitos e revendedores de bebidas;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d) de farm&aacute;cias e drogarias;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e) de vendas lot&eacute;ricas, de jornais, revistas, discos musicais e similares, sorvetes, bomboni&egrave;re e cong&ecirc;neres;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f) de loca&ccedil;&atilde;o de fitas de v&iacute;deos, discos, filmes, lan houses e cong&ecirc;neres;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; g) de empresas de fotografia e de com&eacute;rcio varejista de artigos fotogr&aacute;ficos e para filmagem;</p>
+<p>h) de estabelecimentos que assinarem acordo coletivo especifico;</p>
+<p>i) de outros setores da categoria profissional que possuam conven&ccedil;&atilde;o pr&oacute;pria.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA VIG&#201;SIMA - FIXA&#199;&#195;O DE OUTRAS CONDI&#199;&#213;ES
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Fica convencionado que, durante a vig&ecirc;ncia da presente Conven&ccedil;&atilde;o, poder&atilde;o ser negociadas e fixadas outras condi&ccedil;&otilde;es de natureza econ&ocirc;mica, jur&iacute;dica, de jornada de trabalho e/ou sociais nela n&atilde;o previstas, sendo indispens&aacute;vel, para tanto, a assist&ecirc;ncia das representa&ccedil;&otilde;es sindicais de ambas as categorias.</p>
+                                                </label>
+                                                <br />
+                                    }
+                                    <br />
+                                    <table border="0" cellpadding="0" cellspacing="0" align="center">
+                                        <tr>
+                                            <td align="center">
+                                                    <br />
+    <br />
+    <label class="textonome">
+        AMAURI SERGIO MORTAGUA
+        <br style="height: 5px" />
+        Presidente
+        <br style="height: 5px" />
+        SINDICATO DOS EMPREGADOS NO COMERCIO DE TUPA
+        <br />
+        <br />
+    </label>
+
+    <br />
+    <br />
+    <label class="textonome">
+        SERGIO VANDERLEI DA SILVA
+        <br style="height: 5px" />
+        Presidente
+        <br style="height: 5px" />
+        SINDICATO DO COMERCIO VAREJISTA DE ADAMANTINA E REGIAO - SINCOMERCIO NOVA ALTA PAULISTA
+        <br />
+        <br />
+    </label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                        <br />
+                                        <center>
+                                            <label class="textogrupo">
+                                                <b>ANEXOS </b>
+                                            </label>
+                                        </center>
+                                                        <label>
+                                                            <b>
+                                                                <center>
+                                                                    <label class="textogrupo">
+                                                                        ANEXO I - ATA A.G.E.
+                                                                    </label>
+                                                                </center>
+                                                                <label class="tituloClausula">
+                                                                                                                                    </label>
+                                                            </b>
+                                                        </label>
+                                                        <b>
+                                                            <label>
+
+                                                            </label>
+                                                        </b>
+                                                        <br />
+                                                        <label class="descricaoClausula" >
+                                                            <p><a href="https://www3.mte.gov.br/sistemas/mediador/imagemAnexo/MR063155_20252025_10_10T10_49_19.pdf" target="_blank">Anexo (PDF)</a></p>
+                                                        </label>
+                                                        <br />
+                                        <!--****************************************** FIM - Anexos ******************************************-->
+                                            <label class="texto">
+                                                &#160;&#160;&#160;&#160;A autenticidade deste documento poderá ser confirmada na
+                                                página do Ministerio do Trabalho e Emprego na Internet, no endereço http://www.mte.gov.br.
+                                            </label>
+                                            <br />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </div>
+</body>
+<script>
+    setTimeout(function () {
+        window.history.replaceState({}, '', window.location.pathname);
+    }, 0);
+</script>
+</html>
