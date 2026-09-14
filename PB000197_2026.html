@@ -1,0 +1,898 @@
+
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+    <title>
+        Mediador - Extrato Conven&#231;&#227;o Coletiva
+    </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G"></script>
+
+    <script src='/sistemas/mediador/WebResource.axd?d=cuQcyhunthaKbkS1HRDdYz6PN4zLUht6oCI9W5Qe4lHx-6WAKxelJ3CNRaaYGmIIXUPG_02Oz_3xp1nWR4wRmrhzD889Xme-W80PINl5Opm3a6Vk9xOcKAdRAP0WaAY0QwRFkKa8ygci1cWChKIM3xi_y4E-QkbPdUjFbuj7xrCEQ-EVAHEd2SiDsURiQrGz0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=oCiGPyL516rw_w4O_26ZIUgEDxNTixko29P8hNqgYYE9jihnBUsGIp-kukrf82JW7eobyj8s0ooJ5rI1tfuIzt5-6_pMzumq7dLHWrlQZ-QMRUlCHBKuRssX4JwWJPbRaacnUMI4LY59GnxsKL82GjLr-MAsXYWqz_mUgN6cUz51NH30xgq7ZmHyBhUjhPw8-L_0eLuQdQHcRf08dF_HrA2&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=wI0LQo9-Y3uVg4JvYlrDeAmD0eDROLwrykxGZZm7FeHJNOkuLJd-tB3W2xasfEpUFS-WtoMR44VJNgE_0uIW4OIXYKjcDuXF0IcPvjMyLwlPk2AOsHRO3raei2aKk_DpNcvHrgXcEazozbzFbx3MyYROztNnngy4LZm8CigaBFeRwbfjiCBOJaSo3LCaUDVQ0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=KaDqL3Gcxy5_cHNfLKsWFNdcKxNiiUh3HtPda6q62Tk6jObaqvBGjIGv4N3KHnol1jsYfqnEDPvu8bqDw9664g8gNXTu-bup9GNgychn1MlTxA9V_0gUapXZl6zq0NwvemVy1w_Yym-4g5yIIiPndY1yb7UY2Z3ZO1ZTaDrRNyAjWzC-rNL3CXeYpaiIWTH40&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=qtzkb4aKrNku25SKlKs4jZr_bdveUVnUZ5tZc2pTT2sauL0_dRzCNMZhGSFASotxmo04giDQ-E0d0UeLqCdzABP8l2gJR6XwVRdetE7e7Eck3ObZ-LknGwsZoVcBz7BNY1TRN4J-vljXQrR5MmbFoTkwox8Q8ec5f9wsCVK67AZSRApQIAoKK7FEwOCFjWlx0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=3iAOwoL9JnA5TZ6rygyAAR_lXBxjSq4488DJsEscLKSXKUh-cfJ9O5bC-FxRzAqJtsQJFs2IhSJQ3HR3WKiVMzlo3WgEBcHU3QAeRw7LGJeOXAbL5CGBB2zel0X2_oWfsINwuZcDfexI5FD89VA4NlfrRQ7K4czFkowNfSNtL_dKVZ5vnkZUyK_vnlVhpVzb0&t=639193666532168144' type='text/javascript'></script>
+
+
+<script type="text/javascript">
+        var recaptchaSiteKey = '6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G';
+        var pageLoadToken = '';
+        var isPageValidated = false;
+
+        function onRecaptchaLoad() {
+            console.log('reCAPTCHA carregado, validando página...');
+            executePageLoadRecaptcha();
+        }
+
+        function executePageLoadRecaptcha() {
+            if (typeof grecaptcha === 'undefined') {
+                console.error('reCAPTCHA não carregado');
+                return;
+            }
+
+            grecaptcha.ready(function() {
+                grecaptcha.execute(recaptchaSiteKey, {
+                    action: 'page_load_resumo'
+                }).then(function(token) {
+                    console.log('Token de página gerado');
+                    pageLoadToken = token;
+
+                    // Enviar o token para o servidor
+                    validatePageLoadToken(token);
+                }).catch(function(error) {
+                    console.error('Erro no reCAPTCHA de página:', error);
+                    // Em desenvolvimento, permitir continuar
+                });
+            });
+        }
+
+        function validatePageLoadToken(token) {
+            var currentUrl = window.location.href;
+            var queryString = window.location.search;
+            var nrSolicitacao = 'MR024074/2026';
+
+            $.ajax({
+                url: '/sistemas/mediador/Resumo/ValidateResumoPageLoad',
+                type: 'POST',
+                data: {
+                    recaptchaToken: token,
+                    currentUrl: currentUrl,
+                    queryString: queryString,
+                    nrSolicitacao: nrSolicitacao
+                },
+                success: function(response) {
+                    if (response.success) {
+                        console.log('Página validada com sucesso');
+                        isPageValidated = true;
+                        showPageContent();
+                    } else {
+                        console.warn('Validação de página falhou:', response.message);
+                        handleValidationFailed(response);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Erro ao validar página:', error);
+                    handleValidationFailed({ message: 'Erro de comunicação com o servidor' });
+                }
+            });
+        }
+
+        function showPageContent() {
+            // Remover overlay de loading se existir
+            $('#recaptcha-loading').remove();
+            console.log('Conteúdo da página liberado');
+        }
+
+        function handleValidationFailed(response) {
+            // Mostrar mensagem de erro
+            var errorHtml = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                    <div style="text-align: center; padding: 20px;">
+                        <h2 style="color: #d32f2f;">Validação de Segurança</h2>
+                        <p style="font-size: 16px; margin: 20px 0;">${response.message || 'Falha na validação de segurança.'}</p>
+                        <button onclick="window.location.reload()" style="padding: 10px 20px; background: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Tentar Novamente
+                        </button>
+                        <br><br>
+                        <button onclick="window.location.href='/sistemas/mediador/'" style="padding: 8px 16px; background: #757575; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Voltar para Página Inicial
+                        </button>
+                    </div>
+                </div>
+            `;
+            $('body').prepend(errorHtml);
+        }
+
+        $(document).ready(function() {
+            console.log('Página carregada - ambiente de produção');
+
+            // Pular validação reCAPTCHA em produção
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.log('Produção - validando sem reCAPTCHA');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 1000);
+
+            // Timeout de segurança reduzido
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.warn('Timeout na validação - liberando conteúdo');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 5000); // Reduzido para 5 segundos
+        });
+
+        function Imprimir() {
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "none";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "none";
+            window.print();
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "";
+            return true;
+        }
+        $(function () {
+            var marcaDaguaHtml = $('.MarcaDagua').html();
+            var width = $('body').width();
+            var marcaW = $('.MarcaDagua').width();
+
+            var qtdNescessarios = Math.round((width / marcaW) + 0.4);
+            if (qtdNescessarios > 0)
+                for (var incrementador = 0; incrementador < qtdNescessarios; incrementador++) {
+                    $('.MarcaDagua').append("<br />");
+                    $('.MarcaDagua').append(marcaDaguaHtml);
+                }
+        });
+
+
+</script>
+    <style type="text/css">
+        .titulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .Subtitulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 13px;
+        }
+        .texto
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .tituloClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .descricaoClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .textogrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        .textosubgrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        .textonome
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .textofuncao
+        {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .pagebreak
+        {
+            page-break-after: always;
+        }
+        table.titulo
+        {
+            text-align: left;
+        }
+        @page Section2 {size:21cm 29.7cm ;mso-page-orientation:portrait;margin-top:2cm; margin-rigth:2cm; mso-paper-source:0;}
+        div.Section2 {page:Section2;}
+        pre
+        {
+            white-space: pre-wrap; /* css-3 */
+            white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+            white-space: -pre-wrap; /* Opera 4-6 */
+            white-space: -o-pre-wrap; /* Opera 7 */
+            word-wrap: break-word; /* Internet Explorer 5.5+ */
+            white-space: normal;
+        }
+    </style>
+    <!--[if gte mso 9]>
+    <xml>
+    <w:WordDocument>
+    <w:View>Print</w:View>
+    <w:Zoom>100</w:Zoom>
+    <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+    </xml>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="Section2">
+                <form method="post" action="/sistemas/mediador/Resumo/ResumoVisualizarSalvarMsWordDoc?NrSolicitacao=MR024074/2026">
+                    <input type="button" id="btnResumoVisualizarImprimir" value="Imprimir" onclick="Imprimir();" />
+                    <input type="submit" id="btnResumoVisualizarSalvar" value="Salvar" />
+                </form>
+
+            <div style="text-align: center; z-index: -1000; position: absolute; width: 100%;"
+                 class="MarcaDagua">
+                <img src="/sistemas/mediador/Content/images/carimbo.gif" alt="marcaDAgua" />
+            </div>
+        <center>
+            <table border="0" style="width: 18cm;" id="tblConteudo">
+                <tr>
+                    <td>
+                        <table style="width: 100%;" cellpadding="0" cellspacing="0">
+
+                                                            <tr>
+                                    <td align="center" class="titulo" style="text-transform: uppercase;">
+                                        <b>
+                                            Conven&#231;&#227;o Coletiva De Trabalho 2026/2027
+                                        </b>
+                                        <br />
+                                        <br />
+                                    </td>
+                                </tr>
+                            <tr>
+                                <td>
+                                    <div style="text-align: left;">
+                                        <table border="0" class="titulo" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td>
+                                                        <b>NÚMERO DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        PB000197/2026
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        08/05/2026
+                                                    </td>
+                                                </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>NÚMERO DA SOLICITAÇÃO:</b>
+                                                </td>
+                                                <td style="width: 10px">
+                                                </td>
+                                                <td>
+                                                    MR024074/2026
+                                                </td>
+                                            </tr>
+                                                                                            <tr>
+                                                    <td>
+                                                        <b>NÚMERO DO PROCESSO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        47979.259956/2026-70
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DO PROTOCOLO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+06/05/2026                                                    </td>
+                                                </tr>
+                                        </table>
+                                        <br />
+
+                                                        <p>
+                                                            <label class="texto">
+                                                                <b>
+                                                                    Confira a autenticidade no endereço http://mediador.trabalho.gov.br/sistemas/mediador/.
+                                                                </b>
+                                                            </label>
+                                                        </p>
+                                                    <br />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="texto">
+                                    <p align="justify">
+SINDICATO DOS TRABALHADORES DE SAUDE E ENTIDADES BENEFICENTES, FILANTROPICAS, RELIGIOSAS DO AGRESTE DA BORBOREMA, CNPJ n. 12.920.229/0001-23, neste ato representado(a) por seu 
+
+Presidente, Sr(a). JOSEMAR BEZERRA DA NOBREGA;
+    <br />
+&nbsp;
+    <br />
+                                        <label>
+                                            E
+                                        </label>
+                                        <br />
+                                        <br />
+SIHOF/PB - SINDICATO DOS HOSPITAIS FILANTROPICOS E DAS SANTAS CASAS DO ESTADO DA PARAIBA, CNPJ n. 44.596.889/0001-97, neste ato representado(a) por seu 
+
+Presidente, Sr(a). PAULO GUEDES PEREIRA;
+    <br />
+&nbsp;
+    <br />
+                                                                                    celebram
+                                                                                    a
+                                         presente CONVEN&#199;&#195;O COLETIVA DE TRABALHO,
+ estipulando as condi&#231;&#245;es de trabalho previstas nas cl&#225;usulas seguintes:                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA PRIMEIRA - VIG&#202;NCIA E DATA-BASE
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    As partes fixam a vigência da presente Convenção Coletiva de Trabalho no período de 01º de fevereiro de 2026 a 31 de janeiro de 2027 e a data-base da categoria em 01º de fevereiro.
+                                                </label>
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA SEGUNDA - ABRANG&#202;NCIA
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    A presente Convenção Coletiva de Trabalho abrangerá a(s) categoria(s) <b> TRABALHADORES DOS ESTABELECIMENTOS DE SERVIÇO DE SAUDE, E TRABALHADORES DE ENTIDADES, BENEFICENTES, FILANTRÓPICAS, RELIGIOSAS E
+SIMILARES DO AGRESTE DA BORBOREMA</b>, com abrangência territorial em <b>Alagoa Nova/PB, Areial/PB, Boqueirão/PB, Campina Grande/PB, Esperança/PB, Ingá/PB, Lagoa Seca/PB, Massaranduba/PB, Montadas/PB, Pocinhos/PB, Puxinanã/PB, Queimadas/PB, Remígio/PB e Serra Redonda/PB</b>.
+                                                </label>
+                                                <br />
+                                    </p>
+
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Salários, Reajustes e Pagamento
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Reajustes/Correções Salariais
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TERCEIRA - PISO SALARIAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <div class="WordSection1">
+<p>CONVEN&Ccedil;&Atilde;O COLETIVA DE TRABALHO ENTRE O SINDICATO DOS TRABALHADORES DE SAUDE E ENTIDADES BENEFICENTES, FILANTROPICAS, RELIGIOSAS DO AGRESTE DA</p>
+<p>BORBOREMA, CNPJ n. 12.920.229/0001-23, neste ato representado por seu Presidente, Sr. JOSEMAR BEZERRA DA NOBREGA, E SIHOF/PB - SINDICATO DOS HOSPITAIS FILANTROPICOS E DAS SANTAS CASAS DO ESTADO DA PARAIBA, CNPJ n. 44.596.889/0001-97, neste ato</p>
+<p>representado(a) por seu Presidente, Sr. PAULO GUEDES PEREIRA.</p>
+<p align="left">&nbsp;</p>
+<p><strong>PISO SALARIAL: </strong>A partir de 01 de fevereiro de 2026, os PISOS SALARIAIS dos Empregados dos Hospitais Filantr&oacute;picas e Santas Casas, integrantes da categoria, s&atilde;o os seguintes:</p>
+<p align="left">&nbsp;</p>
+<table class="TableNormal" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="36">
+<p class="TableParagraph">N&ordm;</p>
+</td>
+<td valign="top" width="295">
+<p class="TableParagraph"><strong>FUN&Ccedil;&Atilde;O</strong></p>
+</td>
+<td valign="top" width="109">
+<p class="TableParagraph"><strong>Sal&aacute;rio 2026</strong></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="36">
+<p class="TableParagraph">01</p>
+</td>
+<td valign="top" width="295">
+<p class="TableParagraph" align="left">N&iacute;vel Superior</p>
+</td>
+<td valign="top" width="109">
+<p class="TableParagraph"><strong>2.771,19</strong></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="36">
+<p class="TableParagraph">02</p>
+</td>
+<td valign="top" width="295">
+<p class="TableParagraph" align="left">Auxiliar de Enfermagem</p>
+</td>
+<td valign="top" width="109">
+<p class="TableParagraph"><strong>1.633,89</strong></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="36">
+<p class="TableParagraph">03</p>
+</td>
+<td valign="top" width="295">
+<p class="TableParagraph" align="left">T&eacute;cnico de Enfermagem</p>
+</td>
+<td valign="top" width="109">
+<p class="TableParagraph"><strong>1.687,28</strong></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="36">
+<p class="TableParagraph">04</p>
+</td>
+<td valign="top" width="295">
+<p class="TableParagraph" align="left">Auxiliar de Sa&uacute;de Bucal</p>
+</td>
+<td valign="top" width="109">
+<p class="TableParagraph"><strong>1.633,89</strong></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="36">
+<p class="TableParagraph">05</p>
+</td>
+<td valign="top" width="295">
+<p class="TableParagraph" align="left">T&eacute;cnico de Sa&uacute;de Bucal</p>
+</td>
+<td valign="top" width="109">
+<p class="TableParagraph"><strong>1.687,28</strong></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="36">
+<p class="TableParagraph">06</p>
+</td>
+<td valign="top" width="295">
+<p class="TableParagraph" align="left">Porteiro e Vigia</p>
+</td>
+<td valign="top" width="109">
+<p class="TableParagraph"><strong>1.633,89</strong></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="36">
+<p class="TableParagraph">07</p>
+</td>
+<td valign="top" width="295">
+<p class="TableParagraph" align="left">T&eacute;cnicos de Laborat&oacute;rios</p>
+</td>
+<td valign="top" width="109">
+<p class="TableParagraph"><strong>3.074,00</strong></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="36">
+<p class="TableParagraph">08</p>
+</td>
+<td valign="top" width="295">
+<p class="TableParagraph" align="left">T&eacute;cnicos de Seguran&ccedil;a de Trabalho</p>
+</td>
+<td valign="top" width="109">
+<p class="TableParagraph"><strong>1.853,01</strong></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="36">
+<p class="TableParagraph">09</p>
+</td>
+<td valign="top" width="295">
+<p class="TableParagraph" align="left">Telefonistas, Telemarketing e Recepcionistas</p>
+</td>
+<td valign="top" width="109">
+<p class="TableParagraph"><strong>1.633,89</strong></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="36">
+<p class="TableParagraph">10</p>
+</td>
+<td valign="top" width="295">
+<p class="TableParagraph" align="left">Burocratas</p>
+</td>
+<td valign="top" width="109">
+<p class="TableParagraph"><strong>1.674,74</strong></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="36">
+<p class="TableParagraph">11</p>
+</td>
+<td valign="top" width="295">
+<p class="TableParagraph" align="left">N&iacute;vel Elementar</p>
+</td>
+<td valign="top" width="109">
+<p class="TableParagraph"><strong>1.633,89</strong></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="36">
+<p class="TableParagraph">12</p>
+</td>
+<td valign="top" width="295">
+<p class="TableParagraph" align="left">T&eacute;cnico em Radiologia</p>
+</td>
+<td valign="top" width="109">
+<p class="TableParagraph"><strong>3.166,55</strong></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Par&aacute;grafo &Uacute;nico- </strong>Ao sal&aacute;rio-base de todos os empregados que recebem acima dos pisos estipulados ser&atilde;o aplicados o percentual de <strong>4,3 % (quatro virgula tr&ecirc;s por cento) </strong>a partir de 1&ordm; de fevereiro de 2026.</p>
+<p align="left">&nbsp;</p>
+<h1><span style="text-decoration: underline; font-size: small;">REAJUSTE SALARIAL</span></h1>
+<p>Os pisos estabelecidos na cl&aacute;usula primeira s&atilde;o resultados de reajustes concedidos pelo Sindicato <strong>dos Hospitais Filantr&oacute;picos e das Santas Casas do Estado da Para&iacute;ba &ndash; SIHOF/PB </strong>&agrave; categoria profissional representada, no dia 1&ordm; de fevereiro de 2026.</p>
+<p><strong>Par&aacute;grafo 1&ordm; </strong>- Caso o pagamento n&atilde;o seja efetuado no prazo estabelecido, ou seja, at&eacute; o quinto dia &uacute;til do m&ecirc;s subsequente, fica a institui&ccedil;&atilde;o obrigada ao pagamento de multa de 10% do piso salarial da categoria ao empregado prejudicado.</p>
+<p><strong>Par&aacute;grafo 2&ordm; </strong>- Fica estabelecido que as Institui&ccedil;&otilde;es, conveniadas ou n&atilde;o, com o poder p&uacute;blico em geral ir&atilde;o cumprir a presente Conven&ccedil;&atilde;o Coletiva de Trabalho.</p>
+<p><strong>Paragrafo 3&ordm; </strong>- As empresas pagar&atilde;o os retroativos em tr&ecirc;s (03) parcelas de valores iguais, iniciando se na folha de pagamento do m&ecirc;s maio de 2026.</p>
+<p><strong><span style="text-decoration: underline;">DO PISO NACIONAL DA ENFERMAGEM </span></strong>- Fica convencionado que o pagamento dos pisos salariais fixados pela Lei n.&ordm; 14.434/2022 dever&aacute; ser implementado pelos Hospitais Filantr&oacute;picos e Santas Casas de acordo com repasse de recursos pelo Poder P&uacute;blico e em observ&acirc;ncia &agrave;s diretrizes definidas pelo Supremo Tribunal Federal.</p>
+<p><strong>Par&aacute;grafo 1&ordm;</strong>&ndash; Fica convencionado que, em sendo repassado pelo Poder P&uacute;blico aos hospitais abrangidos por esta Conven&ccedil;&atilde;o, valores alusivos as diferen&ccedil;as do piso salarial em quest&atilde;o, relativamente aos per&iacute;odos anteriores &agrave; formaliza&ccedil;&atilde;o desta norma coletiva, caber&atilde;o &agrave;quelas entidades procederem, na forma e propor&ccedil;&atilde;o dos recursos recebidos, ao pagamento das diferen&ccedil;as cab&iacute;veis aos profissionais beneficiados pelo piso acima.</p>
+<p><strong>Par&aacute;grafo 2&ordm; </strong>- Com a implanta&ccedil;&atilde;o dos pisos salariais fixados pela Lei n.&ordm; 14.434/2022, na forma convencionada nesta Cl&aacute;usula, os pisos salariais dos t&eacute;cnicos, auxiliares de enfermagem e parteiras constantes na clausula 1&ordf; da presente conven&ccedil;&atilde;o ser&atilde;o automaticamente revogados.</p>
+<p><strong>DO SAL&Aacute;RIO DO SUBSTITUTO - </strong>O empregado designado a substituir outro empregado por mais de 15 (quinze) dias e se este perceber sal&aacute;rio superior ao que lhe &eacute; pago, far&aacute; jus a complementa&ccedil;&atilde;o salarial, at&eacute; o valor do sal&aacute;rio do substitu&iacute;do.</p>
+</div>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Pagamento de Salário – Formas e Prazos
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUARTA - DATA  E COMPOVANTE DE PAGAMENTO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p align="left"><strong><span style="text-decoration: underline;">DATAS DE PAGAMENTOS</span>: </strong>As institui&ccedil;&otilde;es obedecer&atilde;o como datas de pagamento dos sal&aacute;rios, dos 13&ordm; sal&aacute;rios e de f&eacute;rias, as seguintes:</p>
+<p align="left">a)&nbsp;&nbsp;&nbsp; Sal&aacute;rio mensal at&eacute; o 5&ordm; dia &uacute;til do m&ecirc;s subsequente ao vencido;</p>
+<p align="left">b)&nbsp; At&eacute; o dia 30 de novembro a primeira parcela do 13&ordm; sal&aacute;rio e at&eacute; o dia 20 do m&ecirc;s de dezembro, do mesmo ano, a segunda parcela;</p>
+<p align="left">c)&nbsp; As f&eacute;rias at&eacute; dois (02) dias antes do in&iacute;cio de sua concess&atilde;o.</p>
+<p><strong>Par&aacute;grafo 1</strong>&ordm; - A primeira parcela do 13&ordm; sal&aacute;rio ser&aacute; paga na mesma data do pagamento das f&eacute;rias, quando assim for requerido pelo empregado at&eacute; o m&ecirc;s de janeiro do referido ano do gozo de suas f&eacute;rias. <strong>Par&aacute;grafo 2&ordm; </strong>- Quando as empresas optarem pelo pagamento de sal&aacute;rio, 13&ordm; sal&aacute;rio ou f&eacute;rias, por meios de cheques aos empregados, este ser&atilde;o efetuados dentro do hor&aacute;rio de expediente banc&aacute;rio e da forma que possibilite aos empregados o saque no mesmo dia.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong><span style="text-decoration: underline;">DO COMPROVANTE DE PAGAMENTO: </span></strong>As institui&ccedil;&otilde;es se obrigam a fornecer contracheques ou recibos de pagamentos aos seus empregados, com discrimina&ccedil;&atilde;o dos valores pagos e dos descontos efetuados, incluindo o valor das horas extras, o n&uacute;mero de horas trabalhadas, o adicional de insalubridade, o adicional noturno e o valor do deposito mensal do FGTS e o desconto do INSS. <strong>Par&aacute;grafo &Uacute;nico</strong>. Os contracheques e/ou recibos de pagamentos podem ser disponibilizados pelas institui&ccedil;&otilde;es por meio eletr&ocirc;nico/digital, cabendo, nesta hip&oacute;tese, ao empregador liberar esses documentos para o empregado na mesma data do pagamento.</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Gratificações, Adicionais, Auxílios e Outros
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outros Auxílios
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUINTA - HORAS EXTRAS, NOTURNO E INSALUBRIDADE
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p align="left"><strong><span style="text-decoration: underline;">DAS HORAS EXTRAS</span>: </strong>As horas extras ser&atilde;o remuneradas com acr&eacute;scimo de 60% (sessenta por cento) que ser&aacute; aplicado sobre o valor da hora normal.</p>
+<p align="left">&nbsp;</p>
+<p align="left"><strong><span style="text-decoration: underline;">DO ADICIONAL NOTURNO</span>: </strong>O trabalho noturno ser&aacute; remunerado com o adicional de 20% (vinte por cento) aplicado sobre o sal&aacute;rio base do empregado.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DO ADICIONAL DE INSALUBRIDADE: </span></strong>O adicional de insalubridade, apurado mediante per&iacute;cia t&eacute;cnica, em percentual determinado por lei, ter&aacute; como base de c&aacute;lculo o sal&aacute;rio minimo virgente&nbsp;</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Disposições Gerais
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Aplicação do Instrumento Coletivo
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA SEXTA - CLAUSULAS DIVERSAS NEGOCIADAS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <div class="WordSection1">
+<p><strong><span style="text-decoration: underline;">DA CESTA BASICA:</span> </strong>O Sindicato obreiro e Patronal apresentar&aacute; estudo no sentido de viabilizarem poss&iacute;vel ado&ccedil;&atilde;o de concess&atilde;o de cesta b&aacute;sica a ser discutida na pr&oacute;xima Conven&ccedil;&atilde;o Coletiva de Trabalho, tal propositura n&atilde;o vincula qualquer das partes, nem obriga nem representa compromisso para a concess&atilde;o da cesta b&aacute;sica, sendo apenas estudo de viabilidade.</p>
+<p align="left">&nbsp;<strong><span style="text-decoration: underline;">VALE TRANSPORTE:</span> </strong>As institui&ccedil;&otilde;es se obrigam a fornecer vales transporte aos seus empregados observados os n&uacute;meros de deslocamentos em transportes coletivos, da resid&ecirc;ncia para o trabalho e vice-versa, salvo se a empresa mantiver transporte fretado, hip&oacute;tese em que o desconto limitar-se-&aacute; ao percentual previsto em lei.</p>
+<p><strong>Par&aacute;grafo 1&ordm; </strong>- Os empregados firmar&atilde;o declara&ccedil;&atilde;o perante as empresas, indicando o percurso da sua resid&ecirc;ncia para o trabalho e vice-versa, o meio de transporte utilizado e a quantidade de viagens a que est&atilde;o obrigados.</p>
+<p><strong>Par&aacute;grafo 2&ordm; </strong>- Os vales transporte ser&atilde;o concedidos aos empregados at&eacute; o dia 10 de cada m&ecirc;s.</p>
+<p><strong><span style="text-decoration: underline;">DO AUX&Iacute;LIO FUNERAL:</span> </strong>O valor do aux&iacute;lio funeral ser&aacute; recebido pelos seus dependentes legalmente reconhecidos em caso do falecimento do empregado no valor correspondente a um sal&aacute;rio-m&iacute;nimo vigente.</p>
+<p><strong>Par&aacute;grafo &Uacute;nico </strong>&ndash; O aux&iacute;lio ser&aacute; pago no prazo de dez (10) dias, contado da data do &oacute;bito, ou da data a que for cientificada a institui&ccedil;&atilde;o e de uma s&oacute; vez e em um &uacute;nico valor.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DO AUX&Iacute;LIO CRECHE: </span></strong>As institui&ccedil;&otilde;es obedecer&atilde;o aos procedimentos indicados em Lei para a instala&ccedil;&atilde;o de creches, podendo optar por conv&ecirc;nios ou a concess&atilde;o de aux&iacute;lio creche, diretamente aos empregados.</p>
+</div>
+<p>&nbsp;</p>
+<div class="WordSection2">
+<p><strong><span style="text-decoration: underline;">DO EXAME ADMISSIONAL: </span></strong>Os exames m&eacute;dicos, radiol&oacute;gicos e de laborat&oacute;rios, necess&aacute;rios aos exames admissional, demissional e peri&oacute;dicos, s&atilde;o de responsabilidade das institui&ccedil;&otilde;es, e realizados de acordo com a legisla&ccedil;&atilde;o vigente.</p>
+<p><strong><span style="text-decoration: underline;">DA INDENIZA&Ccedil;&Atilde;O POR DISPENSA IMOTIVADA</span>: </strong>Os empregados com mais de cinco (05) anos de trabalho na mesma institui&ccedil;&atilde;o, quando dispensados sem justa causa, far&atilde;o jus a uma indeniza&ccedil;&atilde;o no valor correspondente a um m&ecirc;s de sal&aacute;rio, percebido na data da sua dispensa e que ser&aacute; pago em rescis&atilde;o de contrato de trabalho.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DAS HOMOLOGA&Ccedil;&Otilde;ES: </span></strong>As rescis&otilde;es de contratos dos trabalhadores das institui&ccedil;&otilde;es beneficentes, sociais, religiosas, filantr&oacute;picas e similares, cujo contratos de trabalho seja superior a 12 (doze) meses ser&atilde;o homologadas no Sindicato obreiro.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DO ESTAGI&Aacute;RIO: </span></strong>As institui&ccedil;&otilde;es obedecer&atilde;o aos procedimentos indicados em Lei, para a admiss&atilde;o de estagi&aacute;rio, sob a supervis&atilde;o do estabelecimento de ensino a que estiver vinculado ou de &oacute;rg&atilde;o, interposto, na forma prevista em contrato de est&aacute;gio e na legisla&ccedil;&atilde;o aplicada &agrave; esp&eacute;cie.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DA ANOTA&Ccedil;&Atilde;O DA CTPS: </span></strong>As institui&ccedil;&otilde;es ficam obrigadas a anotarem na CTPS dos seus empregados a fun&ccedil;&atilde;o por eles efetivamente exercidas, indicando o c&oacute;digo CBO, as altera&ccedil;&otilde;es de fun&ccedil;&atilde;o e promo&ccedil;&otilde;es ocorridas.</p>
+<p><strong>Par&aacute;grafo 1&ordm; </strong>- O empregador n&atilde;o poder&aacute; reter a CTPS do empregado por tempo superior &agrave; 48h (quarenta e oito horas) recebendo mediante recibo e devolvendo na mesma forma.</p>
+<p><strong>Par&aacute;grafo 2&ordm; </strong>- Aos empregados contratados para prestarem servi&ccedil;os em hor&aacute;rio reduzidos, ter&atilde;o anotados em sua CTPS o n&uacute;mero de horas e os dias em que se dar&aacute; a presta&ccedil;&atilde;o de servi&ccedil;os.</p>
+<p><strong><span style="text-decoration: underline;">DA CARTA DE REFER&Ecirc;NCIA:</span> </strong>Quando da dispensa do empregado, sem justa causa e no ato da homologa&ccedil;&atilde;o, institui&ccedil;&atilde;o fornecer&aacute; PPP, Exame demissional, CARTA DE REFER&Ecirc;NCIA, dela constando indica&ccedil;&atilde;o do comportamento e as qualidades profissionais do empregado</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DA ESTABILIDADE DA GESTANTE:</span> </strong>As institui&ccedil;&otilde;es asseguram estabilidade provis&oacute;ria as suas empregadas gestantes por um per&iacute;odo de 30 (trinta) dias, contados do terminoda estabilidade prevista no art. 10 , inciso II , al&iacute;nea &lsquo;b&rsquo; do ADCT.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DA ESTABILIDADE DO ACIDENTADO:</span></strong>Fica assegurada ao empregado acidentado a estabilidade provis&oacute;ria na forma prevista em lei.</p>
+<p><strong><span style="text-decoration: underline;">AUX&Iacute;LIO SA&Uacute;DE/ASSIST&Ecirc;NCIA AMBULATORIAL:</span></strong>As institui&ccedil;&otilde;es dentro de suas especialidades poder&atilde;o prestar atendimento ambulatorial aos seus empregados, sem &ocirc;nus.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DA APROXIMIDADE DA APOSENTADORIA: </span></strong>Aos empregados com tempo de servi&ccedil;o at&eacute; dois</p>
+<p>(02) anos para aposentadoria, tem por assegurado o emprego at&eacute; a data que vier completar o tempo de aposentadoria.</p>
+<p><strong>Par&aacute;grafo 1&ordm; </strong>- A estabilidade assegurada no caput desta clausula cessa com a aquisi&ccedil;&atilde;o ao direito da aposentadoria, independentemente de sua concess&atilde;o.</p>
+<p><strong>Par&aacute;grafo 2&ordm; </strong>- Compete ao empregado comprovar, por certid&atilde;o fornecida pelo &oacute;rg&atilde;o da Previd&ecirc;ncia Social, que a sua aposentadoria ocorrer&aacute; dentro de dois (02) anos, contados da data aposta da certid&atilde;o, como forma de assegurar a sua estabilidade para a aquisi&ccedil;&atilde;o da aposentadoria.</p>
+<p><strong>Par&aacute;grafo 3&ordm; &ndash; </strong>Para ter direito a este benef&iacute;cio, o empregado dever&aacute; comunicar &agrave; empresa, por escrito e com anteced&ecirc;ncia at&eacute;, no m&aacute;ximo, 60 (sessenta) dias ap&oacute;s iniciar o prazo de 02 anos at&eacute; a aposentadoria, uma vez completado o tempo de servi&ccedil;o e adquirido o direito ao benef&iacute;cio de aposentadoria, cessado estar&atilde;o os efeitos dessa cl&aacute;usula, ainda que o trabalhador, por qualquer raz&atilde;o, n&atilde;o requeira a aposentadoria.</p>
+<p style="text-align: justify;"><strong><span style="font-size: small; font-family: arial, helvetica, sans-serif;">DO TRABALHO EM DIAS DESTINADOS AO REPOUSO SEMANAL OU FERIADOS: </span></strong><span style="font-size: small; font-family: arial, helvetica, sans-serif;">O&nbsp;trabalho realizado em dias destinado ao repouso semanal ou feriado, quando n&atilde;o compensado, ser&aacute; pago com acr&eacute;scimo de 100% (cem por cento), independentemente da remunera&ccedil;&atilde;o do repouso, que &eacute; devido ao empregado por for&ccedil;a da lei.</span></p>
+</div>
+<p><strong><span style="font-size: small; font-family: arial, helvetica, sans-serif;">&nbsp;</span></strong></p>
+<div class="WordSection3">
+<p><strong><span style="text-decoration: underline;">DA TROCA DE PLANT&Atilde;O: </span></strong>As institui&ccedil;&otilde;es autorizar&atilde;o a troca de plant&atilde;o entre empregados da mesma fun&ccedil;&atilde;o e a pedido destes, observada a escala de servi&ccedil;o, limite de intrajornada e folga semanal e o que disciplina a CLT sobre jornada de trabalho.</p>
+<p><strong>Par&aacute;grafo &Uacute;nico. </strong>O disposto nesta cl&aacute;usula s&oacute; poder&aacute; ser aplicado aos funcion&aacute;rios que trabalham em regime de plant&atilde;o de 12x36, caso a respectiva troca n&atilde;o resulte no trabalho em dois plant&otilde;es consecutivos, de modo a evitar o trabalho durante 24 (vinte e quatro) horas consecutivas. Al&eacute;m disso, nesta hip&oacute;tese, as trocas ser&atilde;o limitadas a 02 (duas) por m&ecirc;s.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DOS CURSOS E REUNI&Otilde;ES: </span></strong>Os empregados convocados a participarem de reuni&otilde;es, ap&oacute;s terem cumprido o hor&aacute;rio normal de trabalho, ultrapassando a reuni&atilde;o em uma (01) hora de dura&ccedil;&atilde;o, a hora excedente ser&aacute; remunerada como hora extraordin&aacute;ria.</p>
+<p><strong>Par&aacute;grafo 1&ordm; </strong>- A institui&ccedil;&atilde;o incentivar&aacute; e assegurar&aacute; a participa&ccedil;&atilde;o dos empregados em curso de forma&ccedil;&atilde;o profissional, treinamento e requalifica&ccedil;&atilde;o, ministrada por elas ou por outras entidades.</p>
+<p><strong>Par&aacute;grafo 2&ordm; </strong>- A participa&ccedil;&atilde;o dos empregados nos cursos de que trata o Par&aacute;grafo 1&ordm;, independentemente de sua dura&ccedil;&atilde;o, n&atilde;o ser&aacute; considerado como horas extras, estando, portanto, isentos de contagem de hor&aacute;rio como extraordin&aacute;rio, por se tratar de atividade destinada &agrave; qualifica&ccedil;&atilde;o do empregado.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DO VESTI&Aacute;RIO: </span></strong>As Institui&ccedil;&otilde;es manter&atilde;o vesti&aacute;rio para seus empregados, com guarda-pertences, seguran&ccedil;a e higiene, al&eacute;m de banheiros com chuveiros e sanit&aacute;rios.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DO LOCAL DE LANCHE</span>: </strong>As institui&ccedil;&otilde;es destinar&atilde;o locais higienizados e com seguran&ccedil;a, para uso dos empregados nos hor&aacute;rios destinados aos lanches e refei&ccedil;&otilde;es.</p>
+<p><strong>Par&aacute;grafo &Uacute;nico </strong>&ndash; Os empregados que trabalham no turno da noite, tem por assegurados, gratuitamente, um lanche de significado valor nutritivo.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DO ACESSO: </span></strong>&Eacute; garantido aos profissionais integrantes da categoria e assim identificado, o livre acesso &agrave;s depend&ecirc;ncias do estabelecimento de sa&uacute;de, para visita e acompanhamento a par&ecirc;nteses de at&eacute; 2&ordm; grau.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DA JORNADA DE TRABALHO:</span></strong>A Jornada de trabalho dos integrantes da categoria &eacute; a prevista em lei.</p>
+<p><strong>Par&aacute;grafo 1</strong>&ordm;- Fica acordado que as institui&ccedil;&otilde;es adotar&atilde;o a jornada de trabalho 12X36 para os trabalhadores diurnos. Para o turno diurno as empresas adotar&atilde;o uma jornada de doze (12), horas de trabalho por trinta e seis (36) horas de descanso, com uma (01) folga mensal, com intervalo intrajornada para o almo&ccedil;o de uma (01) hora a ser usufru&iacute;do.</p>
+<p><strong>Par&aacute;grafo 2&ordm; </strong>- A jornada 12X36 noturna j&aacute; prevista em conven&ccedil;&atilde;o continuar&aacute; tendo a previs&atilde;o legal de ser praticada, todavia, se ajustou que o trabalhador noturno em escala 12X36, far&aacute; jus a duas (02) folgas mensais.</p>
+<p><strong>Par&aacute;grafo 3&ordm; </strong>- O intervalo intrajornada &eacute; de uma (01) hora, a ser usufru&iacute;do entre as 23:00 e 03:00 horas, para o trabalho noturno.</p>
+<p><strong>Par&aacute;grafo 4&ordm; </strong>- As institui&ccedil;&otilde;es manter&atilde;o o local adequado para o repouso, com ventila&ccedil;&atilde;o, banheiro, camas ou beliches.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DAS F&Eacute;RIAS: </span></strong>O in&iacute;cio das f&eacute;rias coletivas ou individuais, n&atilde;o podem coincidir com os dias de s&aacute;bados, domingos, feriados ou folgas compensat&oacute;rias. O in&iacute;cio das f&eacute;rias coletivas ou individuais, n&atilde;o podem coincidir com os dias de s&aacute;bados, domingos, feriados ou folgas compensat&oacute;rias. A n&atilde;o observa&ccedil;&atilde;o dessa regra acarreta a obriga&ccedil;&atilde;o da empresa em conceder, posteriormente, os dias de in&iacute;cio gozados, respeitando a legisla&ccedil;&atilde;o vigente;</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DA LICEN&Ccedil;A</span>: </strong>Assegura-se o direito &agrave; aus&ecirc;ncia remunerada ao empregado que for prestar exames vestibular, supletivo ou concurso p&uacute;blico, desde que avise a empresa com anteced&ecirc;ncia de 72 (setenta e duas) horas, antes da data dos exames.</p>
+<p><strong>Par&aacute;grafo 1&ordm; </strong>- O empregado fica obrigado a comprovar a sua participa&ccedil;&atilde;o nos exames, at&eacute; cinco (05) dias ap&oacute;s a sua realiza&ccedil;&atilde;o, sob pena de n&atilde;o ter por remunerada a sua aus&ecirc;ncia.</p>
+</div>
+<p>&nbsp;</p>
+<div class="WordSection4">
+<p><strong>Par&aacute;grafo 2&ordm; </strong>- Os empregados que trabalham nos turnos diurnos e noturnos ser&atilde;o liberados para prestar exames, na noite anterior a sua realiza&ccedil;&atilde;o.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DAS AUS&Ecirc;NCIAS LEGAIS:</span> </strong>As institui&ccedil;&otilde;es conceder&atilde;o licen&ccedil;as remuneradas aos seus empregados nas seguintes situa&ccedil;&otilde;es:</p>
+<p>a)&nbsp;&nbsp; Para consultas e internamento hospitalar de filhos de at&eacute; 14 anos, e inv&aacute;lidos de qualquer idade, conjugue, ou companheiros com uni&atilde;o est&aacute;vel, declarados em registro de empregado, at&eacute; o limite de 03 internamentos por semestre.</p>
+<p>b)&nbsp; At&eacute; 02 (dois) dias para acompanhar consultas m&eacute;dicas e exames complementares durante o per&iacute;odo de gravidez de sua esposa ou companheira;</p>
+<p>c)&nbsp; Cinco (05) dias por motivo de casamento;</p>
+<p>d)&nbsp; Tr&ecirc;s (03) dias por motivo de falecimento de conjugue, pais, filhos, irm&atilde;os ou dependente declarado na sua CTPS.</p>
+<p>e)&nbsp; Um (01) dia para saque do PIS, salvo se a empresa efetuar o pagamento;</p>
+<p>f)&nbsp; Cinco (05) dias por motivo de paternidade, em conformidade com a Lei 15.371/2026.</p>
+<p align="left">&nbsp;</p>
+<p><strong>Par&aacute;grafo &Uacute;nico</strong>. Nas hip&oacute;teses elencadas nas al&iacute;neas &ldquo;a&rdquo;, &ldquo;b&rdquo;, &ldquo;c&rdquo; e &ldquo;e&rdquo;, caber&aacute; ao empregado informar a empresa com anteced&ecirc;ncia m&iacute;nima de 72 (setenta e duas) horas, sob pena de a aus&ecirc;ncia ser tida como injustificada. Este prazo poder&aacute; ser dispensado para os casos elencados nas al&iacute;neas &ldquo;a&rdquo; e &ldquo;b&rdquo;, na eventual hip&oacute;tese de a consulta/interna&ccedil;&atilde;o/exame ser realizado em car&aacute;ter de urg&ecirc;ncia/emerg&ecirc;ncia.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DA HIGIENE PESSOAL: </span></strong>As institui&ccedil;&otilde;es disponibilizar&atilde;o para as empregadas, no expediente normal de trabalho e, quando assim necessitar, absorvente &iacute;ntimo, reservando local adequado e tempo necess&aacute;rio para higiene pessoa</p>
+<p><strong><span style="text-decoration: underline;">DO FORNECIMENTO DE EPI</span>: </strong>Os EPIs s&atilde;o fornecidos gratuitamente pelas institui&ccedil;&otilde;es, responsabilizando-se o empregado por seu uso e conserva&ccedil;&atilde;o, obrigando-se a reembolsar a empresa no valor correspondente em caso de quebra ou extravio.</p>
+<p><strong>Par&aacute;grafo &Uacute;nico </strong>&ndash; A aus&ecirc;ncia do uso dos EPI&acute;s fornecidos pelo empregador, acarretar&aacute; falta disciplinar ao empregado</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DO MATERIAL DE BOLSO:</span> </strong>Material de bolso &eacute; fornecido gratuitamente pelas institui&ccedil;&otilde;es, responsabilizando-se o empregado por seu uso e conserva&ccedil;&atilde;o, obrigando-se a reembolsar a empresa no valor correspondente em caso de quebra ou extravio.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DESCONTO DE MATERIAL</span>: </strong>As institui&ccedil;&otilde;es n&atilde;o poder&atilde;o descontar de seus empregados materiais que por uso foram danificados, salvo quando comprovado que houve, por parte do empregado, dolo ou culpa.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DO UNIFORME:</span> </strong>As institui&ccedil;&otilde;es que exigirem uso de uniformes completos s&atilde;o obrigadas a fornec&ecirc;-los gratuitamente aos seus empregados.</p>
+<p><strong><span style="text-decoration: underline;">DA CIPA: </span></strong>As institui&ccedil;&otilde;es adotar&atilde;o os procedimentos indicados nas NRs, expedidas pelo Minist&eacute;rio do Trabalho, para fins de elei&ccedil;&atilde;o dos representantes da Comiss&atilde;o Interna de Preven&ccedil;&atilde;o de Acidentes &ndash; CIPA.</p>
+<p><strong><span style="text-decoration: underline;">DOS MEDICAMENTOS:</span> </strong>O empregado v&iacute;tima de acidente de trabalho, tem direito gratuitamente a medica&ccedil;&atilde;o necess&aacute;ria ao seu tratamento, pelo per&iacute;odo de 30 (trinta) dias, contados da data do acidente.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DAS VACINAS</span>: </strong>As institui&ccedil;&otilde;es providenciar&atilde;o junto a Secretaria de Sa&uacute;de do Estado ou do Munic&iacute;pio, vacinas para os seus empregados relativa a: Hepatite tipo B, Gripe, T&eacute;tano e Meningite.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DOS ATESTADOS MEDICOS:</span> </strong>Os atestados m&eacute;dicos e odontol&oacute;gicos, ser&atilde;o preferencialmente fornecidos pelas institui&ccedil;&otilde;es onde trabalha o empregado, ou pelo &oacute;rg&atilde;o da previd&ecirc;ncia social ou pelo sindicato da categoria, desde que tenha convenio com a Previd&ecirc;ncia Social ou Convenio particular.</p>
+</div>
+<p>&nbsp;</p>
+<div class="WordSection5">
+<p><strong>Par&aacute;grafo 1&ordm;</strong>: O atestado ser&aacute; apresentado pelo empregado ou por algum parente no prazo de 48 horas, a contar da data de expedi&ccedil;&atilde;o do documento m&eacute;dico, a empresa obrigar-se-&aacute; a dar um ciente no citado documento.</p>
+<p><strong>Par&aacute;grafo 2&ordm; </strong>Quando a obriga&ccedil;&atilde;o de entregar o atestado m&eacute;dico, ocorrer em finais de semanas ou feriados, o mesmo ser&aacute; entregue no setor do RH da empresa no 1&ordm; dia &uacute;til subsequente.</p>
+<p><strong><span style="text-decoration: underline;">DO ACESSO DE DIRIGENTE SINDICAL: </span></strong>Fica assegurado aos dirigentes sindicais o acesso &agrave; &aacute;rea administrativa das institui&ccedil;&otilde;es, para tratar de assuntos de interesse da categoria, bem como para o acompanhamento da fiscaliza&ccedil;&atilde;o e per&iacute;cias.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DO QUADRO DE AVISOS: </span></strong>Fica assegurado ao sindicato, livre acesso ao quadro de aviso das institui&ccedil;&otilde;es para nele fixar comunicado sindical, de interesse da categoria, n&atilde;o sendo permitida a divulga&ccedil;&atilde;o de material de cunho pol&iacute;tico-partid&aacute;rio, ou contr&aacute;rio &agrave; administra&ccedil;&atilde;o da empresa, ou contraria a categoria econ&ocirc;mica.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DOS DIRIGENTES SINDICAIS: </span></strong>As institui&ccedil;&otilde;es assegurar&atilde;o aos dirigentes sindicais licen&ccedil;as remuneradas de at&eacute; 25 dias por ano consecutivos ou n&atilde;o, observando as seguintes condi&ccedil;&otilde;es.</p>
+<p>a)&nbsp; N&uacute;mero m&aacute;ximo de dois (02) dirigentes por institui&ccedil;&atilde;o;</p>
+<p>b)&nbsp;&nbsp; Que a aus&ecirc;ncia seja para participar de assembleia da categoria, reuni&otilde;es de diretoria, cursos e congressos e de negocia&ccedil;&otilde;es coletivas.</p>
+<p><strong>Par&aacute;grafo 1&ordm; </strong>- O Sindicato avisar&aacute; as institui&ccedil;&otilde;es com anteced&ecirc;ncia de setenta e duas (72) horas, a aus&ecirc;ncia do empregado, indicando o evento em que este participar&aacute;.</p>
+<p><strong>Par&aacute;grafo 2&ordm; </strong>- No caso de existir nas institui&ccedil;&otilde;es mais de dois representantes sindicais, compete ao sindicato da categoria indicar quais os dirigentes gozar&atilde;o da licen&ccedil;a.</p>
+<p><strong>Par&aacute;grafo 3&ordm; </strong>- Em nenhuma hip&oacute;tese ser&aacute; liberado mais de dois (02) empregados de um mesmo setor, ou de uma s&oacute; vez, mesmo que, apenas, existam na institui&ccedil;&atilde;o dois (02) representantes sindicais.</p>
+<p><strong>Par&aacute;grafo 4&ordm; </strong>- O Presidente do Sindicato ser&aacute; liberado pela institui&ccedil;&atilde;o para o exerc&iacute;cio de suas fun&ccedil;&otilde;es. <strong>Par&aacute;grafo 5&ordm; </strong>- Para fins do que preceitua a letra &ldquo;a&rdquo; do caput desta cl&aacute;usula, n&atilde;o se considera o Presidente na soma do n&uacute;mero dos representantes sindicais com direito a licen&ccedil;a remunerada.</p>
+<p><strong>Par&aacute;grafo 6</strong>&ordm; - O secret&aacute;rio ou a secret&aacute;ria geral do sindicato ser&aacute; liberado por 12 (doze) horas semanal, para exercer a cargo para o qual fora eleito pelos seus pares.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">MENSALIDADE SINDICAL LABORAL: </span></strong>As institui&ccedil;&otilde;es beneficentes, sociais, religiosas e filantr&oacute;picas descontar&atilde;o dos empregados, sindicalizados em favor do sindicato da categoria a mensalidade sindical no valor correspondente a 2% (dois por cento) do seu sal&aacute;rio mensal, se comprometendo a repassar o referido desconto, no primeiro dia &uacute;til ap&oacute;s o pagamento do sal&aacute;rio dos empregados.</p>
+<p><strong>Par&aacute;grafo 1&ordm; </strong>- O sindicato encaminhar&aacute; a institui&ccedil;&atilde;o as autoriza&ccedil;&otilde;es de desconto da mensalidade, devidamente assinada pelo empregado.</p>
+<p><strong>Par&aacute;grafo 2&ordm; </strong>- Em caso de atraso no repasse da mensalidade sindical, pela institui&ccedil;&atilde;o, ser&aacute; aplicada a multa de 10% (dez por cento) sobre o valor descontado.</p>
+<p><strong>Par&aacute;grafo 3&ordm; </strong>- No m&ecirc;s em que for descontada a taxa negocial, n&atilde;o haver&aacute; desconto das mensalidades sindicais, conforme decis&atilde;o em assembleia geral extraordin&aacute;ria dos trabalhadores.</p>
+<h1><span style="text-decoration: underline;">DA CONTRIBUI&Ccedil;&Atilde;O DE DESPESA DE CAMPANHA SALARIAL LABORAL: </span>A Contribui&ccedil;&atilde;o</h1>
+<p>de despesa de campanha salarial laboral se constitui em delibera&ccedil;&atilde;o de Assembleia Geral Extraordin&aacute;ria da categoria profissional, e &eacute; fixada pelos trabalhadores, conforme abaixo discriminados:</p>
+<p><strong>a)&nbsp; </strong>Com o percentual de 4% <strong>(</strong>Quatro por cento) do sal&aacute;rio normativo ao m&ecirc;s de fevereiro <strong>para </strong>todos os trabalhadores abrangidos por esta conven&ccedil;&atilde;o;</p>
+<p><strong>b)&nbsp; </strong>Mediante aprova&ccedil;&atilde;o da assembleia <span style="text-decoration: underline;">geral</span>, o sindicato publicar&aacute; edital assegurando o direito de oposi&ccedil;&atilde;o dos trabalhadores, n&atilde;o filiados ao Sindicato Laboral, ao pagamento da Contribui&ccedil;&atilde;o de despesa de campanha salarial laboral em benef&iacute;cio do sindicato, que dever&atilde;o se manifestar, por escrito na sede do Sindicato laboral, conforme TAC do MPT, no prazo de 10 dias a contar da data de publica&ccedil;&atilde;o do edital e fixado nos quadros de aviso das empresas.</p>
+<p><strong>c)&nbsp; </strong>A publica&ccedil;&atilde;o dever&aacute; ser feita no mesmo jornal que convocou a assembleia de aprova&ccedil;&atilde;o da pauta de reivindica&ccedil;&atilde;o, no prazo de 10 dias contados do protocolo do instrumento normativo na Superintend&ecirc;ncia Regional do Trabalho.</p>
+</div>
+<p>&nbsp;</p>
+<div class="WordSection6">
+<p><strong>d)&nbsp;&nbsp; </strong>As nominatas dos seus empregados que forem fornecidas pelas empresas por for&ccedil;a do aqui estabelecido tem o fim &uacute;nico e exclusivo de verifica&ccedil;&atilde;o da corre&ccedil;&atilde;o do cumprimento do previsto nesta cl&aacute;usula.</p>
+<p><strong>e)&nbsp; </strong>O valor assim descontado pelas empresas deve ser recolhido por estas, direta e separadamente, &agrave; entidade que assina o presente instrumento, nos percentuais ali definidos - em seus valores correspondentes - at&eacute; o dia 10 (dez) do m&ecirc;s subsequente &agrave; efetiva&ccedil;&atilde;o do mesmo, na conta banc&aacute;ria da entidade sindical beneficiada agencia 0041 Opera&ccedil;&atilde;o 003 Conta Corrente n&ordm; 1075-6, CEF &ndash; CAIXA ECONOMICA FEDERAL ou na secretaria do Sindicato Obreiro. O comprovante de recolhimento dever&aacute; ser encaminhado pelas empresas no m&ecirc;s do recolhimento, junto com a rela&ccedil;&atilde;o nominal dos trabalhadores.</p>
+<p><strong>f)&nbsp;&nbsp; </strong>O n&atilde;o recolhimento no prazo estabelecido no par&aacute;grafo quarto implicar&aacute; acr&eacute;scimo de 10 % (dez por cento) no primeiro m&ecirc;s de atraso, acrescidos de 2% (dois por cento) de juros ao m&ecirc;s mais 1% (um por cento) de mora, sem preju&iacute;zo da atualiza&ccedil;&atilde;o de d&eacute;bito, e restar&aacute; caracterizado o crime de apropria&ccedil;&atilde;o ao administrador da empresa conforme previsto no artigo 168 do CP.</p>
+<p><strong>g)&nbsp; </strong>Esta cl&aacute;usula &eacute; inserida na CCT a pedido do sindicato profissional a quem dever&aacute; ser direcionado qualquer questionamento quanto &agrave; mesma.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">BANCO DE PROFISSIONAIS: </span></strong>As institui&ccedil;&otilde;es poder&atilde;o consultar o banco de cadastro de profissionais mantidos pelo Sindicato para loca&ccedil;&atilde;o de m&atilde;o de obra, sem prefer&ecirc;ncia.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">IMPLANTA&Ccedil;&Atilde;O DO BANCO DE HORAS: </span></strong>Conforme preconizado no Par&aacute;grafo 2&ordm; do artigo 59 da CLT, e ainda, no art. 468 da referida Consolida&ccedil;&atilde;o, a partir da entrada em vigor da presente conven&ccedil;&atilde;o, ser&aacute; permitida a implanta&ccedil;&atilde;o de Banco de Horas, cuja finalidade ser&aacute; a compensa&ccedil;&atilde;o das horas de trabalho excedentes &agrave; jornada de trabalho normal<strong>.</strong></p>
+<p><strong>Par&aacute;grafo 1&ordm; </strong>&ndash; O banco de horas de que trata o <em>caput </em>da presente cl&aacute;usula ser&aacute; implantado mediante acordo celebrado com os funcion&aacute;rios da institui&ccedil;&atilde;o, com obrigat&oacute;ria assist&ecirc;ncia do Sindicato Obreiro, no qual ser&aacute; definido o limite de horas extraordin&aacute;rias di&aacute;rias, a quantidade de horas a serem compensadas por cada hora acumulada, bem como o prazo para compensa&ccedil;&atilde;o.</p>
+<p><strong>Par&aacute;grafo 2&ordm; - </strong>A compensa&ccedil;&atilde;o de que trata o Paragrafo1&ordm; dever&aacute; ocorrer no per&iacute;odo nunca superior a 90 dias.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DA LISTAGEM DE EMPREGADOS: </span></strong>As institui&ccedil;&otilde;es dever&atilde;o fornecer ao SEESSA-AB listagem dos empregados, onde conste qualifica&ccedil;&atilde;o e o nome completo dos empregados, o cargo ou fun&ccedil;&atilde;o, forma&ccedil;&atilde;o profissional.</p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DA VIG&Ecirc;NCIA: </span></strong>A presente Conven&ccedil;&atilde;o Coletiva de Trabalho tem vig&ecirc;ncia de 12 (doze meses), de 01 de fevereiro de 2026 a 31 de janeiro de 2027, sendo que as cl&aacute;usulas econ&ocirc;micas ser&atilde;o discutidas ao final do primeiro ano, enquanto as cl&aacute;usulas sociais ter&atilde;o validade por 02 (dois) anos, ou seja 31/01/2028, compreendendo-se como v&aacute;lidas e em vig&ecirc;ncia todas as cl&aacute;usulas aqui negociadas at&eacute; que as partes, vencido este instrumento, negociem ou acordem um novo instrumento coletivo, ressalvadas as cl&aacute;usulas econ&ocirc;micas que ser&atilde;o objeto de aditamento pelos sindicatos partes. Os acordantes definem que a Conven&ccedil;&atilde;o Coletiva de Trabalho ser&aacute; estendida para toda a categoria econ&ocirc;mica.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">ABRANG&Ecirc;NCIA: </span></strong>A presente Conven&ccedil;&atilde;o Coletiva de Trabalho abranger&aacute; a(s) categoria(s) de TRABALHADORES DOS ESTABELECIMENTOS DE SERVI&Ccedil;O DE SAUDE, E TRABALHADORES DE ENTIDADES, BENEFICENTES, FILANTR&Oacute;PICAS, RELIGIOSAS E</p>
+<p>SIMILARES DO AGRESTE DA BORBOREMA, com abrang&ecirc;ncia territorial em Alagoa Nova/PB, Areial/PB, Boqueir&atilde;o/PB, Campina Grande/PB, Esperan&ccedil;a/PB, Ing&aacute;/PB, Lagoa Seca/PB, Massaranduba/PB, Montadas/PB, Pocinhos/PB, Puxinan&atilde;/PB, Queimadas/PB, Rem&iacute;gio/PB e Serra Redonda/PB.</p>
+<p align="left">&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DA MULTA: </span></strong>Em caso de descumprimento de qualquer das cl&aacute;usulas constante <strong>CONVEN&Ccedil;&Atilde;O COLETIVA DE TRABALHO </strong>a parte infratora sujeitar-se-&aacute; a multa contratual de 10% (dez por cento) do sal&aacute;rio do empregado em prol da parte prejudicada.</p>
+</div>
+<p>&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">DO FORO: </span></strong>Fica eleito como foro competente para apreciar e julgar as a&ccedil;&otilde;es decorrentes na presente Conven&ccedil;&atilde;o Coletiva de Trabalho, qualquer das Varas da Justi&ccedil;a do Trabalho, na cidade de Campina Grande, por ren&uacute;ncia expressa a qualquer outras por mais privilegiada que se apresente.</p>
+<h1><span style="font-size: small;">Os acordantes definem que a presente conven&ccedil;&atilde;o coletiva para toda a categoria econ&ocirc;mica prevalece o negociado sobre o legislado, conforme artigo 611 da CLT.</span></h1>
+<p style="text-align: center;" align="left">Campina Grande &ndash; PB, 15 de abril de 2026</p>
+<p align="left">&nbsp;</p>
+<p style="text-align: center;" align="left">&nbsp;JOSEMAR BEZERRA DA NOBREGA</p>
+<p style="text-align: center;" align="center">Presidente</p>
+<p align="center">SINDICATO DOS TRABALHADORES DE SAUDE E ENTIDADES BENEFICENTES, FILANTROPICAS, RELIGIOSAS DO AGRESTE DA BORBOREMA</p>
+<p align="left">&nbsp;</p>
+<p style="text-align: center;" align="left">&nbsp;PAULO GUEDES PEREIRA</p>
+<p align="center">Presidente</p>
+<p align="center">SIHOF/PB - SINDICATO DOS HOSPITAIS FILANTROPICOS E DAS SANTAS CASAS DO ESTADO DA PARAIBA</p>
+                                                </label>
+                                                <br />
+                                    }
+                                    <br />
+                                    <table border="0" cellpadding="0" cellspacing="0" align="center">
+                                        <tr>
+                                            <td align="center">
+                                                    <br />
+    <br />
+    <label class="textonome">
+        JOSEMAR BEZERRA DA NOBREGA
+        <br style="height: 5px" />
+        Presidente
+        <br style="height: 5px" />
+        SINDICATO DOS TRABALHADORES DE SAUDE E ENTIDADES BENEFICENTES, FILANTROPICAS, RELIGIOSAS DO AGRESTE DA BORBOREMA
+        <br />
+        <br />
+    </label>
+
+    <br />
+    <br />
+    <label class="textonome">
+        PAULO GUEDES PEREIRA
+        <br style="height: 5px" />
+        Presidente
+        <br style="height: 5px" />
+        SIHOF/PB - SINDICATO DOS HOSPITAIS FILANTROPICOS E DAS SANTAS CASAS DO ESTADO DA PARAIBA
+        <br />
+        <br />
+    </label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                        <br />
+                                        <center>
+                                            <label class="textogrupo">
+                                                <b>ANEXOS </b>
+                                            </label>
+                                        </center>
+                                                        <label>
+                                                            <b>
+                                                                <center>
+                                                                    <label class="textogrupo">
+                                                                        ANEXO I - ASSEMBLEIA GERAL EXTRAORDINARIA
+                                                                    </label>
+                                                                </center>
+                                                                <label class="tituloClausula">
+                                                                                                                                    </label>
+                                                            </b>
+                                                        </label>
+                                                        <b>
+                                                            <label>
+
+                                                            </label>
+                                                        </b>
+                                                        <br />
+                                                        <label class="descricaoClausula" >
+                                                            <p><a href="https://www3.mte.gov.br/sistemas/mediador/imagemAnexo/MR024074_20262026_04_30T11_55_48.pdf" target="_blank">Anexo (PDF)</a></p>
+                                                        </label>
+                                                        <br />
+                                        <!--****************************************** FIM - Anexos ******************************************-->
+                                            <label class="texto">
+                                                &#160;&#160;&#160;&#160;A autenticidade deste documento poderá ser confirmada na
+                                                página do Ministerio do Trabalho e Emprego na Internet, no endereço http://www.mte.gov.br.
+                                            </label>
+                                            <br />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </div>
+</body>
+<script>
+    setTimeout(function () {
+        window.history.replaceState({}, '', window.location.pathname);
+    }, 0);
+</script>
+</html>
