@@ -1,0 +1,762 @@
+
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+    <title>
+        Mediador - Extrato Conven&#231;&#227;o Coletiva
+    </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G"></script>
+
+    <script src='/sistemas/mediador/WebResource.axd?d=cuQcyhunthaKbkS1HRDdYz6PN4zLUht6oCI9W5Qe4lHx-6WAKxelJ3CNRaaYGmIIXUPG_02Oz_3xp1nWR4wRmrhzD889Xme-W80PINl5Opm3a6Vk9xOcKAdRAP0WaAY0QwRFkKa8ygci1cWChKIM3xi_y4E-QkbPdUjFbuj7xrCEQ-EVAHEd2SiDsURiQrGz0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=oCiGPyL516rw_w4O_26ZIUgEDxNTixko29P8hNqgYYE9jihnBUsGIp-kukrf82JW7eobyj8s0ooJ5rI1tfuIzt5-6_pMzumq7dLHWrlQZ-QMRUlCHBKuRssX4JwWJPbRaacnUMI4LY59GnxsKL82GjLr-MAsXYWqz_mUgN6cUz51NH30xgq7ZmHyBhUjhPw8-L_0eLuQdQHcRf08dF_HrA2&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=wI0LQo9-Y3uVg4JvYlrDeAmD0eDROLwrykxGZZm7FeHJNOkuLJd-tB3W2xasfEpUFS-WtoMR44VJNgE_0uIW4OIXYKjcDuXF0IcPvjMyLwlPk2AOsHRO3raei2aKk_DpNcvHrgXcEazozbzFbx3MyYROztNnngy4LZm8CigaBFeRwbfjiCBOJaSo3LCaUDVQ0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=KaDqL3Gcxy5_cHNfLKsWFNdcKxNiiUh3HtPda6q62Tk6jObaqvBGjIGv4N3KHnol1jsYfqnEDPvu8bqDw9664g8gNXTu-bup9GNgychn1MlTxA9V_0gUapXZl6zq0NwvemVy1w_Yym-4g5yIIiPndY1yb7UY2Z3ZO1ZTaDrRNyAjWzC-rNL3CXeYpaiIWTH40&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=qtzkb4aKrNku25SKlKs4jZr_bdveUVnUZ5tZc2pTT2sauL0_dRzCNMZhGSFASotxmo04giDQ-E0d0UeLqCdzABP8l2gJR6XwVRdetE7e7Eck3ObZ-LknGwsZoVcBz7BNY1TRN4J-vljXQrR5MmbFoTkwox8Q8ec5f9wsCVK67AZSRApQIAoKK7FEwOCFjWlx0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=3iAOwoL9JnA5TZ6rygyAAR_lXBxjSq4488DJsEscLKSXKUh-cfJ9O5bC-FxRzAqJtsQJFs2IhSJQ3HR3WKiVMzlo3WgEBcHU3QAeRw7LGJeOXAbL5CGBB2zel0X2_oWfsINwuZcDfexI5FD89VA4NlfrRQ7K4czFkowNfSNtL_dKVZ5vnkZUyK_vnlVhpVzb0&t=639193666532168144' type='text/javascript'></script>
+
+
+<script type="text/javascript">
+        var recaptchaSiteKey = '6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G';
+        var pageLoadToken = '';
+        var isPageValidated = false;
+
+        function onRecaptchaLoad() {
+            console.log('reCAPTCHA carregado, validando página...');
+            executePageLoadRecaptcha();
+        }
+
+        function executePageLoadRecaptcha() {
+            if (typeof grecaptcha === 'undefined') {
+                console.error('reCAPTCHA não carregado');
+                return;
+            }
+
+            grecaptcha.ready(function() {
+                grecaptcha.execute(recaptchaSiteKey, {
+                    action: 'page_load_resumo'
+                }).then(function(token) {
+                    console.log('Token de página gerado');
+                    pageLoadToken = token;
+
+                    // Enviar o token para o servidor
+                    validatePageLoadToken(token);
+                }).catch(function(error) {
+                    console.error('Erro no reCAPTCHA de página:', error);
+                    // Em desenvolvimento, permitir continuar
+                });
+            });
+        }
+
+        function validatePageLoadToken(token) {
+            var currentUrl = window.location.href;
+            var queryString = window.location.search;
+            var nrSolicitacao = 'MR021532/2026';
+
+            $.ajax({
+                url: '/sistemas/mediador/Resumo/ValidateResumoPageLoad',
+                type: 'POST',
+                data: {
+                    recaptchaToken: token,
+                    currentUrl: currentUrl,
+                    queryString: queryString,
+                    nrSolicitacao: nrSolicitacao
+                },
+                success: function(response) {
+                    if (response.success) {
+                        console.log('Página validada com sucesso');
+                        isPageValidated = true;
+                        showPageContent();
+                    } else {
+                        console.warn('Validação de página falhou:', response.message);
+                        handleValidationFailed(response);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Erro ao validar página:', error);
+                    handleValidationFailed({ message: 'Erro de comunicação com o servidor' });
+                }
+            });
+        }
+
+        function showPageContent() {
+            // Remover overlay de loading se existir
+            $('#recaptcha-loading').remove();
+            console.log('Conteúdo da página liberado');
+        }
+
+        function handleValidationFailed(response) {
+            // Mostrar mensagem de erro
+            var errorHtml = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                    <div style="text-align: center; padding: 20px;">
+                        <h2 style="color: #d32f2f;">Validação de Segurança</h2>
+                        <p style="font-size: 16px; margin: 20px 0;">${response.message || 'Falha na validação de segurança.'}</p>
+                        <button onclick="window.location.reload()" style="padding: 10px 20px; background: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Tentar Novamente
+                        </button>
+                        <br><br>
+                        <button onclick="window.location.href='/sistemas/mediador/'" style="padding: 8px 16px; background: #757575; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Voltar para Página Inicial
+                        </button>
+                    </div>
+                </div>
+            `;
+            $('body').prepend(errorHtml);
+        }
+
+        $(document).ready(function() {
+            console.log('Página carregada - ambiente de produção');
+
+            // Pular validação reCAPTCHA em produção
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.log('Produção - validando sem reCAPTCHA');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 1000);
+
+            // Timeout de segurança reduzido
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.warn('Timeout na validação - liberando conteúdo');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 5000); // Reduzido para 5 segundos
+        });
+
+        function Imprimir() {
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "none";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "none";
+            window.print();
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "";
+            return true;
+        }
+        $(function () {
+            var marcaDaguaHtml = $('.MarcaDagua').html();
+            var width = $('body').width();
+            var marcaW = $('.MarcaDagua').width();
+
+            var qtdNescessarios = Math.round((width / marcaW) + 0.4);
+            if (qtdNescessarios > 0)
+                for (var incrementador = 0; incrementador < qtdNescessarios; incrementador++) {
+                    $('.MarcaDagua').append("<br />");
+                    $('.MarcaDagua').append(marcaDaguaHtml);
+                }
+        });
+
+
+</script>
+    <style type="text/css">
+        .titulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .Subtitulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 13px;
+        }
+        .texto
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .tituloClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .descricaoClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .textogrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        .textosubgrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        .textonome
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .textofuncao
+        {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .pagebreak
+        {
+            page-break-after: always;
+        }
+        table.titulo
+        {
+            text-align: left;
+        }
+        @page Section2 {size:21cm 29.7cm ;mso-page-orientation:portrait;margin-top:2cm; margin-rigth:2cm; mso-paper-source:0;}
+        div.Section2 {page:Section2;}
+        pre
+        {
+            white-space: pre-wrap; /* css-3 */
+            white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+            white-space: -pre-wrap; /* Opera 4-6 */
+            white-space: -o-pre-wrap; /* Opera 7 */
+            word-wrap: break-word; /* Internet Explorer 5.5+ */
+            white-space: normal;
+        }
+    </style>
+    <!--[if gte mso 9]>
+    <xml>
+    <w:WordDocument>
+    <w:View>Print</w:View>
+    <w:Zoom>100</w:Zoom>
+    <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+    </xml>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="Section2">
+                <form method="post" action="/sistemas/mediador/Resumo/ResumoVisualizarSalvarMsWordDoc?NrSolicitacao=MR021532/2026">
+                    <input type="button" id="btnResumoVisualizarImprimir" value="Imprimir" onclick="Imprimir();" />
+                    <input type="submit" id="btnResumoVisualizarSalvar" value="Salvar" />
+                </form>
+
+            <div style="text-align: center; z-index: -1000; position: absolute; width: 100%;"
+                 class="MarcaDagua">
+                <img src="/sistemas/mediador/Content/images/carimbo.gif" alt="marcaDAgua" />
+            </div>
+        <center>
+            <table border="0" style="width: 18cm;" id="tblConteudo">
+                <tr>
+                    <td>
+                        <table style="width: 100%;" cellpadding="0" cellspacing="0">
+
+                                                            <tr>
+                                    <td align="center" class="titulo" style="text-transform: uppercase;">
+                                        <b>
+                                            Conven&#231;&#227;o Coletiva De Trabalho 2026/2027
+                                        </b>
+                                        <br />
+                                        <br />
+                                    </td>
+                                </tr>
+                            <tr>
+                                <td>
+                                    <div style="text-align: left;">
+                                        <table border="0" class="titulo" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td>
+                                                        <b>NÚMERO DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        SP004036/2026
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        30/04/2026
+                                                    </td>
+                                                </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>NÚMERO DA SOLICITAÇÃO:</b>
+                                                </td>
+                                                <td style="width: 10px">
+                                                </td>
+                                                <td>
+                                                    MR021532/2026
+                                                </td>
+                                            </tr>
+                                                                                            <tr>
+                                                    <td>
+                                                        <b>NÚMERO DO PROCESSO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        47979.250477/2026-98
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DO PROTOCOLO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+22/04/2026                                                    </td>
+                                                </tr>
+                                        </table>
+                                        <br />
+
+                                                        <p>
+                                                            <label class="texto">
+                                                                <b>
+                                                                    Confira a autenticidade no endereço http://mediador.trabalho.gov.br/sistemas/mediador/.
+                                                                </b>
+                                                            </label>
+                                                        </p>
+                                                    <br />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="texto">
+                                    <p align="justify">
+SINDICATO DOS EMPREGADOS NO COMERCIO DE LIMEIRA, CNPJ n. 56.977.002/0001-90, neste ato representado(a) por seu 
+
+Presidente, Sr(a). PAULO CESAR DA SILVA;
+    <br />
+&nbsp;
+    <br />
+                                        <label>
+                                            E
+                                        </label>
+                                        <br />
+                                        <br />
+SINDICATO DO COMERCIO VAREJISTA DE PIRASSUNUNGA, CNPJ n. 54.851.449/0001-92, neste ato representado(a) por seu 
+
+Presidente, Sr(a). PAULO JOAO DE OLIVEIRA ALONSO;
+    <br />
+&nbsp;
+    <br />
+                                                                                    celebram
+                                                                                    a
+                                         presente CONVEN&#199;&#195;O COLETIVA DE TRABALHO,
+ estipulando as condi&#231;&#245;es de trabalho previstas nas cl&#225;usulas seguintes:                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA PRIMEIRA - VIG&#202;NCIA E DATA-BASE
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    As partes fixam a vigência da presente Convenção Coletiva de Trabalho no período de 01º de abril de 2026 a 31 de março de 2027 e a data-base da categoria em 01º de setembro.
+                                                </label>
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA SEGUNDA - ABRANG&#202;NCIA
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    A presente Convenção Coletiva de Trabalho abrangerá a(s) categoria(s) <b>empregados no comércio varejista</b>, com abrangência territorial em <b>Leme/SP</b>.
+                                                </label>
+                                                <br />
+                                    </p>
+
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Jornada de Trabalho – Duração, Distribuição, Controle, Faltas
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Duração e Horário
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TERCEIRA - HOR&#193;RIO REGULAR DE TRABALHO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p><strong>3.1 &ndash; </strong><strong>O hor&aacute;rio regular de trabalho do empregado de </strong>segunda &agrave; sexta-feira &eacute; das <strong>08h00</strong> &agrave;s <strong>18h00,</strong> respeitando a legisla&ccedil;&atilde;o trabalhista atinente a jornada e intervalos, bem como os contratos individuais de trabalho em vigor. No s&aacute;bado o <strong>hor&aacute;rio regular de trabalho do empregado</strong> &eacute; das <strong>09h00</strong> &agrave;s <strong>14h15</strong>, respeitando a legisla&ccedil;&atilde;o trabalhista atinente a jornada e intervalos, com pagamento de at&eacute; 1 (uma) hora tida como extra, se efetivamente trabalhadas ou acrescidas ao banco de horas observando-se as regras estabelecidas na CCT geral de cl&aacute;usulas sociais e econ&ocirc;micas.</p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>3.2 &ndash; </strong>As lojas de materiais de constru&ccedil;&atilde;o poder&atilde;o iniciar o labor dos empregados nos dias de semana (segunda a sexta-feira) &agrave;s <strong>07h00</strong>, limitado seu t&eacute;rmino &agrave;s <strong>18h00, </strong>respeitando a legisla&ccedil;&atilde;o trabalhista atinente a jornada e intervalos. No s&aacute;bado poder&atilde;o iniciar &agrave;s atividades <strong>07h00</strong>, limitado seu t&eacute;rmino &agrave;s <strong>14h00,</strong> respeitando a legisla&ccedil;&atilde;o trabalhista atinente a jornada e intervalos.</p>
+<p>&nbsp;</p>
+<p><strong>3.2.1 -</strong> As horas extraordin&aacute;rias ser&atilde;o remuneradas com o acr&eacute;scimo dos seguintes adicionais, incidentes sobre o valor da hora normal, ou acrescidas ao banco de horas observando-se as regras estabelecidas na CCT geral de cl&aacute;usulas sociais e econ&ocirc;micas, at&eacute; o limite de duas horas di&aacute;rias:</p>
+<p>&nbsp;</p>
+<p>60% (sessenta por cento) para as duas primeiras horas di&aacute;rias;</p>
+<p>&nbsp;</p>
+<p>70% (setenta por cento) para as horas que excederem a segunda.</p>
+<p>&nbsp;</p>
+<p>As horas que excederem o limite de 2 (duas) di&aacute;rias dever&atilde;o ser obrigatoriamente pagas, sendo vedada a sua inclus&atilde;o em sistema de banco de horas.</p>
+<p>&nbsp;</p>
+<p><strong>3.3 - <span style="text-decoration: underline;">As lojas de papelaria</span></strong>, devido ao in&iacute;cio das aulas e a demanda, poder&atilde;o estender o hor&aacute;rio de funcionamento e labor dos empregados <strong>nos dias de semana (segunda a sexta-feira)</strong>, no per&iacute;odo restrito de <strong><span style="text-decoration: underline;">05/01/2027 a 29/01/2027</span></strong><span style="text-decoration: underline;"> das <strong>08h00</strong> &agrave;s <strong>19h30</strong></span><strong>, </strong>respeitando a legisla&ccedil;&atilde;o trabalhista atinente a jornada e intervalos, com pagamento de at&eacute; 2(duas) horas extras, se efetivamente trabalhadas. Para isto, a empresa interessada depender&aacute; da obten&ccedil;&atilde;o de CERTID&Atilde;O que dever&aacute; ser expedida em conjunto pelas entidades convenentes, e das obriga&ccedil;&otilde;es abaixo.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo 1&ordm; - </strong>As empresas dever&atilde;o formalizar sua ades&atilde;o para obten&ccedil;&atilde;o da <strong>CERTID&Atilde;O, </strong>atrav&eacute;s do preenchimento e encaminhamento do requerimento, disponibilizado no site do www.scvpirassununga.com.br, <strong><span style="text-decoration: underline;">at&eacute; o dia 31/12/2026</span></strong>, que ap&oacute;s an&aacute;lise conjunta com o sindicato profissional e uma vez verificado o cumprimento integral das conven&ccedil;&otilde;es coletivas de trabalho vigentes da categoria, poder&atilde;o autorizar o trabalho neste per&iacute;odo especial, <strong><span style="text-decoration: underline;">concedendo &agrave;s empresas CERTID&Atilde;O conjunta para referido funcionamento e trabalho. </span></strong>Em constatando qualquer irregularidade ou o n&atilde;o cumprimento da CCT da categoria, o sindicato patronal ou laboral comunicar&aacute; a empresa para que, em at&eacute; 5(cinco) dias corridos, regularize sua situa&ccedil;&atilde;o, sob pena de indeferimento do pedido de certid&atilde;o.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo 2&ordm; - </strong>A aus&ecirc;ncia da <strong>CERTID&Atilde;O</strong> torna irregular o labor neste per&iacute;odo especial e implica na comina&ccedil;&atilde;o &agrave; empresa de multa de <strong>R$471,00 (quatrocentos e setenta e um reais)</strong> por empregado e por dia de labor sem certid&atilde;o v&aacute;lida, que reverter&aacute; em prol do sindicato laboral, n&atilde;o sendo cumulativa com a multa da cl&aacute;usula nona &ldquo;MULTA&rdquo;.</p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>3.4</strong> &ndash; &Eacute; vedado o labor do empregado em desacordo com a presente norma coletiva de trabalho, bem como em domingos e feriados n&atilde;o contemplados na cl&aacute;usula de datas especiais.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUARTA - HOR&#193;RIO DE TRABALHO EM DATAS ESPECIAIS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p><strong>4.1</strong> &ndash; Estabelecem as partes regras para o trabalho dos empregados em datas especiais, observando o relacionado abaixo, m&ecirc;s a m&ecirc;s, em hor&aacute;rios e datas tidas como especiais, apenas para efeito de promo&ccedil;&otilde;es coletivas, vedada a promo&ccedil;&atilde;o individual em qualquer outro dia e hor&aacute;rio diferente do aqui formalizado, dependendo da obten&ccedil;&atilde;o de <strong>CERTID&Otilde;ES</strong> para cada labor em datas especiais <strong>previstas nos subitens 4.2, 4.5, 4.6, 4.7 e 4.11</strong> que dever&aacute; ser expedida em conjunto pelas entidades convenentes, e das obriga&ccedil;&otilde;es abaixo.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo 1&ordm; - </strong>As empresas dever&atilde;o formalizar sua ades&atilde;o para obten&ccedil;&atilde;o da <strong>CERTID&Atilde;O, </strong>atrav&eacute;s do preenchimento e encaminhamento do requerimento, disponibilizado no site do Sincomercio www.scvpirassununga.com.br, com anteced&ecirc;ncia m&iacute;nima de 20(vinte) dias corridos que antecede a data especial escolhidas, que ap&oacute;s an&aacute;lise conjunta com o sindicato profissional e uma vez verificado o cumprimento integral das conven&ccedil;&otilde;es coletivas de trabalho vigentes da categoria, poder&atilde;o autorizar o trabalho em datas especiais, <strong><span style="text-decoration: underline;">concedendo &agrave;s empresas CERTID&Atilde;O conjunta para referido funcionamento e trabalho com a indica&ccedil;&atilde;o do domingo e/ou feriado escolhido e autorizado. </span></strong>Em constatando qualquer irregularidade ou o n&atilde;o cumprimento da CCT da categoria, o sindicato patronal ou laboral comunicar&aacute; a empresa para que, em at&eacute; 5(cinco) dias corridos, regularize sua situa&ccedil;&atilde;o, sob pena de indeferimento do pedido de certid&atilde;o.</p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>Par&aacute;grafo 2&ordm; - </strong>A validade da <strong>CERTID&Atilde;O </strong>emitida somente ter&aacute; efeitos a partir da data de seu requerimento, ou seja, tornar&aacute; regular o labor do empregado nas datas especiais ocorridas apenas ap&oacute;s a data do requerimento e na vig&ecirc;ncia da presente norma coletiva e respectiva <strong>CERTID&Atilde;O</strong>.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo 3&ordm; - </strong>A <strong>CERTID&Atilde;O</strong> dever&aacute; ser requerida <strong>at&eacute; 07/05/2026</strong> para ter efeito retroativo &agrave;s datas especiais j&aacute; trabalhadas no per&iacute;odo de <strong>01/04/2026</strong> at&eacute; a data de assinatura da presente conven&ccedil;&atilde;o coletiva de trabalho. O ATESTADO requerido <strong>ap&oacute;s a data de 07/05/2026</strong> ter&aacute; vig&ecirc;ncia somente a partir da data do requerimento, se deferida sua expedi&ccedil;&atilde;o, com validade at&eacute; <strong>31/03/2027</strong>, n&atilde;o tendo efeito retroativo anterior &agrave; data de seu requerimento.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo 4&ordm; - </strong>A aus&ecirc;ncia da <strong>CERTID&Atilde;O</strong> prevista no item 4.1, ou ainda, o labor em qualquer outra data ou hor&aacute;rio n&atilde;o autorizados nessa norma coletiva de trabalho, torna irregular o labor neste per&iacute;odo especial e implica comina&ccedil;&atilde;o &agrave; empresa de multa de <strong>R$471,00 (quatrocentos e setenta e um reais)</strong> por empregado e por dia de labor sem certid&atilde;o v&aacute;lida, que reverter&aacute; em prol do sindicato laboral, n&atilde;o sendo cumulativa com a multa da cl&aacute;usula nona &ldquo;MULTA.</p>
+<p>&nbsp;</p>
+<p><strong>4.2 &ndash; </strong><strong>Hor&aacute;rio de Trabalho Especial em S&aacute;bados</strong>: <strong>Para o per&iacute;odo compreendido entre </strong><strong>abril</strong><strong> de </strong><strong>2026</strong><strong> a </strong><strong>mar&ccedil;o</strong><strong> de </strong><strong>2027</strong><strong>, m&ecirc;s a m&ecirc;s, o hor&aacute;rio de trabalho especial aos s&aacute;bados ser&aacute; das </strong><strong>09h00</strong><strong> &agrave;s </strong><strong>17h00</strong>, respeitando a legisla&ccedil;&atilde;o trabalhista atinente a jornada e intervalos, compreendendo os seguintes s&aacute;bados: <strong>11/04/2026, 18/04/2026, 09/05/2026, 23/05/2026, 06/06/2026, 20/06/2026, 11/07/2026, 25/07/2026, 08/08/2026, 22/08/2026, 05/09/2026, 19/09/2026, 10/10/2026,&nbsp; 24/10/2026,&nbsp; 07/11/2026,&nbsp; 21/11/2026,&nbsp; 28/11/2025 (p&oacute;s Black Friday), 05/12/2026, 12/12/2026, 19/12/2026, 09/01/2027, 23/01/2027, 06/02/2027, 20/02/2027, 06/03/2027 e 20/03/2027.</strong></p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>4.3 </strong>- Durante a vig&ecirc;ncia da presente Conven&ccedil;&atilde;o Coletiva, para as empresas que optarem pelo trabalho nos s&aacute;bados especiais aqui autorizados com hor&aacute;rio estendido at&eacute; &agrave;s 17h00, dever&atilde;o al&eacute;m de concederem at&eacute; 2<strong>(duas)</strong> horas para refei&ccedil;&atilde;o, respeitado o limite m&iacute;nimo de uma hora, computar at&eacute; 3<strong>(tr&ecirc;s)</strong> horas tidas como extras, se efetivamente trabalhadas, a serem pagas ou acrescidas ao banco de horas, observando-se as regras estabelecidas na CCT geral de cl&aacute;usulas sociais e econ&ocirc;micas, at&eacute; o limite de duas horas di&aacute;rias. As horas que excederem o limite de 2 (duas) di&aacute;rias dever&atilde;o ser obrigatoriamente pagas com o acr&eacute;scimo de 70% (setenta por cento) incidentes sobre o valor da hora normal, sendo vedada a sua inclus&atilde;o em sistema de banco de horas.</p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>4.4 &ndash; Semana especial queima de estoque ACIL: </strong>Fica facultado a ACIL - Associa&ccedil;&atilde;o Comercial e Industrial de Leme, a escolha de dois s&aacute;bados especiais no per&iacute;odo de vig&ecirc;ncia da presente norma, para fins de sua promo&ccedil;&atilde;o especial de queima de estoque ACIL, em que o hor&aacute;rio de trabalho ser&aacute; das <strong>09h00</strong> &agrave;s <strong>18h00, </strong>com 3(tr&ecirc;s) horas para refei&ccedil;&atilde;o. As horas efetivamente trabalhadas dever&atilde;o ser computadas como &ldquo;horas extras&rdquo;, que assim ser&atilde;o pagas ou acrescidas ao banco de horas, observando-se as regras estabelecidas na CCT geral de cl&aacute;usulas sociais e econ&ocirc;micas, at&eacute; o limite de duas horas di&aacute;rias. Para tanto, a Acil dever&aacute; encaminhar ao sindicato patronal, com anteced&ecirc;ncia m&iacute;nima de 30 dias anteriores ao hor&aacute;rio especial, of&iacute;cio solicitando o deferimento dos dois s&aacute;bados escolhidos.</p>
+<p>&nbsp;</p>
+<p><strong>4.5 &ndash; Datas Especiais Comemorativas - </strong>Para as datas especiais assim compreendidas o <strong>Dia das M&atilde;es, Dia dos Namorados, Dia dos Pais e Dia das Crian&ccedil;as do ano de 2025</strong>, o hor&aacute;rio de trabalho ser&aacute;:</p>
+<p>&nbsp;</p>
+<p>Na <strong>sexta-feira</strong> que antecede a data festiva do <strong>Dias das M&atilde;es, Dia dos Namorados, Dia dos Pais e Dia das Crian&ccedil;as</strong>, das <strong>09h00</strong> &agrave;s <strong>22h00</strong>, com 3(tr&ecirc;s) horas para refei&ccedil;&atilde;o (almo&ccedil;o e jantar), respeitado o limite m&iacute;nimo de 1(uma) hora por refei&ccedil;&atilde;o. As horas efetivamente trabalhadas dever&atilde;o ser computadas at&eacute; 3 (tr&ecirc;s) horas tidas como &ldquo;horas extras&rdquo;, que assim ser&atilde;o pagas ou acrescidas ao banco de horas observando-se as regras estabelecidas na CCT geral de cl&aacute;usulas sociais e econ&ocirc;micas, at&eacute; o limite de duas horas di&aacute;rias. As horas que excederem o limite de 2 (duas) di&aacute;rias dever&atilde;o ser obrigatoriamente pagas com o acr&eacute;scimo de 70% (setenta por cento) incidentes sobre o valor da hora normal, sendo vedada a sua inclus&atilde;o em sistema de banco de horas. Dever&aacute; ser fornecido a todos os funcion&aacute;rios, inclusive comissionistas, que por convoca&ccedil;&atilde;o da empresa, permanecerem no estabelecimento no hor&aacute;rio da janta, <strong>vale refei&ccedil;&atilde;o no valor de R$20,00 (vinte reais)</strong> independentemente da quantidade de horas extras prestadas, devendo ser pago no mesmo dia do labor, possuindo natureza indenizat&oacute;ria, sem preju&iacute;zo do intervalo para refei&ccedil;&otilde;es como determinado por lei.</p>
+<p>&nbsp;</p>
+<p><strong>4.6 &ndash;</strong> <strong>Black Friday: </strong>No dia <strong>28/11/2025 </strong>o hor&aacute;rio de trabalho ser&aacute; das <strong>09h00</strong> &agrave;s <strong>22h00</strong>, com 3(tr&ecirc;s) horas para refei&ccedil;&atilde;o (almo&ccedil;o e jantar), respeitado o limite m&iacute;nimo de 01 hora por refei&ccedil;&atilde;o. As horas efetivamente trabalhadas dever&atilde;o ser computadas at&eacute; 03(tr&ecirc;s) horas, tida como &ldquo;horas extras&rdquo;, que assim ser&atilde;o pagas ou acrescidas ao banco de horas, observando-se as regras estabelecidas na CCT geral de cl&aacute;usulas sociais e econ&ocirc;micas, at&eacute; o limite de duas horas di&aacute;rias. As horas que excederem o limite de 2 (duas) di&aacute;rias dever&atilde;o ser obrigatoriamente pagas com o acr&eacute;scimo de 70% (setenta por cento) incidentes sobre o valor da hora normal, sendo vedada a sua inclus&atilde;o em sistema de banco de horas. Dever&aacute; ser fornecido a todos os funcion&aacute;rios, inclusive comissionistas, que por convoca&ccedil;&atilde;o da empresa, permanecerem no estabelecimento no hor&aacute;rio da janta, <strong>vale refei&ccedil;&atilde;o no valor de R$20,00 (vinte reais)</strong> independentemente da quantidade de horas extras prestadas, devendo ser pago no mesmo dia do labor, possuindo natureza indenizat&oacute;ria, sem preju&iacute;zo do intervalo para refei&ccedil;&otilde;es como determinado por lei.</p>
+<p>&nbsp;</p>
+<p><strong>4.7 &ndash; Natal &ndash; DEZEMBRO/2026: </strong><strong>O hor&aacute;rio especial de trabalho na &eacute;poca natalina </strong><strong>(dezembro de 2026)</strong><strong> ser&aacute;:</strong></p>
+<p><strong>&nbsp;</strong></p>
+<p>&nbsp; I.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Do dia <strong>07/12/2026 at&eacute; o dia 23/12/2026</strong><strong> o hor&aacute;rio especial de trabalho de segunda a sexta-feira, ser&aacute; das </strong><strong>09h00</strong><strong> &agrave;s </strong><strong>22h00</strong><strong>, </strong>respeitado o limite m&iacute;nimo de 1(uma) hora por refei&ccedil;&atilde;o. As horas efetivamente trabalhadas dever&atilde;o ser computadas at&eacute; 3(tr&ecirc;s) horas tidas como &ldquo;horas extras&rdquo;, que assim ser&atilde;o pagas ou acrescidas ao banco de horas observando-se as regras estabelecidas na CCT geral de cl&aacute;usulas sociais e econ&ocirc;micas, at&eacute; o limite de duas horas di&aacute;rias. As horas que excederem o limite de 2 (duas) di&aacute;rias dever&atilde;o ser obrigatoriamente pagas com o acr&eacute;scimo de 70% (setenta por cento) incidentes sobre o valor da hora normal, sendo vedada a sua inclus&atilde;o em sistema de banco de horas. Dever&aacute; ser fornecido a todos os funcion&aacute;rios, inclusive comissionistas, que por convoca&ccedil;&atilde;o da empresa, permanecerem no estabelecimento no hor&aacute;rio da janta, <strong>vale refei&ccedil;&atilde;o no valor de R$20,00 (vinte reais)</strong> independentemente da quantidade de horas extras prestadas, devendo ser pago no mesmo dia do labor, possuindo natureza indenizat&oacute;ria, sem preju&iacute;zo do intervalo para refei&ccedil;&otilde;es como determinado por lei.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; II.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nos<strong> s&aacute;bados dias 05/12/2026, 12/12/2026 e 19/12/2026 </strong><strong>o hor&aacute;rio especial de trabalho ser&aacute; das </strong><strong>09h00</strong><strong> &agrave;s </strong><strong>17h00</strong><strong>, </strong>com at&eacute; 2(duas) horas para refei&ccedil;&atilde;o, respeitado o limite m&iacute;nimo de uma) hora. As horas efetivamente trabalhadas dever&atilde;o ser computadas at&eacute; 03(tr&ecirc;s) horas tidas como &ldquo;horas extras&rdquo;, que assim ser&atilde;o pagas ou acrescidas ao banco de horas, observando-se as regras estabelecidas na CCT geral de cl&aacute;usulas sociais e econ&ocirc;micas, at&eacute; o limite de duas horas di&aacute;rias. As horas que excederem o limite de 2 (duas) di&aacute;rias dever&atilde;o ser obrigatoriamente pagas com o acr&eacute;scimo de 70% (setenta por cento) incidentes sobre o valor da hora normal, sendo vedada a sua inclus&atilde;o em sistema de banco de horas.</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; III.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nos<strong> domingos dias 06/12/2026 e 20/12/2026 </strong><strong>o hor&aacute;rio especial de trabalho ser&aacute; das </strong><strong>09h00</strong><strong> &agrave;s </strong><strong>14h15. </strong>As empresas que optarem pelo trabalho nos domingos dias <strong>06/12/2026 e 20/12/2026</strong>, dever&atilde;o formalizar escala de trabalho e folgas compensat&oacute;rias do m&ecirc;s, a serem gozadas na semana que anteceder e suceder o domingo laborado para cumprir a Orienta&ccedil;&atilde;o Jurisprudencial n&uacute;mero 410, da SDI-1, do C. TST, a fim de n&atilde;o ocorrer o labor do empregado por mais de seis dias consecutivos, sob pena de remuner&aacute;-los em dobro, al&eacute;m do pagamento do Descanso Semanal Remunerado do domingo trabalhado e da multa por descumprimento da presente conven&ccedil;&atilde;o coletiva de trabalho.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; IV.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No dia <strong>24/12/2026 (quinta-feira) </strong>o hor&aacute;rio de trabalho ser&aacute; das<strong> 09h00 &agrave;s 17h00. </strong></p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; V.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No dia <strong>25/12/2026 (sexta-feira) </strong>n&atilde;o haver&aacute; labor.</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; VI.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No dia <strong>26/12/2026 (s&aacute;bado)</strong> o labor dos empregados <strong>se dar&aacute; </strong><strong>das 10h00 &agrave;s 14h00</strong><strong>. </strong></p>
+<p><strong>&nbsp;</strong></p>
+<p>&nbsp;&nbsp; VII.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No dia <strong>31/12/2026 (quinta-feira) </strong>o hor&aacute;rio de trabalho ser&aacute; das<strong> 09h00 &agrave;s 13h00. </strong></p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>4.8 &ndash; JANEIRO/2027:</strong></p>
+<p><strong>&nbsp;</strong></p>
+<ol type="I" start="1">
+<li><strong>No dia </strong><strong>01/01/2027 (sexta-feira) </strong><strong>n&atilde;o haver&aacute; labor.</strong></li>
+</ol>
+<p><strong>&nbsp;</strong></p>
+<ol type="I" start="2">
+<li><strong>No dia </strong><strong>02/01/2027 (s&aacute;bado) </strong>o labor dos empregados <strong>se dar&aacute; </strong><strong>das 10h00 &agrave;s 14h00</strong><strong>. </strong></li>
+</ol>
+<p><strong>&nbsp;</strong></p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>4.9&ndash; </strong><strong>Carnaval:</strong> <strong>CARNAVAL/2027: </strong><strong>Na segunda-feira e ter&ccedil;a-feira de carnaval do ano de </strong><strong>2027</strong><strong>(dias 08/02/2027 e 09/02/2027) </strong><strong>o hor&aacute;rio de trabalho ser&aacute; normal, podendo a crit&eacute;rio do empregador, conceder folga nestes dias aos seus empregados, compensando-se referidas horas n&atilde;o trabalhadas em banco de horas, </strong>observando-se as regras estabelecidas na CCT geral de cl&aacute;usulas sociais e econ&ocirc;micas<strong>. Na quarta-feira de carnaval do ano de </strong><strong>2027 (dia 10/02/2027), </strong><strong>o hor&aacute;rio de trabalho ser&aacute; das </strong><strong>12h00 </strong><strong>&agrave;s </strong><strong>18h15</strong><strong>.</strong></p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>4.10 &ndash; DIA DO FREGU&Ecirc;S ou SEMANA DO CONSUMIDOR &ndash; </strong>Para o per&iacute;odo denominado <strong>&ldquo;Dia do Fregu&ecirc;s&rdquo;</strong> ou <strong>&ldquo;Semana do Consumidor&rdquo;</strong>, fica convencionado que a ACIL-Associa&ccedil;&atilde;o Comercial e Industrial de Leme, atrav&eacute;s do SINCOM&Eacute;RCIO da cidade de Pirassununga, ou este, independentemente, dever&aacute;, com anteced&ecirc;ncia m&iacute;nima de <strong>30(trinta) dias</strong>, informar ao sindicato profissional, sobre a realiza&ccedil;&atilde;o do evento, que compreender&aacute; uma semana do ano civil, em que o hor&aacute;rio de trabalho dos comerci&aacute;rios poder&aacute; ser das <strong>09h00</strong> &agrave;s <strong>22h00</strong> de segunda a sexta-feira, com at&eacute; 3(tr&ecirc;s) horas para refei&ccedil;&atilde;o (almo&ccedil;o e jantar), respeitado o limite m&iacute;nimo de 1(uma) hora por refei&ccedil;&atilde;o, e das <strong>09h00</strong> &agrave;s <strong>17h00</strong> no s&aacute;bado, com at&eacute; 2(duas) horas de refei&ccedil;&atilde;o, respeitado o limite m&iacute;nimo de 1(uma) hora.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo 1&ordm; - </strong>As horas efetivamente trabalhadas de segunda a sexta-feira no <strong>&ldquo;Dia do Fregu&ecirc;s&rdquo;</strong> ou <strong>&ldquo;Semana do Consumidor&rdquo;, </strong>dever&atilde;o ser computadas at&eacute; 3(tr&ecirc;s) horas tidas como &ldquo;horas extras&rdquo;, que assim ser&atilde;o pagas ou acrescidas ao banco de horas, observando-se as regras estabelecidas na CCT geral de cl&aacute;usulas sociais e econ&ocirc;micas, at&eacute; o limite de duas horas di&aacute;rias. As horas que excederem o limite de 2 (duas) di&aacute;rias dever&atilde;o ser obrigatoriamente pagas com o acr&eacute;scimo de 70% (setenta por cento) incidentes sobre o valor da hora normal, sendo vedada a sua inclus&atilde;o em sistema de banco de horas. Dever&aacute; ser fornecido a todos os funcion&aacute;rios, inclusive comissionistas, que por convoca&ccedil;&atilde;o da empresa, permanecerem no estabelecimento no hor&aacute;rio da janta, <strong>vale refei&ccedil;&atilde;o no valor de R$20,00 (vinte reais)</strong> independentemente da quantidade de horas extras prestadas, devendo ser pago no mesmo dia do labor, possuindo natureza indenizat&oacute;ria, sem preju&iacute;zo do intervalo para refei&ccedil;&otilde;es como determinado por lei.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo 2&ordm; - </strong>As horas efetivamente trabalhadas no s&aacute;bado no <strong>&ldquo;Dia do Fregu&ecirc;s&rdquo;</strong> ou <strong>&ldquo;Semana do Consumidor&rdquo;, </strong>dever&atilde;o ser computadas at&eacute; 3(tr&ecirc;s) horas tidas como &ldquo;horas extras&rdquo;, que assim ser&atilde;o pagas ou acrescidas ao banco de horas, observando-se as regras estabelecidas na CCT geral de cl&aacute;usulas sociais e econ&ocirc;micas, at&eacute; o limite de duas horas di&aacute;rias. As horas que excederem o limite de 2 (duas) di&aacute;rias dever&atilde;o ser obrigatoriamente pagas com o acr&eacute;scimo de 70% (setenta por cento) incidentes sobre o valor da hora normal, sendo vedada a sua inclus&atilde;o em sistema de banco de horas.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo 3&ordm; - </strong>As datas aqui contempladas n&atilde;o poder&atilde;o coincidir com feriados, quando o com&eacute;rcio permanecera fechado, n&atilde;o se exigindo o trabalho dos comerci&aacute;rios, exceto aqueles expressamente autorizados nesta Conven&ccedil;&atilde;o Coletiva.</p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>4.11 - LABOR EM DOMINGOS E FERIADOS ESPEC&Iacute;FICOS &ndash; </strong>Fica facultado &agrave;s empresas durante a vig&ecirc;ncia desta Conven&ccedil;&atilde;o Coletiva de Trabalho, de forma excepcional, a op&ccedil;&atilde;o de trabalho em <strong>06(seis) FERIADOS e 4(quatro) DOMINGOS, </strong>datas de sua livre escolha (com exce&ccedil;&atilde;o dos feriados de<strong> 25/12/2026, 01/01/2027 e 01/05/2026</strong> em que n&atilde;o poder&aacute; recair sua escolha), no hor&aacute;rio das <strong>09h00 </strong>&agrave;s <strong>14h00.</strong> &Eacute; permitido exclusivamente <strong>ao com&eacute;rcio varejista de plantas e flores naturais (floriculturas) </strong>o hor&aacute;rio de trabalho compreendido entre <strong>07h00</strong> &agrave;s <strong>17h00 no feriado de 02/11/2026 (Finados) e ao com&eacute;rcio varejista preponderante de chocolates </strong>o hor&aacute;rio de trabalho compreendido entre <strong>09h00</strong> &agrave;s <strong>17h00 no feriado de 05/04/2026 (P&aacute;scoa)</strong>. As empresas que optar em funcionar nestes domingos e feriados dever&atilde;o observar e respeitar as seguintes regras e condi&ccedil;&otilde;es:</p>
+<p>&nbsp;</p>
+<p><strong>&nbsp;I.</strong>As empresas dever&atilde;o encaminhar requerimento ao sindicato patronal com anteced&ecirc;ncia m&iacute;nima de 20(vinte) dias corridos que antecede o domingo e/ou feriado escolhido, com a indica&ccedil;&atilde;o das datas escolhidas, que ap&oacute;s an&aacute;lise conjunta com o sindicato profissional e uma vez verificado o cumprimento integral das conven&ccedil;&otilde;es coletivas de trabalho vigentes da categoria, poder&atilde;o autorizar o trabalho no domingo e/ou feriado, <strong><span style="text-decoration: underline;">concedendo &agrave;s empresas CERTID&Atilde;O conjunta para referido funcionamento e trabalho com a indica&ccedil;&atilde;o do domingo e/ou feriado escolhido e autorizado</span></strong>. Em constatando qualquer irregularidade ou o n&atilde;o cumprimento da CCT da categoria, o sindicato patronal ou laboral comunicar&aacute; a empresa para que, em at&eacute; 5(cinco) dias corridos, regularize sua situa&ccedil;&atilde;o, sob pena de indeferimento do pedido de certid&atilde;o.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo 1&ordm; - </strong>A <strong>CERTID&Atilde;O</strong> dever&aacute; ser requerida <strong>at&eacute; 07/05/2026</strong> para ter efeito retroativo ao <strong>feriado de 21/04/2026</strong>. O ATESTADO requerido <strong>ap&oacute;s a data de 07/05/2026</strong> ter&aacute; vig&ecirc;ncia somente a partir da data do requerimento, se deferida sua expedi&ccedil;&atilde;o, com validade at&eacute; <strong>31/03/2027</strong>, n&atilde;o tendo efeito retroativo anterior &agrave; data de seu requerimento.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo 2&ordm; - </strong>A obten&ccedil;&atilde;o da <strong>CERTID&Atilde;O</strong> com efeitos retroativos para o labor no feriado de <strong>21/04/2026</strong> somente ser&aacute; concedida &agrave;s empresas que tenham encaminhado previamente a rela&ccedil;&atilde;o dos trabalhadores escalados, em estrita observ&acirc;ncia &agrave; forma e ao prazo estipulados na circular conjunta emitida e publicada em 31/03/2026.</p>
+<p>&nbsp;</p>
+<p><strong>II.</strong><strong>CONDI&Ccedil;&Otilde;ES E BENEF&Iacute;CIOS DE TRABALHO EM FERIADOS: </strong>Os empregados, inclusive os comissionistas, que concordar com o labor no feriado, ter&atilde;o garantidos os seguintes benef&iacute;cios para cada feriado efetivamente laborado:</p>
+<p>&nbsp;</p>
+<p>a) Pagamento em <strong>dobro</strong> do dia laborado no feriado, independentemente da jornada cumprida, vedada sua inclus&atilde;o em compensa&ccedil;&atilde;o de horas ou banco de horas.</p>
+<p>&nbsp;</p>
+<p>b) Concess&atilde;o de uma <strong>folga compensat&oacute;ria</strong> em dia a ser estabelecido de comum acordo entre empresa e empregado, a ser gozada no per&iacute;odo m&aacute;ximo de at&eacute; 45(quarenta e cinco) dias ao do feriado trabalhado, <strong>OU, de uma bonifica&ccedil;&atilde;o no valor de:</strong></p>
+<p>&nbsp;</p>
+<p>b.1) <strong>R$64,00</strong> (sessenta e quatro reais) para empresas que aderiram ao <strong>REPIS 2025/2026</strong>.</p>
+<p>&nbsp;</p>
+<p>b.2) <strong>R$120,00</strong> (cento e vinte reais) para demais empresas.</p>
+<p>&nbsp;</p>
+<p>c) Pagamento de indeniza&ccedil;&atilde;o <strong>vale transporte no valor de R$10,00</strong> (dez reais) a ser pago no mesmo dia do labor, vedado qualquer desconto do trabalhador.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo primeiro</strong> - A op&ccedil;&atilde;o pela folga compensat&oacute;ria ou do pagamento da bonifica&ccedil;&atilde;o dever&aacute; constar da solicita&ccedil;&atilde;o de labor feita ao empregado, prevista nesta cl&aacute;usula, a fim de possibilitar ao mesmo, a op&ccedil;&atilde;o ou n&atilde;o pelo labor, devendo tamb&eacute;m, constar a referida op&ccedil;&atilde;o da RELA&Ccedil;&Atilde;O DE EMPREGADOS a ser validada pelo sindicato laboral.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo segundo</strong> - O pagamento das al&iacute;neas &ldquo;a&rdquo; e &ldquo;b.1&rdquo; e &ldquo;b.2&rdquo; do item II desta cl&aacute;usula dever&aacute; ser quitado em folha de pagamento do m&ecirc;s do feriado trabalhado, bem como constar do holerite do empregado.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo terceiro -</strong> O trabalho em feriado &eacute; facultativo, motivo pelo qual, em caso de recusa do comerci&aacute;rio em trabalhar em feriado, n&atilde;o constituir&aacute; em infra&ccedil;&atilde;o contratual e nem poder&aacute; justificar qualquer san&ccedil;&atilde;o ao mesmo, nem t&atilde;o pouco qualquer desconto em sua remunera&ccedil;&atilde;o.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo quarto -</strong> O comerci&aacute;rio dever&aacute; ser solicitado a trabalhar no feriado com anteced&ecirc;ncia m&iacute;nima de sete dias, por escrito, dando sua concord&acirc;ncia com o labor neste dia, cuja comunica&ccedil;&atilde;o escrita dever&aacute; conter a jornada a ser cumprida, a op&ccedil;&atilde;o pela bonifica&ccedil;&atilde;o ou pela data em que ocorrer&aacute; a folga compensat&oacute;ria do feriado a ser trabalhado.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo quinto </strong>&ndash; Ser&aacute; assegurado o intervalo m&iacute;nimo legal durante a jornada de trabalho.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo sexto &ndash;</strong> Quando o feriado a ser trabalhado recair em domingo, ser&atilde;o aplicadas e observadas as normas atinentes ao trabalho em feriados ora estabelecidas.</p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>Par&aacute;grafo s&eacute;timo &ndash;</strong> Fica proibido o trabalho de comerci&aacute;rios menores e gestantes no feriado, salvo concord&acirc;ncia expressa da gestante ou do menor assistido de seu representante legal.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>&nbsp;III.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong><strong>CONDI&Ccedil;&Otilde;ES E BENEF&Iacute;CIOS DE TRABALHO AOS DOMINGOS:</strong> Se o labor ocorrer em domingo a empresa dever&aacute; pagar os seguintes benef&iacute;cios aos empregados que se ativarem em cada domingo:</p>
+<p>&nbsp;</p>
+<p><strong>Escalas e Folgas Compensat&oacute;rias:</strong> A empresa dever&aacute; formalizar escala de trabalho e folgas compensat&oacute;rias do m&ecirc;s, a serem gozadas na semana que anteceder e suceder o domingo laborado para cumprir a Orienta&ccedil;&atilde;o Jurisprudencial n&uacute;mero 410, da SDI-1, do C. TST, a fim de n&atilde;o ocorrer o labor do empregado por mais de seis dias consecutivos</p>
+<p>&nbsp;</p>
+<p><strong>Trabalho Feminino (Art. 386 da CLT):</strong> Em observ&acirc;ncia ao Art. 386 da CLT, a escala de revezamento para as empregadas mulheres ser&aacute; obrigatoriamente de <strong>1x1 (um por um)</strong>, garantindo-se que a cada domingo trabalhado corresponda, necessariamente, o descanso no domingo subsequente.</p>
+<p>&nbsp;</p>
+<p><strong>Remunera&ccedil;&atilde;o e Multa:</strong> O descumprimento das regras de folga e escala acima mencionadas implicar&aacute; no pagamento do dia em dobro, al&eacute;m do pagamento do Descanso Semanal Remunerado do domingo trabalhado e da multa por descumprimento da presente conven&ccedil;&atilde;o coletiva de trabalho.</p>
+<p>&nbsp;</p>
+<p><strong>Vale-Transporte:</strong> Fornecimento gratuito do vale-transporte necess&aacute;rio para o deslocamento no referido domingo, sem descontos para o empregado.</p>
+<p>&nbsp;</p>
+<p><strong>Proibi&ccedil;&atilde;o de Banco de Horas:</strong> o pagamento pelas horas trabalhadas extraordinariamente no domingo n&atilde;o poder&aacute; ser substitu&iacute;do pelo acr&eacute;scimo ou decr&eacute;scimo no banco de horas dos empregados.</p>
+<p>&nbsp;</p>
+<p><strong>Prote&ccedil;&atilde;o a Menores e Gestantes:</strong> &Eacute; vedado o trabalho de menores de 18 anos e de gestantes aos domingos, salvo mediante manifesta&ccedil;&atilde;o de vontade desses, por escrito e de pr&oacute;prio punho.</p>
+<p>&nbsp;</p>
+<p><strong>Direito de Recusa:</strong> A recusa do empregado em laborar aos domingos n&atilde;o constitui infra&ccedil;&atilde;o contratual, sendo vedada a aplica&ccedil;&atilde;o de qualquer san&ccedil;&atilde;o disciplinar motivada por essa escolha.</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Intervalos para Descanso
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUINTA - INTERVALOS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p><strong>5.1 -</strong> Nas datas em que o a jornada de trabalho do empregado for superior a quatro horas e n&atilde;o exceder de seis horas, ser&aacute; concedido um intervalo de quinze minutos ao trabalhador, cujo per&iacute;odo de descanso n&atilde;o ser&aacute; computado na dura&ccedil;&atilde;o do trabalho.</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Disposições Gerais
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Regras para a Negociação
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA SEXTA - MODIFICA&#199;&#195;O
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p><strong>6.1 -</strong> A presente Conven&ccedil;&atilde;o Coletiva somente poder&aacute; ser modificada, aditada ou complementada por posterior aditivo firmado entre as entidades sindicais neste ato envolvidas.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo &uacute;nico &ndash; </strong>As partes dever&atilde;o, para o disposto nesta cl&aacute;usula, reunirem-se com anteced&ecirc;ncia m&iacute;nima de 10 (dez) dias.</p>
+<p>&nbsp;</p>
+<p><strong>6.2 &ndash;</strong> Somente se admite o labor dos empregados em qualquer outro dia e hor&aacute;rio, diferentes dos aqui convencionados, mediante acordo coletivo de trabalho, a ser firmado com o sindicato laboral.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo 1&ordm; - </strong>Para formaliza&ccedil;&atilde;o do acordo coletivo de trabalho na forma do item <strong>6.2</strong>, a empresa interessada dever&aacute; encaminhar ao sindicato patronal, com anteced&ecirc;ncia m&iacute;nima de 30 dias ao dia que se pretende laborar, requerimento escrito, pelo e-mail <a href="/cdn-cgi/l/email-protection#c6b5a3a5b4a3b2a7b4afa786b5a5b0b6afb4a7b5b5b3a8b3a8a1a7e8a5a9abe8a4b4"><span class="__cf_email__" data-cfemail="c9baacaabbacbda8bba0a889baaabfb9a0bba8bababca7bca7aea8e7aaa6a4e7abbb">[email&#160;protected]</span></a>, contendo no m&iacute;nimo dia e hor&aacute;rio pretendido, rela&ccedil;&atilde;o de trabalhadores envolvidos e benef&iacute;cios a serem concedidos aos mesmos.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo 2&ordm; - </strong>O sindicato patronal ao receber o requerimento, ter&aacute; at&eacute; 5 (cinco) dias &uacute;teis para analisar, deliberar e decidir acerca do pedido, e se aprovado, encaminh&aacute;-lo ao sindicato laboral, pelo e-mail <a href="/cdn-cgi/l/email-protection#1c6f7572797f73705c6f7572797f7370327f7371327e6e"><span class="__cf_email__" data-cfemail="25564c4b40464a4965564c4b40464a490b464a480b4757">[email&#160;protected]</span></a>, como autoriza&ccedil;&atilde;o para in&iacute;cio das negocia&ccedil;&otilde;es coletivas, com c&oacute;pia do requerimento da empresa e eventuais documentos recebidos.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo 3&ordm; - </strong>O sindicato laboral por sua vez, ter&aacute; at&eacute; 10 (dez) dias &uacute;teis para encaminhar &aacute; empresa, resposta a sua solicita&ccedil;&atilde;o.</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Mecanismos de Solução de Conflitos
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA S&#201;TIMA - D&#218;VIDAS E CONTROVERSIAS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p><strong>7.1 -</strong> As d&uacute;vidas e controv&eacute;rsias oriundas do descumprimento das cl&aacute;usulas contidas na presente Conven&ccedil;&atilde;o Coletiva ser&atilde;o dirimidas pela Justi&ccedil;a do Trabalho da Comarca de <strong>Leme</strong>/SP.</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Aplicação do Instrumento Coletivo
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA OITAVA - APLICA&#199;&#195;O
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p><strong><span>8.1 &ndash; </span></strong><span>Enquadra-se neste acordo empregados maiores e mulheres. Os empregados menores de ambos os sexos, dever&atilde;o ter suas horas extras compensadas durante a mesma semana e nunca superiores a 60 minutos di&aacute;rios.</span></p>
+<p><strong><span>&nbsp;</span></strong></p>
+<p><strong><span>8.2 &ndash; </span></strong><span>Todos os empregados que forem admitidos para prestarem servi&ccedil;os no com&eacute;rcio varejista, se sujeitar&atilde;o aos hor&aacute;rios e as cl&aacute;usulas desta conven&ccedil;&atilde;o coletiva, pois ter&atilde;o ades&atilde;o autom&aacute;tica, a partir de sua inclus&atilde;o no quadro de pessoal do com&eacute;rcio e lojas acordantes.</span></p>
+<p><strong><span>&nbsp;</span></strong></p>
+<p><strong><span>8.3 &ndash; </span></strong><span>Qualquer cl&aacute;usula mais ben&eacute;fica constante de outros instrumentos normativos firmados pelos sindicatos signat&aacute;rios da presente norma prevalecer&aacute; para todos os fins de direito.</span></p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Descumprimento do Instrumento Coletivo
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA NONA - MULTA
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p><strong>9 - </strong>Fica estipulada multa no valor de <strong>R$471,00 (quatrocentos e setenta e um reais)</strong> por infra&ccedil;&atilde;o e por empregado, pelo descumprimento de quaisquer cl&aacute;usulas contidas no presente instrumento, a favor do prejudicado.</p>
+<p>&nbsp;</p>
+<p><strong>Par&aacute;grafo primeiro -</strong> Em caso de a&ccedil;&atilde;o coletiva em que o sindicato profissional atue como substituto processual dos trabalhadores, bem como em procedimento extrajudicial, o valor da multa apurada ser&aacute; revertida 50% em favor do sindicato profissional e 50% ao trabalhador prejudicado.</p>
+                                                </label>
+                                                <br />
+                                    }
+                                    <br />
+                                    <table border="0" cellpadding="0" cellspacing="0" align="center">
+                                        <tr>
+                                            <td align="center">
+                                                    <br />
+    <br />
+    <label class="textonome">
+        PAULO CESAR DA SILVA
+        <br style="height: 5px" />
+        Presidente
+        <br style="height: 5px" />
+        SINDICATO DOS EMPREGADOS NO COMERCIO DE LIMEIRA
+        <br />
+        <br />
+    </label>
+
+    <br />
+    <br />
+    <label class="textonome">
+        PAULO JOAO DE OLIVEIRA ALONSO
+        <br style="height: 5px" />
+        Presidente
+        <br style="height: 5px" />
+        SINDICATO DO COMERCIO VAREJISTA DE PIRASSUNUNGA
+        <br />
+        <br />
+    </label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                        <br />
+                                        <center>
+                                            <label class="textogrupo">
+                                                <b>ANEXOS </b>
+                                            </label>
+                                        </center>
+                                                        <label>
+                                                            <b>
+                                                                <center>
+                                                                    <label class="textogrupo">
+                                                                        ANEXO I - ATA
+                                                                    </label>
+                                                                </center>
+                                                                <label class="tituloClausula">
+                                                                                                                                    </label>
+                                                            </b>
+                                                        </label>
+                                                        <b>
+                                                            <label>
+
+                                                            </label>
+                                                        </b>
+                                                        <br />
+                                                        <label class="descricaoClausula" >
+                                                            <p><a href="https://www3.mte.gov.br/sistemas/mediador/imagemAnexo/MR021532_20262026_04_17T11_49_42.pdf" target="_blank">Anexo (PDF)</a></p>
+                                                        </label>
+                                                        <br />
+                                        <!--****************************************** FIM - Anexos ******************************************-->
+                                            <label class="texto">
+                                                &#160;&#160;&#160;&#160;A autenticidade deste documento poderá ser confirmada na
+                                                página do Ministerio do Trabalho e Emprego na Internet, no endereço http://www.mte.gov.br.
+                                            </label>
+                                            <br />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+<script>
+    setTimeout(function () {
+        window.history.replaceState({}, '', window.location.pathname);
+    }, 0);
+</script>
+</html>
