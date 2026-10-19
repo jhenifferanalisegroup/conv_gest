@@ -1,0 +1,1394 @@
+
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+    <title>
+        Mediador - Extrato Conven&#231;&#227;o Coletiva
+    </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G"></script>
+
+    <script src='/sistemas/mediador/WebResource.axd?d=edqiBbFlltzY8QzDddqNS6-8BrciSvv8MiGqQ8PaL2EV22Em9lw29o2nN9P25i33LwhGWb19Rf4re_ToqVdI8v9bt3yVv6EqdVMf3cVA7CV8HeW8yy2bmw73GkstERTIMoLC98TEexm2RAJHqMA6fS9eWK_mSAtdPWnjmrVqvtHVTq8SGY_11vrYKyOWO1bF0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=Zc-wtEn4ykTA6P7YZZjxiYBPZ4GMWxDg6EUevvZTZ5enC_Yxde3HdQCZ0M7rcP5RfaWATNIkO52huoElfqBhhlCSSf7LA6OTPs6YFfJngO3j7PGak2Mmk-JWOZww1l_HOMRLPIlUW2X0lfRQFNDUHups-M6dWPqfu_0pmIguvIA2IgYsyVYhaWiUUlcujswvBE1yvNlpRIwti2eYW7Ny0g2&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=cSGZg9ynfvYc5fzA2O75f2IboxqM6VipDTYtg7zL2S3lE8L3ZJia-8K4jG0WEqc7cMzfacZmLcJIGfjaIfPgZp-5itEFznlDMI1gnO59o6fhsNLZFQeKSqTNptVDhVrTnit0tSgG5EWoKj2CrWLYU6apVM8gPDHHVuSDWFo89Fj0_WT6xFKjrBJRoqlaXGyq0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=vNBMOavhgbF5hMWt8iNyBMSdkAvQQyaWoAmku9fmaces4XDxzNtFiHIzwO_HkC8kwLJTKgnZ-sGXnijR8Kkv95aPBft_Is9Wxcr2FfP96IhUsmEdpkVodrplmoQDsqEu8WHUf98GIOXjFaTvQoZd5BHE2jD1t7wKuo3EwVZqAazpxxjiEmu5IMVTCgSo70wG0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=HfCTA9C5FVbrqhZ6oFJQKUhZoCiKYa0idfF4TojfbPqxI9R4V78nI_eyztBFagKE5ZBFcotULad4N1v1ssvr9KmBJccJealVdvoU2z1zltp27oTF-Yfz6OCXhYMj-0n04bf09zLostPKvooPk_eBSGfEKlkFhVwmniQ2IqNwhOWuKiq-X7ku2wVnWsLExc1h0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=PVhooPcSIXWIt0bDRgn7W2biojSKRXv1ba-zg-v8EsM0PDT4FbidyP0TL0tw7U5UVfw6ChNJsMBftCvfZjoG6enl3vgPw73qwq0FmTMBJV7DJsAZQKkXLrZSQx_BT8bAlc8p03mmIXs89j9mFKZjuF-hmttq6iW-HC1FijXnJndk0DSLWL-BSFVBVHU2J0HC0&t=639193666532168144' type='text/javascript'></script>
+
+
+<script type="text/javascript">
+        var recaptchaSiteKey = '6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G';
+        var pageLoadToken = '';
+        var isPageValidated = false;
+
+        function onRecaptchaLoad() {
+            console.log('reCAPTCHA carregado, validando página...');
+            executePageLoadRecaptcha();
+        }
+
+        function executePageLoadRecaptcha() {
+            if (typeof grecaptcha === 'undefined') {
+                console.error('reCAPTCHA não carregado');
+                return;
+            }
+
+            grecaptcha.ready(function() {
+                grecaptcha.execute(recaptchaSiteKey, {
+                    action: 'page_load_resumo'
+                }).then(function(token) {
+                    console.log('Token de página gerado');
+                    pageLoadToken = token;
+
+                    // Enviar o token para o servidor
+                    validatePageLoadToken(token);
+                }).catch(function(error) {
+                    console.error('Erro no reCAPTCHA de página:', error);
+                    // Em desenvolvimento, permitir continuar
+                });
+            });
+        }
+
+        function validatePageLoadToken(token) {
+            var currentUrl = window.location.href;
+            var queryString = window.location.search;
+            var nrSolicitacao = 'MR036966/2026';
+
+            $.ajax({
+                url: '/sistemas/mediador/Resumo/ValidateResumoPageLoad',
+                type: 'POST',
+                data: {
+                    recaptchaToken: token,
+                    currentUrl: currentUrl,
+                    queryString: queryString,
+                    nrSolicitacao: nrSolicitacao
+                },
+                success: function(response) {
+                    if (response.success) {
+                        console.log('Página validada com sucesso');
+                        isPageValidated = true;
+                        showPageContent();
+                    } else {
+                        console.warn('Validação de página falhou:', response.message);
+                        handleValidationFailed(response);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Erro ao validar página:', error);
+                    handleValidationFailed({ message: 'Erro de comunicação com o servidor' });
+                }
+            });
+        }
+
+        function showPageContent() {
+            // Remover overlay de loading se existir
+            $('#recaptcha-loading').remove();
+            console.log('Conteúdo da página liberado');
+        }
+
+        function handleValidationFailed(response) {
+            // Mostrar mensagem de erro
+            var errorHtml = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                    <div style="text-align: center; padding: 20px;">
+                        <h2 style="color: #d32f2f;">Validação de Segurança</h2>
+                        <p style="font-size: 16px; margin: 20px 0;">${response.message || 'Falha na validação de segurança.'}</p>
+                        <button onclick="window.location.reload()" style="padding: 10px 20px; background: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Tentar Novamente
+                        </button>
+                        <br><br>
+                        <button onclick="window.location.href='/sistemas/mediador/'" style="padding: 8px 16px; background: #757575; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Voltar para Página Inicial
+                        </button>
+                    </div>
+                </div>
+            `;
+            $('body').prepend(errorHtml);
+        }
+
+        $(document).ready(function() {
+            console.log('Página carregada - ambiente de produção');
+
+            // Pular validação reCAPTCHA em produção
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.log('Produção - validando sem reCAPTCHA');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 1000);
+
+            // Timeout de segurança reduzido
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.warn('Timeout na validação - liberando conteúdo');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 5000); // Reduzido para 5 segundos
+        });
+
+        function Imprimir() {
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "none";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "none";
+            window.print();
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "";
+            return true;
+        }
+        $(function () {
+            var marcaDaguaHtml = $('.MarcaDagua').html();
+            var width = $('body').width();
+            var marcaW = $('.MarcaDagua').width();
+
+            var qtdNescessarios = Math.round((width / marcaW) + 0.4);
+            if (qtdNescessarios > 0)
+                for (var incrementador = 0; incrementador < qtdNescessarios; incrementador++) {
+                    $('.MarcaDagua').append("<br />");
+                    $('.MarcaDagua').append(marcaDaguaHtml);
+                }
+        });
+
+
+</script>
+    <style type="text/css">
+        .titulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .Subtitulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 13px;
+        }
+        .texto
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .tituloClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .descricaoClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .textogrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        .textosubgrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        .textonome
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .textofuncao
+        {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .pagebreak
+        {
+            page-break-after: always;
+        }
+        table.titulo
+        {
+            text-align: left;
+        }
+        @page Section2 {size:21cm 29.7cm ;mso-page-orientation:portrait;margin-top:2cm; margin-rigth:2cm; mso-paper-source:0;}
+        div.Section2 {page:Section2;}
+        pre
+        {
+            white-space: pre-wrap; /* css-3 */
+            white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+            white-space: -pre-wrap; /* Opera 4-6 */
+            white-space: -o-pre-wrap; /* Opera 7 */
+            word-wrap: break-word; /* Internet Explorer 5.5+ */
+            white-space: normal;
+        }
+    </style>
+    <!--[if gte mso 9]>
+    <xml>
+    <w:WordDocument>
+    <w:View>Print</w:View>
+    <w:Zoom>100</w:Zoom>
+    <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+    </xml>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="Section2">
+                <form method="post" action="/sistemas/mediador/Resumo/ResumoVisualizarSalvarMsWordDoc?NrSolicitacao=MR036966/2026">
+                    <input type="button" id="btnResumoVisualizarImprimir" value="Imprimir" onclick="Imprimir();" />
+                    <input type="submit" id="btnResumoVisualizarSalvar" value="Salvar" />
+                </form>
+
+            <div style="text-align: center; z-index: -1000; position: absolute; width: 100%;"
+                 class="MarcaDagua">
+                <img src="/sistemas/mediador/Content/images/carimbo.gif" alt="marcaDAgua" />
+            </div>
+        <center>
+            <table border="0" style="width: 18cm;" id="tblConteudo">
+                <tr>
+                    <td>
+                        <table style="width: 100%;" cellpadding="0" cellspacing="0">
+
+                                                            <tr>
+                                    <td align="center" class="titulo" style="text-transform: uppercase;">
+                                        <b>
+                                            Conven&#231;&#227;o Coletiva De Trabalho 2026/2026
+                                        </b>
+                                        <br />
+                                        <br />
+                                    </td>
+                                </tr>
+                            <tr>
+                                <td>
+                                    <div style="text-align: left;">
+                                        <table border="0" class="titulo" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td>
+                                                        <b>NÚMERO DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        CE000979/2026
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        29/06/2026
+                                                    </td>
+                                                </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>NÚMERO DA SOLICITAÇÃO:</b>
+                                                </td>
+                                                <td style="width: 10px">
+                                                </td>
+                                                <td>
+                                                    MR036966/2026
+                                                </td>
+                                            </tr>
+                                                                                            <tr>
+                                                    <td>
+                                                        <b>NÚMERO DO PROCESSO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        13624.202331/2026-34
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DO PROTOCOLO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+26/06/2026                                                    </td>
+                                                </tr>
+                                        </table>
+                                        <br />
+
+                                                        <p>
+                                                            <label class="texto">
+                                                                <b>
+                                                                    Confira a autenticidade no endereço http://www3.mte.gov.br/sistemas/mediador/.
+                                                                </b>
+                                                            </label>
+                                                        </p>
+                                                    <br />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="texto">
+                                    <p align="justify">
+SINDICATO DAS SANT CASAS HOSP ENT FILANT DO EST CEARA, CNPJ n. 73.970.212/0001-75, neste ato representado(a) por seu 
+
+Vice-Presidente, Sr(a). RAFAEL VIEIRA LOPES e por seu Procurador, Sr(a). JARDSON SARAIVA CRUZ;
+    <br />
+&nbsp;
+    <br />
+                                        <label>
+                                            E
+                                        </label>
+                                        <br />
+                                        <br />
+SINDICATO DOS TECNICOS DE SEG DO TRAB DO EST DO CEARA, CNPJ n. 12.361.333/0001-25, neste ato representado(a) por seu 
+
+Presidente, Sr(a). JOSE MACIEL DA SILVA FILHO;
+    <br />
+&nbsp;
+    <br />
+                                                                                    celebram
+                                                                                    a
+                                         presente CONVEN&#199;&#195;O COLETIVA DE TRABALHO,
+ estipulando as condi&#231;&#245;es de trabalho previstas nas cl&#225;usulas seguintes:                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA PRIMEIRA - VIG&#202;NCIA E DATA-BASE
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    As partes fixam a vigência da presente Convenção Coletiva de Trabalho no período de 01º de janeiro de 2026 a 31 de dezembro de 2026 e a data-base da categoria em 01º de janeiro.
+                                                </label>
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA SEGUNDA - ABRANG&#202;NCIA
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    A presente Convenção Coletiva de Trabalho abrangerá a(s) categoria(s) <b>                                                                                                                                                                  Técnicos de Segurança do Trabalho                             </b>, com abrangência territorial em <b>CE</b>.
+                                                </label>
+                                                <br />
+                                    </p>
+
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Salários, Reajustes e Pagamento
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Piso Salarial
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TERCEIRA - PISO SALARIAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="margin-left: 0px; color: windowtext; font-size: small;"><span style="font-family: Times New Roman;"><span style="font-family: arial, helvetica, sans-serif;">A partir de 1&ordm; de Janeiro&nbsp;de 2026 o piso salarial dos t&eacute;cnicos de seguran&ccedil;a do trabalho e de <strong>R$ 2.356,38</strong>&nbsp;( dois mil, trezentos e cinquenta e seis reais e trinta e oito centavos).</span></span></span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Reajustes/Correções Salariais
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUARTA - REAJUSTE SALARIAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="MsoNormal" style="margin-left: 0px; margin: 0cm 0cm 0pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto;" align="justify"><span style="margin-left: 0px; color: black; font-family: arial, helvetica, sans-serif; font-size: medium;">A partir de <strong>1&deg; de Janeiro&nbsp;de 2026&nbsp;</strong>as empresas conceder&atilde;o aos t&eacute;cnicos de seguran&ccedil;a do trabalho que ganharem acima do piso salarial, o reajuste de <strong>4,26% (quatro inteiros v&iacute;rgula vinte e seis por cento)</strong>, aplicados sobre os sal&aacute;rios de <strong>31 de&nbsp;Dezembro&nbsp;&nbsp;de 2025.</strong></span></p>
+<p class="MsoNormal" style="margin-left: 0px; margin: 0cm 0cm 0pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto;" align="justify"><span style="font-family: arial, helvetica, sans-serif; font-size: medium;">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-left: 0px; margin: 0cm 0cm 0pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto;" align="justify"><span style="font-family: arial, helvetica, sans-serif; font-size: medium;"><span style="margin-left: 0px; color: black;"><strong>Par&aacute;grafo &Uacute;nico:</strong> Os&nbsp;valores retroativos, referentes ao reajuste salarial,&nbsp;poder&atilde;o ser pagos em at&eacute; 03 (tr&ecirc;s) parcelas iguais, a partir do m&ecirc;s subsequente ao do&nbsp;registro da presente Conven&ccedil;&atilde;o Coletiva de Trabalho, no Minist&eacute;rio do Trabalho e Emprego.</span></span></p>
+<div id="icpbravoaccess_loaded"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">&nbsp;</span></div>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras normas referentes a salários, reajustes, pagamentos e critérios para cálculo
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUINTA - COMPROVANTE DE PAGAMENTO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="color: windowtext; margin-left: 0px; font-family: arial, helvetica, sans-serif; font-size: medium;">Os empregadores fornecer&atilde;o mensalmente a seus empregados o comprovante do pagamento de suas remunera&ccedil;&otilde;es,&nbsp;com&nbsp; a discrimina&ccedil;&atilde;o das import&acirc;ncias pagas e descontos efetuados reten&ccedil;&otilde;es legais, contendo a identifica&ccedil;&atilde;o da empresa e os recolhimentos do FGTS. <!--?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" ?--></span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="color: windowtext; margin-left: 0px; font-family: arial, helvetica, sans-serif; font-size: medium;"><span style="margin-left: 0px; mso-spacerun: yes;">&nbsp;</span></span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA SEXTA - ANTECIPA&#199;&#195;O SALARIAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="margin-left: 0px; color: windowtext; font-size: medium; font-family: arial, helvetica, sans-serif;">As empresas que ap&oacute;s o dia 1&ordm;&nbsp;de janeiro&nbsp;de 2026 e at&eacute; a data da assinatura desta Conven&ccedil;&atilde;o, reajustaram os sal&aacute;rios dos seus empregados no percentual acima do estabelecido na presente Conven&ccedil;&atilde;o, n&atilde;o poder&atilde;o retroceder no aumento ofertado, salvo se este reajuste tiver car&aacute;ter de antecipa&ccedil;&atilde;o por conta do acordo e desde que tenha sido publicado no quadro de aviso ou mencionado no comprovante de pagamento em evento separado do sal&aacute;rio-base. </span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA S&#201;TIMA - AUTORIZA&#199;&#195;O PARA DESCONTO EM FOLHA DE PAGAMENTO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p align="justify"><span style="font-family: arial, helvetica, sans-serif; font-size: medium;">Fica permitido &agrave;s empresas abrangidas por esta conven&ccedil;&atilde;o, quando oferecida a contrapresta&ccedil;&atilde;o, o desconto em folha de pagamento de: seguro de vida em grupo, transporte, plano m&eacute;dico-odontol&oacute;gico com participa&ccedil;&atilde;o dos empregados nos custos, alimenta&ccedil;&atilde;o, conv&ecirc;nios, alimentos, conv&ecirc;nios com supermercados, medicamentos, conv&ecirc;nio com assist&ecirc;ncia m&eacute;dica e clube/agremia&ccedil;&otilde;es, cooperativas e previd&ecirc;ncia privada, quando expressamente autorizado pelo empregado.</span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Gratificações, Adicionais, Auxílios e Outros
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        13º Salário
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA OITAVA - ANTECIPA&#199;&#195;O DO 13&#176; SAL&#193;RIO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p align="justify"><span style="font-family: arial, helvetica, sans-serif; font-size: medium;">As empresas se comprometem a antecipar a 1&ordf; parcela do 13&deg; sal&aacute;rio, nos termos do art. 2&deg; da Lei n&deg; 4.749/65.</span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Adicional de Insalubridade
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA NONA - INSALUBRIDADE
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p align="justify"><span style="font-family: arial, helvetica, sans-serif; font-size: medium;">As empresas se comprometem a pagar aos integrantes da categoria profissional 20% (vinte por cento) de insalubridade sobre o sal&aacute;rio m&iacute;nimo, podendo variar de acordo com laudo pericial.&nbsp;</span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outros Adicionais
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA - ADICIONAL DE EST&#205;MULO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;" align="justify"><span style="color: windowtext; margin-left: 0px; font-family: arial, helvetica, sans-serif; font-size: medium;">As empresas conceder&atilde;o, a t&iacute;tulo de adicional de est&iacute;mulo, 2% (dois por cento) sobre os sal&aacute;rios base dos seus empregados que apresentarem certificados de cursos de aperfei&ccedil;oamento t&eacute;cnico-profissional, com carga hor&aacute;ria m&iacute;nima de 40 (quarenta) horas/aula fornecidos por organismos oficialmente reconhecidos. O adicional ser&aacute; concedido como evento independente, apenas durante o per&iacute;odo em que o empregado exercer efetivamente na empresa fun&ccedil;&atilde;o compat&iacute;veis com a habilita&ccedil;&atilde;o do certificado. <!--?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" ?--></span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;" align="justify"><span style="color: windowtext; margin-left: 0px; font-family: arial, helvetica, sans-serif; font-size: medium;"><span style="margin-left: 0px; mso-spacerun: yes;">&nbsp;</span></span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;" align="justify"><span style="font-family: arial, helvetica, sans-serif; font-size: medium;"><strong><span style="margin-left: 0px; color: windowtext;">PAR&Aacute;GRAFO &Uacute;NICO</span></strong><span style="margin-left: 0px; color: windowtext;"> - Para fins do disposto no <em>caput </em>desta cl&aacute;usula, os cursos ficam limitados a 02 (dois) e o percentual correspondente ao adicional de est&iacute;mulo ser&aacute; concedido at&eacute; o limite de 4% (quatro por cento) sobre o sal&aacute;rio base do respectivo empregado.<span style="margin-left: 0px; mso-spacerun: yes;">&nbsp; </span></span></span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA PRIMEIRA - ATIVIDADES RELACIONADAS &#192; PROFISS&#195;O DE T&#201;CNICO DE SEGURAN&#199;A DO TRABALHO.
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="default" style="text-align: justify;" align="center"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">O T&eacute;cnico de Seguran&ccedil;a do Trabalho que exercer concomitantemente a atividade de T&eacute;cnico de Seguran&ccedil;a do Trabalho e Assessor T&eacute;cnico de Brigada de Inc&ecirc;ndio receber&aacute; um adicional mensal no percentual de 25% (vinte e cinco por cento) da remunera&ccedil;&atilde;o base.</span></p>
+<p style="text-align: justify;" align="justify"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>Par&aacute;grafo &uacute;nico</strong>&nbsp;- Caso a empresa n&atilde;o tenha interesse de utilizar o t&eacute;cnico de seguran&ccedil;a do trabalho contratado, fica a empresa na liberalidade de contratar empresa terceirizada ou pessoa f&iacute;sica para executar a atividade/treinamento de assessor t&eacute;cnico de brigada de inc&ecirc;ndio e acompanhar a brigada de inc&ecirc;ndio.</span></p>
+<p style="text-align: justify;" align="justify"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>&nbsp;</strong></span></p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA SEGUNDA - PROIBI&#199;&#195;O DA CONTRATA&#199;&#195;O
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">Fica vetada a contrata&ccedil;&atilde;o de estagi&aacute;rios ou profissionais de qualquer&nbsp; outra categoria, com exce&ccedil;&atilde;o do Engenheiro de Seguran&ccedil;a do Trabalho, para exercer fun&ccedil;&atilde;o espec&iacute;fica do T&eacute;cnico de Seguran&ccedil;a do Trabalho, qual seja, as obriga&ccedil;&otilde;es constantes na PORTARIA N&ordm; 3.275 DE 21 DE SETEMBRO DE 1989 do Minist&eacute;rio da Trabalho e Emprego.</span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA TERCEIRA - REEMBOLSO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">Os Tecnicos de Seguran&ccedil;a do Trabalho que tiverem de utilizar de ve&iacute;culo pr&oacute;prio para deslocamento fora de seu local de presta&ccedil;&atilde;o de servi&ccedil;os, far&atilde;o jus ao reembolso das despesas decorrentes estipuladas previamente entre as partes.</span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Auxílio Transporte
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA QUARTA - VALE TRANSPORTE
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">Os estabelecimentos fornecer&atilde;o ao empregado ou empregada vale-transporte, mediante o desconto de at&eacute; 6% (seis por cento) do sal&aacute;rio base.</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong> Par&aacute;grafo &Uacute;nico</strong>: O vale transporte do m&ecirc;s subsequente dever&aacute; ser entregue at&eacute; o dia 30 do m&ecirc;s anterior.</span></p>
+<div id="icpbravoaccess_loaded"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">&nbsp;</span></div>
+<div id="icpbravoaccess_loaded"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">&nbsp;</span></div>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Auxílio Morte/Funeral
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA QUINTA - AUX&#205;LIO FUNERAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p align="justify"><span style="margin-left: 0px; font-family: arial, helvetica, sans-serif; font-size: medium;">No caso de falecimento do empregado, a empresa pagar&aacute; &agrave; fam&iacute;lia do mesmo,&nbsp;<strong>R$ 2.027,00</strong>&nbsp;(dois mil e vinte e sete reais ), a t&iacute;tulo de aux&iacute;lio funeral, mediante apresenta&ccedil;&atilde;o do atestado de &oacute;bito, salvo quando a empresa beneficiar o profissional com seguro de vida, caso em que n&atilde;o ser&aacute; concedido o benef&iacute;cio.</span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Auxílio Creche
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA SEXTA - AUX&#205;LIO CRECHE
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><span style="margin-left: 0px; color: windowtext;">O empregador dever&aacute; pagar, mensalmente, a partir de janeiro de 2026, &agrave; empregada/empregado, que tenham filhos at&eacute; a data em que o menor completar 72 (setenta e dois) meses de idade, cessando, automaticamente, ap&oacute;s esta data, a import&acirc;ncia de <strong>R$ 178,00</strong>&nbsp;(cento e setenta e oito reais ), por filho(a), para despesas com creches, col&eacute;gios ou entidades cong&ecirc;neres, da livre escolha da empregada, mediante solicita&ccedil;&atilde;o formal e comprova&ccedil;&atilde;o de despesas, para que o empregador tenha documentos para demonstrar o pagamento do aux&iacute;lio junto aos &oacute;rg&atilde;os fiscalizadores.</span></span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;">&nbsp;</p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;">&nbsp;</p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><span style="margin-left: 0px; color: windowtext;"><strong>Par&aacute;grafo Primeiro -</strong> O benef&iacute;cio acima ser&aacute; extensivo &agrave; m&atilde;e e pais adotivos.</span></span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;">&nbsp;</p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><span style="margin-left: 0px; color: windowtext;"><strong> Par&aacute;grafo Segundo -</strong> Quando ocorrer de os c&ocirc;njuges trabalharem na mesma empresa o aux&iacute;lio n&atilde;o ser&aacute; cumulativo, sendo pago somente a um dos c&ocirc;njuges, ficando previamente estabelecidos qual dos c&ocirc;njuges receber&aacute; o aux&iacute;lio.</span></span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;">&nbsp;</p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><span style="margin-left: 0px; color: windowtext;"><strong> Par&aacute;grafo Terceiro -</strong> O aux&iacute;lio creche ser&aacute; concedido a partir da data da entrega da certid&atilde;o de nascimento, devendo o setor de recursos humanos entregar ao benefici&aacute;rio comprovante de entrega da certid&atilde;o, o que pode ser comprovado mediante carimbo, com data, nome e assinatura de quem recebeu.</span></span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;">&nbsp;</p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;">&nbsp;</p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><span style="margin-left: 0px; color: windowtext;"><strong>Par&aacute;grafo Quarto &ndash;</strong> O recibo para comprova&ccedil;&atilde;o da despesa poder&aacute; ser emitido por pessoa f&iacute;sica ou jur&iacute;dica, no qual dever&aacute; constar apenas o valor da despesa, o nome do subscritor do recibo, o nome do pagador e a destina&ccedil;&atilde;o do pagamento.</span></span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;">&nbsp;</p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;">&nbsp;</p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><span style="margin-left: 0px; color: windowtext;"><strong>Par&aacute;grafo Quinto -</strong> As diferen&ccedil;as monet&aacute;rias decorrentes do reajuste do auxilio creche ser&atilde;o retroativas a janeiro de 2026 e ser&atilde;o quitadas em tr&ecirc;s parcelas, iguais e sucessivas, nas folhas de pagamento subsequente &agrave; do m&ecirc;s da assinatura deste instrumento coletivo, constando do contracheque sob a rubrica DIF AUX CRECHE CCT 2026.</span></span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;">&nbsp;</p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;">&nbsp;</p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><span style="margin-left: 0px; color: windowtext;"><strong>Paragrafo Sexto -</strong> O aux&iacute;lio-creche n&atilde;o ser&aacute; cumulativo com o aux&iacute;lio-bab&aacute;, cabendo ao solicitante a escolha do benef&iacute;cio.</span></span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outros Auxílios
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA S&#201;TIMA - AUX&#205;LIO BAB&#193;
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">As empresas pagar&atilde;o, mediante solicita&ccedil;&atilde;o formal, &agrave;s empregadas e aos empregados que tenham filhos at&eacute; a data em que o menor completar 72 (setenta e dois) meses de idade, cessando, automaticamente, ap&oacute;s esta data, a import&acirc;ncia mensal de <strong>R$ 178,00</strong>&nbsp;(cento e setenta e oito reais), por filho, a t&iacute;tulo de Auxilio Bab&aacute;. Este benef&iacute;cio ser&aacute; computado como ajuda de custo, no rol do art. 457, &sect;2 da CLT, e n&atilde;o ter&aacute; reflexos sobre sal&aacute;rio e demais direitos advindos do contrato de trabalho.</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong> Par&aacute;grafo primeiro</strong> - O benef&iacute;cio acima ser&aacute; extensivo &agrave; m&atilde;e e ao pai adotivo.</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>Par&aacute;grafo segundo</strong> - Quando ocorrer de os c&ocirc;njuges trabalharem na mesma empresa o aux&iacute;lio n&atilde;o ser&aacute; cumulativo, sendo pago somente a um dos c&ocirc;njuges, ficando previamente estabelecidos qual dos c&ocirc;njuges receber&aacute; o aux&iacute;lio.</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong> Par&aacute;grafo terceiro</strong> - O aux&iacute;lio bab&aacute; ser&aacute; concedido a partir da data da entrega da certid&atilde;o de nascimento, devendo o setor de recursos humanos entregar ao benefici&aacute;rio comprovante de entrega da certid&atilde;o, o que pode ser comprovado mediante carimbo, com data, nome e assinatura de quem recebeu. </span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>Par&aacute;grafo quarto</strong> &ndash; As diferen&ccedil;as monet&aacute;rias decorrente do reajuste do aux&iacute;lio bab&aacute; ser&atilde;o retroativas de janeiro de 2026 e ser&atilde;o quitadas na folha de pagamento do m&ecirc;s seguinte ao da assinatura da presente Conven&ccedil;&atilde;o Coletiva de Trabalho, devendo constar no contracheque sob a rubrica DIF AUX BABA CCT 2026. </span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>Par&aacute;grafo quinto</strong> - O aux&iacute;lio-bab&aacute; n&atilde;o ser&aacute; cumulativo com o aux&iacute;lio-creche, cabendo ao solicitante a escolha do benef&iacute;cio.</span></p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Contrato de Trabalho – Admissão, Demissão, Modalidades
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Desligamento/Demissão
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA OITAVA - HOMOLOGA&#199;&#195;O DE CONTRATO DE TRABALHO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="Default" style="margin: 0cm 0cm 0pt; text-align: left;" align="justify">&nbsp;<span style="font-size: medium; font-family: arial, helvetica, sans-serif;">Ser&aacute; facultado a empresa, o direito a homologar ou n&atilde;o as rescis&otilde;es de contratos de trabalhos no Sindicato laboral.</span></p>
+<p class="Default" style="margin: 0cm 0cm 0pt; text-align: left;" align="justify"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">&nbsp;</span></p>
+<p class="Default" style="margin: 0cm 0cm 0pt; text-align: left;" align="justify"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>Par&aacute;grafo Primeiro: </strong>No caso da&nbsp; recis&atilde;o do contrato de trabalho ser realizado na empresa e o empregado desejar a participa&ccedil;&atilde;o de um dirigente sindical, ele comunicar&aacute;&nbsp; no prazo m&iacute;nimo de 48 (quarenta e oito) horas ao sindicato laboral, que garantir&aacute; a presen&ccedil;a de um Diretor para acompanhar a homologa&ccedil;&atilde;o da rescis&atilde;o respectiva.</span></p>
+<p><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>Par&aacute;grafo Segundo</strong>: A aus&ecirc;ncia do dirigente sindical&nbsp; ao ato n&atilde;o impedir&aacute; que o empregador proceda com a rescis&atilde;o contratual.</span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Aviso Prévio
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA D&#201;CIMA NONA - DO AVISO PR&#201;VIO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">Na comunica&ccedil;&atilde;o de aviso pr&eacute;vio ao empregado, dever&aacute; constar, obrigatoriamente:</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">a) a forma como ser&aacute; cumprido (se trabalhado ou com dispensa do trabalho)</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">b) a redu&ccedil;&atilde;o da jornada de trabalho exigida por lei, bem como o in&iacute;cio e o t&eacute;rmino da jornada.</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>Par&aacute;grafo Primeiro</strong> - O empregado ser&aacute; dispensado do cumprimento do aviso recebido, desde que obtenha novo emprego, devidamente comprovado, percebendo, neste caso, t&atilde;o somente os dias trabalhados, conforme Enunciado 276 do TST. Todavia, o pagamento das verbas rescis&oacute;rias devidas ser&aacute; feito na data anteriormente prevista para homologa&ccedil;&atilde;o.</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>Par&aacute;grafo Segundo</strong> - No in&iacute;cio do per&iacute;odo de aviso pr&eacute;vio, o empregado poder&aacute; optar pela redu&ccedil;&atilde;o de 02 (duas) horas da jornada di&aacute;ria de trabalho ou de 07 (sete) dias no final do aviso, devendo a empresa fornecer ao trabalhador uma via da op&ccedil;&atilde;o acordada.</span></p>
+<div id="icpbravoaccess_loaded"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">&nbsp;</span></div>
+<div id="icpbravoaccess_loaded"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">&nbsp;</span></div>
+<div id="icpbravoaccess_loaded"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">&nbsp;</span></div>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras normas referentes a admissão, demissão e modalidades de contratação
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA VIG&#201;SIMA - CARTA DE REFER&#202;NCIA
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;" align="justify"><span style="color: windowtext; margin-left: 0px; font-family: arial, helvetica, sans-serif; font-size: medium;">As empresas fornecer&atilde;o carta de refer&ecirc;ncia, quando solicitado no ato da homologa&ccedil;&atilde;o de rescis&atilde;o de contrato de trabalho, ficando o empregador isento desta obriga&ccedil;&atilde;o nos casos de demiss&atilde;o por justa causa. Na referida carta constar&aacute; o nome da empresa, data da admiss&atilde;o e demiss&atilde;o, cargo e fun&ccedil;&atilde;o do empregado.</span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA VIG&#201;SIMA PRIMEIRA - DA APOSENTADORIA
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="margin-left: 0px; color: windowtext; font-family: arial, helvetica, sans-serif; font-size: medium;">As empresas quando da rescis&atilde;o, aposentadoria e acidente de trabalho, fornecer&atilde;o aos t&eacute;cnicos de seguran&ccedil;a do trabalho seu P.P.P - Perfil Profissiogr&aacute;fico Previdenci&aacute;rio e os respectivos laudos T&eacute;cnicos das Condi&ccedil;&otilde;es Ambientais de Trabalho, de todos os setores por eles transitados durante as inspe&ccedil;&otilde;es di&aacute;rias de rotina, expostos aos riscos ambientais de modo habitual e permanente, n&atilde;o ocasional, nem intermitente e nas opera&ccedil;&otilde;es de urg&ecirc;ncia&nbsp;ou emerg&ecirc;ncia.</span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Relações de Trabalho – Condições de Trabalho, Normas de Pessoal e Estabilidades
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Qualificação/Formação Profissional
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA VIG&#201;SIMA SEGUNDA - ATUALIZA&#199;&#195;O  DO PROFISSIONAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p align="justify"><span style="font-family: arial, helvetica, sans-serif; font-size: medium;">Fica garantida a participa&ccedil;&atilde;o em cursos, semin&aacute;rios, congressos dos t&eacute;cnicos de seguran&ccedil;a do trabalho, de interesse da categoria profissional, em eventos devidamente comprovados, sendo&nbsp;no m&aacute;ximo 3 (tr&ecirc;s) eventos ao ano, com dura&ccedil;&atilde;o m&aacute;xima de 3 (tr&ecirc;s) dias, sem preju&iacute;zo salarial, desde que pr&eacute; avisada a empresa por escrito, com anteced&ecirc;ncia m&iacute;nima de 48 (quarenta e oito) horas e mediante comprova&ccedil;&atilde;o da participa&ccedil;&atilde;o no prazo de 15 (quinze) dias. O afastamento se limita, no m&iacute;nimo, 01 profissional da categoria e no m&aacute;ximo 5% (cinco por cento) dos profissionais existentes na empresa naquele per&iacute;odo.</span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Estabilidade Mãe
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA VIG&#201;SIMA TERCEIRA - ESTABILIDADE DA GESTANTE
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="margin-left: 0px; color: windowtext; font-family: arial, helvetica, sans-serif; font-size: medium;">Fica assegurada &agrave; empregada gestante, quando devidamente comprovada a gravidez perante o empregador, a estabilidade provis&oacute;ria at&eacute; 60 (sessenta) dias ap&oacute;s o t&eacute;rmino da licen&ccedil;a maternidade, podendo todavia, o empregador rescindir o contrato de trabalho da empregada gestante, no curso do prazo acima previsto, na hip&oacute;tese de justa causa e pelo processo estabelecido na Consolida&ccedil;&atilde;o das Leis do Trabalho (CLT) e por pedido de demiss&atilde;o.</span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="margin-left: 0px; color: windowtext; font-family: arial, helvetica, sans-serif; font-size: medium;"><span style="margin-left: 0px; mso-spacerun: yes;">&nbsp;</span></span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;">&nbsp;</p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras normas referentes a condições para o exercício do trabalho
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA VIG&#201;SIMA QUARTA - DAS RECOMENDA&#199;&#213;ES
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p align="justify"><span style="font-family: arial, helvetica, sans-serif; font-size: medium;">Recomenda-se &agrave;s empresas que assegurem aos T&eacute;cnicos de Seguran&ccedil;a do Trabalho, a participa&ccedil;&atilde;o no desenvolvimento de a&ccedil;&otilde;es integradas &agrave;s pr&aacute;ticas de Gest&atilde;o de Seguran&ccedil;a, Sa&uacute;de e Meio Ambiente do trabalho da empresa, em conson&acirc;ncia com suas atividades profissionais.</span></p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA VIG&#201;SIMA QUINTA - UNIFORMES
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">Os empregadores n&atilde;o poder&atilde;o cobrar qualquer valor, nem efetuar descontos na remunera&ccedil;&atilde;o do empregado, pelo fornecimento de uniforme que vier a exigir, para o uso padronizado, principalmente aqueles obrigat&oacute;rios determinados pela NR n&ordm; 06, da Portaria 3214/78, do M.T.E. No presente caso ser&atilde;o fornecidos 2 (dois) fardamentos por ano (um por semestre).</span></p>
+<div id="icpbravoaccess_loaded"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">&nbsp;</span></div>
+<div id="icpbravoaccess_loaded"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">&nbsp;</span></div>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Jornada de Trabalho – Duração, Distribuição, Controle, Faltas
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Duração e Horário
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA VIG&#201;SIMA SEXTA - JORNADA DE TRABALHO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p align="justify"><span style="font-family: arial, helvetica, sans-serif; font-size: medium;">A carga hor&aacute;ria do t&eacute;cnico de seguran&ccedil;a do trabalho n&atilde;o poder&aacute; ultrapassar as 8 (oito) horas di&aacute;rias ou 44 (quarenta e quatro)&nbsp;horas semanais distribuidas em 04 dias de 9 (nove) horas e 01 de 8 horas.</span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Faltas
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA VIG&#201;SIMA S&#201;TIMA - EMPREGADO  ESTUDANTE
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="margin-left: 0px; color: windowtext;"><span style="font-family: 'Times New Roman';"><span style="font-family: arial, helvetica, sans-serif; font-size: medium;">Os empregados estudantes n&atilde;o sofrer&atilde;o descontos nos seus sal&aacute;rios em virtude de falta ao servi&ccedil;o por motivo de realiza&ccedil;&atilde;o de&nbsp;exames vestibulares, desde que comuniquem a aus&ecirc;ncia com anteced&ecirc;ncia m&iacute;nima de&nbsp;10 (dez) dias. Essa concess&atilde;o n&atilde;o prevalecer&aacute; se o empregado n&atilde;o comprovar a sua participa&ccedil;&atilde;o no exame 48 (quarenta e oito) horas subseq&uuml;entes &agrave; realiza&ccedil;&atilde;o dos mesmos.</span> <!--?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" ?--></span></span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras disposições sobre jornada
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA VIG&#201;SIMA OITAVA - PONTO FACULTATIVO
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p>Na ocasi&atilde;o de decreto que estipule ponto facultativo, na localidade de trabalho dos empregados abrangidos por esta CCT, exceto aos servi&ccedil;os de assist&ecirc;ncia &agrave; sa&uacute;de de urg&ecirc;ncia e emerg&ecirc;ncia, hospitais e demais servi&ccedil;os de sa&uacute;de estipulados o seu funcionamento pelo ente respons&aacute;vel respectivo e, ainda, somente nas unidades de sa&uacute;de que permanecerem integralmente fechadas em tais datas, o expediente ser&aacute; facultativo, estando os empregados desta categoria profissional dispensados da compensa&ccedil;&atilde;o de jornada.</p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Férias e Licenças
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Duração e Concessão de Férias
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA VIG&#201;SIMA NONA - F&#201;RIAS INDIVIDUAIS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: medium;">As empresas confirmar&atilde;o aos trabalhadores, com 30 (trinta) dias de anteced&ecirc;ncia, o in&iacute;cio das f&eacute;rias que dever&aacute; coincidir com o primeiro dia &uacute;til da semana, salvo expresso pedido do empregado e concord&acirc;ncia do empregador, quando as f&eacute;rias poder&atilde;o se iniciar em qulaquer dia da semana.</span></p>
+<p style="text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: medium;"><strong>Par&aacute;grafo &Uacute;nico&nbsp;</strong>&ndash; Fica assegurado ao empregado, mediante seu expresso requerimento e concord&acirc;ncia da empresa, parcelar as f&eacute;rias conforme fracionamentos autorizados pela legisla&ccedil;&atilde;o em vigor, podendo ser dividida em at&eacute; 3 per&iacute;odos, desde que haja concord&acirc;ncia do empregado, sendo que um deles n&atilde;o poder&aacute; ser inferior &agrave; 14 (quatorze) dias corridos, e os demais n&atilde;o poder&atilde;o ser inferiores &agrave; 5 (cinco) dias corridos,podendo tamb&eacute;m, o empregado optar por gozar 30 dias de f&eacute;rias consecutivos, sendo vedado o in&iacute;cio no per&iacute;odo de 2 (dois) dias que antecede feriado ou dias de repouso semanal remunerado (DSR)</span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Saúde e Segurança do Trabalhador
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Exames Médicos
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TRIG&#201;SIMA - ATESTADOS M&#201;DICOS E ODONTOL&#211;GICOS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">Para justifica&ccedil;&atilde;o de aus&ecirc;ncia ao servi&ccedil;o, de at&eacute; 15 (quinze) dias por motivos de doen&ccedil;a, as empresas aceitar&atilde;o como v&aacute;lido os atestados m&eacute;dicos e odontol&oacute;gicos fornecidos pelo SUS ou pelo servi&ccedil;o m&eacute;dico do Sindicato Profissional, pr&oacute;prio ou conveniado, exce&ccedil;&atilde;o para as empresas que possu&iacute;rem servi&ccedil;o m&eacute;dico/odontol&oacute;gico pr&oacute;prio ou conveniados, pois nesta hip&oacute;tese a prefer&ecirc;ncia ser&aacute; do servi&ccedil;o m&eacute;dico/odontol&oacute;gico da empresa, ressalvados os casos de emerg&ecirc;ncia com atendimento na rede hospitalar.</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>Par&aacute;grafo Primeiro</strong> - Os atestados dos servi&ccedil;os do Sindicato Profissional dever&atilde;o conter um carimbo com a informa&ccedil;&atilde;o de tratar-se de servi&ccedil;os conveniado com o Sindicato.</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>Par&aacute;grafo Segundo</strong> - Tratando-se de atestado que contenha indica&ccedil;&atilde;o ou suspeita de doen&ccedil;a profissional, fica reservado &agrave;s empresas o direto de submeterem o empregado a novos exames por conta e responsabilidade da pr&oacute;pria empresa.&nbsp;</span></p>
+<p>&nbsp;</p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TRIG&#201;SIMA PRIMEIRA - AUS&#202;NCIA PERMITIDAS SEM PREJU&#205;ZO DO SAL&#193;RIO E DEMAIS BENEFICIOS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">O empregado poder&aacute; deixar de comparecer ao servi&ccedil;o sem preju&iacute;zo do sal&aacute;rio e demais benef&iacute;cios, exceto o vale-transporte:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>I -</strong> at&eacute; 2 (dias) dias consecutivos, em caso de falecimento do c&ocirc;njuge, ascendente, descendente, irm&atilde;o ou pessoa que viva sob sua depend&ecirc;ncia econ&ocirc;mica;</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>II -</strong> at&eacute; 3 (tr&ecirc;s) dias consecutivos, em virtude de casamento;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>III &ndash;</strong> at&eacute; 5 (cinco)dias corridos, em caso de nascimento de filho;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>IV</strong> - Por 01 (um) dia, em cada 12 (doze) meses de trabalho, em caso de doa&ccedil;&atilde;o volunt&aacute;ria de sangue devidamente comprovada;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>&nbsp;V</strong> - at&eacute; 2 (dois) dias para acompanhar consultas m&eacute;dicas e exames complementares durante o per&iacute;odo de gravidez de sua esposa ou companheira;</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>VI &ndash;</strong> nos termos do Art.473<span style="text-decoration: underline;">,</span> XII, da CLT, o empregado ou empregada poder&atilde;o ausentar-se do trabalho at&eacute; 3 dias, a cada 12 (doze) meses de trabalho para realiza&ccedil;&atilde;o de exames de preven&ccedil;&atilde;o de c&acirc;ncer, devidamente comprovada.</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>Par&aacute;grafo Primeiro</strong> &ndash; Fica garantida &agrave; empregada, em conformidade com o Art. 392, &sect; 4&ordm;, da CLT, durante a gravidez, sem preju&iacute;zo dos sal&aacute;rios e demais direitos, a dispensa do hor&aacute;rio de trabalho pelo tempo necess&aacute;rio para a realiza&ccedil;&atilde;o de, no m&iacute;nimo, 06 (seis) consultas m&eacute;dicas e demais exames complementares (obst&eacute;tricos ou ginecol&oacute;gicos).</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>Par&aacute;grafo Segundo</strong> - Ser&atilde;o consideradas dispensas do trabalho, sem preju&iacute;zo da remunera&ccedil;&atilde;o, o atraso ou aus&ecirc;ncia do (a) empregado (a) quando para acompanhar filho menor de 12 (doze) anos ou inv&aacute;lido de qualquer idade a atendimento m&eacute;dico dentro do hor&aacute;rio do seu trabalho, limitada a dispensa ao equivalente a uma jornada di&aacute;ria da carga hor&aacute;ria do empregado, por m&ecirc;s, e desde que haja comprova&ccedil;&atilde;o por meio de declara&ccedil;&atilde;o ou atestado m&eacute;dico, dentro de 48 (quarenta e oito) horas ap&oacute;s a aus&ecirc;ncia do empregado.</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>Par&aacute;grafo Terceiro</strong> - No caso de aus&ecirc;ncia para hospitaliza&ccedil;&atilde;o, o limite de aus&ecirc;ncia do(a) empregado(a), sem preju&iacute;zo de sal&aacute;rio e demais direitos, ser&aacute; de 05 (cinco) dias no m&ecirc;s</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">&nbsp;</span></p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TRIG&#201;SIMA SEGUNDA - PLANO DE SA&#218;DE OPCIONAL PELO EMPREGADOR
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">&Eacute; facultado ao empregador optar pelo plano de sa&uacute;de origin&aacute;rio de conv&ecirc;nio entre a operadora de plano de sa&uacute;de e o sindicato laboral.</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong> Par&aacute;grafo Primeiro</strong> &ndash; O empregador que optar pelo plano de sa&uacute;de de que trata o caput pagar&aacute; o valor de R$ 30,00 (trinta reais), por empregado que aderir ao plano de sa&uacute;de, sem coparticipa&ccedil;&atilde;o. As demais despesas decorrentes da ades&atilde;o ao plano de sa&uacute;de ser&atilde;o custeadas pelo empregado, por meio de desconto em seu sal&aacute;rio, autorizado individualmente. N&atilde;o haver&aacute; despesas de coparticipa&ccedil;&atilde;o por parte do empregador.</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong> Par&aacute;grafo Segundo</strong> - O Sindicato Laboral manter&aacute; atualizado, em seu site, os contatos da operadora do plano de sa&uacute;de.</span></p>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Relações Sindicais
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Acesso do Sindicato ao Local de Trabalho
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TRIG&#201;SIMA TERCEIRA - TRABALHO SINDICAL NAS EMPRESAS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;" align="justify"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><span style="margin-left: 0px; color: windowtext;">Fica garantido ao sindicato o acesso simult&acirc;neo de, no m&aacute;ximo, tr&ecirc;s&nbsp; dirigentes sindicais &agrave;s depend&ecirc;ncias das entidades empregadoras para proceder a divulga&ccedil;&atilde;o junto aos trabalhadore</span><span style="color: windowtext;">s das cl&aacute;usulas da presente conven&ccedil;&atilde;o coletiva de trabalho, desde que haja comunica&ccedil;&atilde;o por escrito, no prazo de pelo menos 48 (quarenta e oito) horas antes ao setor de pessoal do respectivo empregador. O local a ser desenvolvido o trabalho pelo sindicato, dever&aacute; ser previamente estabelecido pelo empregador com limita&ccedil;&atilde;o a 30 minutos.</span></span></p>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Liberação de Empregados para Atividades Sindicais
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TRIG&#201;SIMA QUARTA - PARTICIPA&#199;&#195;O EM CONSELHOS E F&#211;RUNS PERMANENTES
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="color: windowtext; margin-left: 0px; font-size: medium; font-family: arial, helvetica, sans-serif;">Fica garantido aos membros da diretoria do SINTEST/CE, em n&uacute;mero m&aacute;ximo de 01 (um), quando forem oficialmente convocados a participar de confer&ecirc;ncias, reuni&otilde;es dos Conselhos ou F&oacute;runs Permanentes nacional, estadual ou municipal de sa&uacute;de, em dias e hor&aacute;rios coincidentes com os de trabalho ter&atilde;o direito &agrave; libera&ccedil;&atilde;o do trabalho, sem preju&iacute;zo de sua remunera&ccedil;&atilde;o, mediante as seguintes condi&ccedil;&otilde;es: <!--?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" ?--></span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="color: windowtext; margin-left: 0px; font-size: medium; font-family: arial, helvetica, sans-serif;"><span style="margin-left: 0px; mso-spacerun: yes;">&nbsp;</span></span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="color: windowtext; margin-left: 0px; font-size: medium; font-family: arial, helvetica, sans-serif;">a) a libera&ccedil;&atilde;o para participa&ccedil;&atilde;o de&nbsp;conferencias seja restrita a 02 (duas) por ano; </span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">&nbsp;</span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="color: windowtext; margin-left: 0px; font-size: medium; font-family: arial, helvetica, sans-serif;"><span style="margin-left: 0px; mso-spacerun: yes;"><span style="margin-left: 0px; color: windowtext;">b) a libera&ccedil;&atilde;o para participa&ccedil;&atilde;o de&nbsp;conselho permanente&nbsp;ser&aacute; restrita a 01 (uma) por m&ecirc;s; </span></span></span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="color: windowtext; margin-left: 0px; font-size: medium; font-family: arial, helvetica, sans-serif;"><span style="margin-left: 0px; mso-spacerun: yes;">&nbsp;</span></span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="color: windowtext; margin-left: 0px; font-size: medium; font-family: arial, helvetica, sans-serif;">c) que a solicita&ccedil;&atilde;o seja feita com at&eacute; 05 (cinco) dias de anteced&ecirc;ncia; </span></p>
+<p class="Default" style="margin-left: 0px; margin: 0cm 0cm 0pt;"><span style="color: windowtext; font-family: arial, helvetica, sans-serif; font-size: medium; text-align: justify;">&nbsp;</span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="color: windowtext; margin-left: 0px; font-size: medium; font-family: arial, helvetica, sans-serif;">d) que o empregado, membro da Diretoria do Sindicato Profissional, comprove formalmente a sua convoca&ccedil;&atilde;o no prazo m&aacute;ximo de 72 horas (setenta e duas) horas antes, e participa&ccedil;&atilde;o no prazo de 02 (dois) dias &uacute;teis para a sua comprova&ccedil;&atilde;o se sua participa&ccedil;&atilde;o, a referida confer&ecirc;ncia e reuni&atilde;o do conselho ou f&oacute;rum permanente.</span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Contribuições Sindicais
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TRIG&#201;SIMA QUINTA - CONTRIBUI&#199;&#195;O ASSISTENCIAL PATRONAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">As empresas filiadas ou n&atilde;o, recolher&atilde;o ao SINDHEF- Sindicato das Santas Casas, Hospitais e Entidades Filantr&oacute;picas do Estado do Cear&aacute;, a t&iacute;tulo de contribui&ccedil;&atilde;o assistencial, 3% (tr&ecirc;s por cento) sobre o valor bruto da folha de pagamento do m&ecirc;s de agosto. Os recolhimentos efetuados fora dos prazos acima previstos ou a falta dos documentos solicitados sujeitar&aacute; o estabelecimento faltoso a multa de 2% (dois por cento), juros de 1% (um por cento) por m&ecirc;s e atualiza&ccedil;&atilde;o monet&aacute;ria na forma da Lei, independente das medidas cab&iacute;veis e demais san&ccedil;&otilde;es previstas em Lei. A import&acirc;ncia da arrecada&ccedil;&atilde;o da Contribui&ccedil;&atilde;o assistencial ser&aacute; creditada na Caixa Econ&ocirc;mica Federal, conta corrente n&ordm; 402066-9, ag&ecirc;ncia 0619 op. 003, Shopping Del Passeo, pix CNPJ 73.970.212.0001.75 ou pode solicitar o boleto de paga via email: <a href="/cdn-cgi/l/email-protection#186b71767c707d7e586b71767c707d7e36776a7f367a6a"><span class="__cf_email__" data-cfemail="dfacb6b1bbb7bab99facb6b1bbb7bab9f1b0adb8f1bdad">[email&#160;protected]</span></a>. </span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>Par&aacute;grafo Primeiro -</strong> O valor m&iacute;nimo da Contribui&ccedil;&atilde;o Assistencial Patronal ser&aacute; de R$ 150,00 (cento e cinquenta reais) valendo inclusive para os estabelecimentos que n&atilde;o possuem empregados. Em caso de atraso, acrescentar multa de R$ 16,00 (Dezesseis Reais) mais juros de R$ 0,90 (Noventa Centavos) ao dia. </span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>Par&aacute;grafo Segundo</strong> - O referido desconto &eacute; destinado ao desenvolvimento patrimonial do sindicato e obrigat&oacute;rio, salvo quando houver oposi&ccedil;&atilde;o individual da empresa, manifestada no prazo de 10 (Dez) dias ap&oacute;s o registro da Conven&ccedil;&atilde;o junto a SRT/CE, por escrito e protocolada junto &agrave; secretaria do sindicato patronal, ou por carta postada com aviso de recebimento (AR) nos correios, remetida &agrave; entidade sindical, conforme Ordem de Servi&ccedil;o n&ordm; 1 de 24 de mar&ccedil;o de 2.009 do Ministro de Estado do Trabalho e Emprego. A Contribui&ccedil;&atilde;o Assistencial Patronal atinge toda a categoria, e tem seu fundamento legal no Art. 513 letra &ldquo;e&rdquo; da Consolida&ccedil;&atilde;o das Leis.</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;"><strong>Par&aacute;grafo Terceiro</strong> - A entidade dever&aacute; remeter ao SINDHEF- Sindicato das Santas Casas, Hospitais e Entidades Filantr&oacute;picas do Estado do Cear&aacute; a segunda via da guia quitada juntamente com a c&oacute;pia da GRPS (Guia de Recolhimento da Previd&ecirc;ncia Social) do m&ecirc;s que se refere &agrave; contribui&ccedil;&atilde;o, at&eacute; o 10&ordm; dia do m&ecirc;s seguinte.</span></p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TRIG&#201;SIMA SEXTA - MENSALIDADE SOCIAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">A&nbsp; empresa empregadora se obriga a descontar de seus empregados associados &agrave; import&acirc;ncia de 1,5% ( um v&iacute;rgula cinco por cento) do Sal&aacute;rio m&iacute;nimo vigente, a titulo de mensalidade social&nbsp; e repassar&aacute; &agrave; tesouraria da referida entidade sindical at&eacute; o 10&ordm; (d&eacute;cimo) dia do m&ecirc;s subsequente.</span></p>
+<p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">&nbsp;<strong>PAR&Aacute;GRAFO &Uacute;NICO:&nbsp;</strong>O sindicato se obriga a remeter &agrave; Empresa, a Rela&ccedil;&atilde;o dos Associados, com as devidas autoriza&ccedil;&otilde;es, at&eacute; o dia 20 de cada m&ecirc;s em curso para que seja efetuado o referido desconto.</span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TRIG&#201;SIMA S&#201;TIMA - CONTRIBUI&#199;&#195;O ASSISTENCIAL LABORAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="MsoNormal" style="margin-left: 0px; text-align: justify; line-height: normal; margin: 0cm 0cm 0pt;"><span style="font-family: arial, helvetica, sans-serif; margin-left: 0px; font-size: medium;">No m&ecirc;s em que for concedido o reajuste salarial decorrente desta Conven&ccedil;&atilde;o Coletiva de Trabalho, a institui&ccedil;&atilde;o empregadora descontar&aacute;, a t&iacute;tulo de Contribui&ccedil;&atilde;o Assist&ecirc;ncial, 3% (tr&ecirc;s por cento) da remunera&ccedil;&atilde;o dos T&eacute;cnicos em Seguran&ccedil;a do Trabalho,&nbsp;associado ou n&atilde;o do sindicato, salvo quando houver oposi&ccedil;&atilde;o individual do empregado associado ou n&atilde;o, manifestada no prazo de 15 (quinze) dias ap&oacute;s o registro&nbsp; da presente Conven&ccedil;&atilde;o no Minist&eacute;rio da Economia, por escrito e protocolada junto &agrave; secretaria do sindicato laboral, ou por carta postada com aviso de recebimento (AR) nos correios, atrav&eacute;s do e-mail: sintestce</span><span style="font-family: arial, helvetica, sans-serif; margin-left: 0px; font-size: medium;">@gmail.com ou para whatsApp (85) 30138147, remetida &agrave;quela entidade sindical. Na carta dever&aacute; constar o nome e o CPF do profissional,CNPJ e email da empresa, para facilitar o envio da oposi&ccedil;&atilde;o. O sindicato profissional dever&aacute; enviar para as empresas, at&eacute; o prazo de&nbsp;15 (quinze) dias antes do fechamento da folha de dezembro,&nbsp;a rela&ccedil;&atilde;o dos empregados que se op&otilde;em ao desconto e o nome dos empregados.</span></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: justify; line-height: normal; margin: 0cm 0cm 0pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: medium;">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: justify; line-height: normal; margin: 0cm 0cm 0pt;"><span style="font-family: arial, helvetica, sans-serif; margin-left: 0px; font-size: medium;"><strong>Par&aacute;grafo Primeiro -</strong> O recolhimento a que se refere &agrave; presente cl&aacute;usula&nbsp; ser&aacute; efetuado para o SINTEST-CE, atrav&eacute;s de cheque nominal, acompanhado de rela&ccedil;&atilde;o nominal dos T&eacute;cnicos de Seguran&ccedil;a do Trabalho e suas remunera&ccedil;&otilde;es, no prazo de 30 (trinta) dias do m&ecirc;s subsequente ao do registro da presente Conven&ccedil;&atilde;o Coletiva de Trabalho, sob pena de multa de 2% (dois por cento) sobre o montante retido, al&eacute;m de juros de 1% (um por cento) por m&ecirc;s de atraso e corre&ccedil;&atilde;o monet&aacute;ria na forma da lei.</span></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: justify; line-height: normal; margin: 0cm 0cm 0pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: medium;">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: justify; line-height: normal; margin: 0cm 0cm 0pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto;"><span style="font-family: arial, helvetica, sans-serif; margin-left: 0px; font-size: medium;"><strong>Par&aacute;grafo Segundo -&nbsp;</strong> O recolhimento que se refere &agrave; presente cl&aacute;usula pode ser tamb&eacute;m depositado em nome do SINTEST-CE, conta corrente 000577611674-7, ag&ecirc;ncia 0031, CAIXA ECON&Ocirc;MICA FEDERAL&nbsp; ou chave PIX CNPJ: 12.361.333.0001-25 e enviado o comprovante de dep&oacute;sito e rela&ccedil;&atilde;o nominal dos contribuintes por&nbsp;<span>e-mail: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9ae9f3f4eeffe9eef9ffdafdf7fbf3f6b4f9f5f7">[email&#160;protected]</a></span>. </span></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: justify; line-height: normal; margin: 0cm 0cm 0pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto;"><span style="font-family: arial, helvetica, sans-serif; font-size: medium;">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-left: 0px; text-align: justify; line-height: normal; margin: 0cm 0cm 0pt; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto;"><span style="font-family: arial, helvetica, sans-serif; font-size: medium;"><strong><span style="margin-left: 0px;">Par&aacute;grafo Terceiro - </span></strong><span style="margin-left: 0px;">O sindicato laboral responsabiliza-se por qualquer &ocirc;nus de natureza pecuni&aacute;ria que as empresas venham arcar, no &acirc;mbito administrativo ou judicial em decorr&ecirc;ncia de multas ou a&ccedil;&otilde;es por for&ccedil;a do desconto fixado na presente cl&aacute;usula.</span></span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Disposições Gerais
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Aplicação do Instrumento Coletivo
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TRIG&#201;SIMA OITAVA - DA MULTA POR VIOLA&#199;&#195;O DA CONVEN&#199;&#195;O COLETIVA
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: medium;">Na hip&oacute;tese de viola&ccedil;&atilde;o de quaisquer cl&aacute;usulas desta Conven&ccedil;&atilde;o Coletiva de Trabalho, o infrator pagar&aacute; ao Sindicato convenente, a multa de <strong>R$ 1.042,60</strong> (um mil e quarenta e dois reais e sessenta centavos), ficam excluidos da aplica&ccedil;&atilde;o da multa as cl&aacute;usulas&nbsp;08 e 19.<span style="margin-left: 0px; mso-spacerun: yes;">&nbsp;</span></span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="margin-left: 0px; font-size: medium; font-family: arial, helvetica, sans-serif;">&nbsp;</span></p>
+<p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: medium;"><strong>PAR&Aacute;GRAFO &Uacute;NICO</strong> - No caso de descumprimento de quaisquer cl&aacute;usulas do presente instrumento coletivo fica estabelecido que os convenentes dever&atilde;o primeiramente instituir mesa de entendimento visando a composi&ccedil;&atilde;o amig&aacute;vel do conflito. A negocia&ccedil;&atilde;o dar-se-&aacute; atrav&eacute;s de comunica&ccedil;&atilde;o escrita, no prazo de 48h, ao sindicato patronal que, em resposta, enviar&aacute; esfor&ccedil;os para mediar o conflito em 5 (cinco) dias &uacute;teis. </span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras Disposições
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TRIG&#201;SIMA NONA - FORO COMPETENTE
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p class="Default" style="margin-left: 0px; text-align: justify; margin: 0cm 0cm 0pt;" align="justify"><span style="font-family: arial, helvetica, sans-serif; font-size: medium;"><span>As controv&eacute;rsias decorrentes da aplica&ccedil;&atilde;o da presente Conven&ccedil;&atilde;o Coletiva de Trabalho ser&atilde;o dirimidas pela Justi&ccedil;a do Trabalho no Estado do Cear&aacute;, se antes n&atilde;o forem solucionadas pelas partes convenentes.</span> </span></p>
+<div id="icpbravoaccess_loaded">&nbsp;</div>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUADRAG&#201;SIMA - RELA&#199;&#195;O DE EMPREGADOS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p style="text-align: justify;"><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">As empresas remeter&atilde;o, uma vez por ano, a rela&ccedil;&atilde;o dos empregados pertencentes &agrave; categoria representada pelo sindicato laboral, contendo nome completo, lota&ccedil;&atilde;o, fun&ccedil;&atilde;o e data de admiss&atilde;o, nos termos do PN 111, do TST. A empresa dever&aacute; remeter esta rela&ccedil;&atilde;o para o sindicato laboral no prazo de dez dias ap&oacute;s a solicita&ccedil;&atilde;o. O Sindicato Laboral se compromete a cumprir a sigilosidade e confidencialidades dos dados fornecidos, de acordo com a Lei n.&ordm; 13.709/18, ficando sob sua responsabilidade as informa&ccedil;&otilde;es solicitadas.</span></p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUADRAG&#201;SIMA PRIMEIRA - COMUNICA&#199;&#195;O DA ELEI&#199;&#195;O DA CIPA
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p><span style="font-size: medium; font-family: arial, helvetica, sans-serif;">As empresas dever&atilde;o comunicar a organiza&ccedil;&atilde;o da elei&ccedil;&atilde;o da CIPA para o sindicato de acordo com a NR 5 vigente, do Minist&eacute;rio do Trabalho e Emprego.</span></p>
+                                                </label>
+                                                <br />
+                                    }
+                                    <br />
+                                    <table border="0" cellpadding="0" cellspacing="0" align="center">
+                                        <tr>
+                                            <td align="center">
+                                                    <br />
+    <br />
+    <label class="textonome">
+        RAFAEL VIEIRA LOPES
+        <br style="height: 5px" />
+        Vice-Presidente
+        <br style="height: 5px" />
+        SINDICATO DAS SANT CASAS HOSP ENT FILANT DO EST CEARA
+        <br />
+        <br />
+    </label>
+    <br />
+    <br />
+    <label class="textonome">
+        JARDSON SARAIVA CRUZ
+        <br style="height: 5px" />
+        Procurador
+        <br style="height: 5px" />
+        SINDICATO DAS SANT CASAS HOSP ENT FILANT DO EST CEARA
+        <br />
+        <br />
+    </label>
+
+    <br />
+    <br />
+    <label class="textonome">
+        JOSE MACIEL DA SILVA FILHO
+        <br style="height: 5px" />
+        Presidente
+        <br style="height: 5px" />
+        SINDICATO DOS TECNICOS DE SEG DO TRAB DO EST DO CEARA
+        <br />
+        <br />
+    </label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                        <br />
+                                        <center>
+                                            <label class="textogrupo">
+                                                <b>ANEXOS </b>
+                                            </label>
+                                        </center>
+                                                        <label>
+                                                            <b>
+                                                                <center>
+                                                                    <label class="textogrupo">
+                                                                        ANEXO I - ATA DE ASSEMBL&#201;IA SINTESTE
+                                                                    </label>
+                                                                </center>
+                                                                <label class="tituloClausula">
+                                                                                                                                    </label>
+                                                            </b>
+                                                        </label>
+                                                        <b>
+                                                            <label>
+
+                                                            </label>
+                                                        </b>
+                                                        <br />
+                                                        <label class="descricaoClausula" >
+                                                            <p><a href="https://www3.mte.gov.br/sistemas/mediador/imagemAnexo/MR036966_20262026_06_23T14_18_39.pdf" target="_blank">Anexo (PDF)</a></p>
+                                                        </label>
+                                                        <br />
+                                                        <label>
+                                                            <b>
+                                                                <center>
+                                                                    <label class="textogrupo">
+                                                                        ANEXO II - PROCURA&#199;&#195;O SINDHEF - JARDSON CRUZ
+                                                                    </label>
+                                                                </center>
+                                                                <label class="tituloClausula">
+                                                                                                                                    </label>
+                                                            </b>
+                                                        </label>
+                                                        <b>
+                                                            <label>
+
+                                                            </label>
+                                                        </b>
+                                                        <br />
+                                                        <label class="descricaoClausula" >
+                                                            <p><a href="https://www3.mte.gov.br/sistemas/mediador/imagemAnexo/MR036966_20262026_06_23T14_19_14.pdf" target="_blank">Anexo (PDF)</a></p>
+                                                        </label>
+                                                        <br />
+                                        <!--****************************************** FIM - Anexos ******************************************-->
+                                            <label class="texto">
+                                                &#160;&#160;&#160;&#160;A autenticidade deste documento poderá ser confirmada na
+                                                página do Ministerio do Trabalho e Emprego na Internet, no endereço http://www.mte.gov.br.
+                                            </label>
+                                            <br />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+<script>
+    setTimeout(function () {
+        window.history.replaceState({}, '', window.location.pathname);
+    }, 0);
+</script>
+</html>
