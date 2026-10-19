@@ -1,0 +1,804 @@
+
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+    <title>
+        Mediador - Extrato Conven&#231;&#227;o Coletiva
+    </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G"></script>
+
+    <script src='/sistemas/mediador/WebResource.axd?d=edqiBbFlltzY8QzDddqNS6-8BrciSvv8MiGqQ8PaL2EV22Em9lw29o2nN9P25i33LwhGWb19Rf4re_ToqVdI8v9bt3yVv6EqdVMf3cVA7CV8HeW8yy2bmw73GkstERTIMoLC98TEexm2RAJHqMA6fS9eWK_mSAtdPWnjmrVqvtHVTq8SGY_11vrYKyOWO1bF0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=Zc-wtEn4ykTA6P7YZZjxiYBPZ4GMWxDg6EUevvZTZ5enC_Yxde3HdQCZ0M7rcP5RfaWATNIkO52huoElfqBhhlCSSf7LA6OTPs6YFfJngO3j7PGak2Mmk-JWOZww1l_HOMRLPIlUW2X0lfRQFNDUHups-M6dWPqfu_0pmIguvIA2IgYsyVYhaWiUUlcujswvBE1yvNlpRIwti2eYW7Ny0g2&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=cSGZg9ynfvYc5fzA2O75f2IboxqM6VipDTYtg7zL2S3lE8L3ZJia-8K4jG0WEqc7cMzfacZmLcJIGfjaIfPgZp-5itEFznlDMI1gnO59o6fhsNLZFQeKSqTNptVDhVrTnit0tSgG5EWoKj2CrWLYU6apVM8gPDHHVuSDWFo89Fj0_WT6xFKjrBJRoqlaXGyq0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=vNBMOavhgbF5hMWt8iNyBMSdkAvQQyaWoAmku9fmaces4XDxzNtFiHIzwO_HkC8kwLJTKgnZ-sGXnijR8Kkv95aPBft_Is9Wxcr2FfP96IhUsmEdpkVodrplmoQDsqEu8WHUf98GIOXjFaTvQoZd5BHE2jD1t7wKuo3EwVZqAazpxxjiEmu5IMVTCgSo70wG0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=HfCTA9C5FVbrqhZ6oFJQKUhZoCiKYa0idfF4TojfbPqxI9R4V78nI_eyztBFagKE5ZBFcotULad4N1v1ssvr9KmBJccJealVdvoU2z1zltp27oTF-Yfz6OCXhYMj-0n04bf09zLostPKvooPk_eBSGfEKlkFhVwmniQ2IqNwhOWuKiq-X7ku2wVnWsLExc1h0&t=639193666532168144' type='text/javascript'></script>
+<script src='/sistemas/mediador/WebResource.axd?d=PVhooPcSIXWIt0bDRgn7W2biojSKRXv1ba-zg-v8EsM0PDT4FbidyP0TL0tw7U5UVfw6ChNJsMBftCvfZjoG6enl3vgPw73qwq0FmTMBJV7DJsAZQKkXLrZSQx_BT8bAlc8p03mmIXs89j9mFKZjuF-hmttq6iW-HC1FijXnJndk0DSLWL-BSFVBVHU2J0HC0&t=639193666532168144' type='text/javascript'></script>
+
+
+<script type="text/javascript">
+        var recaptchaSiteKey = '6LdPnewrAAAAADM60VqWAyvhreJD6Jpyr1tORg6G';
+        var pageLoadToken = '';
+        var isPageValidated = false;
+
+        function onRecaptchaLoad() {
+            console.log('reCAPTCHA carregado, validando página...');
+            executePageLoadRecaptcha();
+        }
+
+        function executePageLoadRecaptcha() {
+            if (typeof grecaptcha === 'undefined') {
+                console.error('reCAPTCHA não carregado');
+                return;
+            }
+
+            grecaptcha.ready(function() {
+                grecaptcha.execute(recaptchaSiteKey, {
+                    action: 'page_load_resumo'
+                }).then(function(token) {
+                    console.log('Token de página gerado');
+                    pageLoadToken = token;
+
+                    // Enviar o token para o servidor
+                    validatePageLoadToken(token);
+                }).catch(function(error) {
+                    console.error('Erro no reCAPTCHA de página:', error);
+                    // Em desenvolvimento, permitir continuar
+                });
+            });
+        }
+
+        function validatePageLoadToken(token) {
+            var currentUrl = window.location.href;
+            var queryString = window.location.search;
+            var nrSolicitacao = 'MR063973/2026';
+
+            $.ajax({
+                url: '/sistemas/mediador/Resumo/ValidateResumoPageLoad',
+                type: 'POST',
+                data: {
+                    recaptchaToken: token,
+                    currentUrl: currentUrl,
+                    queryString: queryString,
+                    nrSolicitacao: nrSolicitacao
+                },
+                success: function(response) {
+                    if (response.success) {
+                        console.log('Página validada com sucesso');
+                        isPageValidated = true;
+                        showPageContent();
+                    } else {
+                        console.warn('Validação de página falhou:', response.message);
+                        handleValidationFailed(response);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Erro ao validar página:', error);
+                    handleValidationFailed({ message: 'Erro de comunicação com o servidor' });
+                }
+            });
+        }
+
+        function showPageContent() {
+            // Remover overlay de loading se existir
+            $('#recaptcha-loading').remove();
+            console.log('Conteúdo da página liberado');
+        }
+
+        function handleValidationFailed(response) {
+            // Mostrar mensagem de erro
+            var errorHtml = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                    <div style="text-align: center; padding: 20px;">
+                        <h2 style="color: #d32f2f;">Validação de Segurança</h2>
+                        <p style="font-size: 16px; margin: 20px 0;">${response.message || 'Falha na validação de segurança.'}</p>
+                        <button onclick="window.location.reload()" style="padding: 10px 20px; background: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Tentar Novamente
+                        </button>
+                        <br><br>
+                        <button onclick="window.location.href='/sistemas/mediador/'" style="padding: 8px 16px; background: #757575; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Voltar para Página Inicial
+                        </button>
+                    </div>
+                </div>
+            `;
+            $('body').prepend(errorHtml);
+        }
+
+        $(document).ready(function() {
+            console.log('Página carregada - ambiente de produção');
+
+            // Pular validação reCAPTCHA em produção
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.log('Produção - validando sem reCAPTCHA');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 1000);
+
+            // Timeout de segurança reduzido
+            setTimeout(function() {
+                if (!isPageValidated) {
+                    console.warn('Timeout na validação - liberando conteúdo');
+                    isPageValidated = true;
+                    showPageContent();
+                }
+            }, 5000); // Reduzido para 5 segundos
+        });
+
+        function Imprimir() {
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "none";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "none";
+            window.print();
+            document.getElementById("btnResumoVisualizarImprimir").style.display = "";
+            document.getElementById("btnResumoVisualizarSalvar").style.display = "";
+            return true;
+        }
+        $(function () {
+            var marcaDaguaHtml = $('.MarcaDagua').html();
+            var width = $('body').width();
+            var marcaW = $('.MarcaDagua').width();
+
+            var qtdNescessarios = Math.round((width / marcaW) + 0.4);
+            if (qtdNescessarios > 0)
+                for (var incrementador = 0; incrementador < qtdNescessarios; incrementador++) {
+                    $('.MarcaDagua').append("<br />");
+                    $('.MarcaDagua').append(marcaDaguaHtml);
+                }
+        });
+
+
+</script>
+    <style type="text/css">
+        .titulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .Subtitulo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 13px;
+        }
+        .texto
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .tituloClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .descricaoClausula
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .textogrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        .textosubgrupo
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        .textonome
+        {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .textofuncao
+        {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .pagebreak
+        {
+            page-break-after: always;
+        }
+        table.titulo
+        {
+            text-align: left;
+        }
+        @page Section2 {size:21cm 29.7cm ;mso-page-orientation:portrait;margin-top:2cm; margin-rigth:2cm; mso-paper-source:0;}
+        div.Section2 {page:Section2;}
+        pre
+        {
+            white-space: pre-wrap; /* css-3 */
+            white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+            white-space: -pre-wrap; /* Opera 4-6 */
+            white-space: -o-pre-wrap; /* Opera 7 */
+            word-wrap: break-word; /* Internet Explorer 5.5+ */
+            white-space: normal;
+        }
+    </style>
+    <!--[if gte mso 9]>
+    <xml>
+    <w:WordDocument>
+    <w:View>Print</w:View>
+    <w:Zoom>100</w:Zoom>
+    <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+    </xml>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="Section2">
+                <form method="post" action="/sistemas/mediador/Resumo/ResumoVisualizarSalvarMsWordDoc?NrSolicitacao=MR063973/2026">
+                    <input type="button" id="btnResumoVisualizarImprimir" value="Imprimir" onclick="Imprimir();" />
+                    <input type="submit" id="btnResumoVisualizarSalvar" value="Salvar" />
+                </form>
+
+            <div style="text-align: center; z-index: -1000; position: absolute; width: 100%;"
+                 class="MarcaDagua">
+                <img src="/sistemas/mediador/Content/images/carimbo.gif" alt="marcaDAgua" />
+            </div>
+        <center>
+            <table border="0" style="width: 18cm;" id="tblConteudo">
+                <tr>
+                    <td>
+                        <table style="width: 100%;" cellpadding="0" cellspacing="0">
+
+                                                            <tr>
+                                    <td align="center" class="titulo" style="text-transform: uppercase;">
+                                        <b>
+                                            Conven&#231;&#227;o Coletiva De Trabalho 2025/2026
+                                        </b>
+                                        <br />
+                                        <br />
+                                    </td>
+                                </tr>
+                            <tr>
+                                <td>
+                                    <div style="text-align: left;">
+                                        <table border="0" class="titulo" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td>
+                                                        <b>NÚMERO DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        CE001536/2026
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DE REGISTRO NO MTE:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        05/10/2026
+                                                    </td>
+                                                </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>NÚMERO DA SOLICITAÇÃO:</b>
+                                                </td>
+                                                <td style="width: 10px">
+                                                </td>
+                                                <td>
+                                                    MR063973/2026
+                                                </td>
+                                            </tr>
+                                                                                            <tr>
+                                                    <td>
+                                                        <b>NÚMERO DO PROCESSO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+                                                        13624.203587/2026-69
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>DATA DO PROTOCOLO:</b>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td>
+02/10/2026                                                    </td>
+                                                </tr>
+                                        </table>
+                                        <br />
+
+                                                        <p>
+                                                            <label class="texto">
+                                                                <b>
+                                                                    Confira a autenticidade no endereço http://www3.mte.gov.br/sistemas/mediador/.
+                                                                </b>
+                                                            </label>
+                                                        </p>
+                                                    <br />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="texto">
+                                    <p align="justify">
+SINDICATO DOS AEROVIARIOS DO ESTADO DO CEARA - SINDAERO-CEARA, CNPJ n. 18.693.415/0001-53, neste ato representado(a) por seu 
+
+Presidente, Sr(a). FRANCISCA SONIA MAIA OLIVEIRA;
+    <br />
+&nbsp;
+    <br />
+                                        <label>
+                                            E
+                                        </label>
+                                        <br />
+                                        <br />
+SINDICATO NACIONAL DAS EMPRESAS AEROVIARIAS, CNPJ n. 33.613.258/0001-12, neste ato representado(a) por seu 
+
+Presidente, Sr(a). ANTONIO AUGUSTO DO POCO PEREIRA;
+    <br />
+&nbsp;
+    <br />
+                                                                                    celebram
+                                                                                    a
+                                         presente CONVEN&#199;&#195;O COLETIVA DE TRABALHO,
+ estipulando as condi&#231;&#245;es de trabalho previstas nas cl&#225;usulas seguintes:                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA PRIMEIRA - VIG&#202;NCIA E DATA-BASE
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    As partes fixam a vigência da presente Convenção Coletiva de Trabalho no período de 01º de dezembro de 2025 a 30 de novembro de 2026 e a data-base da categoria em 01º de dezembro.
+                                                </label>
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        CL&#193;USULA SEGUNDA - ABRANG&#202;NCIA
+                                                        <br />
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula">
+                                                    A presente Convenção Coletiva de Trabalho abrangerá a(s) categoria(s) <b>As condições estabelecidas na presente Convenção Coletiva de Trabalho vigorarão para todos os aeroviários adstritos ao Sindicato dos Aeroviários signatário, exceção feita aos aeroviários empregados nas empresas filiadas ao Sindicato Nacional das Empresas de Táxi Aéreo, obedecida a conceituação da profissão, conforme o disposto no Decreto nº 1.232, de 23 de junho de 1962</b>, com abrangência territorial em <b>CE</b>.
+                                                </label>
+                                                <br />
+                                    </p>
+
+                                        <center>
+                                            <br />
+                                            <b>
+                                                <label class="textogrupo">
+                                                    Disposições Gerais
+                                                    <br />
+                                                </label>
+                                            </b>
+                                        </center>
+                                            <center>
+                                                <b>
+                                                    <label class="textosubgrupo">
+                                                        Outras Disposições
+                                                        <br />
+                                                    </label>
+                                                </b>
+                                            </center>
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA TERCEIRA - CL&#193;USULAS ECON&#212;MICAS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p align="center"><strong>I &ndash; CL&Aacute;USULAS ECON&Ocirc;MICAS</strong></p>
+<p><strong>02 &ndash; REAJUSTE DOS SAL&Aacute;RIOS</strong></p>
+<p>Os sal&aacute;rios dos aerovi&aacute;rios, vigentes em 30 de novembro de 2025 ser&atilde;o reajustados, a partir de 01 de dezembro de 2025, da seguinte forma:</p>
+<p>&bull; Para os sal&aacute;rios at&eacute; R$ 16.314,82: reajuste de 4,68%.</p>
+<p>&bull; Para os sal&aacute;rios acima de R$ 16.314,82: ser&aacute; concedido o reajuste fixo no valor de R$ 763,53.</p>
+<p>Par&aacute;grafo Primeiro &ndash; Fica expressamente autorizada a compensa&ccedil;&atilde;o, pelas empresas, de todas as antecipa&ccedil;&otilde;es salariais concedidas no per&iacute;odo de 1&ordm; de dezembro de 2025 at&eacute; a data da assinatura da presente Conven&ccedil;&atilde;o. N&atilde;o poder&atilde;o ser compensados os aumentos reais de sal&aacute;rio concedidos por merecimento, por acordo individual ou por motivo de promo&ccedil;&atilde;o do aerovi&aacute;rio, durante o per&iacute;odo de 1&ordm; de dezembro de 2024 at&eacute; 30 de novembro de 2025.</p>
+<p>Par&aacute;grafo Segundo &ndash; Para os aerovi&aacute;rios admitidos ap&oacute;s 1&ordm; de dezembro de 2024 e que exer&ccedil;am fun&ccedil;&atilde;o para a qual n&atilde;o haja paradigma, na forma da lei, &eacute; facultada &agrave;s empresas a aplica&ccedil;&atilde;o proporcional do reajuste previsto no "caput" desta cl&aacute;usula, na propor&ccedil;&atilde;o de 1/12 avos por m&ecirc;s efetivamente trabalhado no per&iacute;odo de 1&ordm; de dezembro de 2024 a 30 de novembro de 2025.</p>
+<p><strong>03 &ndash; PISO SALARIAL</strong></p>
+<p>Os pisos salariais, a partir de 01 de dezembro de 2025, ter&atilde;o os seguintes valores:</p>
+<div align="center">
+<table border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="312">
+<p><strong>Fun&ccedil;&atilde;o</strong></p>
+</td>
+<td valign="top" width="312">
+<p align="center"><strong>Piso Salarial (R$)</strong></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="312">
+<p>AUXILIAR DE SERVI&Ccedil;OS GERAIS</p>
+</td>
+<td valign="top" width="312">
+<p align="right">R$ 1.739,05</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="312">
+<p>AUXILIAR DE MANUTEN&Ccedil;&Atilde;O DE AERONAVES</p>
+</td>
+<td valign="top" width="312">
+<p align="right">R$ 1.911,16</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="312">
+<p>AGENTE DE PROTE&Ccedil;&Atilde;O</p>
+</td>
+<td valign="top" width="312">
+<p align="right">R$ 2.189,00</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="312">
+<p>OPERADOR DE EQUIPAMENTO</p>
+</td>
+<td valign="top" width="312">
+<p align="right">R$ 2.040,41</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="312">
+<p>MEC&Acirc;NICO DE MANUTEN&Ccedil;&Atilde;O DE AERONAVES</p>
+</td>
+<td valign="top" width="312">
+<p align="right">R$ 2.780,73</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="312">
+<p>SUPERVISOR DE AGENTE DE PROTE&Ccedil;&Atilde;O</p>
+</td>
+<td valign="top" width="312">
+<p align="right">R$ 3.140,40</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>&nbsp;</p>
+<p><strong>04 &ndash; ANU&Ecirc;NIO</strong></p>
+<p>O aerovi&aacute;rio admitido at&eacute; 31 de dezembro de 2000, quando completar 03 (tr&ecirc;s) anos de trabalho cont&iacute;nuo na mesma empresa, far&aacute; jus ao benef&iacute;cio anu&ecirc;nio de 1% (um por cento), calculado sobre o respectivo sal&aacute;rio, limitado a 20% (vinte por cento), ressalvadas as condi&ccedil;&otilde;es mais favor&aacute;veis;</p>
+<p>4.1. Esse benef&iacute;cio n&atilde;o integrar&aacute; o sal&aacute;rio do aerovi&aacute;rio para nenhum efeito trabalhista e ser&aacute; indicado separadamente do sal&aacute;rio no documento individual de pagamento.</p>
+<p>4.2. Esta cl&aacute;usula n&atilde;o ser&aacute; aplic&aacute;vel aos aerovi&aacute;rios admitidos a partir de 01 de janeiro de 2001.</p>
+<p><strong>05 &ndash; VALE REFEI&Ccedil;&Atilde;O</strong></p>
+<p>As empresas fornecer&atilde;o, a partir de 01 de dezembro de 2025, vale refei&ccedil;&atilde;o, que n&atilde;o tem natureza salarial, no valor de R$ 29,61 (vinte e nove reais e sessenta e um centavos) para os aerovi&aacute;rios com jornada de trabalho de 06 (seis) horas, e de R$ 40,39 (quarenta reais e trinta e nove centavos) para os aerovi&aacute;rios com jornada de trabalho de 08 (oito) horas, exceto quando a empresa fornecer refei&ccedil;&atilde;o atrav&eacute;s de servi&ccedil;os pr&oacute;prios ou de terceiros, ressalvadas as condi&ccedil;&otilde;es mais favor&aacute;veis.</p>
+<p><strong>06 &ndash; DI&Aacute;RIA/HOSPEDAGEM/ALIMENTA&Ccedil;&Atilde;O</strong></p>
+<p>Ressalvadas as condi&ccedil;&otilde;es mais favor&aacute;veis, as empresas pagar&atilde;o, a partir de 01 de dezembro de 2025, o valor de R$ 73,87 (setenta e tr&ecirc;s reais e oitenta e sete centavos) por refei&ccedil;&atilde;o (almo&ccedil;o ou jantar) aos seus empregados, e 25% (vinte e cinco por cento) desse valor, a t&iacute;tulo de caf&eacute; da manh&atilde;, quando n&atilde;o inclu&iacute;do na conta do hotel, no caso de presta&ccedil;&atilde;o de servi&ccedil;os fora da base do aerovi&aacute;rio, no territ&oacute;rio nacional, desde que n&atilde;o recebam, para o mesmo fim, di&aacute;rias. Despesas de hospedagem e transporte ser&atilde;o por conta das empresas.</p>
+<p><strong>07 &ndash; DI&Aacute;RIAS INTERNACIONAIS</strong></p>
+<p>As empresas conceder&atilde;o di&aacute;rias de alimenta&ccedil;&atilde;o quando designarem empregado aerovi&aacute;rio para prestar servi&ccedil;o no exterior.</p>
+<p>Par&aacute;grafo Primeiro &ndash; As di&aacute;rias ser&atilde;o pagas em d&oacute;lares americanos ou em moeda local do pa&iacute;s da presta&ccedil;&atilde;o de servi&ccedil;os. Os valores das di&aacute;rias internacionais respeitar&atilde;o os seguintes pisos:</p>
+<p>(i) Am&eacute;rica do Sul e Caribe: 15,00 USD, por refei&ccedil;&atilde;o, limitado a duas refei&ccedil;&otilde;es;</p>
+<p>(ii) Demais Pa&iacute;ses: 20,00 USD, por refei&ccedil;&atilde;o, limitado a duas refei&ccedil;&otilde;es;</p>
+<p>Par&aacute;grafo Segundo &ndash; A di&aacute;ria de alimenta&ccedil;&atilde;o relativa ao caf&eacute; da manh&atilde; ser&aacute; igual a 25% do valor estabelecido para as refei&ccedil;&otilde;es principais, n&atilde;o sendo devido seu pagamento quando o caf&eacute; da manh&atilde; for disponibilizado no hotel ou quando o empregado dispensar a hospedagem.</p>
+<p>Par&aacute;grafo Terceiro &ndash; As partes convencionam que as di&aacute;rias internacionais n&atilde;o ser&atilde;o reajustadas pelos &iacute;ndices aplic&aacute;veis &agrave;s demais cl&aacute;usulas econ&ocirc;micas.</p>
+<p><strong>08 &ndash; SEGURO</strong></p>
+<p>As empresas pagar&atilde;o a partir de 01 de dezembro de 2025, um seguro de vida em benef&iacute;cio de seus empregados aerovi&aacute;rios, sem &ocirc;nus para os mesmos, cobrindo morte e invalidez permanente, total ou parcial, no valor de R$ 39.904,26 (trinta e nove mil, novecentos e quatro reais e vinte e seis centavos).</p>
+<p><strong>09 &ndash; MULTA POR DESCUMPRIMENTO DA CONVEN&Ccedil;&Atilde;O</strong></p>
+<p>Por descumprimento de qualquer cl&aacute;usula desta Conven&ccedil;&atilde;o, em preju&iacute;zo de algum aerovi&aacute;rio determinado, a empresa infratora pagar&aacute;, a partir de 01 de dezembro de 2025, multa no valor de R$ 156,06 (cento e cinquenta e seis reais e seis centavos), em favor do aerovi&aacute;rio prejudicado.</p>
+<p><strong>10 &ndash; VALE ALIMENTA&Ccedil;&Atilde;O</strong></p>
+<p>Ser&aacute; fornecido vale alimenta&ccedil;&atilde;o aos aerovi&aacute;rios, que n&atilde;o tem natureza salarial, a partir de 01 de dezembro de 2025, sem &ocirc;nus para os mesmos, at&eacute; o dia 20 de cada m&ecirc;s, no valor de R$ 597,59 (quinhentos e noventa e sete reais e cinquenta e nove centavos).</p>
+<p>Par&aacute;grafo &Uacute;nico: Ser&aacute; garantido ao aerovi&aacute;rio a concess&atilde;o deste mesmo benef&iacute;cio, nas condi&ccedil;&otilde;es detalhadas anteriormente, durante os per&iacute;odos de f&eacute;rias, afastamento por motivo de doen&ccedil;a ou acidente de trabalho, licen&ccedil;a-maternidade, pelo prazo de at&eacute; 180 (cento e oitenta) dias.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUARTA - CL&#193;USULAS SOCIAIS
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p align="center"><strong>II &ndash; CL&Aacute;USULAS SOCIAIS</strong></p>
+<p><strong>11 &ndash; REMUNERA&Ccedil;&Atilde;O DAS HORAS EXTRAORDIN&Aacute;RIAS</strong></p>
+<p>11.1. As horas extraordin&aacute;rias ser&atilde;o remuneradas com adicional de 60% (sessenta por cento) e sobre o valor da hora corrigida com esse percentual ser&aacute; aplicado o percentual de 25% (vinte e cinco por cento) a t&iacute;tulo de D.S.R. (Descanso Semanal Remunerado), perfazendo o total de 100% (cem por cento); aos domingos e feriados as horas extras ser&atilde;o pagas com adicional de 100% (cem por cento) e sobre o valor da hora corrigida com esse adicional ser&aacute; aplicado o percentual de 25% (vinte e cinco por cento) a t&iacute;tulo de D.S.R. (Descanso Semanal Remunerado), perfazendo o total de 150% (cento e cinquenta por cento);</p>
+<p>11.2. As horas extraordin&aacute;rias ser&atilde;o calculadas com base no valor do sal&aacute;rio da folha de pagamento em que estiverem inseridas;</p>
+<p>11.3. Para efeito de compensa&ccedil;&atilde;o de horas extras, as horas extras trabalhadas em dias &uacute;teis ser&atilde;o consideradas com 100% de adicional e as trabalhadas em domingos e feriados ser&atilde;o consideradas com 150% (cento e cinquenta por cento);</p>
+<p>11.4. O dia da compensa&ccedil;&atilde;o ser&aacute; fixado de comum acordo;</p>
+<p>11.5. Na hip&oacute;tese de prorroga&ccedil;&atilde;o que ultrapassar 02 (duas) horas, o empregador fornecer&aacute; aux&iacute;lio alimenta&ccedil;&atilde;o ao aerovi&aacute;rio, a partir de 01 de dezembro de 2025, no valor correspondente a R$ 19,70 (dezenove reais e setenta centavos) exceto quando fornecer refei&ccedil;&atilde;o atrav&eacute;s de servi&ccedil;os pr&oacute;prios ou de terceiros;</p>
+<p>11.6. O aumento de horas de trabalho acima da jornada normal, at&eacute; o m&aacute;ximo de 02 (duas) horas, poder&aacute; ser determinado pelas Empresas desde que compensem equitativamente o acr&eacute;scimo com redu&ccedil;&atilde;o de horas ou dias de trabalho. O referido aumento, desde que compensado, n&atilde;o obrigar&aacute; o acr&eacute;scimo de sal&aacute;rio ou pagamento de adicional;</p>
+<p>11.7. A compensa&ccedil;&atilde;o das horas extraordin&aacute;rias se far&aacute; at&eacute; o &uacute;ltimo dia do m&ecirc;s subsequente &agrave;quele em que tenha ocorrido a prorroga&ccedil;&atilde;o da jornada de trabalho. Caso n&atilde;o sejam compensadas, dever&atilde;o ser pagas no m&ecirc;s imediatamente posterior ao m&ecirc;s estipulado para compensa&ccedil;&atilde;o;</p>
+<p>11.8. A compensa&ccedil;&atilde;o das horas extraordin&aacute;rias poder&aacute; ser efetuada em per&iacute;odo superior ao estabelecido no item 11.7, mediante acordo entre a empresa interessada e o Sindicato dos Aerovi&aacute;rios signat&aacute;rio;</p>
+<p>11.9. Em caso de compensa&ccedil;&atilde;o de jornada, as empresas n&atilde;o far&atilde;o desconto do vale-refei&ccedil;&atilde;o de seus empregados;</p>
+<p>11.10. Na forma do artigo 59 da CLT fica dispensado acordo individual para prorroga&ccedil;&atilde;o ou compensa&ccedil;&atilde;o de hor&aacute;rio, face ao acordado coletivamente.</p>
+<p><strong>12 &ndash; COMPENSA&Ccedil;&Atilde;O DE DOMINGOS E FERIADOS</strong></p>
+<p>O aerovi&aacute;rio que trabalhe em regime de escala e que tenha sua folga coincidente com dias feriados ter&aacute; direito a mais uma folga na semana seguinte;</p>
+<p>12.1. &Eacute; devido o pagamento em dobro de trabalho em domingos e feriados n&atilde;o compensados, desde que a Empresa n&atilde;o ofere&ccedil;a outro dia para o repouso remunerado, sem preju&iacute;zo da folga regulamentar.</p>
+<p><strong>13 &ndash; ADICIONAL NOTURNO</strong></p>
+<p>O adicional noturno, considerando a presta&ccedil;&atilde;o de servi&ccedil;os das 22:00 &agrave;s 05:00 horas, &eacute; estabelecido em 40% (quarenta por cento), sobre o valor da hora normal.</p>
+<p>Sobre o valor de adicional encontrado ser&aacute; aplicado um percentual de 25% (vinte e cinco por cento) a t&iacute;tulo de D.S.R. (Descanso Semanal Remunerado), perfazendo o total de 50% (cinquenta por cento).</p>
+<p><strong>14 &ndash; PRESTA&Ccedil;&Atilde;O DE SERVI&Ccedil;O FORA DO LOCAL DE TRABALHO</strong></p>
+<p>Ser&aacute; considerado per&iacute;odo de trabalho o tempo de deslocamento para servi&ccedil;os fora do local de trabalho, a partir de sua apresenta&ccedil;&atilde;o para embarque, at&eacute; a chegada no Hotel, n&atilde;o incidindo o tempo de descanso no Hotel como jornada de trabalho, a menos que o empregado seja chamado a trabalhar no seu per&iacute;odo de descanso no Hotel.</p>
+<p>Par&aacute;grafo &Uacute;nico: As empresas garantir&atilde;o acomoda&ccedil;&atilde;o individual para todo aerovi&aacute;rio(a) quando pernoitado fora de sua base contratual a servi&ccedil;o, exceto no caso de cursos de qualifica&ccedil;&atilde;o e treinamentos.</p>
+<p><strong>15 &ndash; DOS PEDIDOS DE TRANSFER&Ecirc;NCIA VOLUNT&Aacute;RIA</strong></p>
+<p>Caso o aerovi&aacute;rio solicite, de forma volunt&aacute;ria, transfer&ecirc;ncia de base para trabalhar em outra localidade e, se a base de destino praticar sal&aacute;rio menor do que o atualmente recebido, o aerovi&aacute;rio ter&aacute; seu sal&aacute;rio ajustado para refletir as condi&ccedil;&otilde;es locais de mercado, n&atilde;o sendo considerado, para qualquer efeito, redu&ccedil;&atilde;o salarial ou altera&ccedil;&atilde;o prejudicial ao contrato de trabalho.</p>
+<p>15.1. O aerovi&aacute;rio, ao solicitar a transfer&ecirc;ncia volunt&aacute;ria, renunciar&aacute; a qualquer direito decorrente da redu&ccedil;&atilde;o salarial.</p>
+<p>15.2. Para que a transfer&ecirc;ncia seja efetivada, o aerovi&aacute;rio dever&aacute; apresentar uma carta, escrita de pr&oacute;prio punho, ao Sindicato da categoria, o qual conceder&aacute; autoriza&ccedil;&atilde;o expressa para a transfer&ecirc;ncia.</p>
+<p>15.3. A transfer&ecirc;ncia somente ser&aacute; considerada v&aacute;lida mediante apresenta&ccedil;&atilde;o na Empresa da carta assinada pelo Sindicato da categoria.</p>
+<p>15.4. A empresa se reserva no direito de avaliar a solicita&ccedil;&atilde;o de transfer&ecirc;ncia e aprov&aacute;-la ou n&atilde;o, considerando as necessidades operacionais e organizacionais do local de destino, ficando a aprova&ccedil;&atilde;o da transfer&ecirc;ncia condicionada a disponibilidade de vagas e do interesse da empresa em realiz&aacute;-la.</p>
+<p><strong>16 &ndash; CURSOS EM HOR&Aacute;RIOS EXTRAORDIN&Aacute;RIOS</strong></p>
+<p>Quando realizados fora do hor&aacute;rio normal por imposi&ccedil;&atilde;o do empregador, os cursos e reuni&otilde;es obrigat&oacute;rios ser&atilde;o considerados como hor&aacute;rio excedente, portanto, remunerado como trabalho extraordin&aacute;rio.</p>
+<p>Par&aacute;grafo &Uacute;nico: Se a empresa adotar processo de automa&ccedil;&atilde;o e informatiza&ccedil;&atilde;o implantando novas t&eacute;cnicas de produ&ccedil;&atilde;o mediante introdu&ccedil;&atilde;o de sistemas autom&aacute;ticos e m&aacute;quinas, promover&aacute;, quando necess&aacute;rio e a seu crit&eacute;rio, treinamento para os empregados designados para esses novos m&eacute;todos de trabalho, inclusive sobre sa&uacute;de e seguran&ccedil;a do trabalho, adquirirem melhor qualifica&ccedil;&atilde;o.</p>
+<p><strong>17 &ndash; TRABALHO SEMANAL</strong></p>
+<p>A dura&ccedil;&atilde;o m&aacute;xima do trabalho normal, efetivo, do aerovi&aacute;rio, ser&aacute; de 42 horas por semana, respeitando-se as menores cargas hor&aacute;rias.</p>
+<p>17.1. Para os efeitos desta cl&aacute;usula, n&atilde;o entrar&atilde;o no c&ocirc;mputo do tempo de trabalho efetivo os intervalos para repouso ou alimenta&ccedil;&atilde;o, obrigat&oacute;rios ou n&atilde;o, registrados ou n&atilde;o nos cart&otilde;es de ponto. Para os demais efeitos, os mesmos intervalos ser&atilde;o tratados na forma da lei, deste Acordo, ou dos acordos que forem aplic&aacute;veis;</p>
+<p>17.2. As empresas envidar&atilde;o esfor&ccedil;os no sentido de que os aerovi&aacute;rios que trabalhem em regime de escala de revezamento, tenham suas escalas, dentro do poss&iacute;vel, programadas na seguinte forma: 05 (cinco) dias de trabalho por 01 (um) dia de folga.</p>
+<p><strong>18 &ndash; INTERVALO PARA JORNADAS REDUZIDAS</strong></p>
+<p>O intervalo obrigat&oacute;rio para descanso de 15 (quinze) minutos, previsto no artigo 10&ordm; (d&eacute;cimo), par&aacute;grafo 3&ordm; (terceiro), do Decreto n&ordm; 1.232/62, aplic&aacute;vel a jornadas de trabalho reduzidas, cuja dura&ccedil;&atilde;o seja superior a 04 (quatro) e inferior a 06 (seis) horas, continuar&aacute; sendo concedido e computado como tempo de trabalho, dentro da respectiva jornada, dispensado o seu registro.</p>
+<p><strong>19 &ndash; INTERVALO PARA TRABALHOS DE ESFOR&Ccedil;O REPETITIVO</strong></p>
+<p>Os Agentes de Reservas, al&eacute;m da previs&atilde;o legal, de que trata o item 17, acima, desfrutar&atilde;o de um intervalo de 10 (dez) minutos. Os intervalos referidos acima, exceto aquele para alimenta&ccedil;&atilde;o, ser&atilde;o computados como tempo de trabalho, dispensado seu registro no controle de ponto.</p>
+<p><strong>20 &ndash; FOLGA AGRUPADA</strong></p>
+<p>Os aerovi&aacute;rios que prestam suas jornadas de trabalho em regime de escala gozar&atilde;o mensalmente de uma folga agrupada.</p>
+<p>20.1. Essa folga agrupada consiste em conceder, mensalmente, como folga, sem que isso importe em preju&iacute;zo das demais folgas normais, o s&aacute;bado imediatamente anterior, ou a segunda-feira posterior ao domingo reservado para a folga do funcion&aacute;rio;</p>
+<p>20.2. Em meses alternados, a folga agrupada poder&aacute; ocorrer em quaisquer dias sempre agrupada com uma folga regulamentar, sendo facultado entre as partes o pagamento equivalente a um dia adicional como indeniza&ccedil;&atilde;o, no caso de n&atilde;o concess&atilde;o desta folga pela empresa.</p>
+<p><strong>21 &ndash; JORNADA DE TRABALHO NA INTEGRA&Ccedil;&Atilde;O</strong></p>
+<p>Independentemente da jornada de trabalho do EMPREGADO, durante os per&iacute;odos de treinamento, a jornada de trabalho poder&aacute; ser de 42 (quarenta e duas) horas semanais sem revezamento, n&atilde;o acarretando no pagamento de horas extraordin&aacute;rias, uma vez que tal carga hor&aacute;ria &eacute; excepcional e restrita aos dias de capacita&ccedil;&atilde;o profissional.</p>
+<p><strong>22 &ndash; AUS&Ecirc;NCIAS LEGAIS</strong></p>
+<p>A aus&ecirc;ncia legal a que aludem os itens 1 e 2 do art. 473 da CLT passar&aacute; a ser de 5 (cinco) dias consecutivos e de 5 (cinco) dias &uacute;teis para os aerovi&aacute;rios que trabalham em regime de escala.</p>
+<p><strong>23 &ndash; COMUNICA&Ccedil;&Atilde;O PR&Eacute;VIA DA ESCALA</strong></p>
+<p>O aerovi&aacute;rio que trabalhar em regime de escala dever&aacute; ser comunicado da mesma, pela empresa, com anteced&ecirc;ncia m&iacute;nima de 5 (cinco) dias.</p>
+<p>23.1. Ap&oacute;s a publica&ccedil;&atilde;o da escala n&atilde;o ser&aacute; permitida sua altera&ccedil;&atilde;o, salvo motivo de for&ccedil;a maior;</p>
+<p>23.2. O descumprimento pela empresa do item anterior (23.1), desobriga o empregado do cumprimento da escala alterada.</p>
+<p><strong>24 &ndash; COMPLEMENTA&Ccedil;&Atilde;O DE AUX&Iacute;LIO PREVIDENCI&Aacute;RIO</strong></p>
+<p>Ressalvadas as condi&ccedil;&otilde;es mais favor&aacute;veis em vigor, ao aerovi&aacute;rio que for licenciado pelo INSS ser&aacute; concedido pela empresa, at&eacute; o limite m&aacute;ximo de 180 (cento e oitenta) dias, um aux&iacute;lio correspondente a 50% (cinquenta por cento) da diferen&ccedil;a entre o sal&aacute;rio fixo que perceberia em atividade e o valor que passou a perceber em raz&atilde;o de seu licenciamento. O aux&iacute;lio ser&aacute; de 100% (cem por cento) da referida diferen&ccedil;a quando o licenciamento decorrer de acidente de trabalho, ou doen&ccedil;a profissional.</p>
+<p>24.1. O disposto nesta cl&aacute;usula n&atilde;o se aplica aos aerovi&aacute;rios que j&aacute; percebam o benef&iacute;cio atrav&eacute;s de previd&ecirc;ncia privada ou de qualquer outro.</p>
+<p><strong>25 &ndash; PERFIL PROFISSIOGR&Aacute;FICO PREVIDENCI&Aacute;RIO</strong></p>
+<p>Quando solicitado, com anteced&ecirc;ncia, pelo aerovi&aacute;rio interessado, as empresas fornecer&atilde;o, no prazo de dez dias, o Perfil Profissiogr&aacute;fico Previdenci&aacute;rio.</p>
+<p>Par&aacute;grafo &Uacute;nico: Em caso de rescis&atilde;o, o formul&aacute;rio ser&aacute; disponibilizado ao empregado no mesmo prazo para entrega dos documentos rescis&oacute;rios.</p>
+<p><strong>26 &ndash; IN&Iacute;CIO DAS F&Eacute;RIAS</strong></p>
+<p>O in&iacute;cio das f&eacute;rias coletivas ou individuais n&atilde;o poder&aacute; coincidir com s&aacute;bado, domingo e feriados, ou dia de compensa&ccedil;&atilde;o de repouso semanal, exceto para os AEROVI&Aacute;RIOS que trabalhem em regime de escala, que n&atilde;o poder&atilde;o ter o in&iacute;cio das f&eacute;rias coincidentes, t&atilde;o somente, com os dias destinados ao repouso semanal.</p>
+<p><strong>27 &ndash; PAGAMENTO AO SUBSTITUTO</strong></p>
+<p>O empregado que substituir o titular do cargo, por qualquer motivo, por per&iacute;odo superior a 10 (dez) dias consecutivos, far&aacute; jus &agrave; diferen&ccedil;a entre a sua remunera&ccedil;&atilde;o e a do substitu&iacute;do, durante o per&iacute;odo de substitui&ccedil;&atilde;o, que ser&aacute; sempre comunicado por escrito ao substituto.</p>
+<p><strong>28 &ndash; AUX&Iacute;LIO FUNERAL</strong></p>
+<p>As empresas custear&atilde;o o funeral do aerovi&aacute;rio, at&eacute; o limite do valor de seu seguro, desde que sejam para isso solicitadas por seus dependentes legais, ocorrendo posteriormente o ressarcimento daquela despesa quando do pagamento do seguro.</p>
+<p><strong>29 &ndash; DISPENSA POR JUSTA CAUSA</strong></p>
+<p>Sempre que o empregado for despedido por justa causa, a empresa dever&aacute; fornecer declara&ccedil;&atilde;o escrita da causa da despedida.</p>
+<p>Par&aacute;grafo &Uacute;nico: A n&atilde;o observ&acirc;ncia do estabelecido no "caput" far&aacute; presumir a despedida imotivada.</p>
+<p><strong>30 &ndash; PRAZO PARA PAGAMENTO/HOMOLOGA&Ccedil;&Atilde;O DAS VERBAS RESCIS&Oacute;RIAS</strong></p>
+<p>Imp&otilde;e-se multa pelo n&atilde;o pagamento das verbas rescis&oacute;rias at&eacute; o 10&ordm; (d&eacute;cimo) dia subsequente ao afastamento definitivo do empregado e, no caso de cumprimento de aviso pr&eacute;vio, at&eacute; o primeiro dia &uacute;til subsequente, por dia de atraso, no valor equivalente ao sal&aacute;rio di&aacute;rio desde que o retardamento n&atilde;o decorra de culpa do trabalhador.</p>
+<p>Havendo discuss&atilde;o em ju&iacute;zo sobre a extin&ccedil;&atilde;o do contrato ou sobre a natureza da mesma se com ou sem justa causa o prazo para pagamento das parcelas ser&aacute; contado da notifica&ccedil;&atilde;o ou cita&ccedil;&atilde;o para pagamento ap&oacute;s o tr&acirc;nsito em julgado da senten&ccedil;a.</p>
+<p><strong>31 &ndash; HOMOLOGA&Ccedil;&Atilde;O DO TERMO DE RESCIS&Atilde;O</strong></p>
+<p>As empresas dever&atilde;o agendar a homologa&ccedil;&atilde;o da rescis&atilde;o de contrato de trabalho de todos os aerovi&aacute;rios, com mais de 1 (um) ano de servi&ccedil;o, em quaisquer das representa&ccedil;&otilde;es do Sindicato de Aerovi&aacute;rios.</p>
+<p>31.1. A homologa&ccedil;&atilde;o n&atilde;o ser&aacute; considerada requisito de validade das rescis&otilde;es contratuais.</p>
+<p>31.2. As empresas ficam dispensadas do comparecimento no ato de homologa&ccedil;&atilde;o, desde que todos os documentos pertinentes ao ato sejam enviados ao endere&ccedil;o eletr&ocirc;nico a ser fornecido pelo sindicato em at&eacute; 10 dias da assinatura desta Conven&ccedil;&atilde;o, com anteced&ecirc;ncia m&iacute;nima de 48 (quarenta e oito) horas da data previamente agendada.</p>
+<p>31.3. Para garantia do cumprimento do Par&aacute;grafo Segundo desta Cl&aacute;usula, a empregadora enviar&aacute; ao sindicato at&eacute; o dia 7 de cada m&ecirc;s, rela&ccedil;&atilde;o com nome dos aerovi&aacute;rios com contrato extinto no m&ecirc;s anterior, com mais de 1 (um) ano de servi&ccedil;o, e para cada aerovi&aacute;rio informar&aacute; a fun&ccedil;&atilde;o, a base, data da admiss&atilde;o, data e motivo da extin&ccedil;&atilde;o do contrato, exist&ecirc;ncia ou inexist&ecirc;ncia de aviso pr&eacute;vio cumprido ou indenizado.</p>
+<p><strong>32 &ndash; PREENCHIMENTO DE VAGAS</strong></p>
+<p>As empresas se comprometem a, em condi&ccedil;&otilde;es de igualdade, no caso de admiss&atilde;o de aerovi&aacute;rio, dar prefer&ecirc;ncia aos indicados pelo Sindicato dos Aerovi&aacute;rios signat&aacute;rio e, para tanto, far&atilde;o a respectiva consulta &agrave;queles &oacute;rg&atilde;os de classe. Para isso, o sindicato manter&aacute; cadastro atualizado dos aerovi&aacute;rios dispensados.</p>
+<p><strong>33 &ndash; GARANTIA DE EMPREGO &Agrave; GESTANTE</strong></p>
+<p>A aerovi&aacute;ria que retornar ao servi&ccedil;o em decorr&ecirc;ncia do t&eacute;rmino da licen&ccedil;a-maternidade, n&atilde;o poder&aacute; ser dispensada, salvo por justa causa, at&eacute; 258 (duzentos e cinquenta e oito) dias contados a partir do parto, a menos que lhe sejam pagos os sal&aacute;rios correspondentes a esses dias.</p>
+<p>Par&aacute;grafo &Uacute;nico: A empregada gestante ter&aacute; garantia do seu emprego desde a confirma&ccedil;&atilde;o da gravidez, na forma da letra "b", do inciso II, do artigo 10 (dez) das Disposi&ccedil;&otilde;es Transit&oacute;rias da Constitui&ccedil;&atilde;o da Rep&uacute;blica, sendo que o per&iacute;odo de 258 (duzentos e cinquenta e oito) dias contados a partir do parto, configura acr&eacute;scimo de 108 (cento e oito) dias &agrave; garantia constitucional de 5 (cinco) meses ap&oacute;s o parto.</p>
+<p><strong>34 &ndash; GARANTIA DE CRECHE &Agrave; AEROVI&Aacute;RIA</strong></p>
+<p>O Sindicato dos Aerovi&aacute;rios signat&aacute;rio indicar&aacute; &agrave;s empresas as creches distritais com as quais as empresas assinar&atilde;o conv&ecirc;nio (nas condi&ccedil;&otilde;es de mercado), cujo custo ficar&aacute; por conta das empresas durante 24 (vinte e quatro) meses, ap&oacute;s o retorno da licen&ccedil;a-maternidade.</p>
+<p>34.1. Para a determina&ccedil;&atilde;o das creches mais apropriadas &agrave; necessidade das aerovi&aacute;rias, o Sindicato dos Aerovi&aacute;rios signat&aacute;rio contar&aacute; com a colabora&ccedil;&atilde;o das empresas, para coleta de subs&iacute;dios;</p>
+<p>34.2. Nas condi&ccedil;&otilde;es acima estabelecidas, as empresas poder&atilde;o optar por adotar o sistema de reembolso creche, mediante a apresenta&ccedil;&atilde;o de nota fiscal do estabelecimento de ensino.</p>
+<p><strong>35 &ndash; ATESTADO M&Eacute;DICO/ODONTOL&Oacute;GICO</strong></p>
+<p>As empresas aceitar&atilde;o, para efeito de abono de faltas, os atestados m&eacute;dicos e odontol&oacute;gicos passados por m&eacute;dicos e dentistas fornecidos pelo Servi&ccedil;o M&eacute;dico do Sindicato dos Aerovi&aacute;rios signat&aacute;rio, desde que obedecidas as exig&ecirc;ncias constantes da Portaria do Minist&eacute;rio do Trabalho N. PT-GM. 1.722 de 22.07.78;</p>
+<p>35.1. O Sindicato dos Aerovi&aacute;rios signat&aacute;rio remeter&aacute; &agrave;s empresas os nomes, respectivas assinaturas e nomea&ccedil;&atilde;o do v&iacute;nculo com o Sindicato, dos m&eacute;dicos e dentistas credenciados;</p>
+<p>35.2. A entrega do atestado ser&aacute; feita atrav&eacute;s dos sistemas disponibilizados pela Empresa para essa finalidade;</p>
+<p>35.3. Constitui obriga&ccedil;&atilde;o do funcion&aacute;rio comunicar &agrave; empresa, no menor prazo poss&iacute;vel, seu afastamento.</p>
+<p><strong>36 &ndash; TRANSPORTE DE SOCORRO</strong></p>
+<p>As empresas transportar&atilde;o, com urg&ecirc;ncia, para locais apropriados os empregados, em caso de acidente, mal s&uacute;bito ou parto, desde que ocorram durante o trabalho ou em decorr&ecirc;ncia deste, quando o empregado estiver fora de sua base.</p>
+<p><strong>37 &ndash; GARANTIA DE EMPREGO AO ACIDENTADO</strong></p>
+<p>As empresas conceder&atilde;o garantia de emprego ao aerovi&aacute;rio que sofrer acidente de trabalho por 01 (um) ano ap&oacute;s a cessa&ccedil;&atilde;o do aux&iacute;lio-doen&ccedil;a acident&aacute;rio.</p>
+<p><strong>38 &ndash; COMISS&Atilde;O PARIT&Aacute;RIA &ndash; PORTADORES DE DEFICI&Ecirc;NCIA</strong></p>
+<p>O Sindicato das empresas e o Sindicato dos Aerovi&aacute;rios signat&aacute;rio se comprometem a continuar com as reuni&otilde;es da comiss&atilde;o parit&aacute;ria, para tratar das quest&otilde;es relativas aos portadores de defici&ecirc;ncia.</p>
+<p><strong>39 &ndash; COMUNICA&Ccedil;&Atilde;O DE ACIDENTES DO TRABALHO</strong></p>
+<p>As empresas, diante da import&acirc;ncia que envolve o assunto, manter&atilde;o o Sindicato dos Aerovi&aacute;rios signat&aacute;rio informado quanto aos acidentes de trabalho ocorridos e, para isso, enviar&atilde;o ao sindicato representativo da categoria c&oacute;pia das CAT's para fins estat&iacute;sticos e no caso de acidentes fatais, ocorridos nas depend&ecirc;ncias da empresa, o sindicato dever&aacute; ser comunicado imediatamente.</p>
+<p>Na ocorr&ecirc;ncia de acidente de trajeto, a comunica&ccedil;&atilde;o ao sindicato dever&aacute; ser feita imediatamente ap&oacute;s a data em que a empresa tomou conhecimento do fato.</p>
+<p><strong>40 &ndash; ESTABILIDADE CIPAS</strong></p>
+<p>&Eacute; concedida estabilidade para os suplentes eleitos da CIPA, na forma do Precedente Normativo n&ordm; 51 do T.S.T. As empresas enviar&atilde;o ao sindicato profissional, c&oacute;pia do edital de convoca&ccedil;&atilde;o das elei&ccedil;&otilde;es da CIPA.</p>
+<p><strong>41 &ndash; ABONO DE FALTA A ESTUDANTE</strong></p>
+<p>Ser&atilde;o abonadas as faltas do empregado estudante para presta&ccedil;&atilde;o de exame vestibular ou curso reconhecido pelo Minist&eacute;rio da Educa&ccedil;&atilde;o, limitada a uma inscri&ccedil;&atilde;o, previamente comunicada ao empregador.</p>
+<p><strong>42 &ndash; GARANTIA NA TRANSFER&Ecirc;NCIA POR INICIATIVA DO EMPREGADOR</strong></p>
+<p>As Empresas garantir&atilde;o aos empregados transferidos em car&aacute;ter permanente, o per&iacute;odo de estabilidade de um ano ap&oacute;s a transfer&ecirc;ncia, a menos que lhe sejam pagos os sal&aacute;rios correspondentes a esses dias. A transfer&ecirc;ncia dever&aacute; ser comunicada ao empregado em prazo n&atilde;o inferior a 45 (quarenta e cinco) dias, assegurado o seu retorno e de seus dependentes e seus pertences &agrave; sua base.</p>
+<p><strong>43 &ndash; GARANTIA DE EMPREGO, POR TR&Ecirc;S ANOS, &Agrave;S V&Eacute;SPERAS DA APOSENTADORIA</strong></p>
+<p>As empresas se comprometem a n&atilde;o demitir, salvo em caso de justa causa, o aerovi&aacute;rio que contar mais de 15 (quinze) anos de casa e esteja a 03 (tr&ecirc;s) anos ou menos para adquirir o direito &agrave; aposentadoria.</p>
+<p>43.1. A concess&atilde;o acima cessar&aacute; na data em que o aerovi&aacute;rio adquirir direito &agrave; aposentadoria.</p>
+<p>43.2. A Aposentadoria para o participante do AERUS ou em outro sistema previdenci&aacute;rio das empresas &eacute; a que permita o afastamento do aerovi&aacute;rio com suplementa&ccedil;&atilde;o m&aacute;xima dos proventos previdenci&aacute;rios.</p>
+<p>43.3. A presente disposi&ccedil;&atilde;o somente produzir&aacute; efeito ap&oacute;s comunica&ccedil;&atilde;o do aerovi&aacute;rio dirigida &agrave; empresa de ter atingido esta condi&ccedil;&atilde;o enquanto ATIVO na companhia.</p>
+<p>43.4. A estabilidade no emprego, em caso de revis&atilde;o de aposentadoria, n&atilde;o poder&aacute; exceder o per&iacute;odo total de 4 anos, considerando os 3 anos j&aacute; usufru&iacute;dos e 1 ano adicional.</p>
+<p><strong>44 &ndash; TRANSPORTE</strong></p>
+<p>O Sindicato dos Aerovi&aacute;rios signat&aacute;rio da presente Conven&ccedil;&atilde;o discutir&aacute;, em reuni&otilde;es bimestrais, a possibilidade de fornecimento de transporte pelas empresas, em hor&aacute;rios ou condi&ccedil;&otilde;es de interrup&ccedil;&atilde;o do transporte p&uacute;blico.</p>
+<p><strong>45 &ndash; NECESSIDADE DE REDU&Ccedil;&Atilde;O DA FOR&Ccedil;A DE TRABALHO</strong></p>
+<p>Se houver necessidade de redu&ccedil;&atilde;o da for&ccedil;a de trabalho, as demiss&otilde;es ocorrer&atilde;o por base domiciliar e por fun&ccedil;&atilde;o, atingindo:</p>
+<p>a) O aerovi&aacute;rio que manifestar, sem perda de seus direitos, interesse em deixar o emprego, se o custo for aceit&aacute;vel pela empresa;</p>
+<p>b) Os aposentados com complementa&ccedil;&atilde;o ou suplementa&ccedil;&atilde;o salarial proveniente de qualquer origem e os que estiverem na reserva remunerada, respeitada a ordem decrescente de antiguidade na empresa;</p>
+<p>c) Os que estiverem em processo de admiss&atilde;o ou est&aacute;gio inicial na empresa;</p>
+<p>d) Os aposent&aacute;veis com complementa&ccedil;&atilde;o ou suplementa&ccedil;&atilde;o salarial integral;</p>
+<p>e) Os de menor antiguidade na empresa.</p>
+<p><strong>46 &ndash; DESCONTOS EM FOLHA DE PAGAMENTO</strong></p>
+<p>Ficam as empresas abrangidas por essa Conven&ccedil;&atilde;o Coletiva autorizadas a efetuar descontos em folha de pagamento, desde que expressamente autorizados pelo funcion&aacute;rio.</p>
+<p><strong>47 &ndash; SERVI&Ccedil;O MILITAR &ndash; GARANTIA PROVIS&Oacute;RIA DE EMPREGO</strong></p>
+<p>Garante-se o emprego do alistando, desde a data da incorpora&ccedil;&atilde;o no servi&ccedil;o militar at&eacute; 30 (trinta) dias ap&oacute;s a baixa.</p>
+<p><strong>48 &ndash; CURSOS ESPECIAIS</strong></p>
+<p>As empresas poder&atilde;o liberar os seus funcion&aacute;rios para participar dos cursos promovidos pelo Sindicato dos Aerovi&aacute;rios signat&aacute;rio sem preju&iacute;zo do seu sal&aacute;rio.</p>
+<p><strong>49 &ndash; UNIFORMES</strong></p>
+<p>Fica garantido o fornecimento gratuito de uniformes completos, desde que exigido o seu uso pelo empregador.</p>
+<p><strong>50 &ndash; QUEBRA DE MATERIAL</strong></p>
+<p>N&atilde;o se permite o desconto salarial por quebra de material, salvo nas hip&oacute;teses de dolo ou recusa de apresenta&ccedil;&atilde;o dos objetos danificados, ou ainda, havendo previs&atilde;o contratual, de culpa comprovada do empregado.</p>
+<p><strong>51 &ndash; PRORROGA&Ccedil;&Atilde;O DA LICEN&Ccedil;A MATERNIDADE</strong></p>
+<p>As empresas integrantes da categoria econ&ocirc;mica conceder&atilde;o &agrave;s suas empregadas aerovi&aacute;rias a prorroga&ccedil;&atilde;o da licen&ccedil;a maternidade por mais 60 (sessenta) dias, conforme institu&iacute;do na Lei n&ordm; 11.770/2008.</p>
+<p><strong>52 &ndash; DA LICEN&Ccedil;A MATERNIDADE E CUIDADOS</strong></p>
+<p>A empresa passar&aacute; a conceder licen&ccedil;a maternidade de 180 (cento e oitenta) dias, inclusive para as empregadas adotantes, independentemente de haverem feito ou vierem a fazer op&ccedil;&atilde;o nos termos da Lei 11.770/2008, denominada "Programa Empresa Cidad&atilde;".</p>
+<p>Par&aacute;grafo &Uacute;nico: Fica ainda assegurada a garantia de emprego ou sal&aacute;rio &agrave; empregada que sofrer aborto, comprovado por atestado m&eacute;dico, pelo per&iacute;odo de 60 (sessenta) dias contados ap&oacute;s o gozo do repouso remunerado de que trata o artigo 395 da CLT.</p>
+<p><strong>53 &ndash; PARCEIRO (A) DO MESMO SEXO</strong></p>
+<p>A partir da assinatura desta CCT, parceiro (a) do mesmo sexo passa a ser considerado companheiro (a) para todos os fins de direito, passando a ter todos os benef&iacute;cios concedidos pela empresa aos seus empregados (as), desde que a uni&atilde;o est&aacute;vel esteja registrada em cart&oacute;rio.</p>
+<p><strong>54 &ndash; CAMPANHA DE CONSCIENTIZA&Ccedil;&Atilde;O</strong></p>
+<p>Os sindicatos comprometem-se a desenvolver campanhas de conscientiza&ccedil;&atilde;o e orienta&ccedil;&atilde;o destinada a todos os trabalhadores, e apurar todas as situa&ccedil;&otilde;es denunciadas formalmente pelas v&iacute;timas relativas a caso de ass&eacute;dio sexual, moral, discrimina&ccedil;&atilde;o racial, religiosa, de g&ecirc;nero ou por defici&ecirc;ncia f&iacute;sica.</p>
+<p><strong>55 &ndash; ABONO DE FALTA PARA LEVAR FILHO AO M&Eacute;DICO</strong></p>
+<p>Ressalvadas as condi&ccedil;&otilde;es mais favor&aacute;veis, fica assegurado o direito &agrave; aus&ecirc;ncia remunerada de 1 (um) dia por semestre, por filho ou dependente previdenci&aacute;rio, de at&eacute; 8 (oito) anos de idade, para lev&aacute;-los ao m&eacute;dico, mediante comprova&ccedil;&atilde;o no prazo de 48 (quarenta e oito) horas ap&oacute;s a ocorr&ecirc;ncia da aus&ecirc;ncia ao trabalho.</p>
+<p><strong>56 &ndash; AUTORIZA&Ccedil;&Atilde;O DE ACESSO AO ESTACIONAMENTO NOS AEROPORTOS</strong></p>
+<p>As empresas envidar&atilde;o esfor&ccedil;os no sentido de solicitar &agrave; Administra&ccedil;&atilde;o do Aeroporto permiss&atilde;o de acesso ao estacionamento no Aeroporto da base do Sindicato para os seus empregados aerovi&aacute;rios, &agrave;s expensas dos mesmos, que trabalham habitual e permanentemente naquele Aeroporto. As empresas n&atilde;o se responsabilizam pela concess&atilde;o do estacionamento, que &eacute; uma prerrogativa exclusiva da Administra&ccedil;&atilde;o do Aeroporto.</p>
+<p><strong>57 &ndash; ADO&Ccedil;&Atilde;O DE SISTEMA ALTERNATIVO DE PONTO ELETR&Ocirc;NICO</strong></p>
+<p>Ajustam as partes a ado&ccedil;&atilde;o do sistema alternativo de ponto para controle da jornada de trabalho, nos termos do artigo 77 da Portaria MTP n&ordm; 671 de 2021.</p>
+<p>57.1. As partes convencionam que o sistema alternativo eletr&ocirc;nico de jornada n&atilde;o ir&aacute; admitir: (i) restri&ccedil;&otilde;es &agrave; marca&ccedil;&atilde;o do ponto; (ii) marca&ccedil;&atilde;o autom&aacute;tica do ponto; (iii) exig&ecirc;ncia de autoriza&ccedil;&atilde;o pr&eacute;via para marca&ccedil;&atilde;o de sobrejornada; e (iv) a altera&ccedil;&atilde;o ou elimina&ccedil;&atilde;o dos dados registrados pelo empregado, exceto na hip&oacute;tese de corre&ccedil;&atilde;o de marca&ccedil;&atilde;o incorreta.</p>
+<p>57.2. As partes estabelecem, ainda, que este sistema alternativo tamb&eacute;m: (i) est&aacute; dispon&iacute;vel no local de trabalho ou em equipamentos m&oacute;veis (como por exemplo, celular e notebooks); (ii) permite a identifica&ccedil;&atilde;o de empregador e empregado; e (iii) possibilita, atrav&eacute;s da central de dados, a extra&ccedil;&atilde;o eletr&ocirc;nica e/ou impressa do registro fiel das marca&ccedil;&otilde;es realizadas pelo empregado.</p>
+<p><strong>58 &ndash; CONCESS&Atilde;O DE PASSAGENS</strong></p>
+<p>A concess&atilde;o de passagens a&eacute;reas, conforme crit&eacute;rios estabelecidos em pol&iacute;tica interna, &eacute; benef&iacute;cio desvinculado da remunera&ccedil;&atilde;o, n&atilde;o caracterizando, em hip&oacute;tese alguma, sal&aacute;rio in natura ou utilidade, e n&atilde;o integrar&aacute; a remunera&ccedil;&atilde;o para quaisquer efeitos legais.</p>
+<p><strong>59 &ndash; VIOL&Ecirc;NCIA DOM&Eacute;STICA</strong></p>
+<p>As Empresas garantir&atilde;o afastamento remunerado de 3 (tr&ecirc;s) dias em raz&atilde;o de viol&ecirc;ncia dom&eacute;stica praticada contra suas empregadas, sem preju&iacute;zo dos vales refei&ccedil;&otilde;es do per&iacute;odo. Para obter a licen&ccedil;a, a trabalhadora dever&aacute; apresentar uma c&oacute;pia do Boletim de Ocorr&ecirc;ncia da unidade policial competente.</p>
+                                                </label>
+                                                <br />
+                                                <label class="tituloClausula">
+                                                    <b>
+                                                        <br />
+                                                        CL&#193;USULA QUINTA - CL&#193;USULAS RELATIVAS &#192; ORGANIZA&#199;&#195;O SINDICAL
+                                                        <br />
+                                                                                                                                                                                                                                                                                        
+                                                    </b>
+                                                </label>
+                                                <br />
+                                                <label class="descricaoClausula" >
+                                                    <p align="center"><strong>III &ndash; CL&Aacute;USULAS RELATIVAS &Agrave; ORGANIZA&Ccedil;&Atilde;O SINDICAL</strong></p>
+<p><strong>60 &ndash; QUADRO DE AVISOS</strong></p>
+<p>As Empresas e, de forma rec&iacute;proca, o Sindicato dos Aerovi&aacute;rios signat&aacute;rio, concordam com a coloca&ccedil;&atilde;o de um quadro de avisos para o sindicato, nos recintos de trabalho dos aerovi&aacute;rios e, para as Empresas, nos estabelecimentos dos &oacute;rg&atilde;os de classe destinados &agrave; coloca&ccedil;&atilde;o de avisos limitados exclusivamente aos assuntos de interesse da categoria, sem qualquer conota&ccedil;&atilde;o ou vincula&ccedil;&atilde;o de natureza pol&iacute;tico-partid&aacute;ria. As Empresas e o Sindicato, respectivamente, zelar&atilde;o pela conserva&ccedil;&atilde;o e continuidade da afixa&ccedil;&atilde;o dos quadros e dos avisos.</p>
+<p><strong>61 &ndash; DESCONTOS A FAVOR DO SINDICATO</strong></p>
+<p>As Empresas se comprometem a descontar de seus empregados, sem qualquer &ocirc;nus para o sindicato profissional, sem que a isso fa&ccedil;am qualquer restri&ccedil;&atilde;o, em favor do sindicato respectivo, as import&acirc;ncias por ele autorizadas, desde que representando um s&oacute; total de cada empregado no m&ecirc;s, e n&atilde;o excedam a 30% (trinta por cento) da remunera&ccedil;&atilde;o mensal.</p>
+<p>O repasse dos valores apurados dever&aacute; ser feito ao sindicato no prazo m&aacute;ximo de 02 (dois) dias &uacute;teis contados a partir da data do desconto.</p>
+<p>A empresa que n&atilde;o efetuar o repasse no prazo aqui estabelecido incorrer&aacute; em mora.</p>
+<p>Inclui-se tamb&eacute;m na presente cl&aacute;usula o repasse referente a pagamento de despesas efetuadas pelos trabalhadores na compra de medicamentos em farm&aacute;cias, material escolar, etc., em empresas conveniadas que, por for&ccedil;a de conv&ecirc;nios celebrados com o Sindicato praticam pre&ccedil;os e condi&ccedil;&otilde;es especiais para os trabalhadores.</p>
+<p><strong>62 &ndash; ENCONTROS BIMESTRAIS</strong></p>
+<p>O SNEA e o Sindicato dos Aerovi&aacute;rios signat&aacute;rio manter&atilde;o calend&aacute;rio de reuni&atilde;o em 2026, nos seguintes meses: mar&ccedil;o, maio, julho e setembro, e em qualquer tempo se as condi&ccedil;&otilde;es que determinaram as cl&aacute;usulas desta Conven&ccedil;&atilde;o se alterarem, em especial as que tenham signific&acirc;ncia econ&ocirc;mica para os empregados. Caso haja necessidade de reuni&otilde;es extraordin&aacute;rias, as partes dever&atilde;o ser comunicadas com 10 (dez) dias de anteced&ecirc;ncia.</p>
+<p><strong>63 &ndash; LIBERA&Ccedil;&Atilde;O DE DIRETORES DO SINDICATO</strong></p>
+<p>Observado o limite de 24 (vinte e quatro) diretores eleitos, as Empresas se comprometem a n&atilde;o descontar o sal&aacute;rio dos dias de convoca&ccedil;&atilde;o de diretores do Sindicato dos Aerovi&aacute;rios signat&aacute;rio, no limite m&aacute;ximo de at&eacute; 10 (dez) dias mensais e nem considerar esses dias como faltas para efeito de f&eacute;rias. Quanto ao Presidente do Sindicato dos Aerovi&aacute;rios signat&aacute;rio e ao Presidente da Federa&ccedil;&atilde;o NACIONAL / INTERNACIONAL, n&atilde;o prevalecer&aacute; o limite de 10 (dez) dias, aplicando-se esta cl&aacute;usula para todo o per&iacute;odo da convoca&ccedil;&atilde;o, ressalvado que as aus&ecirc;ncias superiores a 120 (cento e vinte) dias no ano ser&atilde;o levadas em conta para efeito de f&eacute;rias.</p>
+<p>As convoca&ccedil;&otilde;es dever&atilde;o ser comunicadas exclusivamente aos Setores de Recursos Humanos das empresas, com anteced&ecirc;ncia de 10 (dez) dias.</p>
+<p><strong>64 &ndash; DELEGADOS SINDICAIS</strong></p>
+<p>As empresas dar&atilde;o garantia de emprego aos delegados sindicais eleitos em assembleia espec&iacute;fica, com mandato que coincidir&aacute; com o da Diretoria do Sindicato signat&aacute;rio e pelo mesmo prazo, at&eacute; o limite de um delegado por empresa, e mais seis de livre escolha que poder&atilde;o ser de qualquer empresa.</p>
+<p>64.1. A garantia desta cl&aacute;usula estar&aacute; condicionada &agrave; comunica&ccedil;&atilde;o formal da elei&ccedil;&atilde;o dos referidos delegados sindicais ao SNEA e &agrave;s Empresas Aerovi&aacute;rias, no prazo m&aacute;ximo de 2 dias &uacute;teis contados da data da elei&ccedil;&atilde;o, atrav&eacute;s do encaminhamento de of&iacute;cio, editais de convoca&ccedil;&atilde;o e atas de assembleias espec&iacute;ficas para este fim, bem como da completa qualifica&ccedil;&atilde;o dos eleitos e indica&ccedil;&atilde;o da empresa aerovi&aacute;ria a que est&atilde;o vinculados.</p>
+<p>64.2. A esses delegados sindicais fica assegurada a suplementa&ccedil;&atilde;o de 06 (seis) folgas no trimestre (a servi&ccedil;o do Sindicato), al&eacute;m das devidas regularmente ao empregado. A dispensa ao trabalho na forma desta cl&aacute;usula deve ser notificada &agrave;s empresas com anteced&ecirc;ncia m&iacute;nima de 10 (dez) dias.</p>
+<p><strong>65 &ndash; LIBERA&Ccedil;&Atilde;O PARA CONGRESSOS</strong></p>
+<p>As empresas se comprometem a liberar, de uma s&oacute; vez, at&eacute; 2% (dois por cento) de aerovi&aacute;rios sindicalizados, no decorrer de 2026, para participarem do congresso da categoria, por um per&iacute;odo de tr&ecirc;s dias, para os baseados no local do evento, e cinco dias para os de outras localidades, sem preju&iacute;zo de seus vencimentos e com passagens fornecidas pelas empresas, na medida do poss&iacute;vel. O n&uacute;mero acima ser&aacute; distribu&iacute;do proporcionalmente entre as empresas e os nomes dos congressistas ser&atilde;o informados ao SNEA, 45 (quarenta e cinco) dias antes do evento.</p>
+<p><strong>66 &ndash; CONTRIBUI&Ccedil;&Atilde;O ASSISTENCIAL</strong></p>
+<p>As empresas se obrigam a proceder desconto em folha de pagamento de cada aerovi&aacute;rio, seu empregado, a t&iacute;tulo de Contribui&ccedil;&atilde;o Assistencial e remeter &agrave; Tesouraria do Sindicato dos Aerovi&aacute;rios signat&aacute;rio, a import&acirc;ncia de 1% (um por cento) do sal&aacute;rio do m&ecirc;s de fevereiro e 1% (um por cento) no m&ecirc;s de mar&ccedil;o de 2026.</p>
+<p>66.1. Fica garantido a todo aerovi&aacute;rio o direito de oposi&ccedil;&atilde;o ao referido desconto, bastando, para tanto, entregar, no prazo de 10 (dez) dias a contar da assinatura da presente Conven&ccedil;&atilde;o, ao Sindicato, com c&oacute;pia ap&oacute;s protocolada, &agrave; empresa declara&ccedil;&atilde;o por escrito neste sentido.</p>
+<p>66.2. O Sindicato dos Aerovi&aacute;rios signat&aacute;rio assumir&aacute; integralmente toda a responsabilidade sobre qualquer tipo de reclama&ccedil;&atilde;o de empregado ou sindicato, envolvendo o teor desta cl&aacute;usula em ju&iacute;zo, reembolsando &agrave;s empresas toda e qualquer devolu&ccedil;&atilde;o ou indeniza&ccedil;&atilde;o a que forem obrigadas.</p>
+<p align="center"><strong>IV &ndash; VIG&Ecirc;NCIA / DATA-BASE</strong></p>
+<p><strong>67 &ndash; VIG&Ecirc;NCIA</strong></p>
+<p>A presente conven&ccedil;&atilde;o ter&aacute; vig&ecirc;ncia de 12 meses, de 1&ordm; de dezembro de 2025 at&eacute; 30 de novembro de 2026.</p>
+<p><strong>68 &ndash; DATA BASE</strong></p>
+<p>Fica mantida a data-base em 01 de dezembro de 2025.</p>
+<p align="center"><strong>S&atilde;o Paulo, 12 de janeiro de 2026.</strong></p>
+                                                </label>
+                                                <br />
+                                    }
+                                    <br />
+                                    <table border="0" cellpadding="0" cellspacing="0" align="center">
+                                        <tr>
+                                            <td align="center">
+                                                    <br />
+    <br />
+    <label class="textonome">
+        FRANCISCA SONIA MAIA OLIVEIRA
+        <br style="height: 5px" />
+        Presidente
+        <br style="height: 5px" />
+        SINDICATO DOS AEROVIARIOS DO ESTADO DO CEARA - SINDAERO-CEARA
+        <br />
+        <br />
+    </label>
+
+    <br />
+    <br />
+    <label class="textonome">
+        ANTONIO AUGUSTO DO POCO PEREIRA
+        <br style="height: 5px" />
+        Presidente
+        <br style="height: 5px" />
+        SINDICATO NACIONAL DAS EMPRESAS AEROVIARIAS
+        <br />
+        <br />
+    </label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                        <br />
+                                        <center>
+                                            <label class="textogrupo">
+                                                <b>ANEXOS </b>
+                                            </label>
+                                        </center>
+                                                        <label>
+                                                            <b>
+                                                                <center>
+                                                                    <label class="textogrupo">
+                                                                        ANEXO I - ATA DA ASSEMBLEIA 
+                                                                    </label>
+                                                                </center>
+                                                                <label class="tituloClausula">
+                                                                                                                                    </label>
+                                                            </b>
+                                                        </label>
+                                                        <b>
+                                                            <label>
+
+                                                            </label>
+                                                        </b>
+                                                        <br />
+                                                        <label class="descricaoClausula" >
+                                                            <p><a href="https://mediador.trabalho.gov.br/sistemas/mediador/imagemAnexo/MR063973_20262026_09_30T10_31_58.pdf" target="_blank">Anexo (PDF)</a></p>
+<p>Ata da Assembleia de Aprova&ccedil;&atilde;o da CCT pelos trabalhadores aerovi&aacute;rios do Cear&aacute;.</p>
+                                                        </label>
+                                                        <br />
+                                                        <label>
+                                                            <b>
+                                                                <center>
+                                                                    <label class="textogrupo">
+                                                                        ANEXO II - ATA DE POSSE DA DIRETORIA DO SINDAERO CE
+                                                                    </label>
+                                                                </center>
+                                                                <label class="tituloClausula">
+                                                                                                                                    </label>
+                                                            </b>
+                                                        </label>
+                                                        <b>
+                                                            <label>
+
+                                                            </label>
+                                                        </b>
+                                                        <br />
+                                                        <label class="descricaoClausula" >
+                                                            <p><a href="https://mediador.trabalho.gov.br/sistemas/mediador/imagemAnexo/MR063973_20262026_09_30T10_33_11.pdf" target="_blank">Anexo (PDF)</a></p>
+<p>Ata de posse da dire&ccedil;&atilde;o do Sindaero-CE</p>
+                                                        </label>
+                                                        <br />
+                                        <!--****************************************** FIM - Anexos ******************************************-->
+                                            <label class="texto">
+                                                &#160;&#160;&#160;&#160;A autenticidade deste documento poderá ser confirmada na
+                                                página do Ministerio do Trabalho e Emprego na Internet, no endereço http://www.mte.gov.br.
+                                            </label>
+                                            <br />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </div>
+</body>
+<script>
+    setTimeout(function () {
+        window.history.replaceState({}, '', window.location.pathname);
+    }, 0);
+</script>
+</html>
